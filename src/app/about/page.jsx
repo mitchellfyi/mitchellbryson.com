@@ -61,7 +61,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I'm a full-stack developer and AI product engineer. I build practical systems that ship fast, reduce manual work, and create measurable value for teams. I've been making websites and apps since 2000, and I still prefer small, verifiable wins over grand promises.
+              I&apos;m a full-stack developer and AI product engineer. I build practical systems that ship fast, reduce manual work, and create measurable value for teams. I&apos;ve been making websites and apps since 2000, and I still prefer small, verifiable wins over grand promises.
             </p>
             
             <div>
@@ -69,7 +69,7 @@ export default function About() {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
-                  <span><strong>Product strategy to working software</strong> — deciding what to build and why, then delivering it end-to-end. I've worked for, started, and co-founded tech companies, covering product decisions, resource allocation, hands-on engineering, and hiring multi-disciplinary teams.</span>
+                  <span><strong>Product strategy to working software</strong> — deciding what to build and why, then delivering it end-to-end. I&apos;ve worked for, started, and co-founded tech companies, covering product decisions, resource allocation, hands-on engineering, and hiring multi-disciplinary teams.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
@@ -77,7 +77,7 @@ export default function About() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
-                  <span><strong>Applied AI</strong> — bringing LLMs into real SaaS workflows (search, support, data/ops), with a clear line from model output to business value. I'm actively deepening applied AI for product engineering and data science.</span>
+                  <span><strong>Applied AI</strong> — bringing LLMs into real SaaS workflows (search, support, data/ops), with a clear line from model output to business value. I&apos;m actively deepening applied AI for product engineering and data science.</span>
                 </li>
               </ul>
             </div>
