@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
+import { Newsletter } from '@/components/Newsletter'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
 
@@ -56,6 +57,9 @@ export function ArticleLayout({ article, children }) {
               {children}
             </Prose>
           </article>
+          <div className="mt-16">
+            <Newsletter />
+          </div>
         </div>
       </div>
     </Container>
