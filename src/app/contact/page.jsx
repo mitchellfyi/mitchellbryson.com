@@ -55,7 +55,7 @@ export default function Contact() {
       title="Get in touch"
       intro="I'd love to hear from you. Send me a message and I'll respond as soon as possible."
     >
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
