@@ -53,7 +53,18 @@ export default function Contact() {
   return (
     <SimpleLayout
       title="Get in touch"
-      intro="I'd love to hear from you. Send me a message and I'll respond as soon as possible."
+      intro={
+        <>
+          I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as possible. You can also reach me directly at{' '}
+          <a 
+            href="mailto:website@mitchellbryson.com" 
+            className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+          >
+            website@mitchellbryson.com
+          </a>
+          .
+        </>
+      }
     >
       <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

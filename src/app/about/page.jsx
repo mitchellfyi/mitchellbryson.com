@@ -124,7 +124,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="lg:pl-20">
+        {/* <div className="lg:pl-20">
           <ul role="list">
             <SocialLink href="#" icon={XIcon}>
               Follow on X
@@ -146,7 +146,7 @@ export default function About() {
               website@mitchellbryson.com
             </SocialLink>
           </ul>
-        </div>
+        </div> */}
       </div>
     </Container>
   )

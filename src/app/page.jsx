@@ -208,7 +208,7 @@ export default async function Home() {
             My focus: small, verifiable wins that go live fast, then scale.
             If you need AI that pays for itself in weeks, not quarters, <a href="/contact" className="text-teal-500">let's talk</a>.
           </p>
-          <div className="mt-6 flex gap-6">
+          {/* <div className="mt-6 flex gap-6">
             <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
             <SocialLink
               href="#"
@@ -225,7 +225,7 @@ export default async function Home() {
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />
-          </div>
+          </div> */}
         </div>
       </Container>
       <Container className="mt-24 md:mt-28">
