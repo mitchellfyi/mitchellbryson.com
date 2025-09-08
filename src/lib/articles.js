@@ -26,5 +26,9 @@ export async function getAllArticles() {
     return articleDate < today
   })
 
+  if (process.env.NODE_ENV === 'development') {
+    return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
+  }
+
   return publishedArticles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }

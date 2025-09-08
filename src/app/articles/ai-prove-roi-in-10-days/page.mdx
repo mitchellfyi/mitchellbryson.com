@@ -22,7 +22,7 @@ You don’t need a six-month project to prove AI value. Run a **10-day pilot** t
 
 #### Days 0–1 - Scope & baseline
 
-* Define one narrow user journey (e.g., “Where is my order?”, “AP invoice check”, “price update on 200 SKUs”).
+* Define one narrow user journey (e.g., "Where is my order?", "AP invoice check", "price update on 200 SKUs").
 * Freeze a **baseline window** (last 14–30 days).
 * Agree the **primary KPI** and **target threshold** (example targets below).
 * Set a **hard cost ceiling** and a canary cohort (e.g., 10–20% of traffic).
@@ -156,17 +156,17 @@ risks:
 
 ## Example pilot slices (pick one)
 
-#### Support: “Where is my order?”
+#### Support: "Where is my order?"
 
 * Authenticate customer; look up order; answer with ETA, policy, and **handoff** button.
 * KPIs: deflection %, FRT, cost/conversation, QA pass-rate.
 
-#### AP: “Invoice QA on top 5 suppliers”
+#### AP: "Invoice QA on top 5 suppliers"
 
 * Parse PDF; compare to PO/price list; flag variance/duplicates; open ticket.
 * KPIs: £ overcharge detected, false-positive rate, minutes saved/invoice.
 
-#### Pricing: “Guardrailed price update for 200 SKUs”
+#### Pricing: "Guardrailed price update for 200 SKUs"
 
 * Apply formula price with caps; canary to 10%; auto-rollback if conversion drops.
 * KPIs: GM% delta, conversion delta, rollback MTTR.

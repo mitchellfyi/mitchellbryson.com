@@ -69,7 +69,7 @@ for doc in docs:
 
 ## Semantic chunking (not just character splits)
 
-Chunking drives retrieval hit-rate. Prefer **semantic chunkers** that split by sentence boundaries and **merge sentences that remain semantically cohesive** in embedding space. This keeps concepts intact and reduces “answer spread” across chunks. LangChain’s `SemanticChunker` and LlamaIndex’s semantic splitters follow this pattern. Use small overlap only when needed. ([python.langchain.com][4], [docs.cohere.com][5])
+Chunking drives retrieval hit-rate. Prefer **semantic chunkers** that split by sentence boundaries and **merge sentences that remain semantically cohesive** in embedding space. This keeps concepts intact and reduces "answer spread" across chunks. LangChain’s `SemanticChunker` and LlamaIndex’s semantic splitters follow this pattern. Use small overlap only when needed. ([python.langchain.com][4], [docs.cohere.com][5])
 
 ```ts
 // Pseudocode: semantic chunking with fallback

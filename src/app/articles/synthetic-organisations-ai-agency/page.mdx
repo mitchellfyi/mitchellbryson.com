@@ -16,7 +16,7 @@ description: article.description,
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-**Question:** What would a fully agentic service agency look like - one where AI agents own strategy *and* execution - and how would we build it without losing control of risk, cost, or accountability?
+**Question:** What would a fully agentic service agency look like - one where AI agents own strategy *and* execution - and how would I build it without losing control of risk, cost, or accountability?
 
 **Answer:** Treat the firm as a *mission-processing system*: **mission intake → strategy compiler → budget allocator → specialist sub-agents → execution → QA/evals → governance → billing**, with hard control points and auditability.
 
@@ -32,7 +32,7 @@ When agents do the work, the firm acts like a mission processor: goals in, strat
 
 ### Accountability
 
-Accountability stays human. Agents operate with constrained authority and revocation. Decision rights, explicit gates, and a tamper-evident ledger convert “we thought” into “here is who approved what, when, and why.”
+Accountability stays human. Agents operate with constrained authority and revocation. Decision rights, explicit gates, and a tamper-evident ledger convert "we thought" into "here is who approved what, when, and why."
 
 ### Trust
 
@@ -54,7 +54,7 @@ If missions are framed as measurable outcomes with cost ceilings, agents should 
 
 Optimise for reversibility and legibility. Use proportional autonomy that grows only after passing gates on small cohorts. Keep one path to production so tests and users exercise the same code. Treat cost as a first-class signal.
 
-### What “good” looks like
+### What "good" looks like
 
 Time-to-first-value is measured in days. Unit economics are predictable and capped. Incidents are rare and quickly reversible. The evidence ledger makes audits and post-mortems dull.
 
@@ -111,7 +111,7 @@ mission:
 #### Strategy compiler (from brief to plan)
 
 * Convert the mission into a **task graph** (milestones → tactics → tasks) with dependencies and measurable outputs.
-* Produce a “strategy bill of materials” (data sources, tools, prompts, APIs).
+* Produce a "strategy bill of materials" (data sources, tools, prompts, APIs).
 
 ```json
 {
@@ -279,7 +279,7 @@ CREATE TABLE evidence_ledger(
 
 #### Common issues
 
-* **Scope creep via “just one more data source.”**
+* **Scope creep via "just one more data source."**
 * **Copy shipped without approval.**
 * **Runaway spend on eval or scraping.**
 * **Agent loops or duplicate work.**
@@ -303,4 +303,4 @@ CREATE TABLE evidence_ledger(
 
 ---
 
-**Bottom line:** A synthetic organisation is not “agents without humans.” It’s a disciplined operating model where agents do the work, and humans own the gates, budgets, and accountability. With the controls above, you can pilot an AI-run service slice in 30 days, show measurable value, and scale without losing the plot.
+**Bottom line:** A synthetic organisation is not "agents without humans." It’s a disciplined operating model where agents do the work, and humans own the gates, budgets, and accountability. With the controls above, you can pilot an AI-run service slice in 30 days, show measurable value, and scale without losing the plot.

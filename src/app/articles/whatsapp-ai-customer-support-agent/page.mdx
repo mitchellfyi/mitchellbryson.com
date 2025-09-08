@@ -18,7 +18,7 @@ export default (props) => <ArticleLayout article={article} {...props} />
 
 WhatsApp is where customers already are; your agent should meet them there without breaking policy, losing context, or missing SLAs. This template shows how to design a **WhatsApp support agent** that’s compliant, debuggable, and easy to hand over to humans - complete with audit trails and SLA-aware routing.
 
-## What “good” looks like
+## What "good" looks like
 
 #### Outcomes to aim for
 
@@ -110,7 +110,7 @@ CREATE INDEX ON wa_events (conversation_id, ts);
 
 * **Customer tier** (VIP/trade/retail) and **topic** (refund, delivery, technical).
 * **Promised SLA** per (tier × topic × channel).
-* **Queue rules**: “escalate if time-to-SLA < X minutes and agent unavailable.”
+* **Queue rules**: "escalate if time-to-SLA < X minutes and agent unavailable."
 
 ```python
 # Compute due time and enqueue with priority
@@ -191,7 +191,7 @@ const Reply = z.object({
 
 #### How to re-engage correctly
 
-* If the window has expired, **queue a template** (approved, locale-specific) such as “We have an update on your order. Reply to continue.”
+* If the window has expired, **queue a template** (approved, locale-specific) such as "We have an update on your order. Reply to continue."
 * Avoid free-text until the customer replies; then the window reopens.
 
 ```ts
