@@ -182,7 +182,7 @@ function Resume() {
       start: '2019',
       end: {
         label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
+        dateTime: '2024',
       },
     },
     {
