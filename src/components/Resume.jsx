@@ -71,7 +71,7 @@ function Role({ role }) {
           aria-label={`${startLabel} until ${endLabel}`}
         >
           <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
+          <span aria-hidden="true"> - </span>{' '}
           <time dateTime={endDate}>{endLabel}</time>
         </dd>
       </dl>

@@ -39,7 +39,7 @@ export default function Speaking() {
         <SpeakingSection title="Conferences">
           <Appearance
             href="#"
-            title="In space, no one can watch you stream — until now"
+            title="In space, no one can watch you stream - until now"
             description="A technical deep-dive into HelioStream, the real-time streaming library I wrote for transmitting live video back to Earth."
             event="SysConf 2021"
             cta="Watch video"

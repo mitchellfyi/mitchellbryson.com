@@ -16,5 +16,15 @@ export async function getAllArticles() {
 
   let articles = await Promise.all(articleFilenames.map(importArticle))
 
-  return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
+  // Filter out articles with dates on or after today
+  const today = new Date()
+  today.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
+  
+  const publishedArticles = articles.filter(article => {
+    const articleDate = new Date(article.date)
+    articleDate.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
+    return articleDate < today
+  })
+
+  return publishedArticles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }

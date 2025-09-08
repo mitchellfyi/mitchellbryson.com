@@ -20,37 +20,37 @@ You don’t need a six-month project to prove AI value. Run a **10-day pilot** t
 
 ## The 10-day schedule (repeatable)
 
-#### Days 0–1 — Scope & baseline
+#### Days 0–1 - Scope & baseline
 
 * Define one narrow user journey (e.g., “Where is my order?”, “AP invoice check”, “price update on 200 SKUs”).
 * Freeze a **baseline window** (last 14–30 days).
 * Agree the **primary KPI** and **target threshold** (example targets below).
 * Set a **hard cost ceiling** and a canary cohort (e.g., 10–20% of traffic).
 
-#### Days 2–3 — Wire data & guardrails
+#### Days 2–3 - Wire data & guardrails
 
 * Connect the minimum data sources (orders, tickets, POs/price lists).
 * Add **tracing** (inputs, outputs, latency, tokens/costs).
 * Add **guardrails** (schema validation, escalation path, rate limits).
 * Create an **eval set** (10–30 realistic cases) to check quality daily.
 
-#### Days 4–5 — Ship a thin slice
+#### Days 4–5 - Ship a thin slice
 
 * Enable the feature for the canary cohort only.
 * Log all decisions with evidence (citations, diffs, audit trail).
 * Start a daily scoreboard (see KPI table template below).
 
-#### Days 6–7 — Tune or stop
+#### Days 6–7 - Tune or stop
 
 * Review KPI movement vs baseline; fix obvious misses.
 * If **cut-offs** are hit (quality, spend, or error thresholds), **stop** and document why.
 
-#### Days 8–9 — Document & handover prep
+#### Days 8–9 - Document & handover prep
 
 * Finalise runbooks, dashboards, and rollback steps.
 * Collect stakeholder feedback (support, finance, ops).
 
-#### Day 10 — Decision
+#### Day 10 - Decision
 
 * If KPIs pass and budget holds, expand to 50–100% with monitoring.
 * Otherwise, roll back and keep the artefacts for the next attempt.
@@ -149,7 +149,7 @@ kpis:
 budgets:
   daily_gbp: 50
   per_conv_gbp: 0.07
-result: "GO — expand to 50% traffic with same guardrails"
+result: "GO - expand to 50% traffic with same guardrails"
 risks:
   - "Peak-time latency near threshold; monitor p95"
 ```

@@ -69,15 +69,15 @@ export default function About() {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
-                  <span><strong>Product strategy to working software</strong> — deciding what to build and why, then delivering it end-to-end. I&apos;ve worked for, started, and co-founded tech companies, covering product decisions, resource allocation, hands-on engineering, and hiring multi-disciplinary teams.</span>
+                  <span><strong>Product strategy to working software</strong> - deciding what to build and why, then delivering it end-to-end. I&apos;ve worked for, started, and co-founded tech companies, covering product decisions, resource allocation, hands-on engineering, and hiring multi-disciplinary teams.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
-                  <span><strong>Modern web stacks</strong> — Ruby on Rails (Hotwire), JavaScript (React/Vue), and Tailwind with Sass.</span>
+                  <span><strong>Modern web stacks</strong> - Ruby on Rails (Hotwire), JavaScript (React/Vue), and Tailwind with Sass.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
-                  <span><strong>Applied AI</strong> — bringing LLMs into real SaaS workflows (search, support, data/ops), with a clear line from model output to business value. I&apos;m actively deepening applied AI for product engineering and data science.</span>
+                  <span><strong>Applied AI</strong> - bringing LLMs into real SaaS workflows (search, support, data/ops), with a clear line from model output to business value. I&apos;m actively deepening applied AI for product engineering and data science.</span>
                 </li>
               </ul>
             </div>
@@ -99,9 +99,9 @@ export default function About() {
             <div>
               <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">How I work</h2>
               <ol className="space-y-2 list-decimal list-inside">
-                <li><strong>Discovery</strong> — clarify the problem, users, and success metrics.</li>
-                <li><strong>Pilot (5–10 days)</strong> — ship a thin slice that proves value, with instrumentation.</li>
-                <li><strong>Production</strong> — harden, document, handover, or continue as fractional support.</li>
+                <li><strong>Discovery</strong> - clarify the problem, users, and success metrics.</li>
+                <li><strong>Pilot (5–10 days)</strong> - ship a thin slice that proves value, with instrumentation.</li>
+                <li><strong>Production</strong> - harden, document, handover, or continue as fractional support.</li>
               </ol>
             </div>
 

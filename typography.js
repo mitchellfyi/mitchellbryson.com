@@ -80,6 +80,14 @@ export default {
           },
 
           // Headings
+          h1: {
+            fontSize: theme('fontSize.3xl')[0],
+            lineHeight: theme('lineHeight.7'),
+            marginTop: theme('spacing.6'),
+            marginBottom: theme('spacing.12'),
+            color: 'var(--tw-prose-bold)',
+            fontWeight: theme('fontWeight.semibold'),
+          },
           'h2, h3': {
             color: 'var(--tw-prose-headings)',
             fontWeight: theme('fontWeight.semibold'),
@@ -102,7 +110,7 @@ export default {
             marginTop: theme('spacing.4'),
             marginBottom: theme('spacing.4'),
           },
-          ':is(h2, h3, h4) + *': {
+          ':is(h1, h2, h3, h4) + *': {
             marginTop: 0,
           },
           ':is(p) + ul, :is(p) + ol': {

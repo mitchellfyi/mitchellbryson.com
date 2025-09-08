@@ -31,7 +31,7 @@ RAG quality is mostly a data problem. Below is a production-oriented pipeline th
 
 ## Deduplication that scales
 
-Duplicate and near-duplicate documents distort embeddings and retrieval—especially from web or ticket archives. Use **fuzzy dedup** (n-gram shingling + MinHash/SimHash) to cluster near-dupes, then keep a canonical record per cluster. This approach is standard in large-scale NLP pipelines and has been shown to reduce memorisation and improve downstream quality. ([arXiv][14])
+Duplicate and near-duplicate documents distort embeddings and retrieval - especially from web or ticket archives. Use **fuzzy dedup** (n-gram shingling + MinHash/SimHash) to cluster near-dupes, then keep a canonical record per cluster. This approach is standard in large-scale NLP pipelines and has been shown to reduce memorisation and improve downstream quality. ([arXiv][14])
 
 #### **What to implement**
 
@@ -41,7 +41,7 @@ Duplicate and near-duplicate documents distort embeddings and retrieval—especi
 * Persist `duplicate_cluster_id` so you can suppress duplicates at query-time.
 
 **Why this matters**
-Google’s dedup work on C4 and related corpora shows removing near-dupes reduces verbatim copying and improves efficiency—evidence that duplicates harm model behaviour and evaluation. The same logic holds for RAG stores. ([ACL Anthology][15])
+Google’s dedup work on C4 and related corpora shows removing near-dupes reduces verbatim copying and improves efficiency - evidence that duplicates harm model behaviour and evaluation. The same logic holds for RAG stores. ([ACL Anthology][15])
 
 ```python
 # Pseudocode: MinHash LSH for near-duplicate clusters
@@ -85,7 +85,7 @@ Start around **300–500 tokens** per chunk with **\~10–20% overlap** for text
 
 ## Hybrid retrieval that actually finds things
 
-Lexical and dense retrieval fail in different ways. **Hybrid retrieval** combines BM25/keyword with dense vectors and fuses results—commonly via **Reciprocal Rank Fusion (RRF)** or score blending. BM25 remains a robust baseline across domains (BEIR), and RRF is a simple, well-studied fusion method that often outperforms either signal alone. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
+Lexical and dense retrieval fail in different ways. **Hybrid retrieval** combines BM25/keyword with dense vectors and fuses results - commonly via **Reciprocal Rank Fusion (RRF)** or score blending. BM25 remains a robust baseline across domains (BEIR), and RRF is a simple, well-studied fusion method that often outperforms either signal alone. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
 
 #### Implementation options:
 
@@ -128,7 +128,7 @@ final_ctx = mmr_diversify(query, reranked, k=6, lambda_=0.5)  # diversity
 Adopt a small, fixed **eval set** of realistic questions. Measure:
 
 * **Retrieval**: precision/recall\@k on gold passages; or reference-free retrieval quality.
-* **Answer**: faithfulness (groundedness), answer relevancy, and context precision—**Ragas** provides these out of the box and integrates cleanly with tracing. Use it to gate releases. ([docs.ragas.io][12], [Langfuse][13])
+* **Answer**: faithfulness (groundedness), answer relevancy, and context precision - **Ragas** provides these out of the box and integrates cleanly with tracing. Use it to gate releases. ([docs.ragas.io][12], [Langfuse][13])
 
 ---
 
