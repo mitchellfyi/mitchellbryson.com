@@ -75,8 +75,8 @@ export default {
             marginBottom: theme('spacing.10'),
           },
           p: {
-            marginTop: theme('spacing.7'),
-            marginBottom: theme('spacing.7'),
+            marginTop: theme('spacing.6'),
+            marginBottom: theme('spacing.6'),
           },
 
           // Headings
@@ -96,7 +96,16 @@ export default {
             marginTop: theme('spacing.16'),
             marginBottom: theme('spacing.4'),
           },
-          ':is(h2, h3) + *': {
+          h4: {
+            fontSize: theme('fontSize.base')[0],
+            lineHeight: theme('lineHeight.7'),
+            marginTop: theme('spacing.4'),
+            marginBottom: theme('spacing.4'),
+          },
+          ':is(h2, h3, h4) + *': {
+            marginTop: 0,
+          },
+          ':is(p) + ul, :is(p) + ol': {
             marginTop: 0,
           },
 
@@ -170,9 +179,9 @@ export default {
             paddingLeft: theme('spacing.6'),
           },
           li: {
-            marginTop: theme('spacing.6'),
-            marginBottom: theme('spacing.6'),
-            paddingLeft: theme('spacing[3.5]'),
+            marginTop: theme('spacing.3'),
+            marginBottom: theme('spacing.3'),
+            paddingLeft: theme('spacing[.5]'),
           },
           'li::marker': {
             fontSize: theme('fontSize.sm')[0],

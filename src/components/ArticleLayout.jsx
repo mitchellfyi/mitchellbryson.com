@@ -55,6 +55,7 @@ export function ArticleLayout({ article, children }) {
             </header>
             <Prose className="mt-8" data-mdx-content>
               {children}
+              <hr />
             </Prose>
           </article>
           <div className="mt-16">

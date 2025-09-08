@@ -3,12 +3,15 @@ import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
+import { Card } from '@/components/Card'
 import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
+import { getAllArticles } from '@/lib/articles'
+import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
   return (
@@ -78,10 +81,24 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
+function Article({ article }) {
+  return (
+    <Card as="article">
+      <Card.Eyebrow decorate>{formatDate(article.date)}</Card.Eyebrow>
+      <Card.Title href={`/articles/${article.slug}`}>
+        {article.title}
+      </Card.Title>
+      <Card.Description>{article.description}</Card.Description>
+      <Card.Cta>Read article</Card.Cta>
+    </Card>
+  )
+}
 
 
 
-export default function Home() {
+
+export default async function Home() {
+  let articles = (await getAllArticles()).slice(0, 4)
 
   return (
     <>
@@ -95,27 +112,27 @@ export default function Home() {
             My focus: small, verifiable wins that go live fast, then scale.
             If you need AI that pays for itself in weeks, not quarters, <a href="/contact" className="text-teal-500">let&apos;s talk</a>.
           </p>
-          {/* <div className="mt-6 flex gap-6">
-            <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
+          <div className="mt-6 flex gap-6">
+            {/* <SocialLink href="#" aria-label="Follow on X" icon={XIcon} /> */}
+            {/* <SocialLink
               href="#"
               aria-label="Follow on Instagram"
               icon={InstagramIcon}
-            />
-            <SocialLink
+            /> */}
+            {/* <SocialLink
               href="#"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
-            />
-            <SocialLink
+            /> */}
+            {/* <SocialLink
               href="#"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
-            />
-          </div> */}
+            /> */}
+          </div>
         </div>
       </Container>
-      {/* <Container className="mt-24 md:mt-28">
+      <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
@@ -124,13 +141,8 @@ export default function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
-            <Resume />
+            {/* <Resume /> */}
           </div>
-        </div>
-      </Container> */}
-      <Container className="mt-24 md:mt-28">
-        <div className="mx-auto max-w-xl">
-          <Newsletter />
         </div>
       </Container>
     </>
