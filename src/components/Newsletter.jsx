@@ -79,7 +79,7 @@ export function Newsletter() {
       {submitStatus === 'success' && (
         <div className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20">
           <div className="text-sm text-green-800 dark:text-green-200">
-            Thanks for subscribing! You'll hear from me soon.
+            Thanks for subscribing! You&apos;ll hear from me soon.
           </div>
         </div>
       )}
