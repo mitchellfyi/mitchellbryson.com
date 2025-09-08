@@ -65,7 +65,7 @@ export default function About() {
             </p>
             
             <div>
-              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">What I'm good at</h2>
+              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">What I&apos;m good at</h2>
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
