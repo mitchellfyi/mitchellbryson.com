@@ -10,11 +10,18 @@ To get started with this template, first install the npm dependencies:
 npm install
 ```
 
-Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
+Next, create a `.env.local` file in the root of your project and set the required environment variables:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://example.com
+RESEND_API_KEY=your_resend_api_key_here
+CONTACT_EMAIL=your-email@example.com
 ```
+
+**Environment Variables:**
+- `NEXT_PUBLIC_SITE_URL`: Your site's public URL
+- `RESEND_API_KEY`: Your Resend API key for sending emails (get one at [resend.com](https://resend.com))
+- `CONTACT_EMAIL`: The email address where contact form submissions will be sent
 
 Next, run the development server:
 
