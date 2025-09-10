@@ -1,6 +1,7 @@
 import assert from 'assert'
 import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
+import { getAllArticles } from '@/lib/articles'
 
 export async function GET(req) {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -16,47 +17,41 @@ export async function GET(req) {
 
   let feed = new Feed({
     title: author.name,
-    description: 'Your blog description',
+    description: 'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
     author,
     id: siteUrl,
     link: siteUrl,
     image: `${siteUrl}/favicon.ico`,
     favicon: `${siteUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}`,
+    copyright: `© ${new Date().getFullYear()} Mitchell Bryson. All rights reserved.`,
     feedLinks: {
       rss2: `${siteUrl}/feed.xml`,
     },
   })
 
-  let articleIds = require
-    .context('../articles', true, /\/page\.mdx$/)
-    .keys()
-    .filter((key) => key.startsWith('./'))
-    .map((key) => key.slice(2).replace(/\/page\.mdx$/, ''))
+  let allArticles = await getAllArticles()
+  
+  // Filter to only include articles with dates before today
+  const today = new Date()
+  today.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
+  const publishedArticles = allArticles.filter(article => {
+    const articleDate = new Date(article.date)
+    articleDate.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
+    return articleDate <= today
+  })
 
-  for (let id of articleIds) {
-    let url = String(new URL(`/articles/${id}`, req.url))
-    let html = await (await fetch(url)).text()
-    let $ = cheerio.load(html)
-
-    let publicUrl = `${siteUrl}/articles/${id}`
-    let article = $('article').first()
-    let title = article.find('h1').first().text()
-    let date = article.find('time').first().attr('datetime')
-    let content = article.find('[data-mdx-content]').first().html()
-
-    assert(typeof title === 'string')
-    assert(typeof date === 'string')
-    assert(typeof content === 'string')
+  for (let article of publishedArticles) {
+    let publicUrl = `${siteUrl}/articles/${article.slug}`
+    let content = `${article.description} <br /><br /><a href="${publicUrl}">Read the full article</a>.`
 
     feed.addItem({
-      title,
+      title: article.title,
       id: publicUrl,
       link: publicUrl,
       content,
       author: [author],
       contributor: [author],
-      date: new Date(date),
+      date: new Date(article.date),
     })
   }
 

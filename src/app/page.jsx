@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
 import { Card } from '@/components/Card'
+import { Resume } from '@/components/Resume'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -141,7 +142,7 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
-            {/* <Resume /> */}
+            <Resume />
           </div>
         </div>
       </Container>

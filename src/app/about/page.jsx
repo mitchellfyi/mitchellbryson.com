@@ -124,18 +124,18 @@ export default function About() {
             </div>
           </div>
         </div>
-        {/* <div className="lg:pl-20">
+        <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={XIcon}>
+            {/* <SocialLink href="#" icon={XIcon}>
               Follow on X
-            </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
+            </SocialLink> */}
+            {/* <SocialLink href="#" icon={InstagramIcon} className="mt-4">
               Follow on Instagram
-            </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            </SocialLink> */}
+            <SocialLink href="https://github.com/mitchellfyi" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+            <SocialLink href="https://www.linkedin.com/in/mitchellfyi" icon={LinkedInIcon} className="mt-4">
               Follow on LinkedIn
             </SocialLink>
             <SocialLink
@@ -146,7 +146,7 @@ export default function About() {
               website@mitchellbryson.com
             </SocialLink>
           </ul>
-        </div> */}
+        </div>
       </div>
     </Container>
   )

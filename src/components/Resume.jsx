@@ -1,10 +1,11 @@
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoMaterialsMarket from '@/images/logos/materialsmarket.jpeg'
+import logoCrwd from '@/images/logos/crwd.jpeg'
+import logoTaskfeed from '@/images/logos/taskfeed.jpeg'
+import logoAirstoc from '@/images/logos/airstoc.jpeg'
+import logoBlendmode from '@/images/logos/blendmode.jpeg'
 
 function BriefcaseIcon(props) {
   return (
@@ -53,8 +54,8 @@ function Role({ role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+      <div className="relative mt-1 flex flex-none items-center justify-center">
+        <Image src={role.logo} alt="" className="h-10 w-10 object-cover rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -82,35 +83,42 @@ function Role({ role }) {
 export function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
-      start: '2019',
+      company: 'MaterialsMarket.com',
+      title: 'Snr. Product Engineer',
+      logo: logoMaterialsMarket,
+      start: '2023',
       end: {
         label: 'Present',
-        dateTime: '2024',
+        dateTime: '2025',
       },
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
+      company: 'CRWD',
+      title: 'CTO',
+      logo: logoCrwd,
+      start: '2021',
+      end: '2023',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
+      company: 'Taskfeed',
+      title: 'Head of Product',
+      logo: logoTaskfeed,
+      start: '2018',
+      end: '2021',
     },
     {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'Airstoc',
+      title: 'CTO',
+      logo: logoAirstoc,
+      start: '2015',
+      end: '2018',
+    },,
+    {
+      company: 'Blendmode',
+      title: 'Technical Lead',
+      logo: logoBlendmode,
+      start: '2015',
+      end: '2010',
     },
   ]
 
@@ -125,10 +133,14 @@ export function Resume() {
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <a 
+        href="/Mitchell Bryson - Resume August 2025.pdf" 
+        download="Mitchell Bryson - Resume August 2025.pdf"
+        className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none cursor-pointer bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
+      >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      </a>
     </div>
   )
 }
