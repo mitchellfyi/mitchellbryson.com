@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
@@ -5,27 +6,53 @@ import { formatDate } from '@/lib/formatDate'
 
 function Article({ article }) {
   return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
+    <article className="md:grid md:grid-cols-4 md:items-start">
       <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
-          {article.title}
-        </Card.Title>
-        <Card.Eyebrow
-          as="time"
-          dateTime={article.date}
-          className="md:hidden"
-          decorate
-        >
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
+        <div className="flex gap-4">
+          {article.coverImage && (
+            <div className="flex-shrink-0 hidden max-md:block">
+              <Image
+                src={article.coverImage}
+                alt={article.title}
+                width={120}
+                height={80}
+                className="rounded-lg object-cover"
+              />
+            </div>
+          )}
+          <div className="flex-1">
+            <Card.Title href={`/articles/${article.slug}`}>
+              {article.title}
+            </Card.Title>
+            <Card.Eyebrow
+              as="time"
+              dateTime={article.date}
+              className="md:hidden"
+              decorate
+            >
+              {formatDate(article.date)}
+            </Card.Eyebrow>
+            <Card.Description>{article.description}</Card.Description>
+            <Card.Cta>Read article</Card.Cta>
+          </div>
+        </div>
       </Card>
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="mt-1 max-md:hidden"
+        className="mt-1 max-md:hidden flex-col gap-3"
       >
+        {article.coverImage && (
+          <div className="flex-shrink-0">
+            <Image
+              src={article.coverImage}
+              alt={article.title}
+              width={120}
+              height={80}
+              className="rounded-lg object-cover"
+            />
+          </div>
+        )}
         {formatDate(article.date)}
       </Card.Eyebrow>
     </article>

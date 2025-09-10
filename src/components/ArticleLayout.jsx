@@ -2,6 +2,9 @@
 
 import { useContext } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
@@ -53,8 +56,26 @@ export function ArticleLayout({ article, children }) {
                 <span className="ml-3">{formatDate(article.date)}</span>
               </time>
             </header>
+            {article.coverImage && (
+              <div className="mt-8 lg:-mx-14">
+                <Image
+                  src={article.coverImage}
+                  alt={article.title}
+                  width={1200}
+                  height={630}
+                  className="rounded-lg shadow-lg"
+                  priority
+                />
+              </div>
+            )}
             <Prose className="mt-8" data-mdx-content>
-              {children}
+              {article.content ? (
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {article.content}
+                </ReactMarkdown>
+              ) : (
+                children
+              )}
               <hr />
             </Prose>
           </article>

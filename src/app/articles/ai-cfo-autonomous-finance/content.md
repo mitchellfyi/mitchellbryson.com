@@ -1,20 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-11-21',
-title:
-'The AI CFO: Autonomous budgeting, forecasting, and programmatic spend execution',
-description:
-'A philosophical but concrete sketch of an "AI CFO" that plans continuously, allocates capital as code, and executes spend programmatically under hard controls.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-11-21"
+title: "The AI CFO: Autonomous budgeting, forecasting, and programmatic spend execution"
+description: "A philosophical but concrete sketch of an AI CFO that plans continuously, allocates capital as code, and executes spend programmatically under hard controls."
+---
 
 Most finance teams still plan in quarters, forecast monthly, and execute spend through people and tickets. The next step is an **AI CFO**: a system that treats budgets as code, keeps forecasts continuously updated, and executes payments under explicit policies and caps - with humans owning the guardrails, approvals, and accountability. Industry language is already moving this way under "autonomous finance," not as hype but as a target architecture CFOs expect to realise within a near-term horizon. ([Gartner][1], [Deloitte][2])
 
