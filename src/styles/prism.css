@@ -1,6 +1,10 @@
 pre[class*='language-'] {
   color: var(--color-zinc-100);
 }
+pre div {
+  border-radius: 0.5rem !important;
+  background-color: transparent !important;
+}
 
 .token.tag,
 .token.class-name,

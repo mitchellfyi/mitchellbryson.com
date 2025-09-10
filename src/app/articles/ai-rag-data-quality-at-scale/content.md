@@ -1,20 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-  author: 'Mitchell Bryson',
-  date: '2025-05-05',
-  title: 'RAG data quality at scale: deduplication, semantic chunking, and hybrid retrieval that actually improves answers',
-  description:
-    'A practical pipeline for high-quality Retrieval-Augmented Generation: remove duplicates, split semantically, fuse lexical + dense search, rerank, and measure.',
-}
-
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
-
+---
+author: Mitchell Bryson
+date: "2025-05-05"
+title: "RAG data quality at scale: deduplication, semantic chunking, and hybrid retrieval that actually improves answers"
+description: "A practical pipeline for high-quality Retrieval-Augmented Generation: remove duplicates, split semantically, fuse lexical + dense search, rerank, and measure."
+---
 
 RAG quality is mostly a data problem. Below is a production-oriented pipeline that consistently improves answer accuracy and reduces hallucinations: (1) deduplicate aggressively, (2) split on meaning not characters, (3) use hybrid retrieval (lexical + dense) with fusion, (4) rerank and diversify at query-time, and (5) evaluate with objective metrics before shipping. Evidence and defaults are included throughout. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2], [Weaviate][3])
 
@@ -41,7 +30,7 @@ Duplicate and near-duplicate documents distort embeddings and retrieval - especi
 * Persist `duplicate_cluster_id` so you can suppress duplicates at query-time.
 
 **Why this matters**
-Google’s dedup work on C4 and related corpora shows removing near-dupes reduces verbatim copying and improves efficiency - evidence that duplicates harm model behaviour and evaluation. The same logic holds for RAG stores. ([ACL Anthology][15])
+Google's dedup work on C4 and related corpora shows removing near-dupes reduces verbatim copying and improves efficiency - evidence that duplicates harm model behaviour and evaluation. The same logic holds for RAG stores. ([ACL Anthology][15])
 
 ```python
 # Pseudocode: MinHash LSH for near-duplicate clusters
@@ -69,7 +58,7 @@ for doc in docs:
 
 ## Semantic chunking (not just character splits)
 
-Chunking drives retrieval hit-rate. Prefer **semantic chunkers** that split by sentence boundaries and **merge sentences that remain semantically cohesive** in embedding space. This keeps concepts intact and reduces "answer spread" across chunks. LangChain’s `SemanticChunker` and LlamaIndex’s semantic splitters follow this pattern. Use small overlap only when needed. ([python.langchain.com][4], [docs.cohere.com][5])
+Chunking drives retrieval hit-rate. Prefer **semantic chunkers** that split by sentence boundaries and **merge sentences that remain semantically cohesive** in embedding space. This keeps concepts intact and reduces "answer spread" across chunks. LangChain's `SemanticChunker` and LlamaIndex's semantic splitters follow this pattern. Use small overlap only when needed. ([python.langchain.com][4], [docs.cohere.com][5])
 
 ```ts
 // Pseudocode: semantic chunking with fallback
@@ -103,7 +92,7 @@ def fuse(bm25_ranks, dense_ranks, k=60):
 ```
 
 **Postgres-first note**
-If you’re staying in Postgres, use **`pgvector`** with **HNSW** for best speed-recall trade-off (higher memory and build time) or **IVFFlat** for faster build/lower memory; both are well-documented. ([GitHub][9], [cloudberry.apache.org][10], [Severalnines][11])
+If you're staying in Postgres, use **`pgvector`** with **HNSW** for best speed-recall trade-off (higher memory and build time) or **IVFFlat** for faster build/lower memory; both are well-documented. ([GitHub][9], [cloudberry.apache.org][10], [Severalnines][11])
 
 ---
 

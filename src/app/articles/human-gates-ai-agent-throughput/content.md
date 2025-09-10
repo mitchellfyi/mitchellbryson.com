@@ -1,30 +1,19 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-11-02',
-title:
-'Human Gates, Agent Throughput: An autonomy ladder that scales without losing control',
-description:
-'A practical model for growing AI agent autonomy - levels, controls, and KPIs - grounded in risk frameworks (NIST AI RMF, ISO/IEC 42001) and aligned with EU AI Act oversight.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-11-02"
+title: "Human Gates, Agent Throughput: An autonomy ladder that scales without losing control"
+description: "A practical model for growing AI agent autonomy - levels, controls, and KPIs - grounded in risk frameworks (NIST AI RMF, ISO/IEC 42001) and aligned with EU AI Act oversight."
+---
 
 If you want agents to move fast *and* stay safe, you need two things: a clear **autonomy ladder** and explicit **human gates**. This article proposes a maintainable ladder (L0–L5), the controls required at each step, and the KPIs that prove you can scale without losing governance. It borrows the idea of staged autonomy from mature safety-critical domains, then adapts it to B2B software and services. ([SAE International][1], [UNECE Wiki][2])
 
 ## Why a ladder (not a leap)
 
-Risk frameworks emphasise governance, traceability, and human oversight as autonomy increases; a ladder lets you **earn** autonomy with evidence rather than grant it by belief. Use NIST’s AI RMF to drive governance, measurement, and manage functions, and ISO/IEC 42001 to institutionalise the management system behind them. ([NIST][3], [NIST Publications][4], [ISO][5], [KPMG][6])
+Risk frameworks emphasise governance, traceability, and human oversight as autonomy increases; a ladder lets you **earn** autonomy with evidence rather than grant it by belief. Use NIST's AI RMF to drive governance, measurement, and manage functions, and ISO/IEC 42001 to institutionalise the management system behind them. ([NIST][3], [NIST Publications][4], [ISO][5], [KPMG][6])
 
 ## Human-in/on-the-loop (working definitions)
 
-We’ll use "human-in-the-loop" when a person must approve or co-produce an outcome, and "human-on-the-loop" when a person supervises, with authority to intervene or stop. These are common regulatory and research notions; they vary by context but capture the oversight we need. ([wp0][7], [NIST Publications][8])
+We'll use "human-in-the-loop" when a person must approve or co-produce an outcome, and "human-on-the-loop" when a person supervises, with authority to intervene or stop. These are common regulatory and research notions; they vary by context but capture the oversight we need. ([wp0][7], [NIST Publications][8])
 
 ## The autonomy ladder (L0 → L5)
 
@@ -68,7 +57,7 @@ Each level defines **what agents may do**, the **required gates/controls**, and 
 
 ## Control stack (what changes as autonomy rises)
 
-* **Governance:** Map decision rights; who can raise budgets, switch models, or expand scope. Align to NIST AI RMF’s GOVERN/MAP/MESURE/MANAGE functions; make them visible in docs and dashboards. ([NIST][3])
+* **Governance:** Map decision rights; who can raise budgets, switch models, or expand scope. Align to NIST AI RMF's GOVERN/MAP/MESURE/MANAGE functions; make them visible in docs and dashboards. ([NIST][3])
 * **Oversight:** Keep humans **in** or **on** the loop depending on level; enforce gates at external-facing milestones (brand, legal, financial). The EU AI Act requires human oversight and logging for high-risk uses - design for this from L1 upward. ([Trilateral Research][9])
 * **Management system:** Treat the ladder as a management process (policy → plan → operate → review) per ISO/IEC 42001. ([ISO][5])
 * **Traceability:** Capture inputs/outputs, tokens, cost, latency, model+prompt versions, tool I/O, and decisions for every action; this underpins audits and post-mortems recommended by NIST. ([NIST Publications][4])
@@ -99,16 +88,16 @@ flowchart LR
 * **Week 1 - Frame & assign.** Pick one mission and run a structured **risk/scope check**; start at L0/L1. Publish decision rights, budgets, and gates. Ground oversight in NIST AI RMF concepts (govern, measure, manage). ([NIST][3])
 * **Week 2 - Templated autonomy (L2).** Add schemas, policy filters, rate limits, and per-route cost ceilings. Start a small canary; implement rollback.
 * **Week 3 - Budget-bounded autonomy (L3).** Introduce daily/per-request caps and milestone approvals. Track KPIs and evals; aim for MTTR < 15 min.
-* **Week 4 - Canary E2E (L4).** Expand to a full slice with release gates and post-mortems tied to traces. If you operate in the EU, verify human-oversight and logging align with the AI Act’s high-risk controls before scaling. ([Trilateral Research][9])
+* **Week 4 - Canary E2E (L4).** Expand to a full slice with release gates and post-mortems tied to traces. If you operate in the EU, verify human-oversight and logging align with the AI Act's high-risk controls before scaling. ([Trilateral Research][9])
 
-## Compliance touchpoints (don’t bolt them on later)
+## Compliance touchpoints (don't bolt them on later)
 
 * **Human oversight & logging:** Designate oversight roles; ensure logs capture what a regulator or auditor would need (who, what, when, why). This tracks with EU AI Act obligations for high-risk systems. ([Trilateral Research][9])
-* **Management system:** Document policies, roles, competence, supplier controls, and continual improvement loops; that’s the spine of ISO/IEC 42001. ([ISO][5])
+* **Management system:** Document policies, roles, competence, supplier controls, and continual improvement loops; that's the spine of ISO/IEC 42001. ([ISO][5])
 
 ## Notes on analogy
 
-I draw the **ladder** idea from established autonomy taxonomies (e.g., SAE J3016’s Levels 0–5 in driving) where capability rises while human responsibility changes form. The analogy is conceptual - our levels are for B2B agents, not vehicles - but the staged approach helps avoid "all-or-nothing" thinking. ([SAE International][10])
+I draw the **ladder** idea from established autonomy taxonomies (e.g., SAE J3016's Levels 0–5 in driving) where capability rises while human responsibility changes form. The analogy is conceptual - our levels are for B2B agents, not vehicles - but the staged approach helps avoid "all-or-nothing" thinking. ([SAE International][10])
 
 ---
 

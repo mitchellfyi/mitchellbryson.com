@@ -1,20 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-06-08',
-title:
-'LLMOps you can maintain: traces, evals, guardrails, and cost budgets in one architecture',
-description:
-'A pragmatic, vendor-agnostic LLMOps architecture that ties traces, evaluations, guardrails, and hard cost budgets to releases - so you can ship safely and keep control.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-06-08"
+title: "LLMOps you can maintain: traces, evals, guardrails, and cost budgets in one architecture"
+description: "A pragmatic, vendor-agnostic LLMOps architecture that ties traces, evaluations, guardrails, and hard cost budgets to releases - so you can ship safely and keep control."
+---
 
 LLMs are only useful when you can *operate* them: observe behaviour, measure quality, control risk, and cap spend. This article lays out a minimal, durable LLMOps architecture you can run with a small team: **Traces → Evals → Guardrails → Budgets**, wired into CI/CD and your app.
 

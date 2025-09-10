@@ -1,22 +1,11 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+---
+author: Mitchell Bryson
+date: "2025-08-21"
+title: "Designing WhatsApp support agents with human handoff, audit trails, and SLA-aware routing"
+description: "A production template for WhatsApp support automation: compliant flows, human takeover, full audit trails, and routing that respects SLAs and customer tiers."
+---
 
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-08-21',
-title:
-'Designing WhatsApp support agents with human handoff, audit trails, and SLA-aware routing',
-description:
-'A production template for WhatsApp support automation: compliant flows, human takeover, full audit trails, and routing that respects SLAs and customer tiers.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
-
-WhatsApp is where customers already are; your agent should meet them there without breaking policy, losing context, or missing SLAs. This template shows how to design a **WhatsApp support agent** that’s compliant, debuggable, and easy to hand over to humans - complete with audit trails and SLA-aware routing.
+WhatsApp is where customers already are; your agent should meet them there without breaking policy, losing context, or missing SLAs. This template shows how to design a **WhatsApp support agent** that's compliant, debuggable, and easy to hand over to humans - complete with audit trails and SLA-aware routing.
 
 ## What "good" looks like
 
@@ -76,7 +65,7 @@ const handoffPayload = {
 }
 const ticket = await helpdesk.createTicket(handoffPayload)
 await whatsapp.reply(conversation_id,
-  `I've connected you to a human (ticket ${ticket.key}). We’ll reply by ${eta(sla_due_at)}.`)
+  `I've connected you to a human (ticket ${ticket.key}). We'll reply by ${eta(sla_due_at)}.`)
 ```
 
 ## Audit trail: make every decision explainable
@@ -177,7 +166,7 @@ function next(state: State, event: Event): State {
 * **Context**: never echo secrets; redact account numbers in logs.
 
 ```ts
-// JSON schema (Zod) for the agent’s output
+// JSON schema (Zod) for the agent's output
 const Reply = z.object({
   intent: z.enum(['status','refund','return','handoff','unknown']),
   answer: z.string().max(900),
@@ -278,4 +267,4 @@ CREATE TABLE tickets(
 * **Transcripts**: searchable with links from tickets.
 * **Decision memo**: go/no-go and next experiments (e.g., returns automation).
 
-This blueprint keeps you inside WhatsApp policy, gives humans the right context, and makes operations measurable. It’s small enough to ship in days, and strong enough to trust in production.
+This blueprint keeps you inside WhatsApp policy, gives humans the right context, and makes operations measurable. It's small enough to ship in days, and strong enough to trust in production.

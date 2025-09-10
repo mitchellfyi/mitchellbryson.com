@@ -1,20 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-10-01',
-title:
-'Synthetic Organisations: What Would a Fully AI-Run Service Agency Look Like, and How Would I Build One?',
-description:
-'What changes when agents own strategy and execution? Legal structure, accountability, pricing models, failure modes, and the minimum governance to ship safely.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-10-01"
+title: "Synthetic Organisations: What Would a Fully AI-Run Service Agency Look Like, and How Would I Build One?"
+description: "What changes when agents own strategy and execution? Legal structure, accountability, pricing models, failure modes, and the minimum governance to ship safely."
+---
 
 **Question:** What would a fully agentic service agency look like - one where AI agents own strategy *and* execution - and how would I build it without losing control of risk, cost, or accountability?
 
@@ -303,4 +292,4 @@ CREATE TABLE evidence_ledger(
 
 ---
 
-**Bottom line:** A synthetic organisation is not "agents without humans." It’s a disciplined operating model where agents do the work, and humans own the gates, budgets, and accountability. With the controls above, you can pilot an AI-run service slice in 30 days, show measurable value, and scale without losing the plot.
+**Bottom line:** A synthetic organisation is not "agents without humans." It's a disciplined operating model where agents do the work, and humans own the gates, budgets, and accountability. With the controls above, you can pilot an AI-run service slice in 30 days, show measurable value, and scale without losing the plot.

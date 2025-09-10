@@ -1,30 +1,19 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-10-08',
-title:
-'Synthetic Market Twins: Privacy-safe, cross-company experiments that set price and inventory in real time',
-description:
-'A near-future sketch of "market twins": shared, privacy-preserving simulations fed by many firms that run experiments, discover efficient prices, and nudge inventory - without exposing raw data or colluding.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-10-08"
+title: "Synthetic Market Twins: Privacy-safe, cross-company experiments that set price and inventory in real time"
+description: "A near-future sketch of \"market twins\": shared, privacy-preserving simulations fed by many firms that run experiments, discover efficient prices, and nudge inventory - without exposing raw data or colluding."
+---
 
 Most companies already tune price and inventory with their own data. The leap is doing this **together** - multiple firms feeding a shared, privacy-preserving simulation that runs controlled experiments and returns **actionable, firm-specific recommendations** in near real time. Call it a **Synthetic Market Twin**: a compute space where competitors, suppliers, and logistics partners contribute encrypted signals, explore "what ifs," and get **individual** outputs - no raw data shared, no secret back channels, and auditable safeguards against collusion.
 
 ## Why this, why now
 
-Three rails have matured at once. First, **data clean rooms** let organizations compute over each other’s data with strong access rules and built-in controls like differential privacy; major platforms now ship this natively. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][2]) Second, **privacy-enhancing technologies** (PETs) such as differential privacy, secure multi-party computation, and federated learning have moved from theory to guidance and production deployments. ([NIST Publications][3], [NIST Computer Security Resource Center][4], [Proceedings of Machine Learning Research][5]) Third, **event standards** like **GS1 EPCIS 2.0** make it practical to stream inventory and shipment facts across firms in a common schema. ([GS1][6])
+Three rails have matured at once. First, **data clean rooms** let organizations compute over each other's data with strong access rules and built-in controls like differential privacy; major platforms now ship this natively. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][2]) Second, **privacy-enhancing technologies** (PETs) such as differential privacy, secure multi-party computation, and federated learning have moved from theory to guidance and production deployments. ([NIST Publications][3], [NIST Computer Security Resource Center][4], [Proceedings of Machine Learning Research][5]) Third, **event standards** like **GS1 EPCIS 2.0** make it practical to stream inventory and shipment facts across firms in a common schema. ([GS1][6])
 
-## What a Synthetic Market Twin is (and isn’t)
+## What a Synthetic Market Twin is (and isn't)
 
-It is a **shared experiment harness**: a neutral environment where parties publish **aggregated or privacy-protected** demand, price, inventory, and logistics signals; propose interventions (price tests, allocation shifts); and receive **personalized** policy-safe recommendations. It is not a place to swap everyone’s prices or to coordinate outcomes. Competition law remains the guardrail; the twin works only if its design prevents illegal information exchange and preserves independent decision-making. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
+It is a **shared experiment harness**: a neutral environment where parties publish **aggregated or privacy-protected** demand, price, inventory, and logistics signals; propose interventions (price tests, allocation shifts); and receive **personalized** policy-safe recommendations. It is not a place to swap everyone's prices or to coordinate outcomes. Competition law remains the guardrail; the twin works only if its design prevents illegal information exchange and preserves independent decision-making. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
 
 ## How it might work (end-to-end)
 
@@ -42,7 +31,7 @@ Participants submit experiment intents ("lift price 2–5% for SKU set in region
 
 ### 4) Recommendations out, not secrets
 
-Each firm receives only its own recommended prices and allocations, plus **coarse** market health signals (e.g., demand shock likelihood) with privacy guarantees. No party sees a competitor’s granular strategy or data.
+Each firm receives only its own recommended prices and allocations, plus **coarse** market health signals (e.g., demand shock likelihood) with privacy guarantees. No party sees a competitor's granular strategy or data.
 
 ### 5) Continuous learning with drift watch
 
@@ -62,17 +51,17 @@ flowchart LR
 
 * **PET Layer:** differential privacy (with tested guarantees), secure MPC/aggregation, and federated learning to keep raw data local. ([NIST Publications][3], [e3s-conferences.org][11], [Proceedings of Machine Learning Research][5])
 * **Evidence Ledger:** immutable logs of who queried what, with clean-room analysis logs and DP parameters - useful for audits. ([Amazon Web Services, Inc.][2])
-* **Policy Gate:** automated checks against info-exchange risks and "algorithmic collusion" patterns; recommendations must be independently computable and not contingent on competitors’ specific prices. ([competitionandmarkets.blog.gov.uk][7], [The Regulatory Review][12])
+* **Policy Gate:** automated checks against info-exchange risks and "algorithmic collusion" patterns; recommendations must be independently computable and not contingent on competitors' specific prices. ([competitionandmarkets.blog.gov.uk][7], [The Regulatory Review][12])
 
 ## Novel design patterns
 
-**Programmatic antitrust.** Encode horizontal-guideline constraints as code: ban queries that reconstruct competitor price paths; throttle experiment cadence; and require **independence proofs** (e.g., your recommendation changes only with your costs/constraints, not a rival’s specific bid). This shifts compliance from training slides to compute policy. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
+**Programmatic antitrust.** Encode horizontal-guideline constraints as code: ban queries that reconstruct competitor price paths; throttle experiment cadence; and require **independence proofs** (e.g., your recommendation changes only with your costs/constraints, not a rival's specific bid). This shifts compliance from training slides to compute policy. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
 
 **Confidence as a contract.** Recommendations ship with statistical confidence and the **privacy budget** expended (epsilon). Finance can then govern risk - e.g., accept actions only above a confidence threshold and within an epsilon budget per quarter, aligning to NIST guidance on evaluating DP guarantees. ([NIST Publications][3])
 
 **Zero raw joins.** Instead of centralizing data, use **federated joins** or secure MPC to compute cross-firm metrics (e.g., regional stockout risk) without exposing tables. The twin gets the metric; nobody sees the join keys. ([e3s-conferences.org][11])
 
-**Event-first reality.** Make logistics the source of truth via EPCIS 2.0 events. When a pallet leaves a site or arrives at a depot, the twin’s state updates instantly, shrinking the lag between physical movement and price/availability decisions. ([GS1][6])
+**Event-first reality.** Make logistics the source of truth via EPCIS 2.0 events. When a pallet leaves a site or arrives at a depot, the twin's state updates instantly, shrinking the lag between physical movement and price/availability decisions. ([GS1][6])
 
 ## Risks, ethics, and law
 
@@ -84,7 +73,7 @@ Start with two non-competing partners that share a bottleneck - say a supplier a
 
 ---
 
-**Thesis:** Markets don’t just clear; they **learn**. A Synthetic Market Twin lets firms learn **together** - safely - by turning privacy tech, clean rooms, and event standards into a shared laboratory. If you can prove that recommendations are private, independent, and auditable, you get the upside of cross-company learning without losing control or crossing legal lines. ([Snowflake Documentation][1], [NIST Publications][3], [GS1][6], [competitionandmarkets.blog.gov.uk][7])
+**Thesis:** Markets don't just clear; they **learn**. A Synthetic Market Twin lets firms learn **together** - safely - by turning privacy tech, clean rooms, and event standards into a shared laboratory. If you can prove that recommendations are private, independent, and auditable, you get the upside of cross-company learning without losing control or crossing legal lines. ([Snowflake Documentation][1], [NIST Publications][3], [GS1][6], [competitionandmarkets.blog.gov.uk][7])
 
 [1]: https://docs.snowflake.com/en/user-guide/cleanrooms/introduction?utm_source=chatgpt.com "About Snowflake Data Clean Rooms"
 [2]: https://aws.amazon.com/clean-rooms/features/?utm_source=chatgpt.com "Data Collaboration Service – AWS Clean Rooms Features"

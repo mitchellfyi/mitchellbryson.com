@@ -1,18 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-  author: 'Mitchell Bryson',
-  date: '2025-07-14',
-  title: 'Margin protection with AI: live pricing rules, invoice QA, and anomaly alerts for e-commerce',
-  description: 'A practical playbook to protect gross margin in e-commerce using rule-based pricing, automated invoice checks, and anomaly detection with clear audit trails.',
-}
-
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-07-14"
+title: "Margin protection with AI: live pricing rules, invoice QA, and anomaly alerts for e-commerce"
+description: "A practical playbook to protect gross margin in e-commerce using rule-based pricing, automated invoice checks, and anomaly detection with clear audit trails."
+---
 
 AI is useful when it ties directly to money. This playbook covers three systems that usually pay for themselves fast: live pricing rules, invoice QA, and anomaly alerts. Each section includes defaults, implementation notes, and an operator checklist that real teams can run.
 

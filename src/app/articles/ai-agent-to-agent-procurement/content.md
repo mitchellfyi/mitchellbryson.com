@@ -1,20 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-12-08',
-title:
-'Agent-to-Agent Procurement: Autonomous negotiation, contracting, and settlement between ERPs',
-description:
-'A philosophical but concrete blueprint for how buyer and supplier agents could negotiate terms, compile enforceable contracts, and settle instantly across today\'s rails.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-12-08"
+title: "Agent-to-Agent Procurement: Autonomous negotiation, contracting, and settlement between ERPs"
+description: "A philosophical but concrete blueprint for how buyer and supplier agents could negotiate terms, compile enforceable contracts, and settle instantly across today's rails."
+---
 
 Most B2B partnerships stall on integration and coordination. The future worth aiming for is simpler: two companies point agents at each other, declare policies and limits, then let them **negotiate, contract, and settle** - with humans staying in charge of goals and guardrails. The pieces for this already exist in the wild: machine-readable business documents (UBL/Peppol), legally recognised **smart legal contracts**, and instant payments over **ISO 20022** rails. Tie them together with agent negotiation and you get "mission in, value out" for procurement. ([docs.oasis-open.org][1], [OpenPeppol][2], [lawcom.gov.uk][3], [ISO20022][4])
 

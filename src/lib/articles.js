@@ -3,26 +3,12 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-async function importArticle(articleFilename) {
-  try {
-    let { article } = await import(`../app/articles/${articleFilename}`)
-
-    return {
-      slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
-      ...article,
-    }
-  } catch (error) {
-    console.warn(`Failed to import MDX article ${articleFilename}:`, error.message)
-    return null
-  }
-}
-
 async function importMarkdownArticle(articleDir) {
   const contentPath = path.join('./src/app/articles', articleDir, 'content.md')
   
   if (!fs.existsSync(contentPath)) {
-    // Fallback to old MDX structure
-    return importArticle(`${articleDir}/page.mdx`)
+    console.warn(`No content.md found for article directory: ${articleDir}`)
+    return null
   }
 
   const fileContents = fs.readFileSync(contentPath, 'utf8')
@@ -43,24 +29,15 @@ async function importMarkdownArticle(articleDir) {
 }
 
 export async function getAllArticles() {
-  // Get all article directories (excluding the [slug] dynamic route)
+  // Get all article directories with content.md files (excluding the [slug] dynamic route)
   let articleDirs = await glob('*/content.md', {
     cwd: './src/app/articles',
   }).then(files => files.map(file => path.dirname(file)).filter(dir => dir !== '[slug]'))
 
-  // Also get any remaining MDX-only articles (excluding the [slug] dynamic route)
-  let mdxFilenames = await glob('*/page.mdx', {
-    cwd: './src/app/articles',
-  }).then(files => files.filter(file => {
-    const dir = path.dirname(file)
-    return dir !== '[slug]' && !articleDirs.includes(dir)
-  }))
-
-  let markdownArticles = await Promise.all(articleDirs.map(importMarkdownArticle))
-  let mdxArticles = await Promise.all(mdxFilenames.map(importArticle))
+  let articles = await Promise.all(articleDirs.map(importMarkdownArticle))
   
   // Filter out any failed imports
-  let articles = [...markdownArticles, ...mdxArticles].filter(article => article !== null)
+  articles = articles.filter(article => article !== null)
 
   // Filter out articles with dates on or after today
   const today = new Date()

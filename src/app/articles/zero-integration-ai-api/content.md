@@ -1,26 +1,15 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-10-17',
-title:
-'Zero-Integration Partnerships: Agents that auto-generate, validate, and maintain APIs between businesses',
-description:
-'A blueprint for agentic B2B integrations that generate OpenAPI/AsyncAPI contracts, prove compatibility with contract tests, and self-maintain as systems change.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
+---
+author: Mitchell Bryson
+date: "2025-10-17"
+title: "Zero-Integration Partnerships: Agents that auto-generate, validate, and maintain APIs between businesses"
+description: "A blueprint for agentic B2B integrations that generate OpenAPI/AsyncAPI contracts, prove compatibility with contract tests, and self-maintain as systems change."
+---
 
 Traditional B2B partnering dies on integration: weeks or months of mapping fields, haggling over payloads, and fixing breakages every time someone changes a field name. In supply chains and finance, **onboarding a trading partner often takes a week to a month - or longer**. The market has tried EDI networks, unified APIs, and prebuilt connectors to reduce that burden, but they still leave you with coordination costs and drift. The question is: **can agents generate, verify, and maintain the API boundary for us - so "integration" becomes a no-meeting handshake?** ([Cleo][1], [eliassen.com][2])
 
 ## The idea in one line
 
-Agents take a mission ("exchange orders, invoices, statuses"), **learn each side’s systems**, **propose a shared contract** (OpenAPI for request/response, AsyncAPI for events), **compile adapters**, **prove compatibility** with contract tests, and **watch for drift** - re-generating mappings and specs when either side changes. Concepts like **unified APIs** show the value of normalizing across providers; the leap here is to have agents generate that normalization per-partner, on demand. ([Merge][3])
+Agents take a mission ("exchange orders, invoices, statuses"), **learn each side's systems**, **propose a shared contract** (OpenAPI for request/response, AsyncAPI for events), **compile adapters**, **prove compatibility** with contract tests, and **watch for drift** - re-generating mappings and specs when either side changes. Concepts like **unified APIs** show the value of normalizing across providers; the leap here is to have agents generate that normalization per-partner, on demand. ([Merge][3])
 
 ## Why this matters now
 
@@ -60,7 +49,7 @@ Draft contracts are linted with **Spectral** and local style guides. The agent e
 For each side, the agent compiles adapters that:
 
 * **Transform** internal fields to the shared contract (and back).
-* **Authenticate** using the partner’s preferred mechanism.
+* **Authenticate** using the partner's preferred mechanism.
 * **Validate** bodies against JSON Schema before send/accept.
 * **Normalize** enums, time zones, currencies, and IDs (GLN/GTIN when relevant). ([GS1][10])
 
@@ -94,7 +83,7 @@ Every action - generated spec, lint results, contract test run, approval - lands
 
 ## Interop with existing rails
 
-This approach doesn’t reject EDI/Peppol; it **compiles to them** when appropriate. If a trading partner insists on Peppol BIS for e-invoices, the agent maps to those profiles and uses the network’s **"connect once"** model. If a retail partner uses GS1 identifiers, mappings preserve **GLN/GTIN/SSCC**. The value is removing handcrafting and keeping contracts synchronized over time. ([The Invoicing Hub][8], [ClearTax][13], [GS1][10])
+This approach doesn't reject EDI/Peppol; it **compiles to them** when appropriate. If a trading partner insists on Peppol BIS for e-invoices, the agent maps to those profiles and uses the network's **"connect once"** model. If a retail partner uses GS1 identifiers, mappings preserve **GLN/GTIN/SSCC**. The value is removing handcrafting and keeping contracts synchronized over time. ([The Invoicing Hub][8], [ClearTax][13], [GS1][10])
 
 ## KPIs that prove it works
 
@@ -114,9 +103,9 @@ This approach doesn’t reject EDI/Peppol; it **compiles to them** when appropri
 
 **Week 4 - Harden & decide.** Expand traffic, finalize runbooks, and compare onboarding time and defects against your current process. If the deltas are real, template the flow for the next partner.
 
-## What this replaces - and what it doesn’t
+## What this replaces - and what it doesn't
 
-Agents won’t replace **commercial trust** or **legal agreements**. You’ll still need DPAs, SLAs, and human approvals. What they can replace is the **manual glue**: hand-mapping fields, writing one-off connectors, chasing changes, and spending weeks in coordination. With mature contracts (OpenAPI/AsyncAPI), linters, and contract testing, "zero-integration" becomes feasible: **partners exchange business value sooner, and integrations stop breaking quietly.** ([asyncapi.com][4], [stoplight.io][5], [docs.pact.io][6])
+Agents won't replace **commercial trust** or **legal agreements**. You'll still need DPAs, SLAs, and human approvals. What they can replace is the **manual glue**: hand-mapping fields, writing one-off connectors, chasing changes, and spending weeks in coordination. With mature contracts (OpenAPI/AsyncAPI), linters, and contract testing, "zero-integration" becomes feasible: **partners exchange business value sooner, and integrations stop breaking quietly.** ([asyncapi.com][4], [stoplight.io][5], [docs.pact.io][6])
 
 [1]: https://www.cleo.com/guide/edi-trading-partner-onboarding?utm_source=chatgpt.com "How to Onboard EDI Trading Partners Faster - Cleo"
 [2]: https://www.eliassen.com/blog/elas-proservices/blog/why-you-should-modernize-your-edi-and-b2b-integration-capabilities?utm_source=chatgpt.com "Why Modernize Your EDI and B2B Integration Capabilities"

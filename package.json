@@ -11,10 +11,6 @@
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@headlessui/react": "^2.2.6",
-    "@mapbox/rehype-prism": "^0.9.0",
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.5.0",
@@ -28,6 +24,7 @@
     "react": "^19",
     "react-dom": "^19",
     "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.6",
     "remark-gfm": "^4.0.1",
     "resend": "^6.0.2",
     "tailwindcss": "^4.1.11"

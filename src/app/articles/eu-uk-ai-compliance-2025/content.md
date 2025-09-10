@@ -1,22 +1,11 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+---
+author: Mitchell Bryson
+date: "2025-02-17"
+title: "EU/UK AI compliance in 2025: mapping the ICO risk toolkit to EU AI Act deadlines for product teams"
+description: "What the EU AI Act requires in 2025–2027, how it lines up with the UK ICO's AI & Data Protection Risk Toolkit, and the exact outputs your team should ship."
+---
 
-export const article = {
-  author: 'Mitchell Bryson',
-  date: '2025-02-17',
-  title: 'EU/UK AI compliance in 2025: mapping the ICO risk toolkit to EU AI Act deadlines for product teams',
-  description:
-    'What the EU AI Act requires in 2025–2027, how it lines up with the UK ICO’s AI & Data Protection Risk Toolkit, and the exact outputs your team should ship.',
-}
-
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
-
-
-The EU AI Act is in force and phasing in over 2025–2027. If you already follow the UK ICO’s **AI & Data Protection Risk Toolkit**, you’re partway there: most Act obligations map to existing UK GDPR risk controls. This piece gives you the dates that matter and a practical mapping so product teams can ship compliant features without boiling the ocean.
+The EU AI Act is in force and phasing in over 2025–2027. If you already follow the UK ICO's **AI & Data Protection Risk Toolkit**, you're partway there: most Act obligations map to existing UK GDPR risk controls. This piece gives you the dates that matter and a practical mapping so product teams can ship compliant features without boiling the ocean.
 
 ## The dates that actually matter (EU AI Act)
 
@@ -32,7 +21,7 @@ The Act entered into force on **1 Aug 2024**. The key application dates for prod
 
 ## The UK anchor: the ICO AI & Data Protection Risk Toolkit
 
-The ICO toolkit is a practical set of questions, controls, and templates aligned to UK GDPR. It’s currently under review (post–19 Jun 2025 Data (Use and Access) Act), but the control themes remain stable and useful for EU AI Act prep. ([ICO][5])
+The ICO toolkit is a practical set of questions, controls, and templates aligned to UK GDPR. It's currently under review (post–19 Jun 2025 Data (Use and Access) Act), but the control themes remain stable and useful for EU AI Act prep. ([ICO][5])
 
 #### What the ICO toolkit covers (at a glance)
 
@@ -117,7 +106,7 @@ Use the ICO toolkit as your working checklist; add the AI Act-specific outputs n
 
 #### Ignoring GPAI dependencies
 
-* Even if you don’t **provide** a GPAI model, your vendors do. Track their **Aug 2025** posture and Code-of-Practice participation. ([digital-strategy.ec.europa.eu][3], [Baker McKenzie][4])
+* Even if you don't **provide** a GPAI model, your vendors do. Track their **Aug 2025** posture and Code-of-Practice participation. ([digital-strategy.ec.europa.eu][3], [Baker McKenzie][4])
 
 #### Waiting for standards to "finish"
 
@@ -125,7 +114,7 @@ Use the ICO toolkit as your working checklist; add the AI Act-specific outputs n
 
 ---
 
-*This article is operational guidance for product teams, not legal advice. Source dates and obligations are taken from European Commission materials and the ICO’s published toolkit and overview pages; verify applicability to your organisation and model types.* ([digital-strategy.ec.europa.eu][2], [European Commission][1], [ICO][5])
+*This article is operational guidance for product teams, not legal advice. Source dates and obligations are taken from European Commission materials and the ICO's published toolkit and overview pages; verify applicability to your organisation and model types.* ([digital-strategy.ec.europa.eu][2], [European Commission][1], [ICO][5])
 
 [1]: https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en?utm_source=chatgpt.com "AI Act enters into force - European Commission"
 [2]: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai?utm_source=chatgpt.com "AI Act | Shaping Europe's digital future - European Union"

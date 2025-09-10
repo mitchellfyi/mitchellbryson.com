@@ -1,22 +1,11 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+---
+author: Mitchell Bryson
+date: "2025-09-07"
+title: "Proving ROI in 10 days: a pilot template for AI in Growth & Ops (metrics, cut-offs, handover)"
+description: "A tight, repeatable 10-day pilot that shows financial impact, defines stop/go cut-offs, and ends with a clean handover."
+---
 
-export const article = {
-  author: 'Mitchell Bryson',
-  date: '2025-09-07',
-  title:
-'Proving ROI in 10 days: a pilot template for AI in Growth & Ops (metrics, cut-offs, handover)',
-description:
-'A tight, repeatable 10-day pilot that shows financial impact, defines stop/go cut-offs, and ends with a clean handover.'
-}
-
-export const metadata = {
-  title: article.title,
-  description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
-
-You don’t need a six-month project to prove AI value. Run a **10-day pilot** that is cheap, instrumented, and easy to roll back. This template gives the schedule, metrics, cut-offs, and handover materials you can reuse for Growth & Ops use-cases (support triage, order status, invoice QA, pricing rules, etc.).
+You don't need a six-month project to prove AI value. Run a **10-day pilot** that is cheap, instrumented, and easy to roll back. This template gives the schedule, metrics, cut-offs, and handover materials you can reuse for Growth & Ops use-cases (support triage, order status, invoice QA, pricing rules, etc.).
 
 ## The 10-day schedule (repeatable)
 
@@ -171,7 +160,7 @@ risks:
 * Apply formula price with caps; canary to 10%; auto-rollback if conversion drops.
 * KPIs: GM% delta, conversion delta, rollback MTTR.
 
-## Minimal instrumentation (don’t skip)
+## Minimal instrumentation (don't skip)
 
 #### Capture on every request
 

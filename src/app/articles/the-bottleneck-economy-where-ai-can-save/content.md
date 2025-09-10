@@ -1,22 +1,11 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+---
+author: Mitchell Bryson
+date: "2025-09-28"
+title: "The Bottleneck Economy: Where AI Can Save Weeks (Conveyancing, Hiring, Accounting - Plus What's Next)"
+description: "From UK home sales stuck in 12–20+ week conveyancing cycles, to hiring that drags ~40 days, to finance teams drowning in reconciliations, some sectors are structurally overdue for AI efficiency gains. We'll start with conveyancing/housing, recruiting discovery/matching, and accounting close/reconciliation - then add insurance claims, construction ops, healthcare admin, and public-sector back-office - showing where agentic workflows (document intake, contract checks, entity matching, claims triage) can cut weeks to days, and why the timing finally makes sense."
+---
 
-export const article = {
-author: 'Mitchell Bryson',
-date: '2025-09-28',
-title:
-'The Bottleneck Economy: Where AI Can Save Weeks (Conveyancing, Hiring, Accounting - Plus What’s Next)',
-description:
-'From UK home sales stuck in 12–20+ week conveyancing cycles, to hiring that drags \~40 days, to finance teams drowning in reconciliations, some sectors are structurally overdue for AI efficiency gains. We’ll start with conveyancing/housing, recruiting discovery/matching, and accounting close/reconciliation - then add insurance claims, construction ops, healthcare admin, and public-sector back-office - showing where agentic workflows (document intake, contract checks, entity matching, claims triage) can cut weeks to days, and why the timing finally makes sense.',
-}
-
-export const metadata = {
-title: article.title,
-description: article.description,
-}
-
-export default (props) => <ArticleLayout article={article} {...props} />
-
-The UK economy is full of **calendar-shaped bottlenecks**: property transactions that take months, hiring cycles that stall for weeks, finance teams closing the books in slow motion. These aren’t failure-of-will problems - they’re workflow problems made of documents, checks, handoffs, and missing data. That’s exactly the terrain where **agentic AI** shines: structured intake → rule-bound checks → escalation → audit trail.
+The UK economy is full of **calendar-shaped bottlenecks**: property transactions that take months, hiring cycles that stall for weeks, finance teams closing the books in slow motion. These aren't failure-of-will problems - they're workflow problems made of documents, checks, handoffs, and missing data. That's exactly the terrain where **agentic AI** shines: structured intake → rule-bound checks → escalation → audit trail.
 
 ## Why these sectors, why now
 
@@ -74,7 +63,7 @@ Closing is 80% **matching and proving**. Agents can do the heavy lifting while h
 
 ---
 
-## What’s next (and why it matters)
+## What's next (and why it matters)
 
 ### Insurance claims: triage → coverage → settlement
 
@@ -107,7 +96,7 @@ Legacy systems and fragmented data are a known drag. Start by turning forms into
 
 #### Conveyancing
 
-* Digitize intake for one firm’s purchase files; auto-validate required fields; orchestrate LA searches with SLA monitoring; measure **days saved from instruction to exchange**. ([Tilly Bailey & Irvine][1])
+* Digitize intake for one firm's purchase files; auto-validate required fields; orchestrate LA searches with SLA monitoring; measure **days saved from instruction to exchange**. ([Tilly Bailey & Irvine][1])
 
 #### Hiring
 
@@ -123,7 +112,7 @@ Legacy systems and fragmented data are a known drag. Start by turning forms into
 
 ---
 
-**Bottom line:** The biggest gains aren’t in "AI magic," they’re in **shrinking waiting and rework** across document-heavy, rule-bound processes. Start with sectors where the calendar hurts most, wire in guardrails and ledgers, and let agents do the throughput. The result isn’t just speed; it’s **predictability you can audit**.
+**Bottom line:** The biggest gains aren't in "AI magic," they're in **shrinking waiting and rework** across document-heavy, rule-bound processes. Start with sectors where the calendar hurts most, wire in guardrails and ledgers, and let agents do the throughput. The result isn't just speed; it's **predictability you can audit**.
 
 [1]: https://www.tbilaw.co.uk/knowledge-hub/how-long-does-conveyancing-take-in-2024-property-buying-timelines-explained/?utm_source=chatgpt.com "How long does it take to buy a UK property? Chains ..."
 [2]: https://todaysconveyancer.co.uk/the-stark-reality-of-property-transaction-timescales/?utm_source=chatgpt.com "Revealed - How long do property transactions take?"
