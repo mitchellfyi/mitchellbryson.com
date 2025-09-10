@@ -4,9 +4,9 @@ export const article = {
 author: 'Mitchell Bryson',
 date: '2025-12-08',
 title:
-'The AI CFO: Autonomous budgeting, forecasting, and programmatic spend execution',
+'Agent-to-Agent Procurement: Autonomous negotiation, contracting, and settlement between ERPs',
 description:
-'A philosophical but concrete sketch of an "AI CFO" that plans continuously, allocates capital as code, and executes spend programmatically under hard controls.',
+'A philosophical but concrete blueprint for how buyer and supplier agents could negotiate terms, compile enforceable contracts, and settle instantly across today's rails.',
 }
 
 export const metadata = {
@@ -16,111 +16,80 @@ description: article.description,
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-Most finance teams still plan in quarters, forecast monthly, and execute spend through people and tickets. The next step is an **AI CFO**: a system that treats budgets as code, keeps forecasts continuously updated, and executes payments under explicit policies and caps - with humans owning the guardrails, approvals, and accountability. Industry language is already moving this way under "autonomous finance," not as hype but as a target architecture CFOs expect to realise within a near-term horizon. ([Gartner][1], [Deloitte][2])
+Most B2B partnerships stall on integration and coordination. The future worth aiming for is simpler: two companies point agents at each other, declare policies and limits, then let them **negotiate, contract, and settle** - with humans staying in charge of goals and guardrails. The pieces for this already exist in the wild: machine-readable business documents (UBL/Peppol), legally recognised **smart legal contracts**, and instant payments over **ISO 20022** rails. Tie them together with agent negotiation and you get "mission in, value out" for procurement. ([docs.oasis-open.org][1], [OpenPeppol][2], [lawcom.gov.uk][3], [ISO20022][4])
 
-## What changes if the CFO is a system?
+## Why imagine agent-to-agent procurement?
 
-The finance function becomes three planes: **policy (what’s allowed), planning (what should happen), and execution (what does happen)**. "Continuous accounting" pulls reconciliation and checks into the flow of work instead of month-end batches, so plans can adjust in near-real time. The human role narrows to goals, risk appetite, and exception handling; the system handles throughput. ([bl-prod][3])
+Because the expensive part of B2B trade isn't price discovery - it's the **time and variance** between "we should work together" and "money settled, goods moving." Agents that speak in contracts and proofs can compress that path. And unlike consumer chatbots, this isn't novelty: the enterprise stack already has standards for **orders, invoices, and events** (UBL/Peppol) and payment messages (ISO 20022). The open question is orchestration: can autonomous negotiators find terms that satisfy both policies, with humans approving the jump to production? ([docs.oasis-open.org][1], [Peppol Documentation][5], [ISO20022][4])
 
-## Reference model (policy → planning → execution)
+## Premises (grounded, not sci-fi)
 
-```mermaid
-flowchart LR
-  P[Policy Plane] --> L[Planning Plane]
-  L --> E[Execution Plane]
-  E --> O[Observability (traces, costs, SLAs)]
-  O --> L
-  O --> P
-```
+* **Documents are already code-like.** UBL defines Orders, Despatch Advice, and Invoices as structured schemas; Peppol operationalises their exchange at scale. Agents don't need to invent a format - they can compose with it. ([docs.oasis-open.org][1], [OpenPeppol][2])
+* **Contracts can execute.** UK law recognises *smart legal contracts* as enforceable; a contract that triggers delivery, invoicing, or price adjustments on data events is viable in mainstream jurisdictions. ([lawcom.gov.uk][3], [Accord Project][6])
+* **Settlement can be instant.** ISO 20022 underpins modern payment schemes, including "instant credit transfers" in the EU that make funds available in \~10 seconds - fast enough for event-driven settlement. ([ISO20022][4], [European Central Bank][7])
+* **Negotiation is a studied domain.** Automated negotiating agents have been benchmarked for years (ANAC), and multi-agent "contracting" patterns date back to the Contract Net Protocol. We're not starting from zero; we're composing. ([scml.cs.brown.edu][8], [eecs.ucf.edu][9])
 
-* **Policy plane:** budgets-as-code, approval matrices, risk limits, vendor allow-lists.
-* **Planning plane:** rolling forecasts, scenario tests, auto-reallocation within caps.
-* **Execution plane:** programmatic payments, purchase approvals, and accruals tied to events; everything logged with costs and justifications.
+## How it might work (end-to-end)
 
-## Budgets as code (capital allocation that compiles)
+1. **Intent & policy exchange**
+   Each side exposes a **policy capsule**: acceptable price ranges, incoterms, SLAs, credit limits, escrow rules, data handling, and escalation paths. Agents verify identity and capabilities, then spin a negotiation sandbox. (Think "procurement robots" shaking hands on scope with hard ceilings.)
 
-Budgets become machine-enforced rules, not PDF decks. You define spend ceilings, approval rights, and rollback conditions per program, then let the system allocate micro-budgets to experiments, vendors, and campaigns.
+2. **Automated negotiation**
+   Buyer and supplier agents search the space of terms - price breaks, delivery windows, payment timing, substitution options - using multi-issue bargaining. When they find a Pareto-efficient bundle that satisfies both policies, they generate a **term sheet** for human approval. Lessons from agent negotiation contests apply directly here (multi-issue utilities, concession tactics, reservation points). ([scml.cs.brown.edu][8])
 
-```yaml
-program: "DemandGen-Q4"
-kpi: "qualified_leads_per_week"
-caps:
-  total_gbp: 120000
-  per_vendor_gbp: 20000
-  per_day_gbp: 6000
-approvals:
-  raise_over_20pct: ["CFO","VP-Growth"]
-  new_vendor: ["Procurement","Legal"]
-guards:
-  stop_if_cac_over: 45
-  stop_if_quality_below: 0.8   # eval score from sales QA
-rollbacks:
-  on_breach: "pause_spend; notify(@finance,@growth)"
-```
+3. **Contract compilation**
+   On approval, agents compile a **smart legal contract** that references canonical documents: UBL `Order`, `OrderResponse`, `DespatchAdvice`, and `Invoice` schemas, plus an **events manifest** for status changes. The legal text cites the machine contract; obligations (e.g., send Despatch Advice within N hours) are enforceable and logged. ([docs.oasis-open.org][1])
 
-The system compiles this to checks that run before any payment or PO is raised. It can also emit "allocation suggestions" (e.g., shift £5k/day from Channel A to B) with an attached forecast delta and confidence.
+4. **Execution & observability**
+   Agents plug into each ERP via adapters that emit and consume Peppol/UBL messages. Every exchange lands in an **evidence ledger**: who/what/when/why, hashes of payloads, SLAs met or missed. This is boring on purpose - auditors can follow along without bespoke exports. ([OpenPeppol][2])
 
-## Continuous forecasting (and why it matters)
+5. **Settlement**
+   On delivery confirmation, the contract triggers payment via **ISO 20022** messages (e.g., pain.001 initiation → pacs.008 clearing). Where supported, use SEPA Instant (SCT Inst) so funds arrive near-real-time. Discounts for early payment or penalties for lateness apply automatically. ([ISO20022][4], [European Central Bank][7])
 
-Static budgets go stale. The AI CFO keeps a **rolling forecast** that assimilates new signals (orders, returns, cost movements, media response) and re-plans under policy caps. This aligns with "beyond budgeting" practices that replace annual cycles with rolling, less-granular updates, and it rides current improvements in AI-enabled forecasting accuracy noted by strategy and operations research. ([BCG][4], [McKinsey & Company][5])
+6. **Title & documents of value**
+   For flows that depend on documents of title (bills of lading, warehouse receipts), agents rely on jurisdictions that implemented **UNCITRAL MLETR** - so electronic transferable records are legally valid. No couriers, fewer disputes. ([uncitral.un.org][10], [ICC Academy][11], [World Trade Organization][12])
 
-```python
-# sketch: policy-aware forecast adjustment
-forecast = model.predict(next_13_weeks, features=live_signals)
-if forecast.cac > caps['stop_if_cac_over']:
-    suggest("trim spend 15% and reallocate to SEO backlog", confidence=0.71)
-```
+## A protocol stack for autonomous procurement
 
-## Programmatic spend execution (safe by construction)
+* **Identity & trust:** mutual TLS, verified business identifiers, and access via Peppol or equivalent networks. ([OpenPeppol][2])
+* **Semantics:** UBL/JSON Schema for documents; Async events for status (order accepted, shipped, delivered). ([docs.oasis-open.org][1])
+* **Negotiation:** multi-issue agent bargaining with human gates at term-sheet and contract-signing. Benchmarked tactics from ANAC adapted to procurement utilities. ([scml.cs.brown.edu][8])
+* **Contracting:** smart legal contracts that bind machine actions to legal prose; storage of proofs and hashes. Recognised enforceability matters here. ([lawcom.gov.uk][3])
+* **Settlement:** ISO 20022 payment initiation; instant schemes where available. ([ISO20022][4], [European Central Bank][7])
+* **Evidence:** append-only logs for payloads, SLAs, and approvals; exportable for audit and dispute resolution.
 
-Once policy and plan agree, the system executes payments automatically - **with consent and proof**. In the UK/EU, **payment initiation APIs** allow authorised apps to initiate domestic payments on behalf of customers; combined with **instant payment rails** (e.g., SEPA Instant), funds can settle in \~10 seconds with structured messaging. For enterprises, ISO 20022 gives the shared vocabulary to drive automation and reconciliation. ([Open Banking][6], [European Central Bank][7])
+## Novel patterns (philosophical, but workable)
 
-* **How this looks in practice:** the AI CFO generates a payment intent linked to a PO, validates vendor, checks remaining caps, attaches remittance data, and submits via bank API or ISO 20022 rails. If a guard trips (policy, cap, anomaly), it blocks and routes for human approval.
+**Negotiation sandboxes.** Before any real data or money moves, agents rehearse deals against **synthetic RFQs** and historical constraints. They surface two or three viable bundles for a human to approve, along with counterfactuals: "+2-day lead time reduces price 3.1%." (This is closer to procurement strategy than chatbot banter; it's bounded by policy.)
 
-## Reliability stack (how it stays controllable)
+**Programmable trust.** Contracts carry **self-checks**: "if Invoice total mismatches Order by >X%, block settlement and raise a dispute case with all evidence attached." Because UBL and ISO-20022 are structured, these checks are implementable as rules, not emails. ([docs.oasis-open.org][1], [ISO20022][4])
 
-* **Decision rights:** who may raise caps, approve vendors, or change models.
-* **Guardrails:** schema validation for outputs, policy checks, vendor allow-lists, rate limits, anomaly detection on spend vs. KPI.
-* **Cost ceilings:** per-program, per-vendor, and per-day budgets with 80% alerts and hard trips.
-* **Human gates:** milestone approvals (new vendor, +20% budget, contract terms).
-* **Evidence ledger:** append-only traces of plans, payments, variances, and justifications - what auditors and boards will ask for.
+**Policy markets.** Suppliers publish *machine-readable* policies (e.g., carbon limits, data retention, warranty) that agents can query like an API. Buyers rank policies alongside price to reduce hidden switching costs.
 
-Advisory firms now frame "autonomous finance" around these very building blocks: policy, automation, monitoring, and human escalation, moving toward lights-out operations where appropriate. ([Deloitte][8])
+**Title as an API.** In MLETR jurisdictions, the "document of title" is an API object with a history; assignment of title can trigger release of funds or insurance updates without manual paperwork. ([uncitral.un.org][10])
 
-## KPIs for an AI CFO
+**Zero-integration by construction.** Because the agents speak Peppol/UBL on the wire and log ISO-20022 payment proofs, onboarding a new partner becomes a **policy + adapter** exercise rather than a six-week project. ([OpenPeppol][2], [docs.oasis-open.org][1])
 
-* **Forecast quality:** MAPE / WAPE trend; error vs. last quarter’s process.
-* **Time to re-plan:** hours from shock → updated plan → approved changes.
-* **Budget discipline:** % spend within caps; variance at month-end.
-* **Working-capital cycle:** DPO/DSO improvements from programmatic settlement.
-* **Cost to operate finance:** throughput per FTE, close latency, manual touches.
-* **Control health:** share of payments with complete evidence; exception rate.
+## What still needs solving
 
-## 30-day pilot (narrow, real, reversible)
+Three open fronts remain. **Governance:** who signs, who can raise budgets, who can change policies mid-negotiation. **Liability:** when agents misprice or misroute, the enforceable contract helps, but humans are still accountable. **Cross-border gaps:** MLETR adoption is uneven; instant payment access and Peppol coverage vary by region. None are showstoppers, but they shape where to pilot first. ([lawcom.gov.uk][3], [uncitral.un.org][10])
 
-1. **Scope a slice.** Pick one controllable program (e.g., paid search in a single market) and one supplier category for programmatic payment.
-2. **Codify policy.** Express caps, approvals, and stop conditions as budgets-as-code; wire review rights.
-3. **Wire forecasting.** Ship a rolling forecast for the slice; compare to baseline method.
-4. **Turn on payments.** Use read-write bank access for low-value, high-frequency payments with full reversals and daily caps.
-5. **Measure.** Track forecast error, time to re-plan, variance, exception rate, and cost per payment.
-6. **Decide.** Expand to adjacent programs if the control and economics hold.
+## A cautious path to first pilots
 
-## Open questions (and workable answers)
+Start with a single commodity SKU and a willing partner already using **Peppol**. Limit funds with per-deal caps; gate agent proposals behind human approval; route payments via **ISO 20022** instant rails where possible. Measure **time to first data**, **contract test pass-rate**, and **breakage per 1,000 messages**. If you can consistently go from handshake to first settled order in **days** instead of **weeks**, scale the scope. ([OpenPeppol][2], [European Central Bank][13])
 
-* **Risk and liability.** Keep a human principal accountable (CFO) and document decision rights. The system proposes and executes within caps; humans approve changes in scope or risk.
-* **Banking access and coverage.** Coverage varies by region; use payment initiation where available and ISO 20022 rails for enterprise messaging as they standardise globally. ([Open Banking][6], [Kyriba][9])
-* **Cultural fit.** This replaces slide-decks with evidence. Weekly reviews become fast: targets, variances, actions, and which caps changed.
+**Bottom line:** agent-to-agent procurement isn't about inventing new rails. It's about using the rails we already have - UBL/Peppol, smart legal contracts, ISO 20022, instant payments - and giving agents narrow authority to negotiate within policies, compile enforceable contracts, and settle with proofs. When that loop is tight and reversible, the integration tax fades and trade gets faster. ([docs.oasis-open.org][1], [OpenPeppol][2], [lawcom.gov.uk][3], [ISO20022][4], [European Central Bank][7])
 
----
-
-**Thesis:** Finance should be computable where it’s safe. The AI CFO is not a person; it’s a discipline encoded: **policies that compile, forecasts that update themselves, and spend that executes with proofs**. The enabling pieces - autonomous finance roadmaps, continuous accounting, rolling forecasts, and instant programmatic payments - are already visible. The novel work is connecting them with clear gates and accountability. ([Gartner][1], [bl-prod][3], [BCG][4], [European Central Bank][7])
-
-[1]: https://www.gartner.com/en/finance/topics/autonomous-finance?utm_source=chatgpt.com "Autonomous Finance – Everything a CFO Should Know"
-[2]: https://www.deloitte.com/us/en/services/consulting/articles/achieving-autonomous-finance-operations.html?utm_source=chatgpt.com "Lights Out Finance™: Autonomous Finance Operations"
-[3]: https://www.blackline.com/resources/glossaries/continuous-accounting/?utm_source=chatgpt.com "What is Continuous Accounting | F&A Glossary"
-[4]: https://www.bcg.com/publications/2021/the-future-is-beyond-budgeting?utm_source=chatgpt.com "Going Beyond Budgeting | BCG"
-[5]: https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/how-ai-is-transforming-strategy-development?utm_source=chatgpt.com "How AI is transforming strategy development"
-[6]: https://www.openbanking.org.uk/wp-content/uploads/Guidelines-for-Read-Write-Participants.pdf?utm_source=chatgpt.com "Guidelines for Read/Write Participants"
+[1]: https://docs.oasis-open.org/ubl/UBL-2.1.html?utm_source=chatgpt.com "Universal Business Language Version 2.1 - Index of /"
+[2]: https://peppol.org/?utm_source=chatgpt.com "OpenPeppol: The Future Is Open"
+[3]: https://lawcom.gov.uk/project/smart-contracts/?utm_source=chatgpt.com "Smart contracts"
+[4]: https://www.iso20022.org/iso-20022?utm_source=chatgpt.com "ISO 20022 | ISO20022"
+[5]: https://docs.peppol.eu/poacc/billing/3.0/bis/?utm_source=chatgpt.com "Peppol BIS Billing"
+[6]: https://accordproject.org/news/smart-legal-contracts-are-recognised-as-being-legally-enforceable-in-england-and-wales/?utm_source=chatgpt.com "Smart Legal Contracts are recognised as being ..."
 [7]: https://www.ecb.europa.eu/paym/integration/retail/instant_payments/html/index.en.html?utm_source=chatgpt.com "What are instant payments? - European Central Bank"
-[8]: https://www.deloitte.com/us/en/services/consulting/services/ai-in-finance.html?utm_source=chatgpt.com "FinanceAI™: Harness the Power of Modern Finance"
-[9]: https://www.kyriba.com/resource/iso20022-payments-migration/?utm_source=chatgpt.com "Master ISO 20022 payments migration: An essential guide"
+[8]: https://scml.cs.brown.edu/?utm_source=chatgpt.com "Automated Negotiating Agents Competition (ANAC)"
+[9]: https://www.eecs.ucf.edu/~lboloni/Teaching/EEL6788_2008/papers/The_Contract_Net_Protocol_Dec-1980.pdf?utm_source=chatgpt.com "The Contract Net Protocol: High-Level Communication and ..."
+[10]: https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_transferable_records?utm_source=chatgpt.com "UNCITRAL Model Law on Electronic Transferable Records ..."
+[11]: https://academy.iccwbo.org/digital-trade/article/mletr-an-overview-of-uncitrals-model-law-on-electronic-transferable-records/?utm_source=chatgpt.com "MLETR: An overview of UNCITRAL's Model Law on Electronic ..."
+[12]: https://www.wto.org/english/tratop_e/msmes_e/uncitral_240621.pdf?utm_source=chatgpt.com "Overview of the UNCITRAL Model Law on Electronic ..."
+[13]: https://www.ecb.europa.eu/paym/integration/retail/instant_payments/shared/pdf/ECB_Document_MIP_Brochure_FinalVersion.pdf?utm_source=chatgpt.com "Benefits of SEPA Instant Credit Transfer (SCT Inst)"
