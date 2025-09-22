@@ -83,8 +83,8 @@ function Role({ role }) {
 export function Resume() {
   let resume = [
     {
-      company: 'MaterialsMarket.com',
-      title: 'Snr. Product Engineer',
+      company: 'Materials Market',
+      title: 'Product Engineer',
       logo: logoMaterialsMarket,
       start: '2023',
       end: {
@@ -94,7 +94,7 @@ export function Resume() {
     },
     {
       company: 'CRWD',
-      title: 'CTO',
+      title: 'CTO / Product Engineer',
       logo: logoCrwd,
       start: '2021',
       end: '2023',
@@ -108,14 +108,14 @@ export function Resume() {
     },
     {
       company: 'Airstoc',
-      title: 'CTO',
+      title: 'CTO / Lead Engineer',
       logo: logoAirstoc,
       start: '2015',
       end: '2018',
     },,
     {
       company: 'Blendmode',
-      title: 'Technical Lead',
+      title: 'Technical & Creative Director',
       logo: logoBlendmode,
       start: '2015',
       end: '2010',

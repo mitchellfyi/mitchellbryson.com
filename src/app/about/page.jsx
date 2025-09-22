@@ -38,7 +38,7 @@ function MailIcon(props) {
 
 export const metadata = {
   title: 'About',
-  description: 'I\'m Mitchell Bryson, a full-stack developer and AI product engineer. I build practical systems that ship fast and create measurable value.',
+  description: 'I\'m Mitchell Bryson, a full-stack product engineer. I build engaging products and practical systems that ship fast and create measurable value.',
 }
 
 export default function About() {
@@ -61,7 +61,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;m a full-stack developer and AI product engineer. I build practical systems that ship fast, reduce manual work, and create measurable value for teams. I&apos;ve been making websites and apps since 2000, and I still prefer small, verifiable wins over grand promises.
+              I&apos;m a full-stack product engineer. I build engaging products and practical systems that ship fast, reduce manual work, and create measurable value for teams. I&apos;ve been making websites and apps since 2000, and I still prefer small, verifiable wins over grand promises.
             </p>
             
             <div>
@@ -83,7 +83,7 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">Current focus</h2>
+              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">In my spare-time....</h2>
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
@@ -92,33 +92,6 @@ export default function About() {
                 <li className="flex items-start">
                   <span className="text-teal-500 mr-2">•</span>
                   <span>Collaborating on B2B SaaS where LLMs have concrete use cases and ROI.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">How I work</h2>
-              <ol className="space-y-2 list-decimal list-inside">
-                <li><strong>Discovery</strong> - clarify the problem, users, and success metrics.</li>
-                <li><strong>Pilot (5–10 days)</strong> - ship a thin slice that proves value, with instrumentation.</li>
-                <li><strong>Production</strong> - harden, document, handover, or continue as fractional support.</li>
-              </ol>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200 mb-3">What you get</h2>
-              <ul className="space-y-2">
-                <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
-                  <span>Clear scope, realistic timelines, and tested code.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
-                  <span>Honest trade-offs. No theatre.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
-                  <span>Ownership: your team can run it without me.</span>
                 </li>
               </ul>
             </div>
