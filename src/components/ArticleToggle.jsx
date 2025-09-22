@@ -76,8 +76,9 @@ export function ArticleToggle({ isDraft, onToggle, className = "" }) {
         </div>
         <div className="text-zinc-500 dark:text-zinc-500 mt-1">
           <Link href="/contact" className="hover:text-zinc-700 dark:hover:text-zinc-300 underline">
-            Contact me for the prompt used to generate the article.
-          </Link>
+            Contact me
+          </Link>&nbsp;
+          for the prompt used to generate the AI formatted version.
         </div>
       </div>
     </div>
