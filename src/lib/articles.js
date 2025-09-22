@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 
 async function importMarkdownArticle(articleDir) {
   const contentPath = path.join('./src/app/articles', articleDir, 'content.md')
+  const draftPath = path.join('./src/app/articles', articleDir, 'content_draft.md')
   
   if (!fs.existsSync(contentPath)) {
     console.warn(`No content.md found for article directory: ${articleDir}`)
@@ -14,6 +15,15 @@ async function importMarkdownArticle(articleDir) {
   const fileContents = fs.readFileSync(contentPath, 'utf8')
   const { data: frontmatter, content } = matter(fileContents)
 
+  // Check if draft exists
+  let draftContent = null
+  if (fs.existsSync(draftPath)) {
+    let draftFileContents = fs.readFileSync(draftPath, 'utf8')
+    draftFileContents = draftFileContents.replace(/\n/g, "<br>")
+    const { content: draft } = matter(draftFileContents)
+    draftContent = draft
+  }
+
   // Auto-detect cover image based on slug
   const coverImagePath = `/images/articles/${articleDir}.png`
   const coverImageExists = fs.existsSync(path.join('./public/images/articles', `${articleDir}.png`))
@@ -22,6 +32,7 @@ async function importMarkdownArticle(articleDir) {
     slug: articleDir,
     ...frontmatter,
     content,
+    draftContent,
     coverImage: coverImageExists ? coverImagePath : frontmatter.coverImage,
     // Ensure date is a string
     date: frontmatter.date ? frontmatter.date.toString() : frontmatter.date,

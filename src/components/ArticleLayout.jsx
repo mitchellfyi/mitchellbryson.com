@@ -1,17 +1,19 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import rehypeRaw from 'rehype-raw'
 
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
 import { Prose } from '@/components/Prose'
+import { ArticleToggle } from '@/components/ArticleToggle'
 import { formatDate } from '@/lib/formatDate'
 
 function ArrowLeftIcon(props) {
@@ -30,6 +32,10 @@ function ArrowLeftIcon(props) {
 export function ArticleLayout({ article, children }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
+  const [isDraft, setIsDraft] = useState(false)
+  
+  // Only show toggle if draft content exists
+  const hasDraft = article.draftContent && article.draftContent.trim().length > 0
 
   return (
     <Container className="mt-16 lg:mt-32">
@@ -70,10 +76,19 @@ export function ArticleLayout({ article, children }) {
                 />
               </div>
             )}
+            {hasDraft && (
+              <div className="mt-8 mb-6">
+                <ArticleToggle 
+                  isDraft={isDraft}
+                  onToggle={setIsDraft}
+                />
+              </div>
+            )}
             <Prose className="mt-8" data-mdx-content>
               {article.content ? (
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
                   components={{
                     code({ node, inline, className, children, ...props }) {
                       const match = /language-(\w+)/.exec(className || '')
@@ -94,7 +109,7 @@ export function ArticleLayout({ article, children }) {
                     }
                   }}
                 >
-                  {article.content}
+                  {isDraft && hasDraft ? article.draftContent : article.content}
                 </ReactMarkdown>
               ) : (
                 children
