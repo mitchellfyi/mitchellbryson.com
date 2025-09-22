@@ -35,6 +35,4 @@ and the ability to stop
 or roll back
 if something goes wrong
 
-you'd start with simple well-defined services
-and gradually expand
-as the system proves it can handle more complexity
+you'd start with simple well-defined services and gradually expand as the system proves it can handle more complexity

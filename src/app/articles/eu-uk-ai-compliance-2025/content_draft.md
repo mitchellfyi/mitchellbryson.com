@@ -34,7 +34,5 @@ privacy
 and safety
 you're on the right track
 
-start with your highest-risk systems
-and work backwards
-most companies will only have a few systems
-that need the full treatment
+start with your highest-risk systems and work backwards
+most companies will only have a few systems that need the full treatment

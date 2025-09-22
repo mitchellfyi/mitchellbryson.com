@@ -38,10 +38,6 @@ with lots of repetitive work
 that humans find tedious
 but AI can handle efficiently
 
-you'd start with the most painful bottlenecks
-in each industry
-prove the concept works
-then expand to more complex workflows
+you'd start with the most painful bottlenecks in each industry prove the concept works then expand to more complex workflows
 
-the goal is to turn weeks of waiting
-into days of processing
+the goal is to turn weeks of waiting into days of processing

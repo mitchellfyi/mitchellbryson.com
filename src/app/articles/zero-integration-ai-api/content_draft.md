@@ -33,7 +33,4 @@ if it works
 you could expand to more partners
 and more complex integrations
 
-the goal is to make business partnerships as easy as
-"here's my API"
-"here's what I want to exchange"
-"make it work"
+the goal is to make business partnerships as easy as "here's my API" "here's what I want to exchange" "make it work"

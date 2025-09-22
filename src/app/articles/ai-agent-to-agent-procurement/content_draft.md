@@ -19,17 +19,9 @@ https://peppol.org/
 https://lawcom.gov.uk/project/smart-contracts/
 https://www.iso20022.org/iso-20022
 
-expensive part of b2b trade isn't price discovery
-it's time variance
-between "we should work together"
-and "money settled goods moving"
-agents that speak in contracts
-agents that speak in proofs
-can compress that path
-enterprise stack already has standards
-for orders
-for invoices
-for events
+expensive part of b2b trade isn't price discovery it's time variance between "we should work together" and "money settled goods moving"
+agents that speak in contracts and proofs can compress that path
+enterprise stack already has standards for orders invoices events
 UBL/Peppol
 payment messages ISO 20022
 https://docs.peppol.eu/poacc/billing/3.0/bis/
@@ -37,17 +29,18 @@ https://docs.peppol.eu/poacc/billing/3.0/bis/
 documents are already code-like
 UBL defines Orders Despatch Advice Invoices as structured schemas
 Peppol operationalises their exchange at scale
-agents don't need to invent a format they can compose with it
+agents don't need to invent a format
+they can compose with it
 
 contracts can execute
 UK law recognises smart legal contracts as enforceable
-contract that triggers delivery invoicing price adjustments on data events is viable in mainstream jurisdictions
+contract that triggers delivery invoicing price adjustments on data events
+is viable in mainstream jurisdictions
 https://accordproject.org/news/smart-legal-contracts-are-recognised-as-being-legally-enforceable-in-england-and-wales/
 
 settlement can be instant
 ISO 20022 underpins modern payment schemes
-instant credit transfers in the EU make funds available in ~10 seconds
-fast enough for event-driven settlement
+instant credit transfers in the EU make funds available in ~10 seconds fast enough for event-driven settlement
 https://www.ecb.europa.eu/paym/integration/retail/instant_payments/html/index.en.html
 
 negotiation is a studied domain
@@ -68,19 +61,21 @@ automated negotiation
 buyer supplier agents search the space of terms
 price breaks delivery windows payment timing substitution options
 using multi-issue bargaining
-when they find a Pareto-efficient bundle that satisfies both policies they generate a term sheet for human approval
+when they find a Pareto-efficient bundle that satisfies both policies
+they generate a term sheet for human approval
 lessons from agent negotiation contests apply directly here
 multi-issue utilities concession tactics reservation points
 
 contract compilation
-on approval agents compile a smart legal contract that references canonical documents
+on approval agents compile a smart legal contract
+that references canonical documents
 UBL Order OrderResponse DespatchAdvice Invoice schemas
 plus an events manifest for status changes
 legal text cites the machine contract
-obligations e.g. send Despatch Advice within N hours are enforceable logged
+obligations e.g. send Despatch Advice within N hours are enforceable and logged
 
 execution observability
-agents plug into each ERP via adapters that emit consume Peppol/UBL messages
+agents plug into each ERP via adapters that emit and consume Peppol/UBL messages
 every exchange lands in an evidence ledger
 who/what/when/why hashes of payloads SLAs met missed
 boring on purpose auditors can follow along without bespoke exports

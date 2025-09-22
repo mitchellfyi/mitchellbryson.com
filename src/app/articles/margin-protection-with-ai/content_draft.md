@@ -37,6 +37,4 @@ for anomalies
 use statistical baselines
 rather than trying to predict the future
 
-the goal is to catch problems early
-and automatically
-not to replace human judgment entirely
+the goal is to catch problems early and automatically not to replace human judgment entirely

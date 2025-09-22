@@ -33,6 +33,4 @@ before you move to the next level
 
 the key is earning autonomy through evidence
 not just hoping it works
-start conservative
-and only move up when you have proof
-the agent can handle it
+start conservative and only move up when you have proof the agent can handle it

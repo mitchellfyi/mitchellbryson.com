@@ -7,8 +7,7 @@ job is to move an idea from "bad" to "workable"
 fast enough to learn something
 
 fear doubt are productive
-skepticism reduces the distance between belief
-skepticism reduces the distance between reality
+skepticism reduces the distance between belief and reality
 treat it as a debugging tool
 not a mood
 ask: what would make this fail?
@@ -29,18 +28,20 @@ or late
 
 expect the first version to be bad
 assume your V1 will be poor
-that assumption protects motivation because it reframes the goal: ship to generate evidence not to prove genius
+that assumption protects motivation
+because it reframes the goal: ship to generate evidence not to prove genius
 you're not producing a masterpiece you're creating feedback
 
 when in doubt change something
 stall points are expensive
 if you're unsure change one variable: audience channel price copy mechanism scope
-make the change small enough to be reversible large enough to generate a clear signal
+make the change small enough to be reversible
+large enough to generate a clear signal
 
 don't judge people for trying
 most attempts will fail that's the math
 one working idea pays for a hundred misses
-respect anyone who puts an idea in the world instruments it
+respect anyone who puts an idea in the world and instruments it
 the only real mistake is not testing because you fear looking foolish
 
 throughput beats perfection

@@ -30,11 +30,6 @@ testing
 cost control
 and incident response
 
-start simple with basic tracing
-and evaluation
-then add more sophisticated controls
-as you scale up
+start simple with basic tracing and evaluation then add more sophisticated controls as you scale up
 
-the goal is to ship LLM features
-with the same confidence
-you have in any other production system
+the goal is to ship LLM features with the same confidence you have in any other production system

@@ -2,34 +2,17 @@ most finance teams still plan in quarters
 forecast monthly
 execute spend through people
 execute spend through tickets
-next step is an AI CFO
-system that treats budgets as code
-keeps forecasts continuously updated
-executes payments under explicit policies
-executes payments under explicit caps
-humans own the guardrails
-humans own the approvals
-humans own the accountability
+next step is an AI CFO: system that treats budgets as code keeps forecasts continuously updated executes payments under explicit policies and caps
+humans own the guardrails approvals accountability
 industry language already moving this way
 under "autonomous finance"
 https://www.gartner.com/en/finance/topics/autonomous-finance
 https://www.deloitte.com/us/en/services/consulting/articles/achieving-autonomous-finance-operations.html
 
-finance function becomes three planes
-policy
-what's allowed
-planning
-what should happen
-execution
-what does happen
-continuous accounting pulls reconciliation
-continuous accounting pulls checks
-into the flow of work
-instead of month-end batches
+finance function becomes three planes: policy (what's allowed) planning (what should happen) execution (what does happen)
+continuous accounting pulls reconciliation checks into the flow of work instead of month-end batches
 plans can adjust in near-real time
-human role narrows to goals
-human role narrows to risk appetite
-human role narrows to exception handling
+human role narrows to goals risk appetite exception handling
 system handles throughput
 https://www.blackline.com/resources/glossaries/continuous-accounting/
 
@@ -61,7 +44,8 @@ rollbacks:
   on_breach: "pause_spend; notify(@finance,@growth)"
 
 system compiles this to checks that run before any payment PO is raised
-can also emit "allocation suggestions" e.g. shift £5k/day from Channel A to B with attached forecast delta confidence
+can also emit "allocation suggestions"
+e.g. shift £5k/day from Channel A to B with attached forecast delta confidence
 
 continuous forecasting and why it matters
 static budgets go stale
@@ -69,10 +53,9 @@ AI CFO keeps a rolling forecast that assimilates new signals
 orders returns cost movements media response
 re-plans under policy caps
 aligns with "beyond budgeting" practices that replace annual cycles with rolling less-granular updates
-https://www.bcg.com/publications/2021/the-future-is-beyond-budgeting
-https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/how-ai-is-transforming-strategy-development
+rides current improvements in AI-enabled forecasting accuracy
 
-sketch: policy-aware forecast adjustment
+sketch policy-aware forecast adjustment
 forecast = model.predict(next_13_weeks, features=live_signals)
 if forecast.cac > caps['stop_if_cac_over']:
     suggest("trim spend 15% and reallocate to SEO backlog", confidence=0.71)
@@ -83,8 +66,6 @@ with consent proof
 in the UK/EU payment initiation APIs allow authorised apps to initiate domestic payments on behalf of customers
 combined with instant payment rails e.g. SEPA Instant funds can settle in ~10 seconds with structured messaging
 for enterprises ISO 20022 gives the shared vocabulary to drive automation reconciliation
-https://www.openbanking.org.uk/wp-content/uploads/Guidelines-for-Read-Write-Participants.pdf
-https://www.ecb.europa.eu/paym/integration/retail/instant_payments/html/index.en.html
 
 how this looks in practice
 AI CFO generates a payment intent linked to a PO
@@ -102,7 +83,7 @@ what auditors boards will ask for
 
 advisory firms now frame "autonomous finance" around these very building blocks
 policy automation monitoring human escalation
-https://www.deloitte.com/us/en/services/consulting/services/ai-in-finance.html
+moving toward lights-out operations where appropriate
 
 KPIs for an AI CFO
 forecast quality: MAPE / WAPE trend error vs. last quarter's process
@@ -124,7 +105,6 @@ open questions and workable answers
 risk liability: keep a human principal accountable CFO document decision rights
 system proposes executes within caps humans approve changes in scope risk
 banking access coverage: coverage varies by region use payment initiation where available ISO 20022 rails for enterprise messaging as they standardise globally
-https://www.kyriba.com/resource/iso20022-payments-migration/
 cultural fit: this replaces slide-decks with evidence
 weekly reviews become fast: targets variances actions which caps changed
 

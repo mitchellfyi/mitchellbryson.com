@@ -32,5 +32,4 @@ like order lookup
 refund processing
 etc
 
-the goal is to handle routine support automatically
-while making it easy for humans to take over when needed
+the goal is to handle routine support automatically while making it easy for humans to take over when needed

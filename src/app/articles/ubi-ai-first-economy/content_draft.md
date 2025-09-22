@@ -34,6 +34,4 @@ that distribute both purchasing power
 and capability access fairly
 without stifling innovation
 
-you'd start with existing basic income pilots
-and gradually expand them
-as AI automation increases
+you'd start with existing basic income pilots and gradually expand them as AI automation increases
