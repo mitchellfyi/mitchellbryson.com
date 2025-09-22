@@ -67,14 +67,14 @@ export function ArticleToggle({ isDraft, onToggle, className = "" }) {
           Draft
         </button>
       </div>
-      <div className="text-sm text-zinc-600 dark:text-zinc-400">
-        <div className="text-xs text-zinc-500 dark:text-zinc-500 leading-tight">
+      <div className="text-xs/4 text-zinc-600 dark:text-zinc-400">
+        <div className="text-zinc-500 dark:text-zinc-500">
           {isDraft 
             ? "Viewing the original draft I wrote to generate the formatted article." 
             : "Viewing the AI-enhanced version of the article I wrote."
           }
         </div>
-        <div className="text-xs text-zinc-500 dark:text-zinc-500 mt-1">
+        <div className="text-zinc-500 dark:text-zinc-500 mt-1">
           <Link href="/contact" className="hover:text-zinc-700 dark:hover:text-zinc-300 underline">
             Contact me for the prompt used to generate the article.
           </Link>
