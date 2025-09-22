@@ -1,148 +1,96 @@
-b2b partnerships stall on integration
-coordination kills deals
+most b2b partnerships stall on integration and coordination
+future worth aiming for is simpler
 two companies point agents at each other
-declare policies
-declare limits
-let them negotiate
-let them contract
-let them settle
-humans stay in charge of goals
-humans stay in charge of guardrails
+declare policies and limits
+then let them negotiate contract settle
+with humans staying in charge of goals and guardrails
+pieces for this already exist in wild
+machine-readable business documents ubl peppol legally recognised smart legal contracts
+instant payments over iso 20022 rails
+tie them together with agent negotiation and get mission in value out for procurement
 
-pieces already exist
-machine-readable business documents
-UBL/Peppol
-smart legal contracts
-instant payments over ISO 20022 rails
-https://docs.oasis-open.org/ubl/UBL-2.1.html
-https://peppol.org/
-https://lawcom.gov.uk/project/smart-contracts/
-https://www.iso20022.org/iso-20022
+Why imagine agent-to-agent procurement
 
-expensive part of b2b trade isn't price discovery it's time variance between "we should work together" and "money settled goods moving"
+expensive part of b2b trade is not price discovery
+it is time and variance between we should work together and money settled goods moving
 agents that speak in contracts and proofs can compress that path
-enterprise stack already has standards for orders invoices events
-UBL/Peppol
-payment messages ISO 20022
-https://docs.peppol.eu/poacc/billing/3.0/bis/
+unlike consumer chatbots this is not novelty
+enterprise stack already has standards for orders invoices events ubl peppol payment messages iso 20022
+open question is orchestration
+can autonomous negotiators find terms that satisfy both policies with humans approving jump to production
+
+Premises grounded, not sci-fi
 
 documents are already code-like
-UBL defines Orders Despatch Advice Invoices as structured schemas
-Peppol operationalises their exchange at scale
-agents don't need to invent a format
+ubl defines orders despatch advice invoices as structured schemas
+peppol operationalises their exchange at scale
+agents do not need to invent format
 they can compose with it
 
 contracts can execute
-UK law recognises smart legal contracts as enforceable
-contract that triggers delivery invoicing price adjustments on data events
-is viable in mainstream jurisdictions
-https://accordproject.org/news/smart-legal-contracts-are-recognised-as-being-legally-enforceable-in-england-and-wales/
+uk law recognises smart legal contracts as enforceable
+contract that triggers delivery invoicing price adjustments on data events is viable in mainstream jurisdictions
 
 settlement can be instant
-ISO 20022 underpins modern payment schemes
-instant credit transfers in the EU make funds available in ~10 seconds fast enough for event-driven settlement
-https://www.ecb.europa.eu/paym/integration/retail/instant_payments/html/index.en.html
+iso 20022 underpins modern payment schemes including instant credit transfers in eu that make funds available in 10 seconds
+fast enough for event-driven settlement
 
-negotiation is a studied domain
-automated negotiating agents have been benchmarked for years ANAC
-multi-agent contracting patterns date back to the Contract Net Protocol
-https://scml.cs.brown.edu/
-https://www.eecs.ucf.edu/~lboloni/Teaching/EEL6788_2008/papers/The_Contract_Net_Protocol_Dec-1980.pdf
+negotiation is studied domain
+automated negotiating agents have been benchmarked for years anac multi-agent contracting patterns date back to contract net protocol
+not starting from zero
+composing
 
-how it might work end-to-end
+How it might work end-to-end
 
-intent policy exchange
-each side exposes a policy capsule
-acceptable price ranges incoterms SLAs credit limits escrow rules data handling escalation paths
-agents verify identity capabilities spin a negotiation sandbox
-procurement robots shaking hands on scope with hard ceilings
+Intent and policy exchange
 
-automated negotiation
-buyer supplier agents search the space of terms
-price breaks delivery windows payment timing substitution options
-using multi-issue bargaining
-when they find a Pareto-efficient bundle that satisfies both policies
-they generate a term sheet for human approval
-lessons from agent negotiation contests apply directly here
-multi-issue utilities concession tactics reservation points
+Each side exposes a policy capsule. Acceptable price ranges, incoterms, SLAs, credit limits, escrow rules, data handling, escalation paths. Agents verify identity and capabilities, then spin a negotiation sandbox. Procurement robots shaking hands on scope with hard ceilings.
 
-contract compilation
-on approval agents compile a smart legal contract
-that references canonical documents
-UBL Order OrderResponse DespatchAdvice Invoice schemas
-plus an events manifest for status changes
-legal text cites the machine contract
-obligations e.g. send Despatch Advice within N hours are enforceable and logged
+Automated negotiation
 
-execution observability
-agents plug into each ERP via adapters that emit and consume Peppol/UBL messages
-every exchange lands in an evidence ledger
-who/what/when/why hashes of payloads SLAs met missed
-boring on purpose auditors can follow along without bespoke exports
+Buyer and supplier agents search the space of terms. Price breaks, delivery windows, payment timing, substitution options. Using multi-issue bargaining. When they find a Pareto-efficient bundle that satisfies both policies, they generate a term sheet for human approval. Lessons from agent negotiation contests apply directly here. Multi-issue utilities, concession tactics, reservation points.
 
-settlement
-on delivery confirmation the contract triggers payment via ISO 20022 messages
-e.g. pain.001 initiation → pacs.008 clearing
-where supported use SEPA Instant SCT Inst so funds arrive near-real-time
-discounts for early payment penalties for lateness apply automatically
+Contract compilation
 
-title documents of value
-for flows that depend on documents of title bills of lading warehouse receipts
-agents rely on jurisdictions that implemented UNCITRAL MLETR
-so electronic transferable records are legally valid
-no couriers fewer disputes
-https://uncitral.un.org/en/texts/ecommerce/modellaw/electronic_transferable_records
-https://academy.iccwbo.org/digital-trade/article/mletr-an-overview-of-uncitrals-model-law-on-electronic-transferable-records
-https://www.wto.org/english/tratop_e/msmes_e/uncitral_240621.pdf
+On approval, agents compile a smart legal contract that references canonical documents. UBL Order, OrderResponse, DespatchAdvice, Invoice schemas, plus an events manifest for status changes. The legal text cites the machine contract. Obligations, send Despatch Advice within N hours, are enforceable and logged.
 
-protocol stack for autonomous procurement
-identity trust: mutual TLS verified business identifiers access via Peppol or equivalent networks
-semantics: UBL/JSON Schema for documents Async events for status order accepted shipped delivered
-negotiation: multi-issue agent bargaining with human gates at term-sheet contract-signing
-benchmarked tactics from ANAC adapted to procurement utilities
-contracting: smart legal contracts that bind machine actions to legal prose storage of proofs hashes
-settlement: ISO 20022 payment initiation instant schemes where available
-evidence: append-only logs for payloads SLAs approvals exportable for audit dispute resolution
+Execution and observability
 
-novel patterns
+Agents plug into each ERP via adapters that emit and consume Peppol UBL messages. Every exchange lands in an evidence ledger. Who what when why, hashes of payloads, SLAs met or missed. This is boring on purpose. Auditors can follow along without bespoke exports.
 
-negotiation sandboxes
-before any real data money moves agents rehearse deals against synthetic RFQs historical constraints
-they surface two three viable bundles for a human to approve
-along with counterfactuals "+2-day lead time reduces price 3.1%"
-closer to procurement strategy than chatbot banter it's bounded by policy
+Settlement
 
-programmable trust
-contracts carry self-checks "if Invoice total mismatches Order by >X% block settlement raise a dispute case with all evidence attached"
-because UBL ISO-20022 are structured these checks are implementable as rules not emails
+On delivery confirmation, the contract triggers payment via ISO 20022 messages. Pain.001 initiation to pacs.008 clearing. Where supported, use SEPA Instant SCT Inst so funds arrive near-real-time. Discounts for early payment, penalties for lateness apply automatically.
 
-policy markets
-suppliers publish machine-readable policies e.g. carbon limits data retention warranty that agents can query like an API
-buyers rank policies alongside price to reduce hidden switching costs
+Title and documents of value
 
-title as an API
-in MLETR jurisdictions the "document of title" is an API object with a history
-assignment of title can trigger release of funds insurance updates without manual paperwork
+For flows that depend on documents of title, bills of lading, warehouse receipts, agents rely on jurisdictions that implemented UNCITRAL MLETR. So electronic transferable records are legally valid. No couriers, fewer disputes.
 
-zero-integration by construction
-because the agents speak Peppol/UBL on the wire log ISO-20022 payment proofs
-onboarding a new partner becomes a policy + adapter exercise rather than a six-week project
+A protocol stack for autonomous procurement
 
-what still needs solving
-governance: who signs who can raise budgets who can change policies mid-negotiation
-liability: when agents misprice misroute the enforceable contract helps but humans are still accountable
-cross-border gaps: MLETR adoption is uneven instant payment access Peppol coverage vary by region
-none are showstoppers but they shape where to pilot first
+- Identity and trust: mutual TLS, verified business identifiers, access via Peppol or equivalent networks
+- Semantics: UBL JSON Schema for documents, async events for status, order accepted, shipped, delivered
+- Negotiation: multi-issue agent bargaining with human gates at term-sheet, contract-signing. Benchmarked tactics from ANAC adapted to procurement utilities
+- Contracting: smart legal contracts that bind machine actions to legal prose, storage of proofs and hashes. Recognised enforceability matters here
+- Settlement: ISO 20022 payment initiation, instant schemes where available
+- Evidence: append-only logs for payloads, SLAs, approvals, exportable for audit and dispute resolution
 
-cautious path to first pilots
-start with a single commodity SKU willing partner already using Peppol
-limit funds with per-deal caps gate agent proposals behind human approval
-route payments via ISO 20022 instant rails where possible
-measure time to first data contract test pass-rate breakage per 1,000 messages
-if you can consistently go from handshake to first settled order in days instead of weeks scale the scope
-https://www.ecb.europa.eu/paym/integration/retail/instant_payments/shared/pdf/ECB_Document_MIP_Brochure_FinalVersion.pdf
+Novel patterns philosophical, but workable
 
-bottom line agent-to-agent procurement isn't about inventing new rails
-it's about using the rails we already have UBL/Peppol smart legal contracts ISO 20022 instant payments
-giving agents narrow authority to negotiate within policies compile enforceable contracts settle with proofs
-when that loop is tight reversible the integration tax fades trade gets faster
+Negotiation sandboxes. Before any real data or money moves, agents rehearse deals against synthetic RFQs and historical constraints. They surface two or three viable bundles for a human to approve, along with counterfactuals. Plus 2-day lead time reduces price 3.1%. This is closer to procurement strategy than chatbot banter. It is bounded by policy.
+
+Programmable trust. Contracts carry self-checks. If Invoice total mismatches Order by greater than X percent, block settlement and raise a dispute case with all evidence attached. Because UBL and ISO-20022 are structured, these checks are implementable as rules, not emails.
+
+Policy markets. Suppliers publish machine-readable policies. Carbon limits, data retention, warranty that agents can query like an API. Buyers rank policies alongside price to reduce hidden switching costs.
+
+Title as an API. In MLETR jurisdictions, the document of title is an API object with a history. Assignment of title can trigger release of funds or insurance updates without manual paperwork.
+
+Zero-integration by construction. Because the agents speak Peppol UBL on the wire and log ISO-20022 payment proofs, onboarding a new partner becomes a policy plus adapter exercise rather than a six-week project.
+
+What still needs solving
+
+Three open fronts remain. Governance: who signs, who can raise budgets, who can change policies mid-negotiation. Liability: when agents misprice or misroute, the enforceable contract helps, but humans are still accountable. Cross-border gaps: MLETR adoption is uneven, instant payment access and Peppol coverage vary by region. None are showstoppers, but they shape where to pilot first.
+
+A cautious path to first pilots
+
+Start with a single commodity SKU and a willing partner already using Peppol. Limit funds with per-deal caps. Gate agent proposals behind human approval. Route payments via ISO 20022 instant rails where possible. Measure time to first data, contract test pass-rate, breakage per 1000 messages. If handshake to first settled order can consistently go in days instead of weeks, scale the scope.
