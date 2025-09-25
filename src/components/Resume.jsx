@@ -84,7 +84,7 @@ export function Resume() {
   let resume = [
     {
       company: 'Materials Market',
-      title: 'Product Engineer',
+      title: 'Snr. Product Engineer',
       logo: logoMaterialsMarket,
       start: '2023',
       end: {
@@ -94,28 +94,28 @@ export function Resume() {
     },
     {
       company: 'CRWD',
-      title: 'CTPO / Product Engineer',
+      title: 'Lead Engineer',
       logo: logoCrwd,
       start: '2021',
       end: '2023',
     },
     {
       company: 'Taskfeed',
-      title: 'Head of Product & Dev',
+      title: 'Lead Product Engineer',
       logo: logoTaskfeed,
       start: '2018',
       end: '2021',
     },
     {
       company: 'Airstoc',
-      title: 'CTO / Lead Engineer',
+      title: 'Lead Engineer',
       logo: logoAirstoc,
       start: '2015',
       end: '2018',
     },,
     {
       company: 'Blendmode',
-      title: 'Technical & Creative Director',
+      title: 'Lead Engineer / Designer',
       logo: logoBlendmode,
       start: '2015',
       end: '2010',
