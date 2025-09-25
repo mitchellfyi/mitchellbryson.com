@@ -94,14 +94,14 @@ export function Resume() {
     },
     {
       company: 'CRWD',
-      title: 'CTO / Product Engineer',
+      title: 'CTPO / Product Engineer',
       logo: logoCrwd,
       start: '2021',
       end: '2023',
     },
     {
       company: 'Taskfeed',
-      title: 'Head of Product',
+      title: 'Head of Product & Dev',
       logo: logoTaskfeed,
       start: '2018',
       end: '2021',
