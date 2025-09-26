@@ -10,10 +10,10 @@ export const metadata = {
   title: {
     template: '%s - Mitchell Bryson',
     default:
-      'Mitchell Bryson - AI Product Engineer',
+      'Mitchell Bryson - Product Engineer',
   },
   description:
-    'I\'m Mitchell, an AI Product Engineer. I design and ship practical AI systems that cut manual work and improve margins.',
+    'I\'m Mitchell, an Product Engineer. I design and ship practical AI systems that cut manual work and improve margins.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
