@@ -117,8 +117,8 @@ export function Resume() {
       company: 'Blendmode',
       title: 'Lead Engineer / Designer',
       logo: logoBlendmode,
-      start: '2015',
-      end: '2010',
+      start: '2010',
+      end: '2015',
     },
   ]
 
