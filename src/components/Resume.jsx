@@ -112,7 +112,7 @@ export function Resume() {
       logo: logoAirstoc,
       start: '2015',
       end: '2018',
-    },,
+    },
     {
       company: 'Blendmode',
       title: 'Lead Engineer / Designer',

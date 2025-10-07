@@ -5,6 +5,7 @@ import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
 import { Card } from '@/components/Card'
 import { Resume } from '@/components/Resume'
+import { Projects } from '@/components/Projects'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -13,6 +14,39 @@ import {
 } from '@/components/SocialIcons'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+// Hardcoded pinned projects
+const homePinnedProjects = [
+  {
+    name: 'launchonomy',
+    description:
+      'A system for orchestrating AI agents to complete "missions" through consensus driven decision-making and workflow automation.',
+    html_url: 'https://github.com/mitchellfyi/launchonomy',
+  },
+  {
+    name: 'pitchplease',
+    description:
+      'A Next.js app and Agentic AI workflow for uploading a pitch deck and turning it into a AI generated video, with voiceover and narrator.',
+    html_url: 'https://github.com/mitchellfyi/pitchplease',
+  },
+  {
+    name: 'inbox-triage-app',
+    description:
+      "A web-based email triage companion that helps you summarise email threads, understand attachments and generate reply drafts — all running primarily on-device using Chrome's built-in AI.",
+    html_url: 'https://github.com/mitchellfyi/inbox-triage-app',
+  },
+  {
+    name: 'inbox-triage-extension',
+    description:
+      'Triage your inbox with AI-powered email summaries, attachment analysis, and reply drafts—all processed locally for complete privacy.',
+    html_url: 'https://github.com/mitchellfyi/inbox-triage-extension',
+  },
+  {
+    name: 'agentic-commerce-protocol',
+    description:
+      'RFC: Fulfilment for the Agentic Commerce Protocol — defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
+    html_url: 'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
+  },
+]
 
 function MailIcon(props) {
   return (
@@ -99,7 +133,8 @@ function Article({ article }) {
 
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 3)
+  let articles = (await getAllArticles()).slice(0, 6)
+  let projects = homePinnedProjects
 
   return (
     <>
@@ -142,7 +177,8 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
-            {/* <Resume /> */}
+            <Projects projects={projects} />
+            <Resume />
           </div>
         </div>
       </Container>

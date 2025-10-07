@@ -3,12 +3,13 @@ import Link from 'next/link'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { getAllProjects } from '@/lib/projects'
+// import { getAllProjects } from '@/lib/projects'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
+import { getProjectIcon, getProjectColor } from '@/components/ProjectIcons'
 
 // Logo mapping for all projects
 const logoMap = {
@@ -35,14 +36,68 @@ export const metadata = {
   description: 'Things I\'ve made trying to put my dent in the universe.',
 }
 
-export default async function Projects() {
-  const projects = await getAllProjects()
+// Hardcoded pinned projects (reference from GitHub profile)
+const pinned = [
+  {
+    name: 'launchonomy',
+    description:
+      'A system for orchestrating AI agents to complete "missions" through consensus driven decision-making and workflow automation.',
+    html_url: 'https://github.com/mitchellfyi/launchonomy',
+  },
+  {
+    name: 'pitchplease',
+    description:
+      'A Next.js app and Agentic AI workflow for uploading a pitch deck and turning it into a AI generated video, with voiceover and narrator.',
+    html_url: 'https://github.com/mitchellfyi/pitchplease',
+  },
+  {
+    name: 'inbox-triage-app',
+    description:
+      "A web-based email triage companion that helps you summarise email threads, understand attachments and generate reply drafts — all running primarily on-device using Chrome's built-in AI.",
+    html_url: 'https://github.com/mitchellfyi/inbox-triage-app',
+  },
+  {
+    name: 'inbox-triage-extension',
+    description:
+      'Triage your inbox with AI-powered email summaries, attachment analysis, and reply drafts—all processed locally for complete privacy.',
+    html_url: 'https://github.com/mitchellfyi/inbox-triage-extension',
+  },
+  {
+    name: 'agentic-commerce-protocol',
+    description:
+      'RFC: Fulfilment for the Agentic Commerce Protocol — defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
+    html_url: 'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
+  },
   
-  // Add logos to all projects
-  const allProjects = projects.map(project => ({
+]
+
+export default async function Projects() {
+  const [markdownProjects, githubProjects] = await Promise.all([
+    Promise.resolve([]), // remove example/template markdown projects
+    Promise.resolve(pinned),
+  ])
+  
+  // Add logos to markdown projects
+  const allMarkdownProjects = markdownProjects.map(project => ({
     ...project,
     logo: logoMap[project.slug],
   }))
+
+  // Convert GitHub projects to the same format as markdown projects
+  const githubProjectsFormatted = githubProjects.map(project => ({
+    slug: project.name,
+    title: project.name,
+    description: project.description,
+    logo: null, // We'll use a default icon
+    html_url: project.html_url,
+    homepage: project.homepage,
+    language: project.language,
+    stargazers_count: project.stargazers_count,
+    forks_count: project.forks_count,
+  }))
+
+  // Combine both types of projects
+  const allProjects = [...allMarkdownProjects, ...githubProjectsFormatted]
 
   return (
     <SimpleLayout
@@ -53,27 +108,54 @@ export default async function Projects() {
         role="list"
         className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {allProjects.map((project) => (
+        {allProjects.map((project) => {
+          const Icon = getProjectIcon(project)
+          const color = getProjectColor(project)
+          return (
           <Card as="li" key={project.slug}>
-            <Card.Link href={`/projects/${project.slug}`}>
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <Image
-                  src={project.logo}
-                  alt=""
-                  className="h-8 w-8"
-                  unoptimized
-                />
-              </div>
-              <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                {project.title}
-              </h2>
-              <Card.Description>{project.description}</Card.Description>
-              <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-                Read more
-              </p>
-            </Card.Link>
+            {project.html_url ? (
+              <Card.Link href={project.html_url} target="_blank" rel="noopener noreferrer">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                  {project.logo ? (
+                    <Image
+                      src={project.logo}
+                      alt=""
+                      className="h-8 w-8"
+                      unoptimized
+                    />
+                  ) : (
+                    <Icon className={`h-6 w-6 ${color}`} />
+                  )}
+                </div>
+                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                  {project.title}
+                </h2>
+                <Card.Description>{project.description}</Card.Description>
+                <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                  View on GitHub
+                </p>
+              </Card.Link>
+            ) : (
+              <Card.Link href={`/projects/${project.slug}`}>
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                  <Image
+                    src={project.logo}
+                    alt=""
+                    className="h-8 w-8"
+                    unoptimized
+                  />
+                </div>
+                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                  {project.title}
+                </h2>
+                <Card.Description>{project.description}</Card.Description>
+                <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                  Read more
+                </p>
+              </Card.Link>
+            )}
           </Card>
-        ))}
+        )})}
       </ul>
     </SimpleLayout>
   )
