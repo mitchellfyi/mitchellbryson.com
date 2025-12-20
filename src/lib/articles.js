@@ -57,7 +57,7 @@ export async function getAllArticles() {
   const publishedArticles = articles.filter(article => {
     const articleDate = new Date(article.date)
     articleDate.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
-    return articleDate < today
+    return articleDate <= today
   })
 
   if (process.env.NODE_ENV === 'development') {
