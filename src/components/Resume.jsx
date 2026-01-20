@@ -87,10 +87,7 @@ export function Resume() {
       title: 'Snr. Product Engineer',
       logo: logoMaterialsMarket,
       start: '2023',
-      end: {
-        label: 'Present',
-        dateTime: '2025',
-      },
+      end: '2025',
     },
     {
       company: 'CRWD',
