@@ -35,27 +35,32 @@
   --text-9xl--line-height: 1;
 }
 
-/* Global accessibility: ensure focus states are visible */
+/* Accessibility: Enhanced focus styles for keyboard navigation */
 @layer base {
-  :focus-visible {
+  *:focus-visible {
     outline: 2px solid theme('colors.teal.500');
     outline-offset: 2px;
+  }
+
+  .dark *:focus-visible {
+    outline-color: theme('colors.teal.400');
   }
 
   /* Skip to main content link for keyboard users */
   .skip-link {
     position: absolute;
-    top: -40px;
-    left: 0;
-    background: theme('colors.teal.500');
+    left: -9999px;
+    z-index: 999;
+    padding: 1rem 1.5rem;
+    background-color: theme('colors.teal.500');
     color: white;
-    padding: 8px 16px;
-    z-index: 100;
     text-decoration: none;
+    border-radius: 0.375rem;
     font-weight: 500;
   }
 
   .skip-link:focus {
-    top: 0;
+    left: 1rem;
+    top: 1rem;
   }
 }
