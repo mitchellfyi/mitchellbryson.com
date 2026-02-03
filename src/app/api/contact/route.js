@@ -1,7 +1,14 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy initialization to avoid build-time errors
+let resend = null
+function getResend() {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
 
 export async function POST(request) {
   try {
@@ -25,7 +32,7 @@ export async function POST(request) {
     }
 
     // Send email using Resend
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: `Website <${process.env.CONTACT_EMAIL}>`,
       to: [process.env.CONTACT_EMAIL], // Your email
       subject: `Contact Form: Message from ${name}`,
