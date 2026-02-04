@@ -2,6 +2,7 @@ import glob from 'fast-glob'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { calculateReadingTime } from './readingTime'
 
 async function importMarkdownArticle(articleDir) {
   const contentPath = path.join('./src/app/articles', articleDir, 'content.md')
@@ -36,6 +37,8 @@ async function importMarkdownArticle(articleDir) {
     coverImage: coverImageExists ? coverImagePath : frontmatter.coverImage,
     // Ensure date is a string
     date: frontmatter.date ? frontmatter.date.toString() : frontmatter.date,
+    // Calculate reading time from content
+    readingTime: calculateReadingTime(content),
   }
 }
 
