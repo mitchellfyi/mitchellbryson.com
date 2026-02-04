@@ -31,6 +31,8 @@ function Article({ article }) {
               decorate
             >
               {formatDate(article.date)}
+              <span className="mx-2">·</span>
+              <span>{article.readingTime}</span>
             </Card.Eyebrow>
             <Card.Description>{article.description}</Card.Description>
             <Card.Cta>Read article</Card.Cta>
@@ -53,7 +55,8 @@ function Article({ article }) {
             />
           </div>
         )}
-        {formatDate(article.date)}
+        <span>{formatDate(article.date)}</span>
+        <span className="text-zinc-400 dark:text-zinc-500">{article.readingTime}</span>
       </Card.Eyebrow>
     </article>
   )
