@@ -18,6 +18,12 @@ export async function generateMetadata({ params }) {
     return {}
   }
 
+  // Generate dynamic OG image URL
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+  const ogImageUrl = article.coverImage 
+    ? `${siteUrl}${article.coverImage}`
+    : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`
+
   return {
     title: article.title,
     description: article.description,
@@ -27,20 +33,20 @@ export async function generateMetadata({ params }) {
       type: 'article',
       publishedTime: article.date,
       authors: [article.author],
-      images: article.coverImage ? [
+      images: [
         {
-          url: article.coverImage,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: article.title,
         }
-      ] : undefined,
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description: article.description,
-      images: article.coverImage ? [article.coverImage] : undefined,
+      images: [ogImageUrl],
     },
   }
 }
