@@ -24,6 +24,8 @@ export async function generateMetadata({ params }) {
     ? `${siteUrl}${article.coverImage}`
     : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`
 
+  const articleUrl = `${siteUrl}/articles/${slug}`
+
   return {
     title: article.title,
     description: article.description,
@@ -31,6 +33,8 @@ export async function generateMetadata({ params }) {
       title: article.title,
       description: article.description,
       type: 'article',
+      url: articleUrl,
+      siteName: 'Mitchell Bryson',
       publishedTime: article.date,
       authors: [article.author],
       images: [
