@@ -39,14 +39,18 @@ function ExternalLinkIcon(props) {
   )
 }
 
-function Project({ project }) {
+function renderProjectIcon(project) {
   const Icon = getProjectIcon(project)
   const color = getProjectColor(project)
+  return <Icon className={`h-5 w-5 ${color}`} />
+}
+
+function Project({ project }) {
   return (
     <li className="flex gap-4 items-start">
       <div className="relative flex flex-none items-start justify-center">
         <div className="h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-          <Icon className={`h-5 w-5 ${color}`} />
+          {renderProjectIcon(project)}
         </div>
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
