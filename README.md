@@ -39,6 +39,52 @@ You can start editing this template by modifying the files in the `/src` folder.
 
 This site template is a commercial product and is licensed under the [Tailwind Plus license](https://tailwindcss.com/plus/license).
 
+## CI/CD
+
+### Workflows
+
+| Workflow | File | Trigger | Purpose |
+|----------|------|---------|---------|
+| **CI** | `ci.yml` | Push to `main`, PRs targeting `main` | Runs lint, build, and security audit |
+| **Deploy Production** | `deploy-production.yml` | Push to `main` | Runs CI then records a deploy summary |
+| **Rollback Production** | `rollback-production.yml` | Manual dispatch | Validates and builds a specific commit SHA for rollback |
+
+### Running checks locally
+
+```bash
+# Install dependencies
+npm ci
+
+# Lint
+npm run lint
+
+# Build
+npm run build
+
+# Security audit
+npm audit --audit-level=critical
+```
+
+### How deploys work
+
+Deployments to production are handled by **Vercel's Git integration**, which deploys automatically on every push to `main`. The `deploy-production.yml` workflow ensures that CI (lint, build, security audit) passes before the deploy is recorded as safe.
+
+**Branch protection rules** should be configured on `main` to require:
+- All CI status checks to pass before merging
+- At least one approval on pull requests
+- No force pushes
+- Linear history (squash or rebase merges preferred)
+
+### Rollback
+
+If a bad deploy reaches production, trigger a rollback via the **Rollback Production** workflow:
+
+1. Go to **Actions → Rollback Production → Run workflow**
+2. Enter the commit SHA of a known-good commit on `main`
+3. The workflow validates the commit, builds it, and provides instructions for completing the rollback via Vercel
+
+Alternatively, use the Vercel dashboard to promote a previous deployment.
+
 ## Learn more
 
 To learn more about the technologies used in this site template, see the following resources:
