@@ -4,6 +4,18 @@
 
 The self-healing CI system automatically creates GitHub issues when CI fails on the `main` branch and assigns them to GitHub Copilot's coding agent. Copilot then autonomously analyzes the failure, fixes the code, and opens a pull request.
 
+## Prerequisites
+
+Before the workflow can function properly:
+
+1. **GitHub Copilot Access**: Ensure the `copilot` user has access to your repository
+   - Add `copilot` as a collaborator with write permissions
+   - Or configure GitHub Copilot for your organization
+
+2. **Repository Permissions**: The `GITHUB_TOKEN` must have the required permissions (already configured in the workflow)
+
+**Note**: If the `copilot` user doesn't exist or lacks access, issue creation will fail. You can modify line 194 of the workflow to assign to a different user or remove the assignee if needed.
+
 ## How It Works
 
 ### Trigger

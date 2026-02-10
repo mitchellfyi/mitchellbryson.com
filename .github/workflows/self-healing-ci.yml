@@ -185,16 +185,31 @@ jobs:
             const sha = '${{ github.event.workflow_run.head_sha }}';
             const shortSha = sha.substring(0, 7);
 
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[CI Fix] Build failure on \`main\` (${shortSha})`,
-              body: body,
-              labels: ['ci-fix', 'automated'],
-              assignees: ['copilot']
-            });
-
-            console.log(`Created issue #${issue.data.number}`);
+            try {
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[CI Fix] Build failure on \`main\` (${shortSha})`,
+                body: body,
+                labels: ['ci-fix', 'automated'],
+                assignees: ['copilot']
+              });
+              console.log(`Created issue #${issue.data.number}`);
+            } catch (error) {
+              if (error.message.includes('assignee')) {
+                console.log('Warning: Could not assign to copilot user. Creating issue without assignee.');
+                const issue = await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: `[CI Fix] Build failure on \`main\` (${shortSha})`,
+                  body: body,
+                  labels: ['ci-fix', 'automated']
+                });
+                console.log(`Created issue #${issue.data.number} (no assignee)`);
+              } else {
+                throw error;
+              }
+            }
 
       - name: Add comment to existing issue
         if: |
