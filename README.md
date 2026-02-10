@@ -46,6 +46,7 @@ This site template is a commercial product and is licensed under the [Tailwind P
 | Workflow | File | Trigger | Purpose |
 |----------|------|---------|---------|
 | **CI** | `ci.yml` | Push to `main`, PRs targeting `main` | Runs lint, build, and security audit |
+| **Self-Healing CI** | `self-healing-ci.yml` | CI workflow failure on `main` | Automatically creates issues for CI failures and assigns to Copilot |
 | **Deploy Production** | `deploy-production.yml` | Push to `main` | Runs CI then records a deploy summary |
 | **Rollback Production** | `rollback-production.yml` | Manual dispatch | Validates and builds a specific commit SHA for rollback |
 
@@ -84,6 +85,18 @@ If a bad deploy reaches production, trigger a rollback via the **Rollback Produc
 3. The workflow validates the commit, builds it, and provides instructions for completing the rollback via Vercel
 
 Alternatively, use the Vercel dashboard to promote a previous deployment.
+
+### Self-Healing CI
+
+The repository includes an automated self-healing CI system that:
+
+- **Monitors** the CI workflow for failures on the `main` branch
+- **Creates** GitHub issues with failure logs when CI fails
+- **Assigns** issues to GitHub Copilot for autonomous fixing
+- **Prevents duplicates** by checking for existing open issues
+- **Escalates** to human intervention after 3 failed attempts
+
+For more information, see [`.github/workflows/README-SELF-HEALING.md`](.github/workflows/README-SELF-HEALING.md).
 
 ## Learn more
 
