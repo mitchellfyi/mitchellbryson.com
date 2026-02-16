@@ -4,25 +4,25 @@
 version: 1
 
 project:
-  name: "mitchellbryson.com"
-  description: ""
+  name: 'mitchellbryson.com'
+  description: ''
 
 git:
-  remote: "https://github.com/mitchellfyi/mitchellbryson.com.git"
-  branch: "main"
+  remote: 'https://github.com/mitchellfyi/mitchellbryson.com.git'
+  branch: 'main'
 
 domains: {}
 
 tools: {}
 
 quality:
-  test_command: ""
-  lint_command: ""
-  format_command: ""
-  build_command: ""
+  test_command: 'npm run test:coverage'
+  lint_command: 'npm run lint'
+  format_command: 'npm run format'
+  build_command: 'npm run build'
 
 agent:
-  name: "claude"
-  model: "opus"
+  name: 'claude'
+  model: 'opus'
   max_retries: 2
   parallel_workers: 2
