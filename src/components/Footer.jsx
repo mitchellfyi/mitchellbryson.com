@@ -31,6 +31,7 @@ export function Footer() {
                 {/* <NavLink href="/speaking">Speaking</NavLink> */}
                 {/* <NavLink href="/uses">Uses</NavLink> */}
                 <NavLink href="/contact">Contact</NavLink>
+                <NavLink href="/barnsley-ai">AI in Barnsley, UK</NavLink>
               </nav>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Mitchell Bryson. All rights
