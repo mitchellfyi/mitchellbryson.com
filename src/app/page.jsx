@@ -44,7 +44,8 @@ const homePinnedProjects = [
     name: 'agentic-commerce-protocol',
     description:
       'RFC: Fulfilment for the Agentic Commerce Protocol — defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
-    html_url: 'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
+    html_url:
+      'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
   },
 ]
 
@@ -107,7 +108,6 @@ function ArrowDownIcon(props) {
   )
 }
 
-
 function SocialLink({ icon: Icon, ...props }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
@@ -129,9 +129,6 @@ function Article({ article }) {
   )
 }
 
-
-
-
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 6)
   let projects = homePinnedProjects
@@ -141,12 +138,17 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-           I&apos;m Mitchell, a full-stack Product Engineer.
+            I&apos;m Mitchell, a full-stack Product Engineer.
           </h1>
           <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
-            I design, develop and ship engaging products and practical systems that cut manual work and improve margins.
-            My focus: small, verifiable wins that go live fast, then scale.
-            If you need a developer that knows what to build and why, <a href="/contact" className="text-teal-500">let&apos;s talk</a>.
+            I design, develop and ship engaging products and practical systems
+            that cut manual work and improve margins. My focus: small,
+            verifiable wins that go live fast, then scale. If you need a
+            developer that knows what to build and why,{' '}
+            <a href="/contact" className="text-teal-500">
+              let&apos;s talk
+            </a>
+            .
           </p>
           <div className="mt-6 flex gap-6">
             {/* <SocialLink href="#" aria-label="Follow on X" icon={XIcon} /> */}

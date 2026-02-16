@@ -12,15 +12,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params
   const articles = await getAllArticles()
-  const article = articles.find(a => a.slug === slug)
-  
+  const article = articles.find((a) => a.slug === slug)
+
   if (!article) {
     return {}
   }
 
   // Generate dynamic OG image URL
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-  const ogImageUrl = article.coverImage 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+  const ogImageUrl = article.coverImage
     ? `${siteUrl}${article.coverImage}`
     : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`
 
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }) {
           width: 1200,
           height: 630,
           alt: article.title,
-        }
+        },
       ],
     },
     twitter: {
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }) {
 export default async function ArticlePage({ params }) {
   const { slug } = await params
   const articles = await getAllArticles()
-  const article = articles.find(a => a.slug === slug)
+  const article = articles.find((a) => a.slug === slug)
 
   if (!article) {
     notFound()

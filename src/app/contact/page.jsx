@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Button } from '@/components/Button'
 
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -16,9 +15,9 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }))
   }
 
@@ -55,10 +54,11 @@ export default function Contact() {
       title="Get in touch"
       intro={
         <>
-          I&apos;d love to hear from you. Send me a message and I&apos;ll respond as soon as possible. You can also reach me directly at{' '}
-          <a 
-            href="mailto:website@mitchellbryson.com" 
-            className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+          I&apos;d love to hear from you. Send me a message and I&apos;ll
+          respond as soon as possible. You can also reach me directly at{' '}
+          <a
+            href="mailto:website@mitchellbryson.com"
+            className="text-teal-500 transition-colors hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
           >
             website@mitchellbryson.com
           </a>
@@ -66,10 +66,13 @@ export default function Contact() {
         </>
       }
     >
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+      <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
+            >
               Name
             </label>
             <input
@@ -79,12 +82,15 @@ export default function Contact() {
               required
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm placeholder-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
+              className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
               placeholder="Your name"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
+            >
               Email
             </label>
             <input
@@ -94,13 +100,16 @@ export default function Contact() {
               required
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm placeholder-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
+              className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
               placeholder="your.email@example.com"
             />
           </div>
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
+          >
             Message
           </label>
           <textarea
@@ -110,11 +119,11 @@ export default function Contact() {
             required
             value={formData.message}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm placeholder-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
+            className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
             placeholder="Write your message..."
           />
         </div>
-        
+
         {submitStatus === 'success' && (
           <div className="rounded-md bg-green-50 p-4 dark:bg-green-900/20">
             <div className="text-sm text-green-800 dark:text-green-200">
@@ -122,7 +131,7 @@ export default function Contact() {
             </div>
           </div>
         )}
-        
+
         {submitStatus === 'error' && (
           <div className="rounded-md bg-red-50 p-4 dark:bg-red-900/20">
             <div className="text-sm text-red-800 dark:text-red-200">
@@ -130,7 +139,7 @@ export default function Contact() {
             </div>
           </div>
         )}
-        
+
         <div className="flex justify-end">
           <Button
             type="submit"
