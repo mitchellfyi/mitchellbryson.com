@@ -90,7 +90,8 @@ export default function About() {
                   <span className="mr-2 text-teal-500">•</span>
                   <span>
                     <strong>Modern web stacks</strong> - Ruby on Rails
-                    (Hotwire), JavaScript (React/Vue), and Tailwind with Sass.
+                    (Hotwire), JavaScript (React/Vue), Next.js, and Tailwind
+                    with Sass.
                   </span>
                 </li>
                 <li className="flex items-start">

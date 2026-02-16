@@ -2,7 +2,7 @@
 author: Mitchell Bryson
 date: "2026-02-15"
 title: "The Economics of Delegation"
-description: "What happens when cognitive labour becomes infinitely delegable — Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker."
+description: "What happens when cognitive labour becomes infinitely delegable - Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker."
 ---
 
 Delegation has always been the fundamental economic act of scaling human output. When cognitive labour becomes infinitely delegable to AI agents, the economics of everything changes.
@@ -35,7 +35,7 @@ What remains:
 - Relationship management (trust, politics, culture)
 - Novel problem framing
 
-The middle doesn't disappear — it gets radically compressed.
+The middle doesn't disappear - it gets radically compressed.
 
 ### Leverage Becomes Unlimited for Individuals
 
@@ -47,11 +47,11 @@ But: the constraint shifts to the person's capacity for specification and judgme
 
 When delegation is cheap, what becomes valuable?
 
-**Articulation** — The ability to specify what you want with enough precision that agents can execute. Prompt engineering is the trivial version. Real articulation is: goals, constraints, success criteria, edge cases, values. The people who can articulate well become the new bottleneck. "I'll know it when I see it" becomes expensive — iteration costs attention.
+**Articulation** - The ability to specify what you want with enough precision that agents can execute. Prompt engineering is the trivial version. Real articulation is: goals, constraints, success criteria, edge cases, values. The people who can articulate well become the new bottleneck. "I'll know it when I see it" becomes expensive - iteration costs attention.
 
-**Judgment** — Agents can execute; humans must decide what's worth executing. Prioritisation, taste, ethics, strategy — these remain human. The market will increasingly pay for judgment, not execution.
+**Judgment** - Agents can execute; humans must decide what's worth executing. Prioritisation, taste, ethics, strategy - these remain human. The market will increasingly pay for judgment, not execution.
 
-**Attention** — Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because *work* is abundant.
+**Attention** - Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because *work* is abundant.
 
 ## The Delegation Paradox
 
@@ -60,7 +60,7 @@ More delegation capacity → more things get attempted → more review required 
 The paradox: infinite leverage without infinite attention creates its own ceiling.
 
 Solutions:
-- **Hierarchical delegation** (agents reviewing agents) — requires trust infrastructure
+- **Hierarchical delegation** (agents reviewing agents) - requires trust infrastructure
 - **Taste compression** (specifying preferences so tightly that review becomes sampling)
 - **Outcome orientation** (measure results, not process)
 
@@ -78,7 +78,7 @@ Wage polarisation accelerates. The people who orchestrate earn more. The people 
 
 Shift from time-based (hours, salaries) to outcome-based (deliverables, results). When execution is cheap, charging for execution time makes no sense. The value is in the specification and judgment, which is hard to price directly.
 
-Rise of "outcome as a service" — you pay for leads, not hours; for code deployed, not developer time.
+Rise of "outcome as a service" - you pay for leads, not hours; for code deployed, not developer time.
 
 ### Capital Allocation
 
@@ -98,21 +98,21 @@ The question: will AI tools lower the barrier to orchestration fast enough to di
 
 ## The Organisational Response
 
-**Small becomes viable** — 2-person companies with agent armies can deliver what required 50 before. This changes competitive dynamics: incumbents face more agile competitors.
+**Small becomes viable** - 2-person companies with agent armies can deliver what required 50 before. This changes competitive dynamics: incumbents face more agile competitors.
 
-**Management becomes curation** — The manager's job shifts from directing humans to curating agent outputs. Performance reviews → output audits. Team meetings → system reviews. Hiring → agent selection and configuration.
+**Management becomes curation** - The manager's job shifts from directing humans to curating agent outputs. Performance reviews → output audits. Team meetings → system reviews. Hiring → agent selection and configuration.
 
-**Culture becomes specification** — Company culture is the unwritten specification of "how we do things." With agents, culture must become explicit enough to encode. "We value quality over speed" → specific rubrics, gates, evaluation criteria. The companies that can articulate their culture win.
+**Culture becomes specification** - Company culture is the unwritten specification of "how we do things." With agents, culture must become explicit enough to encode. "We value quality over speed" → specific rubrics, gates, evaluation criteria. The companies that can articulate their culture win.
 
 ## What This Means for Individuals
 
 **Career advice in the delegation era:**
 
-1. Develop articulation skills — can you specify what you want clearly?
-2. Develop judgment — can you evaluate outputs and make good decisions?
-3. Understand the tools — not coding, but orchestration
-4. Focus on the non-delegatable — relationships, trust, novel problems
-5. Build attention discipline — your attention is your scarcest resource
+1. Develop articulation skills - can you specify what you want clearly?
+2. Develop judgment - can you evaluate outputs and make good decisions?
+3. Understand the tools - not coding, but orchestration
+4. Focus on the non-delegatable - relationships, trust, novel problems
+5. Build attention discipline - your attention is your scarcest resource
 
 **The new status markers:**
 
@@ -128,6 +128,6 @@ The flex is "I did this with three agents and two hours of my time."
 - Will people delegate things they shouldn't? (Relationships? Creative expression? Judgment itself?)
 - Does the ability to delegate make us better at articulation, or atrophy it?
 
-The economics of delegation is the economics of leverage. Every technology that made delegation cheaper — writing, printing, computing, networking — reshaped economic structure. AI is the first technology that makes *cognitive* delegation cheap.
+The economics of delegation is the economics of leverage. Every technology that made delegation cheaper - writing, printing, computing, networking - reshaped economic structure. AI is the first technology that makes *cognitive* delegation cheap.
 
 The question isn't whether this changes everything. It does. The question is: who captures the value, and how fast does it redistribute?

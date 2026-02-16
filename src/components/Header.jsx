@@ -126,6 +126,7 @@ function MobileNavigation(props) {
             <MobileNavItem href="/about">About</MobileNavItem>
             <MobileNavItem href="/articles">Articles</MobileNavItem>
             <MobileNavItem href="/projects">Projects</MobileNavItem>
+            <MobileNavItem href="/tools">Tools</MobileNavItem>
             {/* <MobileNavItem href="/speaking">Speaking</MobileNavItem> */}
             {/* <MobileNavItem href="/uses">Uses</MobileNavItem> */}
             <MobileNavItem href="/contact">Contact</MobileNavItem>
@@ -140,6 +141,7 @@ function isActivePath(pathname, href) {
   if (pathname === href) return true
   if (href === '/articles' && pathname.startsWith('/articles/')) return true
   if (href === '/projects' && pathname.startsWith('/projects/')) return true
+  if (href === '/tools' && pathname.startsWith('/tools')) return true
   return false
 }
 
@@ -174,6 +176,7 @@ function DesktopNavigation(props) {
         <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Articles</NavItem>
         <NavItem href="/projects">Projects</NavItem>
+        <NavItem href="/tools">Tools</NavItem>
         {/* <NavItem href="/speaking">Speaking</NavItem> */}
         {/* <NavItem href="/uses">Uses</NavItem> */}
         <NavItem href="/contact">Contact</NavItem>

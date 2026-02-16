@@ -31,19 +31,19 @@ const homePinnedProjects = [
   // {
   //   name: 'inbox-triage-app',
   //   description:
-  //     "A web-based email triage companion that helps you summarise email threads, understand attachments and generate reply drafts — all running primarily on-device using Chrome's built-in AI.",
+  //     "A web-based email triage companion that helps you summarise email threads, understand attachments and generate reply drafts - all running primarily on-device using Chrome's built-in AI.",
   //   html_url: 'https://github.com/mitchellfyi/inbox-triage-app',
   // },
   {
     name: 'inbox-triage-extension',
     description:
-      'Triage your inbox with AI-powered email summaries, attachment analysis, and reply drafts—all processed locally for complete privacy.',
+      'Triage your inbox with AI-powered email summaries, attachment analysis, and reply drafts - all processed locally for complete privacy.',
     html_url: 'https://github.com/mitchellfyi/inbox-triage-extension',
   },
   {
     name: 'agentic-commerce-protocol',
     description:
-      'RFC: Fulfilment for the Agentic Commerce Protocol — defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
+      'RFC: Fulfilment for the Agentic Commerce Protocol - defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
     html_url:
       'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
   },

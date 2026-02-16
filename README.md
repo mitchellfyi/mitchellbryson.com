@@ -1,6 +1,6 @@
 # mitchellbryson.com
 
-Personal website and blog of Mitchell Bryson — writings on AI agents, autonomous systems, and the future of work.
+Personal website and blog of Mitchell Bryson - writings on AI agents, autonomous systems, and the future of work.
 
 **Live site:** [mitchellbryson.com](https://mitchellbryson.com)
 
