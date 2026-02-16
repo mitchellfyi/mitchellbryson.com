@@ -116,15 +116,30 @@ export function CodeIcon(props) {
   )
 }
 
+export function MusicIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+    </BaseIcon>
+  )
+}
+
 export function getProjectIcon(project) {
   const name = (project?.name || project?.title || '').toLowerCase()
   if (name.includes('launchonomy')) return RocketIcon
   if (name.includes('pitch')) return VideoIcon
-  if (name.includes('inbox') && name.includes('extension')) return PuzzleIcon
+  // inbox-triage-extension uses MailSparkIcon (from inbox-triage-app)
   if (name.includes('inbox') || name.includes('triage')) return MailSparkIcon
   if (name.includes('commerce') || name.includes('protocol')) return CartIcon
   if (name.includes('phone') || name.includes('validator'))
     return PhoneCheckIcon
+  if (name.includes('lofield')) return MusicIcon
   return CodeIcon
 }
 
@@ -141,5 +156,6 @@ export function getProjectColor(project) {
     return 'text-teal-600 dark:text-teal-400'
   if (name.includes('phone') || name.includes('validator'))
     return 'text-rose-600 dark:text-rose-400'
+  if (name.includes('lofield')) return 'text-violet-600 dark:text-violet-400'
   return 'text-zinc-600 dark:text-zinc-400'
 }

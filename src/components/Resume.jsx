@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { Button } from '@/components/Button'
+import logoOpenCircle from '@/images/logos/open-circle.svg'
 import logoMaterialsMarket from '@/images/logos/materialsmarket.jpeg'
 import logoCrwd from '@/images/logos/crwd.jpeg'
 import logoTaskfeed from '@/images/logos/taskfeed.jpeg'
@@ -88,39 +88,53 @@ function Role({ role }) {
 export function Resume() {
   let resume = [
     {
-      company: 'Materials Market',
-      title: 'Snr. Product Engineer',
-      logo: logoMaterialsMarket,
-      start: '2023',
+      company: 'Open to work',
+      title: 'AI Software Engineer',
+      logo: logoOpenCircle,
+      start: '2026',
+      end: 'present',
+    },
+    // {
+    //   company: 'Materials Market',
+    //   title: 'Software Engineer',
+    //   logo: logoMaterialsMarket,
+    //   start: '2023',
+    //   end: '2025',
+    // },
+    // {
+    //   company: 'CRWD',
+    //   title: 'Software Engineer',
+    //   logo: logoCrwd,
+    //   start: '2021',
+    //   end: '2023',
+    // },
+    // {
+    //   company: 'Taskfeed',
+    //   title: 'Software Engineer',
+    //   logo: logoTaskfeed,
+    //   start: '2018',
+    //   end: '2021',
+    // },
+    // {
+    //   company: 'Airstoc',
+    //   title: 'Software Engineer',
+    //   logo: logoAirstoc,
+    //   start: '2015',
+    //   end: '2018',
+    // },
+    // {
+    //   company: 'Blendmode',
+    //   title: 'Software Engineer / Designer',
+    //   logo: logoBlendmode,
+    //   start: '2010',
+    //   end: '2015',
+    // },
+    {
+      company: 'Various',
+      title: 'Software Engineer / Designer',
+      logo: logoOpenCircle,
+      start: '2000',
       end: '2025',
-    },
-    {
-      company: 'CRWD',
-      title: 'Lead Engineer',
-      logo: logoCrwd,
-      start: '2021',
-      end: '2023',
-    },
-    {
-      company: 'Taskfeed',
-      title: 'Lead Product Engineer',
-      logo: logoTaskfeed,
-      start: '2018',
-      end: '2021',
-    },
-    {
-      company: 'Airstoc',
-      title: 'Lead Engineer',
-      logo: logoAirstoc,
-      start: '2015',
-      end: '2018',
-    },
-    {
-      company: 'Blendmode',
-      title: 'Lead Engineer / Designer',
-      logo: logoBlendmode,
-      start: '2010',
-      end: '2015',
     },
   ]
 

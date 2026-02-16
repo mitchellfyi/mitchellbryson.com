@@ -7,22 +7,22 @@ import '@/styles/tailwind.css'
 import '@/styles/prism.css'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('Product Engineer - AI Systems & Automation')}&type=home`
+const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer - AI Systems & Automation')}&type=home`
 
 export const metadata = {
   title: {
     template: '%s - Mitchell Bryson',
-    default: 'Mitchell Bryson - Product Engineer',
+    default: 'Mitchell Bryson - AI Software Engineer',
   },
   description:
-    "I'm Mitchell, an Product Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
+    "I'm Mitchell, an AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
   alternates: {
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
     },
   },
   openGraph: {
-    title: 'Mitchell Bryson - Product Engineer',
+    title: 'Mitchell Bryson - AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     url: siteUrl,
@@ -32,7 +32,7 @@ export const metadata = {
         url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: 'Mitchell Bryson - Product Engineer',
+        alt: 'Mitchell Bryson - AI Software Engineer',
       },
     ],
     locale: 'en_US',
@@ -40,7 +40,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mitchell Bryson - Product Engineer',
+    title: 'Mitchell Bryson - AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     images: [defaultOgImage],

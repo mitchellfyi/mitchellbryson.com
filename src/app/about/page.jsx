@@ -39,7 +39,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    "I'm Mitchell Bryson, a full-stack product engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+    "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
 }
 
 export default function About() {
@@ -63,7 +63,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;m a full-stack product engineer. I build engaging products
+              I&apos;m a full-stack AI Software Engineer. I build engaging products
               and practical systems that ship fast, reduce manual work, and
               create measurable value for teams. I&apos;ve been making websites
               and apps since 2000, and I still prefer small, verifiable wins

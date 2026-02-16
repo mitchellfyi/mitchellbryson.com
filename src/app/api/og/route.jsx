@@ -6,7 +6,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url)
 
   const title = searchParams.get('title') || 'Mitchell Bryson'
-  const description = searchParams.get('description') || 'Product Engineer'
+  const description = searchParams.get('description') || 'AI Software Engineer'
   const type = searchParams.get('type') || 'article'
 
   // Truncate long titles and descriptions
