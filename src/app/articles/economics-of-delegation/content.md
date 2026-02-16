@@ -1,11 +1,11 @@
 ---
 author: Mitchell Bryson
-date: "2025-02-15"
+date: "2026-02-15"
 title: "The Economics of Delegation"
-description: "What happens when cognitive labor becomes infinitely delegable — Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker."
+description: "What happens when cognitive labour becomes infinitely delegable — Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker."
 ---
 
-Delegation has always been the fundamental economic act of scaling human output. When cognitive labor becomes infinitely delegable to AI agents, the economics of everything changes.
+Delegation has always been the fundamental economic act of scaling human output. When cognitive labour becomes infinitely delegable to AI agents, the economics of everything changes.
 
 What happens when the bottleneck isn't "can I afford to hire someone" but "can I specify what I want clearly enough"? The cost of delegation drops to near-zero. The constraint shifts entirely to articulation and judgment.
 
@@ -24,7 +24,7 @@ Each era brings new forms of leverage and new constraints.
 
 Coase's theory of the firm: companies exist because internal coordination is cheaper than market transactions. When AI agents can execute tasks at near-zero marginal cost, the calculation flips. Why employ a team when you can delegate to agents on demand?
 
-The firm becomes a "mission specification engine" rather than a "labor coordination engine."
+The firm becomes a "mission specification engine" rather than a "labour coordination engine."
 
 ### The Middle Layer Compresses
 
@@ -49,7 +49,7 @@ When delegation is cheap, what becomes valuable?
 
 **Articulation** — The ability to specify what you want with enough precision that agents can execute. Prompt engineering is the trivial version. Real articulation is: goals, constraints, success criteria, edge cases, values. The people who can articulate well become the new bottleneck. "I'll know it when I see it" becomes expensive — iteration costs attention.
 
-**Judgment** — Agents can execute; humans must decide what's worth executing. Prioritization, taste, ethics, strategy — these remain human. The market will increasingly pay for judgment, not execution.
+**Judgment** — Agents can execute; humans must decide what's worth executing. Prioritisation, taste, ethics, strategy — these remain human. The market will increasingly pay for judgment, not execution.
 
 **Attention** — Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because *work* is abundant.
 
@@ -72,7 +72,7 @@ Tasks that can be specified cleanly: price collapses to agent marginal cost. Tas
 
 The "premium on human" widens. But most current jobs are mixtures. The job doesn't disappear; it fragments. The specification parts get delegated; the judgment parts get concentrated.
 
-Wage polarization accelerates. The people who orchestrate earn more. The people who did the delegatable parts... transition or exit.
+Wage polarisation accelerates. The people who orchestrate earn more. The people who did the delegatable parts... transition or exit.
 
 ### Pricing Models
 
@@ -96,7 +96,7 @@ Early delegation advantage compounds. Those who can orchestrate agents early cap
 
 The question: will AI tools lower the barrier to orchestration fast enough to distribute the gains?
 
-## The Organizational Response
+## The Organisational Response
 
 **Small becomes viable** — 2-person companies with agent armies can deliver what required 50 before. This changes competitive dynamics: incumbents face more agile competitors.
 
@@ -127,8 +127,6 @@ The flex is "I did this with three agents and two hours of my time."
 - What happens to the social fabric when "having a job" becomes optional for production but necessary for identity?
 - Will people delegate things they shouldn't? (Relationships? Creative expression? Judgment itself?)
 - Does the ability to delegate make us better at articulation, or atrophy it?
-
-## Closing Frame
 
 The economics of delegation is the economics of leverage. Every technology that made delegation cheaper — writing, printing, computing, networking — reshaped economic structure. AI is the first technology that makes *cognitive* delegation cheap.
 
