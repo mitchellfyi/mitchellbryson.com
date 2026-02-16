@@ -12,11 +12,10 @@ const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell B
 export const metadata = {
   title: {
     template: '%s - Mitchell Bryson',
-    default:
-      'Mitchell Bryson - Product Engineer',
+    default: 'Mitchell Bryson - Product Engineer',
   },
   description:
-    'I\'m Mitchell, an Product Engineer. I design and ship practical AI systems that cut manual work and improve margins.',
+    "I'm Mitchell, an Product Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
   alternates: {
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
@@ -24,7 +23,8 @@ export const metadata = {
   },
   openGraph: {
     title: 'Mitchell Bryson - Product Engineer',
-    description: 'I design and ship practical AI systems that cut manual work and improve margins.',
+    description:
+      'I design and ship practical AI systems that cut manual work and improve margins.',
     url: siteUrl,
     siteName: 'Mitchell Bryson',
     images: [
@@ -41,7 +41,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Mitchell Bryson - Product Engineer',
-    description: 'I design and ship practical AI systems that cut manual work and improve margins.',
+    description:
+      'I design and ship practical AI systems that cut manual work and improve margins.',
     images: [defaultOgImage],
   },
   icons: {
@@ -54,8 +55,16 @@ export const metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      {
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
     ],
   },
 }
@@ -63,7 +72,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex h-full bg-zinc-50 dark:bg-black" suppressHydrationWarning>
+      <body
+        className="flex h-full bg-zinc-50 dark:bg-black"
+        suppressHydrationWarning
+      >
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>

@@ -6,8 +6,12 @@ import { calculateReadingTime } from './readingTime'
 
 async function importMarkdownArticle(articleDir) {
   const contentPath = path.join('./src/app/articles', articleDir, 'content.md')
-  const draftPath = path.join('./src/app/articles', articleDir, 'content_draft.md')
-  
+  const draftPath = path.join(
+    './src/app/articles',
+    articleDir,
+    'content_draft.md',
+  )
+
   if (!fs.existsSync(contentPath)) {
     console.warn(`No content.md found for article directory: ${articleDir}`)
     return null
@@ -20,14 +24,16 @@ async function importMarkdownArticle(articleDir) {
   let draftContent = null
   if (fs.existsSync(draftPath)) {
     let draftFileContents = fs.readFileSync(draftPath, 'utf8')
-    draftFileContents = draftFileContents.replace(/\n/g, "<br>")
+    draftFileContents = draftFileContents.replace(/\n/g, '<br>')
     const { content: draft } = matter(draftFileContents)
     draftContent = draft
   }
 
   // Auto-detect cover image based on slug
   const coverImagePath = `/images/articles/${articleDir}.png`
-  const coverImageExists = fs.existsSync(path.join('./public/images/articles', `${articleDir}.png`))
+  const coverImageExists = fs.existsSync(
+    path.join('./public/images/articles', `${articleDir}.png`),
+  )
 
   return {
     slug: articleDir,
@@ -46,18 +52,20 @@ export async function getAllArticles() {
   // Get all article directories with content.md files (excluding the [slug] dynamic route)
   let articleDirs = await glob('*/content.md', {
     cwd: './src/app/articles',
-  }).then(files => files.map(file => path.dirname(file)).filter(dir => dir !== '[slug]'))
+  }).then((files) =>
+    files.map((file) => path.dirname(file)).filter((dir) => dir !== '[slug]'),
+  )
 
   let articles = await Promise.all(articleDirs.map(importMarkdownArticle))
-  
+
   // Filter out any failed imports
-  articles = articles.filter(article => article !== null)
+  articles = articles.filter((article) => article !== null)
 
   // Filter out articles with dates on or after today
   const today = new Date()
   today.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
-  
-  const publishedArticles = articles.filter(article => {
+
+  const publishedArticles = articles.filter((article) => {
     const articleDate = new Date(article.date)
     articleDate.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
     return articleDate <= today

@@ -1,5 +1,3 @@
-import assert from 'assert'
-import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
 import { getAllArticles } from '@/lib/articles'
 
@@ -17,7 +15,8 @@ export async function GET(req) {
 
   let feed = new Feed({
     title: author.name,
-    description: 'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
+    description:
+      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
     author,
     id: siteUrl,
     link: siteUrl,
@@ -30,11 +29,11 @@ export async function GET(req) {
   })
 
   let allArticles = await getAllArticles()
-  
+
   // Filter to only include articles with dates before today
   const today = new Date()
   today.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
-  const publishedArticles = allArticles.filter(article => {
+  const publishedArticles = allArticles.filter((article) => {
     const articleDate = new Date(article.date)
     articleDate.setHours(0, 0, 0, 0) // Set to start of day for accurate comparison
     return articleDate <= today

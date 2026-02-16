@@ -10,7 +10,7 @@ function Article({ article }) {
       <Card className="md:col-span-3">
         <div className="flex gap-4">
           {article.coverImage && (
-            <div className="flex-shrink-0 hidden max-md:block">
+            <div className="hidden flex-shrink-0 max-md:block">
               <Image
                 src={article.coverImage}
                 alt={article.title}
@@ -42,7 +42,7 @@ function Article({ article }) {
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="mt-1 max-md:hidden flex-col gap-3"
+        className="mt-1 flex-col gap-3 max-md:hidden"
       >
         {article.coverImage && (
           <div className="flex-shrink-0">
@@ -56,7 +56,9 @@ function Article({ article }) {
           </div>
         )}
         <span>{formatDate(article.date)}</span>
-        <span className="text-zinc-400 dark:text-zinc-500">{article.readingTime}</span>
+        <span className="text-zinc-400 dark:text-zinc-500">
+          {article.readingTime}
+        </span>
       </Card.Eyebrow>
     </article>
   )

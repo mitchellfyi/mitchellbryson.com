@@ -47,21 +47,21 @@ function renderProjectIcon(project) {
 
 function Project({ project }) {
   return (
-    <li className="flex gap-4 items-start">
+    <li className="flex items-start gap-4">
       <div className="relative flex flex-none items-start justify-center">
-        <div className="h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
           {renderProjectIcon(project)}
         </div>
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Project</dt>
         <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          <Link 
-            href={project.html_url} 
-            target="_blank" 
+          <Link
+            href={project.html_url}
+            target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.name} (opens in new tab)`}
-            className="hover:text-teal-500 transition-colors"
+            className="transition-colors hover:text-teal-500"
           >
             {project.name}
           </Link>
@@ -76,7 +76,6 @@ function Project({ project }) {
 }
 
 export function Projects({ projects }) {
-
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -88,10 +87,10 @@ export function Projects({ projects }) {
           <Project key={projectIndex} project={project} />
         ))}
       </ol>
-      <Link 
+      <Link
         href="/projects"
         aria-label="View all projects"
-        className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none cursor-pointer bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
+        className="group mt-6 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 outline-offset-2 transition hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 active:transition-none dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70"
       >
         View all projects
         <ExternalLinkIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />

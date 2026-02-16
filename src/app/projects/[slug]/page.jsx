@@ -12,8 +12,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params
   const projects = await getAllProjects()
-  const project = projects.find(p => p.slug === slug)
-  
+  const project = projects.find((p) => p.slug === slug)
+
   if (!project) {
     return {}
   }
@@ -26,14 +26,16 @@ export async function generateMetadata({ params }) {
       description: project.description,
       type: 'article',
       authors: [project.author],
-      images: project.coverImage ? [
-        {
-          url: project.coverImage,
-          width: 1200,
-          height: 630,
-          alt: project.title,
-        }
-      ] : undefined,
+      images: project.coverImage
+        ? [
+            {
+              url: project.coverImage,
+              width: 1200,
+              height: 630,
+              alt: project.title,
+            },
+          ]
+        : undefined,
     },
     twitter: {
       card: 'summary_large_image',
@@ -47,7 +49,7 @@ export async function generateMetadata({ params }) {
 export default async function ProjectPage({ params }) {
   const { slug } = await params
   const projects = await getAllProjects()
-  const project = projects.find(p => p.slug === slug)
+  const project = projects.find((p) => p.slug === slug)
 
   if (!project) {
     notFound()

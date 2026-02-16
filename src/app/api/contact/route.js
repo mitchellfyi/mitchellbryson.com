@@ -1,6 +1,17 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
+// Email template color constants
+const EMAIL_COLORS = {
+  HEADER_BORDER: '#14b8a6',
+  HEADING: '#333',
+  SUBHEADING: '#555',
+  TEXT: '#666',
+  BACKGROUND: '#f8f9fa',
+  WHITE: '#fff',
+  BORDER: '#e9ecef',
+}
+
 // Lazy initialization to avoid build-time errors
 let resend = null
 function getResend() {
@@ -18,7 +29,7 @@ export async function POST(request) {
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
@@ -27,7 +38,7 @@ export async function POST(request) {
     if (!emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email address' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
@@ -38,22 +49,22 @@ export async function POST(request) {
       subject: `Contact Form: Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333; border-bottom: 2px solid #14b8a6; padding-bottom: 10px;">
+          <h2 style="color: ${EMAIL_COLORS.HEADING}; border-bottom: 2px solid ${EMAIL_COLORS.HEADER_BORDER}; padding-bottom: 10px;">
             New Contact Form Submission
           </h2>
-          
-          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #555; margin-top: 0;">Contact Details</h3>
+
+          <div style="background-color: ${EMAIL_COLORS.BACKGROUND}; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: ${EMAIL_COLORS.SUBHEADING}; margin-top: 0;">Contact Details</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
           </div>
-          
-          <div style="background-color: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
-            <h3 style="color: #555; margin-top: 0;">Message</h3>
+
+          <div style="background-color: ${EMAIL_COLORS.WHITE}; padding: 20px; border: 1px solid ${EMAIL_COLORS.BORDER}; border-radius: 8px;">
+            <h3 style="color: ${EMAIL_COLORS.SUBHEADING}; margin-top: 0;">Message</h3>
             <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
           </div>
-          
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e9ecef; color: #666; font-size: 14px;">
+
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid ${EMAIL_COLORS.BORDER}; color: ${EMAIL_COLORS.TEXT}; font-size: 14px;">
             <p>This message was sent from your website's contact form.</p>
             <p>Reply directly to this email to respond to ${name}.</p>
           </div>
@@ -66,20 +77,19 @@ export async function POST(request) {
       console.error('Resend error:', error)
       return NextResponse.json(
         { error: 'Failed to send email' },
-        { status: 500 }
+        { status: 500 },
       )
     }
 
     return NextResponse.json(
       { message: 'Email sent successfully', id: data.id },
-      { status: 200 }
+      { status: 200 },
     )
-
   } catch (error) {
     console.error('API error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }

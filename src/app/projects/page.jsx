@@ -33,7 +33,7 @@ function LinkIcon(props) {
 
 export const metadata = {
   title: 'Projects',
-  description: 'Things I\'ve made trying to put my dent in the universe.',
+  description: "Things I've made trying to put my dent in the universe.",
 }
 
 // Hardcoded pinned projects (reference from GitHub profile)
@@ -66,9 +66,9 @@ const pinned = [
     name: 'agentic-commerce-protocol',
     description:
       'RFC: Fulfilment for the Agentic Commerce Protocol — defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
-    html_url: 'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
+    html_url:
+      'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
   },
-  
 ]
 
 export default async function Projects() {
@@ -76,15 +76,15 @@ export default async function Projects() {
     Promise.resolve([]), // remove example/template markdown projects
     Promise.resolve(pinned),
   ])
-  
+
   // Add logos to markdown projects
-  const allMarkdownProjects = markdownProjects.map(project => ({
+  const allMarkdownProjects = markdownProjects.map((project) => ({
     ...project,
     logo: logoMap[project.slug],
   }))
 
   // Convert GitHub projects to the same format as markdown projects
-  const githubProjectsFormatted = githubProjects.map(project => ({
+  const githubProjectsFormatted = githubProjects.map((project) => ({
     slug: project.name,
     title: project.name,
     description: project.description,
@@ -112,50 +112,55 @@ export default async function Projects() {
           const Icon = getProjectIcon(project)
           const color = getProjectColor(project)
           return (
-          <Card as="li" key={project.slug}>
-            {project.html_url ? (
-              <Card.Link href={project.html_url} target="_blank" rel="noopener noreferrer">
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                  {project.logo ? (
+            <Card as="li" key={project.slug}>
+              {project.html_url ? (
+                <Card.Link
+                  href={project.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                    {project.logo ? (
+                      <Image
+                        src={project.logo}
+                        alt=""
+                        className="h-8 w-8"
+                        unoptimized
+                      />
+                    ) : (
+                      <Icon className={`h-6 w-6 ${color}`} />
+                    )}
+                  </div>
+                  <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                    {project.title}
+                  </h2>
+                  <Card.Description>{project.description}</Card.Description>
+                  <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                    View on GitHub
+                  </p>
+                </Card.Link>
+              ) : (
+                <Card.Link href={`/projects/${project.slug}`}>
+                  <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
                     <Image
                       src={project.logo}
                       alt=""
                       className="h-8 w-8"
                       unoptimized
                     />
-                  ) : (
-                    <Icon className={`h-6 w-6 ${color}`} />
-                  )}
-                </div>
-                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                  {project.title}
-                </h2>
-                <Card.Description>{project.description}</Card.Description>
-                <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-                  View on GitHub
-                </p>
-              </Card.Link>
-            ) : (
-              <Card.Link href={`/projects/${project.slug}`}>
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                  <Image
-                    src={project.logo}
-                    alt=""
-                    className="h-8 w-8"
-                    unoptimized
-                  />
-                </div>
-                <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                  {project.title}
-                </h2>
-                <Card.Description>{project.description}</Card.Description>
-                <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-                  Read more
-                </p>
-              </Card.Link>
-            )}
-          </Card>
-        )})}
+                  </div>
+                  <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                    {project.title}
+                  </h2>
+                  <Card.Description>{project.description}</Card.Description>
+                  <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                    Read more
+                  </p>
+                </Card.Link>
+              )}
+            </Card>
+          )
+        })}
       </ul>
     </SimpleLayout>
   )
