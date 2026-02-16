@@ -31,9 +31,14 @@ function LinkIcon(props) {
   )
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+
 export const metadata = {
   title: 'Projects',
   description: "Things I've made trying to put my dent in the universe.",
+  alternates: {
+    canonical: `${siteUrl}/projects`,
+  },
 }
 
 // Hardcoded pinned projects (reference from GitHub profile)
@@ -135,7 +140,7 @@ export default async function Projects() {
                     {project.logo ? (
                       <Image
                         src={project.logo}
-                        alt=""
+                        alt={`${project.title} logo`}
                         className="h-8 w-8"
                         unoptimized
                       />
@@ -156,7 +161,7 @@ export default async function Projects() {
                   <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
                     <Image
                       src={project.logo}
-                      alt=""
+                      alt={`${project.title} logo`}
                       className="h-8 w-8"
                       unoptimized
                     />

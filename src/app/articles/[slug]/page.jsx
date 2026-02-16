@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleJsonLd } from '@/components/JsonLd'
 import { getAllArticles } from '@/lib/articles'
 
 export async function generateStaticParams() {
@@ -30,6 +31,9 @@ export async function generateMetadata({ params }) {
   return {
     title: article.title,
     description: article.description,
+    alternates: {
+      canonical: articleUrl,
+    },
     openGraph: {
       title: article.title,
       description: article.description,
@@ -65,5 +69,10 @@ export default async function ArticlePage({ params }) {
     notFound()
   }
 
-  return <ArticleLayout article={article} />
+  return (
+    <>
+      <ArticleJsonLd article={article} />
+      <ArticleLayout article={article} />
+    </>
+  )
 }

@@ -57,7 +57,7 @@ function Role({ role }) {
       <div className="relative mt-1 flex flex-none items-center justify-center">
         <Image
           src={role.logo}
-          alt=""
+          alt={role.company ? `${role.company} logo` : `${role.title} logo`}
           className="h-10 w-10 rounded-full object-cover shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
           unoptimized
         />

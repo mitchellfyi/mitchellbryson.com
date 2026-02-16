@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
+import { WebSiteJsonLd } from '@/components/JsonLd'
 
 import '@/styles/tailwind.css'
 import '@/styles/prism.css'
@@ -17,6 +18,7 @@ export const metadata = {
   description:
     "I'm Mitchell, an AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
   alternates: {
+    canonical: siteUrl,
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
     },
@@ -76,6 +78,7 @@ export default function RootLayout({ children }) {
         className="flex h-full bg-zinc-50 dark:bg-black"
         suppressHydrationWarning
       >
+        <WebSiteJsonLd />
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>

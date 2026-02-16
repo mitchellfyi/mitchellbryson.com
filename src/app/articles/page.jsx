@@ -64,10 +64,15 @@ function Article({ article }) {
   )
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+
 export const metadata = {
   title: 'Articles',
   description:
     'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
+  alternates: {
+    canonical: `${siteUrl}/articles`,
+  },
 }
 
 export default async function ArticlesIndex() {

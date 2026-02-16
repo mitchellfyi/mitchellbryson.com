@@ -9,6 +9,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
+import { PersonJsonLd } from '@/components/JsonLd'
 import portraitImage from '@/images/portrait.jpg'
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -36,15 +37,22 @@ function MailIcon(props) {
   )
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+
 export const metadata = {
   title: 'About',
   description:
     "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+  alternates: {
+    canonical: `${siteUrl}/about`,
+  },
 }
 
 export default function About() {
   return (
-    <Container className="mt-16 sm:mt-32">
+    <>
+      <PersonJsonLd />
+      <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
@@ -163,5 +171,6 @@ export default function About() {
         </div>
       </div>
     </Container>
+    </>
   )
 }
