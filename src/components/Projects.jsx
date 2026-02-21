@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowTopRightIcon, CodeIcon } from '@/components/Icons'
 import { getProjectIcon, getProjectColor } from '@/components/ProjectIcons'
+import { toSlug } from '@/lib/pinnedProjects'
 
 function renderProjectIcon(project) {
   const Icon = getProjectIcon(project)
@@ -20,10 +21,8 @@ function Project({ project }) {
         <dt className="sr-only">Project</dt>
         <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
           <Link
-            href={project.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.name} (opens in new tab)`}
+            href={`/projects/${toSlug(project.name)}`}
+            aria-label={project.name}
             className="transition-colors hover:text-teal-700"
           >
             {project.name}

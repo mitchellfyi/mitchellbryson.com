@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
@@ -14,7 +12,7 @@ import {
   SoftwareApplicationJsonLd,
 } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
-import { pinnedProjects } from '@/lib/pinnedProjects'
+import { pinnedProjects, toSlug } from '@/lib/pinnedProjects'
 import { projectTools } from '@/lib/projectTools'
 
 export const metadata = buildMetadata({
@@ -25,11 +23,9 @@ export const metadata = buildMetadata({
 
 export default async function Projects() {
   const projects = pinnedProjects.map((project) => ({
-    slug: project.name,
+    slug: toSlug(project.name),
     title: project.name,
     description: project.description,
-    html_url: project.html_url,
-    detail: project.detail,
   }))
 
   return (
@@ -50,7 +46,7 @@ export default async function Projects() {
           key={project.slug}
           name={project.title}
           description={project.description}
-          url={project.html_url || `${siteUrl}/projects/${project.slug}`}
+          url={`${siteUrl}/projects/${project.slug}`}
         />
       ))}
       <SimpleLayout
@@ -107,15 +103,9 @@ export default async function Projects() {
             {projects.map((project) => {
               const Icon = getProjectIcon(project)
               const color = getProjectColor(project)
-              const href = project.detail
-                ? `/projects/${project.slug}`
-                : project.html_url
-              const linkProps = project.detail
-                ? {}
-                : { target: '_blank', rel: 'noopener noreferrer' }
               return (
                 <Card as="li" key={project.slug}>
-                  <Card.Link href={href} {...linkProps}>
+                  <Card.Link href={`/projects/${project.slug}`}>
                     <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
                       <Icon className={`h-6 w-6 ${color}`} />
                     </div>
@@ -124,7 +114,7 @@ export default async function Projects() {
                     </h2>
                     <Card.Description>{project.description}</Card.Description>
                     <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-700 dark:text-zinc-200">
-                      {project.detail ? 'View project' : 'View on GitHub'}
+                      View project
                     </p>
                   </Card.Link>
                 </Card>
