@@ -8,6 +8,12 @@ import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 import { getAllProjectToolSlugs, getProjectTool } from '@/lib/projectTools'
 import { AIReadinessScore } from '@/components/tools/AIReadinessScore'
 import { AIROICalculator } from '@/components/tools/AIROICalculator'
+import { WhichAIIntegration } from '@/components/tools/WhichAIIntegration'
+import { LLMCostCalculator } from '@/components/tools/LLMCostCalculator'
+import { RAGDecisionTree } from '@/components/tools/RAGDecisionTree'
+import { AIPocScopeTemplate } from '@/components/tools/AIPocScopeTemplate'
+import { BuildVsBuyVsAI } from '@/components/tools/BuildVsBuyVsAI'
+import { TechStackPicker } from '@/components/tools/TechStackPicker'
 import { ContactCTA } from '@/components/ContactCTA'
 
 export async function generateStaticParams() {
@@ -51,8 +57,8 @@ export default async function ProjectToolPage({ params }) {
       />
       <SimpleLayout
         title={
-          <span className="flex items-center gap-4">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+          <span className="flex items-start gap-4">
+            <span className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               {(() => {
                 const ToolIcon = getToolIcon(slug)
                 const toolColor = getToolColor(slug)
@@ -84,6 +90,18 @@ export default async function ProjectToolPage({ params }) {
             <AIROICalculator />
           ) : slug === 'ai-readiness-score' ? (
             <AIReadinessScore />
+          ) : slug === 'which-ai-integration' ? (
+            <WhichAIIntegration />
+          ) : slug === 'llm-cost-calculator' ? (
+            <LLMCostCalculator />
+          ) : slug === 'rag-decision-tree' ? (
+            <RAGDecisionTree />
+          ) : slug === 'ai-poc-scope-template' ? (
+            <AIPocScopeTemplate />
+          ) : slug === 'build-vs-buy-vs-ai' ? (
+            <BuildVsBuyVsAI />
+          ) : slug === 'tech-stack-picker' ? (
+            <TechStackPicker />
           ) : (
             <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
               <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
