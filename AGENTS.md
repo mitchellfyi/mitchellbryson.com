@@ -34,6 +34,7 @@ All code must pass before commit:
 ```bash
 npm run lint          # ESLint
 npm run format:check  # Prettier check
+npm run audit         # npm audit (production deps only)
 npm run test:ci       # Vitest (all tests, single run)
 npm run build         # Next.js production build
 ```
@@ -41,7 +42,8 @@ npm run build         # Next.js production build
 Run all checks at once:
 
 ```bash
-npm run validate      # format + lint:fix + test:ci + test:e2e + build
+npm run ci            # CI pipeline: format:check + lint + audit + build + test:ci + test:e2e (report-only, no fixes)
+npm run validate      # Local dev: format + lint:fix + audit:fix + test:ci + test:e2e + build (auto-fixes)
 ```
 
 ## Environment Variables

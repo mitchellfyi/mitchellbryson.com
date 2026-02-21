@@ -18,7 +18,10 @@
     "test:watch": "vitest watch",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "validate": "npm run format && npm run lint:fix && npm run test:ci && npm run test:e2e && npm run build"
+    "audit": "npm audit --omit=dev",
+    "audit:fix": "npm audit fix",
+    "ci": "npm run format:check && npm run lint && npm run audit && npm run build && npm run test:ci && npm run test:e2e",
+    "validate": "npm run format && npm run lint:fix && npm run audit:fix && npm run test:ci && npm run test:e2e && npm run build"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -48,8 +51,8 @@
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^10.0.1",
-    "eslint-config-next": "^0.2.4",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^16.1.0",
     "happy-dom": "^20.7.0",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
