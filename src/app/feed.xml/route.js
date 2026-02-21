@@ -1,5 +1,6 @@
 import { Feed } from 'feed'
 import { getAllArticles } from '@/lib/articles'
+import { getAllNews } from '@/lib/news'
 
 export async function GET(req) {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -51,6 +52,35 @@ export async function GET(req) {
       author: [author],
       contributor: [author],
       date: new Date(article.date),
+    })
+  }
+
+  let allNews = await getAllNews()
+
+  const publishedNews = allNews.filter((item) => {
+    if (item.type === 'links') return false
+    const itemDate = new Date(item.date)
+    itemDate.setHours(0, 0, 0, 0)
+    return itemDate <= today
+  })
+
+  for (let item of publishedNews) {
+    let publicUrl = `${siteUrl}/news/${item.slug}`
+    let description = item.description || ''
+    if (item.type === 'editorial' && item.sourceTitle) {
+      description += ` (via ${item.sourceTitle})`
+    }
+    let content = `${description} <br /><br /><a href="${publicUrl}">Read more</a>.`
+
+    feed.addItem({
+      title: item.title,
+      id: publicUrl,
+      link: publicUrl,
+      content,
+      author: [author],
+      contributor: [author],
+      date: new Date(item.date),
+      category: [{ name: 'News' }],
     })
   }
 

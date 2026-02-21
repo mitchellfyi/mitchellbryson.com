@@ -2,8 +2,8 @@ name: Generate Article
 
 on:
   schedule:
-    - cron: '0 9 * * 0' # Every Sunday 9am UTC
-    - cron: '0 9 * * 3' # Every Wednesday 9am UTC
+    - cron: '0 8 * * 0' # Every Sunday 8am UTC
+    - cron: '0 8 * * 3' # Every Wednesday 8am UTC
   workflow_dispatch:
     inputs:
       topic_hint:
@@ -16,7 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   generate:
@@ -194,8 +195,11 @@ jobs:
           cat /tmp/pr-body.md
           echo "---"
 
-          gh pr create \
+          PR_URL=$(gh pr create \
             --title "New article: ${TITLE}" \
-            --body-file /tmp/pr-body.md
+            --body-file /tmp/pr-body.md)
 
-          echo "PR created successfully"
+          echo "PR created: ${PR_URL}"
+
+          gh pr merge "${PR_URL}" --squash --delete-branch
+          echo "PR merged successfully"

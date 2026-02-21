@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 import { getExistingArticles } from './articles.mjs'
 
 const SRC_DIR = path.resolve('src')
@@ -12,6 +13,7 @@ export function buildSiteMap() {
   const pages = [
     ...getStaticPages(),
     ...getArticlePages(),
+    ...getNewsPages(),
     ...getProjectToolPages(),
     ...getBarnsleyPages(),
   ]
@@ -51,6 +53,11 @@ function getStaticPages() {
       description: 'Articles on AI, product engineering, and technology',
     },
     {
+      url: '/news',
+      title: 'News',
+      description: 'Daily AI news commentary and curated roundups',
+    },
+    {
       url: '/barnsley-ai',
       title: 'Barnsley AI',
       description: 'AI integration services for South Yorkshire businesses',
@@ -64,6 +71,33 @@ function getArticlePages() {
     title: a.title,
     description: a.description,
   }))
+}
+
+function getNewsPages() {
+  const newsDir = path.resolve('src/app/news')
+  try {
+    const dirs = fs.readdirSync(newsDir).filter((d) => {
+      if (d === '[slug]') return false
+      const contentPath = path.join(newsDir, d, 'content.md')
+      return fs.existsSync(contentPath)
+    })
+
+    return dirs.map((dir) => {
+      const raw = fs.readFileSync(
+        path.join(newsDir, dir, 'content.md'),
+        'utf8',
+      )
+      const { data } = matter(raw)
+      return {
+        url: `/news/${dir}`,
+        title: data.title || dir,
+        description: data.description || '',
+      }
+    })
+  } catch (err) {
+    console.warn(`[sitemap]   Could not read news pages: ${err.message}`)
+    return []
+  }
 }
 
 function getProjectToolPages() {

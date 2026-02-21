@@ -1,0 +1,94 @@
+{
+  "categories": [
+    {
+      "name": "AI News",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "domain": "techcrunch.com",
+          "searchQuery": "site:techcrunch.com AI artificial intelligence"
+        },
+        {
+          "name": "The Verge AI",
+          "domain": "theverge.com",
+          "searchQuery": "site:theverge.com AI artificial intelligence"
+        },
+        {
+          "name": "Ars Technica AI",
+          "domain": "arstechnica.com",
+          "searchQuery": "site:arstechnica.com AI artificial intelligence machine learning"
+        },
+        {
+          "name": "VentureBeat",
+          "domain": "venturebeat.com",
+          "searchQuery": "site:venturebeat.com AI"
+        },
+        {
+          "name": "MIT Technology Review",
+          "domain": "technologyreview.com",
+          "searchQuery": "site:technologyreview.com AI artificial intelligence"
+        },
+        {
+          "name": "Wired AI",
+          "domain": "wired.com",
+          "searchQuery": "site:wired.com AI artificial intelligence"
+        },
+        {
+          "name": "The Decoder",
+          "domain": "the-decoder.com",
+          "searchQuery": "site:the-decoder.com AI"
+        }
+      ]
+    },
+    {
+      "name": "Product Engineering",
+      "sources": [
+        {
+          "name": "Hacker News",
+          "domain": "news.ycombinator.com",
+          "searchQuery": "site:news.ycombinator.com AI developer tools"
+        },
+        {
+          "name": "InfoQ",
+          "domain": "infoq.com",
+          "searchQuery": "site:infoq.com AI engineering"
+        },
+        {
+          "name": "The Pragmatic Engineer",
+          "domain": "blog.pragmaticengineer.com",
+          "searchQuery": "site:blog.pragmaticengineer.com AI engineering"
+        },
+        {
+          "name": "Dev.to",
+          "domain": "dev.to",
+          "searchQuery": "site:dev.to AI machine learning"
+        }
+      ]
+    },
+    {
+      "name": "GitHub Trending",
+      "sources": [
+        {
+          "name": "GitHub Trending",
+          "domain": "github.com",
+          "searchQuery": "github.com trending AI ML repositories"
+        }
+      ]
+    },
+    {
+      "name": "Product Launches",
+      "sources": [
+        {
+          "name": "Product Hunt",
+          "domain": "producthunt.com",
+          "searchQuery": "site:producthunt.com AI artificial intelligence"
+        },
+        {
+          "name": "Hacker News Show HN",
+          "domain": "news.ycombinator.com",
+          "searchQuery": "site:news.ycombinator.com Show HN AI"
+        }
+      ]
+    }
+  ]
+}

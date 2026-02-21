@@ -1,4 +1,5 @@
 import { getAllArticles } from '@/lib/articles'
+import { getAllNews } from '@/lib/news'
 import {
   allBarnsleyPages,
   getAllIntegrationsWithPages,
@@ -9,6 +10,7 @@ import { tools } from '@/lib/tools'
 
 export default async function sitemap() {
   const articles = await getAllArticles()
+  const news = await getAllNews()
 
   const articleUrls = articles.map((article) => ({
     url: `${siteUrl}/articles/${article.slug}`,
@@ -86,12 +88,25 @@ export default async function sitemap() {
       priority: 0.6,
     },
     {
+      url: `${siteUrl}/news`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
   ]
+
+  const newsUrls = news.filter((item) => item.type !== 'links').map((item) => ({
+    url: `${siteUrl}/news/${item.slug}`,
+    lastModified: item.date ? new Date(item.date) : new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }))
 
   const toolUrls = tools.map((tool) => ({
     url: `${siteUrl}/uses/${tool.slug}`,
@@ -121,5 +136,6 @@ export default async function sitemap() {
     ...toolUrls,
     ...projectToolUrls,
     ...articleUrls,
+    ...newsUrls,
   ]
 }

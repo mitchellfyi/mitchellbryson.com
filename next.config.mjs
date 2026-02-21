@@ -45,6 +45,7 @@ const nextConfig = {
     ]
   },
   images: {
+    minimumCacheTTL: process.env.NODE_ENV === 'development' ? 0 : 60,
     remotePatterns: [
       {
         protocol: 'https',
