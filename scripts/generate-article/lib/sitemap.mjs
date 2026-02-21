@@ -83,10 +83,7 @@ function getNewsPages() {
     })
 
     return dirs.map((dir) => {
-      const raw = fs.readFileSync(
-        path.join(newsDir, dir, 'content.md'),
-        'utf8',
-      )
+      const raw = fs.readFileSync(path.join(newsDir, dir, 'content.md'), 'utf8')
       const { data } = matter(raw)
       return {
         url: `/news/${dir}`,

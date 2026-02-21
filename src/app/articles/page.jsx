@@ -23,6 +23,7 @@ function Article({ article }) {
                 alt={article.title}
                 width={120}
                 height={80}
+                sizes="120px"
                 className="rounded-lg object-cover"
               />
             </div>
@@ -58,6 +59,7 @@ function Article({ article }) {
               alt={article.title}
               width={120}
               height={80}
+              sizes="120px"
               className="rounded-lg object-cover"
             />
           </div>
@@ -82,10 +84,17 @@ function Pagination({ currentPage, totalPages }) {
   if (totalPages <= 1) return null
 
   return (
-    <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-2">
+    <nav
+      aria-label="Pagination"
+      className="mt-16 flex items-center justify-center gap-2"
+    >
       {currentPage > 1 ? (
         <Link
-          href={currentPage === 2 ? '/articles' : `/articles?page=${currentPage - 1}`}
+          href={
+            currentPage === 2
+              ? '/articles'
+              : `/articles?page=${currentPage - 1}`
+          }
           className="rounded-md px-3 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
         >
           Previous
@@ -167,7 +176,7 @@ export default async function ArticlesIndex({ searchParams }) {
           </div>
         </div>
         <Pagination currentPage={currentPage} totalPages={totalPages} />
-        <div className="mt-16 mx-auto max-w-lg">
+        <div className="mx-auto mt-16 max-w-lg">
           <Newsletter />
         </div>
       </SimpleLayout>

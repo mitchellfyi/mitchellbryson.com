@@ -64,16 +64,18 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+              I&apos;m Mitchell Bryson, a full-stack AI Software Engineer.
+            </h1>
+            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
               I design and ship practical systems that cut manual work and
               improve margins.
-            </h1>
+            </p>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
                 I&apos;m a full-stack AI Software Engineer. I design, develop
-                and ship engaging products and practical systems that cut manual
-                work and improve margins. I&apos;ve been making websites and
-                apps since 2000, and I still prefer small, verifiable wins over
-                grand promises.
+                and ship practical AI systems that cut manual work and improve
+                margins. I&apos;ve been making websites and apps since 2000, and
+                I still prefer small, verifiable wins over grand promises.
               </p>
 
               <div>

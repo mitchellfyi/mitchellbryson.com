@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { NewsLayout } from '@/components/NewsLayout'
-import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
+import { NewsArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getAllNews, getRelatedNews } from '@/lib/news'
 import { getOgImage, siteName, siteUrl } from '@/lib/siteConfig'
 
@@ -75,7 +75,10 @@ export default async function NewsItemPage({ params }) {
 
   return (
     <>
-      <ArticleJsonLd article={{ ...item, slug }} url={`${siteUrl}/news/${slug}`} />
+      <NewsArticleJsonLd
+        article={{ ...item, slug }}
+        url={`${siteUrl}/news/${slug}`}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: siteUrl },

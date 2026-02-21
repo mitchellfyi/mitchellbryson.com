@@ -41,7 +41,10 @@ export default function BarnsleyPage() {
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: siteUrl },
-          { name: 'AI Software Engineer Barnsley', url: `${siteUrl}/barnsley-ai` },
+          {
+            name: 'AI Software Engineer Barnsley',
+            url: `${siteUrl}/barnsley-ai`,
+          },
         ]}
       />
       <PlaceJsonLd

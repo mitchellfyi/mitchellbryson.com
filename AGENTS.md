@@ -6,7 +6,7 @@ This file is the source of truth for all AI coding agents working on this projec
 
 Personal website and blog for Mitchell Bryson — writings on AI agents, autonomous systems, and the future of work.
 
-- **Framework:** Next.js 15 (App Router), React 19
+- **Framework:** Next.js 16 (App Router), React 19
 - **Styling:** Tailwind CSS v4
 - **Hosting:** Vercel
 - **Testing:** Vitest + React Testing Library (unit), Playwright (e2e)

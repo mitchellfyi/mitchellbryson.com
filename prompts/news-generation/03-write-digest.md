@@ -30,6 +30,7 @@ Structure:
 3. **Closing paragraph (2-3 sentences)** — A weekly takeaway. What should builders be paying attention to heading into next week?
 
 Rules:
+
 - 500-800 words total (commentary + links)
 - Every story from the list above MUST appear as a linked headline somewhere in the digest
 - Use `##` headers for each group (name them by theme, not by source category)

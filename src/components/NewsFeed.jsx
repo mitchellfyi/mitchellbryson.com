@@ -45,11 +45,7 @@ function SourceLink({ link }) {
     <article>
       <div className="group relative flex flex-col items-start">
         <h2 className="text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-          <a
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={link.url} target="_blank" rel="noopener noreferrer">
             <span className="absolute -inset-x-4 -inset-y-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
             <span className="relative z-10">{link.headline}</span>
           </a>
@@ -76,9 +72,7 @@ function buildDayFeed(news, sourceLinks) {
     byDate[link.date].links.push(link)
   }
 
-  return Object.entries(byDate).sort(
-    ([a], [b]) => +new Date(b) - +new Date(a),
-  )
+  return Object.entries(byDate).sort(([a], [b]) => +new Date(b) - +new Date(a))
 }
 
 function flattenFeed(dayFeed) {
@@ -103,7 +97,9 @@ export function NewsFeed({ news, sourceLinks }) {
   const sentinelRef = useRef(null)
 
   const loadMore = useCallback(() => {
-    setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, allEntries.length))
+    setVisibleCount((prev) =>
+      Math.min(prev + ITEMS_PER_PAGE, allEntries.length),
+    )
   }, [allEntries.length])
 
   useEffect(() => {
@@ -127,7 +123,7 @@ export function NewsFeed({ news, sourceLinks }) {
   const hasMore = visibleCount < allEntries.length
 
   return (
-    <div className="flex max-w-3xl flex-col mx-auto">
+    <div className="mx-auto flex max-w-3xl flex-col">
       {visibleEntries.map((entry) => {
         if (entry.type === 'date-header') {
           return (

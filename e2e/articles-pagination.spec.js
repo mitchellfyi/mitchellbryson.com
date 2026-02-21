@@ -47,9 +47,7 @@ test.describe('Articles Pagination', () => {
     await expect(page).not.toHaveURL(/page=/)
   })
 
-  test('last page disables Next and shows fewer articles', async ({
-    page,
-  }) => {
+  test('last page disables Next and shows fewer articles', async ({ page }) => {
     // Get total pages from page 1, then navigate to last page
     await page.goto('/articles')
     const nav = page.locator(pagination)

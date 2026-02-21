@@ -16,17 +16,15 @@ describe('RSS feed route', () => {
     expect(GET.constructor.name).toBe('AsyncFunction')
   })
 
-  it('throws error when NEXT_PUBLIC_SITE_URL is missing', async () => {
-    const originalUrl = process.env.NEXT_PUBLIC_SITE_URL
-    delete process.env.NEXT_PUBLIC_SITE_URL
-
+  it('uses fallback siteUrl when NEXT_PUBLIC_SITE_URL is missing', async () => {
     const { GET } = await import('./route')
 
-    await expect(GET()).rejects.toThrow(
-      'Missing NEXT_PUBLIC_SITE_URL environment variable',
-    )
+    const response = await GET()
+    const content = await response.text()
 
-    process.env.NEXT_PUBLIC_SITE_URL = originalUrl
+    // siteConfig.js provides a fallback, so the feed still generates
+    expect(response.status).toBe(200)
+    expect(content).toContain('<link>')
   })
 
   it('returns XML response', async () => {

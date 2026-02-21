@@ -34,7 +34,7 @@ export function ProfilePageJsonLd() {
       image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('Full-stack AI Software Engineer')}&type=home`,
       jobTitle: 'Full-stack AI Software Engineer',
       description:
-        'Full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.',
+        'Full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.',
       sameAs: [
         'https://github.com/mitchellfyi',
         'https://www.linkedin.com/in/mitchellfyi',
@@ -70,7 +70,7 @@ export function PersonJsonLd() {
     image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('Full-stack AI Software Engineer')}&type=home`,
     jobTitle: 'Full-stack AI Software Engineer',
     description:
-      "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+      "I'm Mitchell Bryson, a full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
     sameAs: [
       'https://github.com/mitchellfyi',
       'https://www.linkedin.com/in/mitchellfyi',
@@ -101,7 +101,50 @@ export function ArticleJsonLd({ article, url }) {
     image: imageUrl,
     inLanguage: 'en',
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.modifiedDate || article.date,
+    author: {
+      '@type': 'Person',
+      name: article.author || 'Mitchell Bryson',
+      url: `${siteUrl}/about`,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Mitchell Bryson',
+      url: `${siteUrl}/about`,
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: [
+        '[data-speakable="headline"]',
+        '[data-speakable="description"]',
+      ],
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function NewsArticleJsonLd({ article, url }) {
+  const articleUrl = url || `${siteUrl}/news/${article.slug}`
+  const imageUrl = article.ogImage
+    ? `${siteUrl}${article.ogImage}`
+    : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description: article.description,
+    url: articleUrl,
+    image: imageUrl,
+    inLanguage: 'en',
+    datePublished: article.date,
+    dateModified: article.modifiedDate || article.date,
     author: {
       '@type': 'Person',
       name: article.author || 'Mitchell Bryson',

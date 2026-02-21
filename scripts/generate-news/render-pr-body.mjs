@@ -13,12 +13,8 @@ if (!digestSlug) {
   process.exit(1)
 }
 
-const manifestPath = path.resolve(
-  `src/app/news/${digestSlug}/manifest.json`,
-)
-const templatePath = path.resolve(
-  'scripts/generate-news/templates/pr-body.md',
-)
+const manifestPath = path.resolve(`src/app/news/${digestSlug}/manifest.json`)
+const templatePath = path.resolve('scripts/generate-news/templates/pr-body.md')
 
 console.log(`[render-pr] Digest slug: ${digestSlug}`)
 console.log(`[render-pr] Manifest: ${manifestPath}`)
@@ -36,9 +32,8 @@ const itemsList =
     .join('\n') || '(none)'
 
 const filesList =
-  manifest.files
-    .map((f) => `- \`${f.path}\` (${f.type})`)
-    .join('\n') || '(none)'
+  manifest.files.map((f) => `- \`${f.path}\` (${f.type})`).join('\n') ||
+  '(none)'
 
 const runUrl =
   manifest.runUrl ||

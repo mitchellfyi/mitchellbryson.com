@@ -32,11 +32,13 @@ export async function fetchOgImage(sourceUrl, slug) {
     const html = await response.text()
 
     // Parse og:image from HTML
-    const ogImageMatch = html.match(
-      /<meta\s+(?:[^>]*?\s+)?(?:property|name)=["']og:image["']\s+content=["']([^"']+)["']/i,
-    ) || html.match(
-      /<meta\s+content=["']([^"']+)["']\s+(?:[^>]*?\s+)?(?:property|name)=["']og:image["']/i,
-    )
+    const ogImageMatch =
+      html.match(
+        /<meta\s+(?:[^>]*?\s+)?(?:property|name)=["']og:image["']\s+content=["']([^"']+)["']/i,
+      ) ||
+      html.match(
+        /<meta\s+content=["']([^"']+)["']\s+(?:[^>]*?\s+)?(?:property|name)=["']og:image["']/i,
+      )
 
     if (!ogImageMatch) {
       console.warn(`[og-image] No og:image meta tag found`)
@@ -70,9 +72,7 @@ export async function fetchOgImage(sourceUrl, slug) {
     }
 
     const imageBuffer = Buffer.from(await imageResponse.arrayBuffer())
-    console.log(
-      `[og-image] Downloaded image: ${imageBuffer.length} bytes`,
-    )
+    console.log(`[og-image] Downloaded image: ${imageBuffer.length} bytes`)
 
     // Ensure output directory exists
     fs.mkdirSync(IMAGES_DIR, { recursive: true })
@@ -88,9 +88,7 @@ export async function fetchOgImage(sourceUrl, slug) {
       .toFile(outputPath)
 
     const stats = fs.statSync(outputPath)
-    console.log(
-      `[og-image] Saved: ${outputPath} (${stats.size} bytes)`,
-    )
+    console.log(`[og-image] Saved: ${outputPath} (${stats.size} bytes)`)
 
     return `/images/news/${slug}.webp`
   } catch (err) {

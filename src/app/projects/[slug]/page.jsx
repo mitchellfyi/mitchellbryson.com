@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { ProjectLayout } from '@/components/ProjectLayout'
 import { getAllProjects } from '@/lib/projects'
-import { siteName, siteUrl } from '@/lib/siteConfig'
+import { getOgImage, siteName, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   const projects = await getAllProjects()
@@ -37,19 +37,32 @@ export async function generateMetadata({ params }) {
       images: project.coverImage
         ? [
             {
-              url: project.coverImage,
+              url: `${siteUrl}${project.coverImage}`,
               width: 1200,
               height: 630,
               alt: project.title,
             },
           ]
-        : undefined,
+        : [
+            {
+              url: getOgImage(
+                project.title,
+                project.description || '',
+                'article',
+              ),
+              width: 1200,
+              height: 630,
+              alt: project.title,
+            },
+          ],
     },
     twitter: {
       card: 'summary_large_image',
       title: project.title,
       description: project.description,
-      images: project.coverImage ? [project.coverImage] : undefined,
+      images: project.coverImage
+        ? [`${siteUrl}${project.coverImage}`]
+        : [getOgImage(project.title, project.description || '', 'article')],
     },
   }
 }

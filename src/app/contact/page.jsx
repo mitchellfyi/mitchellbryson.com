@@ -1,5 +1,4 @@
 import { ContactForm } from '@/components/ContactForm'
-import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 export const metadata = buildMetadata({
@@ -10,15 +9,5 @@ export const metadata = buildMetadata({
 })
 
 export default function Contact() {
-  return (
-    <>
-      <BreadcrumbJsonLd
-        items={[
-          { name: 'Home', url: siteUrl },
-          { name: 'Contact', url: `${siteUrl}/contact` },
-        ]}
-      />
-      <ContactForm />
-    </>
-  )
+  return <ContactForm />
 }

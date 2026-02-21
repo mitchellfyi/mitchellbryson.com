@@ -15,9 +15,16 @@ vi.mock('@/lib/email', () => ({
   },
   validateEmail: (email) => {
     if (!email) return 'Email is required'
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Invalid email address'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return 'Invalid email address'
     return null
   },
+  escapeHtml: (str) =>
+    str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;'),
 }))
 
 describe('contact API route', () => {

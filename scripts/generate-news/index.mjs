@@ -1,7 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 import { callClaude } from './lib/anthropic.mjs'
-import { getExistingNews, getRecentSourceLinks, slugExists } from './lib/news.mjs'
+import {
+  getExistingNews,
+  getRecentSourceLinks,
+  slugExists,
+} from './lib/news.mjs'
 import { loadPrompt, loadReference } from './lib/prompts.mjs'
 import { resolvePrompt } from '../../scripts/generate-article/lib/prompts.mjs'
 import { fetchOgImage } from './lib/og-image.mjs'
@@ -124,7 +128,9 @@ async function main() {
   console.log()
   console.log(`[pipeline] Started at: ${manifest.generatedAt}`)
   console.log(`[pipeline] Date: ${today}`)
-  console.log(`[pipeline] Mode: ${mode}${includeDigest ? ' (digest + editorial)' : ' (editorial only)'}`)
+  console.log(
+    `[pipeline] Mode: ${mode}${includeDigest ? ' (digest + editorial)' : ' (editorial only)'}`,
+  )
   console.log(`[pipeline] Trigger: ${manifest.trigger}`)
   console.log(`[pipeline] Auth: ${manifest.environment.authMethod}`)
   console.log()
@@ -225,15 +231,20 @@ async function main() {
   if (includeDigest) {
     console.log('─── Step 2: Write Weekly Digest ────────────')
     digestSlug = sanitiseSlug(research.digestSlug || `digest-${today}`)
-    const digestTitle = research.digestTitle || `AI News Roundup — ${formatTodayLong()}`
+    const digestTitle =
+      research.digestTitle || `AI News Roundup — ${formatTodayLong()}`
 
     // Gather source links from the past 7 days (up to 15)
     const weeklyLinks = getRecentSourceLinks(7, 15)
-    console.log(`[step:digest] Found ${weeklyLinks.length} links from the past 7 days`)
+    console.log(
+      `[step:digest] Found ${weeklyLinks.length} links from the past 7 days`,
+    )
 
     // Also include today's freshly researched stories (dedup against existing)
     const existingUrls = new Set(weeklyLinks.map((l) => l.url))
-    const freshStories = research.stories.filter((s) => !existingUrls.has(s.url))
+    const freshStories = research.stories.filter(
+      (s) => !existingUrls.has(s.url),
+    )
     const allDigestStories = [
       ...weeklyLinks.map((l) => ({
         headline: l.headline,
@@ -251,7 +262,9 @@ async function main() {
       })),
     ].slice(0, 15)
 
-    console.log(`[step:digest] Total stories for digest: ${allDigestStories.length}`)
+    console.log(
+      `[step:digest] Total stories for digest: ${allDigestStories.length}`,
+    )
 
     const storiesForPrompt = allDigestStories
       .map(
@@ -304,7 +317,9 @@ ${sourcesYaml}
     fs.mkdirSync(digestDir, { recursive: true })
     const digestContent = `${digestFrontmatter}\n\n${digestBody}\n`
     fs.writeFileSync(path.join(digestDir, 'content.md'), digestContent)
-    console.log(`[step:digest] Written: ${digestSlug}/content.md (${digestContent.length} chars)`)
+    console.log(
+      `[step:digest] Written: ${digestSlug}/content.md (${digestContent.length} chars)`,
+    )
     manifest.files.push({
       path: `src/app/news/${digestSlug}/content.md`,
       type: 'digest',
@@ -351,16 +366,12 @@ ${sourcesYaml}
       continue
     }
 
-    console.log(
-      `[step:editorial] Writing editorial for: ${story.headline}`,
-    )
+    console.log(`[step:editorial] Writing editorial for: ${story.headline}`)
 
     let editorialSlug = sanitiseSlug(story.slug || story.headline)
     if (slugExists(editorialSlug)) {
       editorialSlug = `${editorialSlug}-${today}`
-      console.log(
-        `[step:editorial] Slug collision, using: ${editorialSlug}`,
-      )
+      console.log(`[step:editorial] Slug collision, using: ${editorialSlug}`)
     }
 
     // Write editorial content
@@ -383,9 +394,7 @@ ${sourcesYaml}
 
     let editorialContent = editorialResult.text.trim()
     const words = wordCount(editorialContent)
-    console.log(
-      `[step:editorial] ${editorialSlug}: ${words} words`,
-    )
+    console.log(`[step:editorial] ${editorialSlug}: ${words} words`)
 
     logStep(`editorial:${editorialSlug}`, {
       status: 'success',
@@ -419,9 +428,13 @@ ${sourcesYaml}
 
       const linkPattern = /\[([^\]]+)\]\(\/[^)]+\)/g
       const linksAdded = [...editorialContent.matchAll(linkPattern)]
-      console.log(`[step:links] ${editorialSlug}: ${linksAdded.length} internal links added`)
+      console.log(
+        `[step:links] ${editorialSlug}: ${linksAdded.length} internal links added`,
+      )
       linksAdded.forEach((m) =>
-        console.log(`[step:links]   "${m[1]}" → ${m[0].match(/\(([^)]+)\)/)[1]}`),
+        console.log(
+          `[step:links]   "${m[1]}" → ${m[0].match(/\(([^)]+)\)/)[1]}`,
+        ),
       )
 
       logStep(`links:${editorialSlug}`, {
@@ -438,7 +451,9 @@ ${sourcesYaml}
         },
       })
     } catch (err) {
-      console.warn(`[step:links] ${editorialSlug}: failed (${err.message}), continuing without links`)
+      console.warn(
+        `[step:links] ${editorialSlug}: failed (${err.message}), continuing without links`,
+      )
       logError(`links:${editorialSlug}`, err)
     }
 
@@ -447,9 +462,7 @@ ${sourcesYaml}
     try {
       ogImagePath = await fetchOgImage(story.url, editorialSlug)
     } catch (err) {
-      console.warn(
-        `[step:editorial] OG image fetch failed: ${err.message}`,
-      )
+      console.warn(`[step:editorial] OG image fetch failed: ${err.message}`)
       logError(`og-image:${editorialSlug}`, err)
     }
 
@@ -457,9 +470,7 @@ ${sourcesYaml}
     const editorialTitle = story.headline
 
     // Assemble frontmatter
-    const ogImageLine = ogImagePath
-      ? `\nogImage: "${ogImagePath}"`
-      : ''
+    const ogImageLine = ogImagePath ? `\nogImage: "${ogImagePath}"` : ''
     const editorialFrontmatter = `---
 author: Mitchell Bryson
 date: "${today}"
@@ -475,10 +486,7 @@ sourceDescription: "${escapeYaml(story.description)}"${ogImageLine}
     const editorialDir = path.join(NEWS_DIR, editorialSlug)
     fs.mkdirSync(editorialDir, { recursive: true })
     const editorialFull = `${editorialFrontmatter}\n\n${editorialContent}\n`
-    fs.writeFileSync(
-      path.join(editorialDir, 'content.md'),
-      editorialFull,
-    )
+    fs.writeFileSync(path.join(editorialDir, 'content.md'), editorialFull)
     console.log(
       `[step:editorial] Written: ${editorialSlug}/content.md (${editorialFull.length} chars)`,
     )
@@ -511,9 +519,13 @@ sourceDescription: "${escapeYaml(story.description)}"${ogImageLine}
 
   console.log('─── Save Daily Links ──────────────────────')
   const editorialUrls = new Set(
-    manifest.items.filter((i) => i.type === 'editorial').map((i) => i.sourceUrl),
+    manifest.items
+      .filter((i) => i.type === 'editorial')
+      .map((i) => i.sourceUrl),
   )
-  const nonEditorialStories = research.stories.filter((s) => !editorialUrls.has(s.url))
+  const nonEditorialStories = research.stories.filter(
+    (s) => !editorialUrls.has(s.url),
+  )
 
   if (nonEditorialStories.length > 0) {
     const linksSlug = `links-${today}`
@@ -535,7 +547,9 @@ ${linksSourcesYaml}
     fs.mkdirSync(linksDir, { recursive: true })
     const linksContent = `${linksFrontmatter}\n`
     fs.writeFileSync(path.join(linksDir, 'content.md'), linksContent)
-    console.log(`[links] Written: ${linksSlug}/content.md (${nonEditorialStories.length} links)`)
+    console.log(
+      `[links] Written: ${linksSlug}/content.md (${nonEditorialStories.length} links)`,
+    )
     manifest.files.push({
       path: `src/app/news/${linksSlug}/content.md`,
       type: 'links',
@@ -567,13 +581,15 @@ ${linksSourcesYaml}
       )
 
       for (const editorial of editorialItems) {
-        console.log(
-          `[step:cross-link] Cross-linking for: ${editorial.slug}`,
-        )
+        console.log(`[step:cross-link] Cross-linking for: ${editorial.slug}`)
 
         // Check existing articles
         for (const article of existingArticles) {
-          const articlePath = path.join(ARTICLES_DIR, article.slug, 'content.md')
+          const articlePath = path.join(
+            ARTICLES_DIR,
+            article.slug,
+            'content.md',
+          )
           const raw = fs.readFileSync(articlePath, 'utf8')
 
           const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
@@ -606,7 +622,8 @@ ${linksSourcesYaml}
           })
 
           manifest.totals.inputTokens += crossLinkResult.usage.inputTokens || 0
-          manifest.totals.outputTokens += crossLinkResult.usage.outputTokens || 0
+          manifest.totals.outputTokens +=
+            crossLinkResult.usage.outputTokens || 0
           manifest.totals.apiCalls++
 
           const updatedBody = crossLinkResult.text.trim()
@@ -655,7 +672,8 @@ ${linksSourcesYaml}
           })
 
           manifest.totals.inputTokens += crossLinkResult.usage.inputTokens || 0
-          manifest.totals.outputTokens += crossLinkResult.usage.outputTokens || 0
+          manifest.totals.outputTokens +=
+            crossLinkResult.usage.outputTokens || 0
           manifest.totals.apiCalls++
 
           const updatedBody = crossLinkResult.text.trim()
@@ -723,9 +741,7 @@ ${linksSourcesYaml}
     `  Editorials:     ${manifest.items.filter((i) => i.type === 'editorial').length}`,
   )
   manifest.items.forEach((item) => {
-    console.log(
-      `    - [${item.type}] ${item.slug}: "${item.title}"`,
-    )
+    console.log(`    - [${item.type}] ${item.slug}: "${item.title}"`)
   })
   console.log(`  Files written:  ${manifest.files.length}`)
   console.log(`  API calls:      ${manifest.totals.apiCalls}`)
@@ -739,9 +755,7 @@ ${linksSourcesYaml}
     `  Total duration: ${(manifest.totals.pipelineDurationMs / 1000).toFixed(1)}s`,
   )
   console.log(`  Errors:         ${manifest.errors.length}`)
-  console.log(
-    `  Cross-linked:   ${crossLinkedPaths.length} existing items`,
-  )
+  console.log(`  Cross-linked:   ${crossLinkedPaths.length} existing items`)
   crossLinkedPaths.forEach((p) => console.log(`    - ${p}`))
   console.log()
 

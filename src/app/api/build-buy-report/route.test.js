@@ -12,11 +12,19 @@ createReportRouteTests({
     allEstimates: {
       build: {
         label: 'Build',
-        estimates: { cost: '£50k', timeline: '6 months', maintenance: '£10k/yr' },
+        estimates: {
+          cost: '£50k',
+          timeline: '6 months',
+          maintenance: '£10k/yr',
+        },
       },
       buy: {
         label: 'Buy',
-        estimates: { cost: '£20k', timeline: '2 months', maintenance: '£5k/yr' },
+        estimates: {
+          cost: '£20k',
+          timeline: '2 months',
+          maintenance: '£5k/yr',
+        },
       },
       ai: {
         label: 'AI-Augmented',

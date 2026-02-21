@@ -1,11 +1,11 @@
 ---
 author: Mitchell Bryson
-date: "2026-02-21"
-title: "Observational Memory Might Kill RAG for Long-Running Agents"
+date: '2026-02-21'
+title: 'Observational Memory Might Kill RAG for Long-Running Agents'
 description: "Mastra's open-source memory system replaces retrieval with background compression, scoring highest on LongMemEval at a fraction of the cost. If you're building agents that need to remember, pay attention."
 type: editorial
-sourceUrl: "https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long"
-sourceTitle: "VentureBeat"
+sourceUrl: 'https://venturebeat.com/data/observational-memory-cuts-ai-agent-costs-10x-and-outscores-rag-on-long'
+sourceTitle: 'VentureBeat'
 sourceHeadline: "'Observational memory' cuts AI agent costs 10x and outscores RAG on long-context benchmarks"
 sourceDescription: "Mastra open-sourced 'observational memory,' a new approach to AI agent memory that replaces RAG retrieval with continuous background compression of conversation history, achieving state-of-the-art scores on LongMemEval at a fraction of the cost."
 ---

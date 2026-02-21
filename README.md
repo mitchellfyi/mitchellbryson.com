@@ -56,7 +56,7 @@ npm run test
 npm run validate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view locally.
+Open [http://localhost:3003](http://localhost:3003) to view locally.
 
 ### Environment Variables
 

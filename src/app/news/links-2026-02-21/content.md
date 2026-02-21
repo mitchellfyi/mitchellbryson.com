@@ -1,38 +1,38 @@
 ---
-date: "2026-02-21"
+date: '2026-02-21'
 type: links
 sources:
-  - headline: "OpenAI Launches Frontier, a Platform to Build, Deploy, and Manage AI Agents Across the Enterprise"
-    url: "https://www.infoq.com/news/2026/02/openai-frontier-agent-platform/"
-    sourceName: "InfoQ"
-  - headline: "Manipulating AI memory for profit: The rise of AI Recommendation Poisoning"
-    url: "https://www.microsoft.com/en-us/security/blog/2026/02/10/ai-recommendation-poisoning/"
-    sourceName: "Microsoft Security Blog"
+  - headline: 'OpenAI Launches Frontier, a Platform to Build, Deploy, and Manage AI Agents Across the Enterprise'
+    url: 'https://www.infoq.com/news/2026/02/openai-frontier-agent-platform/'
+    sourceName: 'InfoQ'
+  - headline: 'Manipulating AI memory for profit: The rise of AI Recommendation Poisoning'
+    url: 'https://www.microsoft.com/en-us/security/blog/2026/02/10/ai-recommendation-poisoning/'
+    sourceName: 'Microsoft Security Blog'
   - headline: "Hollywood isn't happy about the new Seedance 2.0 video generator"
-    url: "https://techcrunch.com/2026/02/15/hollywood-isnt-happy-about-the-new-seedance-2-0-video-generator/"
-    sourceName: "TechCrunch"
-  - headline: "xAI Launches Grok 4.20 with a team of AI agents"
-    url: "https://www.nextbigfuture.com/2026/02/xai-launches-grok-4-20-and-it-has-4-ai-agents-collaborating.html"
-    sourceName: "NextBigFuture"
-  - headline: "Moonshot AI Releases Open-Weight Kimi K2.5 Model with Vision and Agent Swarm Capabilities"
-    url: "https://www.infoq.com/news/2026/02/kimi-k25-swarm/"
-    sourceName: "InfoQ"
-  - headline: "Ars Technica Retracts Story Featuring Fake Quotes Made Up By AI"
-    url: "https://www.techdirt.com/2026/02/18/ars-technica-retracts-story-featuring-fake-quotes-made-up-by-ai-about-a-different-ai-that-launched-a-weird-smear-campaign-against-an-engineer-who-rejected-its-code-seriously/"
-    sourceName: "Techdirt"
-  - headline: "Agent Bricks Supervisor Agent is Now GA: Orchestrate Enterprise Agents"
-    url: "https://www.databricks.com/blog/agent-bricks-supervisor-agent-now-ga-orchestrate-enterprise-agents"
-    sourceName: "Databricks"
-  - headline: "Voicebox: The open-source voice synthesis studio powered by Qwen3-TTS"
-    url: "https://github.com/jamiepine/voicebox"
-    sourceName: "GitHub Trending"
+    url: 'https://techcrunch.com/2026/02/15/hollywood-isnt-happy-about-the-new-seedance-2-0-video-generator/'
+    sourceName: 'TechCrunch'
+  - headline: 'xAI Launches Grok 4.20 with a team of AI agents'
+    url: 'https://www.nextbigfuture.com/2026/02/xai-launches-grok-4-20-and-it-has-4-ai-agents-collaborating.html'
+    sourceName: 'NextBigFuture'
+  - headline: 'Moonshot AI Releases Open-Weight Kimi K2.5 Model with Vision and Agent Swarm Capabilities'
+    url: 'https://www.infoq.com/news/2026/02/kimi-k25-swarm/'
+    sourceName: 'InfoQ'
+  - headline: 'Ars Technica Retracts Story Featuring Fake Quotes Made Up By AI'
+    url: 'https://www.techdirt.com/2026/02/18/ars-technica-retracts-story-featuring-fake-quotes-made-up-by-ai-about-a-different-ai-that-launched-a-weird-smear-campaign-against-an-engineer-who-rejected-its-code-seriously/'
+    sourceName: 'Techdirt'
+  - headline: 'Agent Bricks Supervisor Agent is Now GA: Orchestrate Enterprise Agents'
+    url: 'https://www.databricks.com/blog/agent-bricks-supervisor-agent-now-ga-orchestrate-enterprise-agents'
+    sourceName: 'Databricks'
+  - headline: 'Voicebox: The open-source voice synthesis studio powered by Qwen3-TTS'
+    url: 'https://github.com/jamiepine/voicebox'
+    sourceName: 'GitHub Trending'
   - headline: "Some 'Summarize with AI' buttons are secretly injecting ads into your chatbot's memory"
-    url: "https://the-decoder.com/some-summarize-with-ai-buttons-are-secretly-injecting-ads-into-your-chatbots-memory/"
-    sourceName: "The Decoder"
-  - headline: "Donating the Model Context Protocol and establishing the Agentic AI Foundation"
-    url: "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation"
-    sourceName: "Anthropic"
-  - headline: "Fundamental raises $255M Series A with a new take on big data analysis"
-    url: "https://techcrunch.com/2026/02/05/fundamental-raises-255-million-series-a-with-a-new-take-on-big-data-analysis/"
-    sourceName: "TechCrunch"
+    url: 'https://the-decoder.com/some-summarize-with-ai-buttons-are-secretly-injecting-ads-into-your-chatbots-memory/'
+    sourceName: 'The Decoder'
+  - headline: 'Donating the Model Context Protocol and establishing the Agentic AI Foundation'
+    url: 'https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation'
+    sourceName: 'Anthropic'
+  - headline: 'Fundamental raises $255M Series A with a new take on big data analysis'
+    url: 'https://techcrunch.com/2026/02/05/fundamental-raises-255-million-series-a-with-a-new-take-on-big-data-analysis/'
+    sourceName: 'TechCrunch'
 ---

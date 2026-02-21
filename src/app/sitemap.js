@@ -101,12 +101,14 @@ export default async function sitemap() {
     },
   ]
 
-  const newsUrls = news.filter((item) => item.type !== 'links').map((item) => ({
-    url: `${siteUrl}/news/${item.slug}`,
-    lastModified: item.date ? new Date(item.date) : new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
+  const newsUrls = news
+    .filter((item) => item.type !== 'links')
+    .map((item) => ({
+      url: `${siteUrl}/news/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }))
 
   const toolUrls = tools.map((tool) => ({
     url: `${siteUrl}/uses/${tool.slug}`,

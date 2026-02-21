@@ -15,16 +15,12 @@ export function Newsletter() {
     setSubmitStatus(null)
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: 'Newsletter Subscriber',
-          email: email,
-          message: 'Newsletter Subscription',
-        }),
+        body: JSON.stringify({ email }),
       })
 
       if (response.ok) {
@@ -60,7 +56,7 @@ export function Newsletter() {
           className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20"
         >
           <div className="text-sm text-green-800 dark:text-green-200">
-            Thanks for subscribing! You&apos;ll hear from me soon.
+            Thank you for subscribing.
           </div>
         </div>
       )}

@@ -39,7 +39,7 @@ export default async function NewsIndex() {
           <WritingNav />
         </div>
         <NewsFeed news={news} sourceLinks={sourceLinks} />
-        <div className="mt-16 mx-auto max-w-lg">
+        <div className="mx-auto mt-16 max-w-lg">
           <Newsletter />
         </div>
       </SimpleLayout>

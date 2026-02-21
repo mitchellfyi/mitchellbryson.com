@@ -7,17 +7,16 @@ import { WebSiteJsonLd } from '@/components/JsonLd'
 import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
 import '@/styles/tailwind.css'
-import '@/styles/prism.css'
 
 const defaultOgImage = getOgImage(
   'Mitchell Bryson',
-  'Full-Stack AI Software Engineer',
+  'Full-stack AI Software Engineer',
 )
 
 export const metadata = {
   title: {
     template: '%s - Mitchell Bryson',
-    default: 'Mitchell Bryson - Full-Stack AI Software Engineer',
+    default: 'Mitchell Bryson - Full-stack AI Software Engineer',
   },
   description:
     "I'm Mitchell, a full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
@@ -30,7 +29,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Mitchell Bryson - Full-Stack AI Software Engineer',
+    title: 'Mitchell Bryson - Full-stack AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     url: siteUrl,
@@ -40,7 +39,7 @@ export const metadata = {
         url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: 'Mitchell Bryson - Full-Stack AI Software Engineer',
+        alt: 'Mitchell Bryson - Full-stack AI Software Engineer',
       },
     ],
     locale: 'en_GB',
@@ -48,7 +47,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mitchell Bryson - Full-Stack AI Software Engineer',
+    title: 'Mitchell Bryson - Full-stack AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     images: [defaultOgImage],

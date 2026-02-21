@@ -41,6 +41,7 @@ export function ProjectLayout({ project, children }) {
                   alt={project.title}
                   width={1200}
                   height={630}
+                  sizes="(min-width: 1024px) 784px, 100vw"
                   className="rounded-lg shadow-lg"
                   priority
                 />

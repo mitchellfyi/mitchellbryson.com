@@ -61,6 +61,7 @@ Return a JSON object with this exact structure:
 ```
 
 Notes:
+
 - `editorialPicks` is an array of indices into the `stories` array (0-based)
 - Pick 1 story for editorial treatment, or up to 3 if they share a very similar theme/topic
 - Include at least 5 stories total for the digest

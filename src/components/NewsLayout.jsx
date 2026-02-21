@@ -3,6 +3,7 @@
 import { useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { ArrowLeftIcon } from '@/components/Icons'
@@ -21,7 +22,7 @@ function RelatedNews({ items }) {
       </h2>
       <div className="mt-6 space-y-8">
         {items.map((item) => (
-          <a
+          <Link
             key={item.slug}
             href={`/news/${item.slug}`}
             className="group block"
@@ -42,7 +43,7 @@ function RelatedNews({ items }) {
                 </p>
               )}
             </article>
-          </a>
+          </Link>
         ))}
       </div>
     </section>
@@ -91,10 +92,10 @@ function SourceCard({ item }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <p className="text-xs font-medium tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
             {item.sourceTitle || domain}
           </p>
-          <p className="mt-1 text-sm font-semibold leading-snug text-zinc-900 group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400">
+          <p className="mt-1 text-sm leading-snug font-semibold text-zinc-900 group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400">
             {headline}
           </p>
           {description && (
@@ -168,6 +169,7 @@ export function NewsLayout({ item, relatedNews, children }) {
                   alt={item.title}
                   width={1200}
                   height={630}
+                  sizes="(min-width: 1024px) 784px, 100vw"
                   className="rounded-lg shadow-lg"
                   priority
                 />

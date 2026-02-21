@@ -1,14 +1,9 @@
 import { Feed } from 'feed'
 import { getAllArticles } from '@/lib/articles'
 import { getAllNews } from '@/lib/news'
+import { siteUrl } from '@/lib/siteConfig'
 
-export async function GET(req) {
-  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-
-  if (!siteUrl) {
-    throw Error('Missing NEXT_PUBLIC_SITE_URL environment variable')
-  }
-
+export async function GET() {
   let author = {
     name: 'Mitchell Bryson',
     email: 'website@mitchellbryson.com',

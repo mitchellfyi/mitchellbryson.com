@@ -28,10 +28,10 @@ Mitchell's news editorials are punchy, opinionated takes on AI stories. Shorter 
 
 ## Tone differences from articles
 
-| Aspect | Articles | News editorials |
-|---|---|---|
-| Length | 1000-1800 words | 300-600 words |
-| Depth | Deep analysis | Quick take |
-| Structure | Multiple sections | 1-2 sections max |
-| References | Frameworks, theory | Specific story |
-| Opening | Conceptual framing | Direct reaction |
+| Aspect     | Articles           | News editorials  |
+| ---------- | ------------------ | ---------------- |
+| Length     | 1000-1800 words    | 300-600 words    |
+| Depth      | Deep analysis      | Quick take       |
+| Structure  | Multiple sections  | 1-2 sections max |
+| References | Frameworks, theory | Specific story   |
+| Opening    | Conceptual framing | Direct reaction  |

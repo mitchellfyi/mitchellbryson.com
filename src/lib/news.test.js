@@ -32,13 +32,17 @@ describe('news module', () => {
     const news = await getAllNews()
 
     if (news.length > 0) {
-      const item = news[0]
-      expect(item).toHaveProperty('slug')
-      expect(item).toHaveProperty('title')
-      expect(item).toHaveProperty('date')
-      expect(item).toHaveProperty('content')
-      expect(item).toHaveProperty('readingTime')
-      expect(item).toHaveProperty('type')
+      // "links" type items only have date, type, and sources — no title/content.
+      // Check an editorial or digest item which has the full shape.
+      const item = news.find((n) => n.type !== 'links')
+      if (item) {
+        expect(item).toHaveProperty('slug')
+        expect(item).toHaveProperty('title')
+        expect(item).toHaveProperty('date')
+        expect(item).toHaveProperty('content')
+        expect(item).toHaveProperty('readingTime')
+        expect(item).toHaveProperty('type')
+      }
     }
   })
 

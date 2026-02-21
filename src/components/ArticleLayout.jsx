@@ -107,6 +107,7 @@ export function ArticleLayout({ article, relatedArticles, children }) {
                   alt={article.title}
                   width={1200}
                   height={630}
+                  sizes="(min-width: 1024px) 784px, 100vw"
                   className="rounded-lg shadow-lg"
                   priority
                 />

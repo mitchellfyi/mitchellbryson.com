@@ -1,10 +1,39 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+function CodeBlock({ language, children }) {
+  const [highlighter, setHighlighter] = useState(null)
+
+  useEffect(() => {
+    Promise.all([
+      import('react-syntax-highlighter').then((mod) => mod.Prism),
+      import('react-syntax-highlighter/dist/esm/styles/prism').then(
+        (mod) => mod.atomDark,
+      ),
+    ]).then(([Component, style]) => {
+      setHighlighter({ Component, style })
+    })
+  }, [])
+
+  if (!highlighter) {
+    return (
+      <pre>
+        <code className={`language-${language}`}>{children}</code>
+      </pre>
+    )
+  }
+
+  const { Component, style } = highlighter
+  return (
+    <Component style={style} language={language} PreTag="div">
+      {children}
+    </Component>
+  )
+}
 
 export function MarkdownContent({
   content,
@@ -21,14 +50,9 @@ export function MarkdownContent({
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
           return !inline && match ? (
-            <SyntaxHighlighter
-              style={atomDark}
-              language={match[1]}
-              PreTag="div"
-              {...props}
-            >
+            <CodeBlock language={match[1]}>
               {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
+            </CodeBlock>
           ) : (
             <code className={className} {...props}>
               {children}

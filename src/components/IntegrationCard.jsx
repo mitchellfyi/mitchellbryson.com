@@ -22,6 +22,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
             alt={`${integration.name} logo`}
             width={48}
             height={48}
+            sizes="48px"
             className="rounded-lg object-contain"
             onError={() => setImgError(true)}
           />

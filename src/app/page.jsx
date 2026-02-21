@@ -34,10 +34,13 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
             I design, develop and ship practical AI systems that cut manual work
-            and improve margins. My focus: small,
-            verifiable wins that go live fast, then scale. If you need a
-            developer that knows what to build and why,{' '}
-            <Link href="/contact" className="text-teal-700">
+            and improve margins. My focus: small, verifiable wins that go live
+            fast, then scale. If you need a developer that knows what to build
+            and why,{' '}
+            <Link
+              href="/contact"
+              className="text-teal-700 underline decoration-teal-700/30 underline-offset-2 transition hover:decoration-teal-700 dark:text-teal-500 dark:decoration-teal-500/30 dark:hover:decoration-teal-500"
+            >
               let&apos;s talk
             </Link>
             .
