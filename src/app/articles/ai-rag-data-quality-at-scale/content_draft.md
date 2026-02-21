@@ -92,10 +92,10 @@ Cross-encoder rerankers, Cohere Rerank or MS MARCO cross-encoders score each can
 
 MMR, Maximal Marginal Relevance adds diversity by penalising near-duplicates among the selected chunks, which reduces wasted context budget.
 
-after hybrid retrieval to top_k=40:
+after hybrid retrieval to top*k=40:
 candidates equals hybrid query slice 40
 reranked equals cross_encoder_rerank query candidates slice 12
-final_ctx equals mmr_diversify query reranked k=6 lambda_=0.5
+final_ctx equals mmr_diversify query reranked k=6 lambda*=0.5
 
 Evaluate before and after shipping
 

@@ -7,14 +7,20 @@ export async function GET() {
   const articles = await getAllArticles()
 
   const articleList = articles
-    .map((a) => `- [${a.title}](${siteUrl}/articles/${a.slug}): ${a.description}`)
+    .map(
+      (a) => `- [${a.title}](${siteUrl}/articles/${a.slug}): ${a.description}`,
+    )
     .join('\n')
 
   const toolCategories = [...new Set(tools.map((t) => t.category))]
   const toolList = toolCategories
     .map((cat) => {
       const catTools = tools.filter((t) => t.category === cat)
-      return catTools.map((t) => `- [${t.name}](${siteUrl}/uses/${t.slug}): ${t.description}`).join('\n')
+      return catTools
+        .map(
+          (t) => `- [${t.name}](${siteUrl}/uses/${t.slug}): ${t.description}`,
+        )
+        .join('\n')
     })
     .join('\n')
 

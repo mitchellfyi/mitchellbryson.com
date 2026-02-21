@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
-import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
+import {
+  BreadcrumbJsonLd,
+  SoftwareApplicationJsonLd,
+} from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 import { getAllProjectToolSlugs, getProjectTool } from '@/lib/projectTools'
 import { AIReadinessScore } from '@/components/tools/AIReadinessScore'

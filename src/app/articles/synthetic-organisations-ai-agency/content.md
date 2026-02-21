@@ -1,13 +1,13 @@
 ---
 author: Mitchell Bryson
-date: "2025-10-01"
-title: "Synthetic Organisations: What Would a Fully AI-Run Service Agency Look Like, and How Would I Build One?"
-description: "What changes when agents own strategy and execution? Legal structure, accountability, pricing models, failure modes, and the minimum governance to ship safely."
+date: '2025-10-01'
+title: 'Synthetic Organisations: What Would a Fully AI-Run Service Agency Look Like, and How Would I Build One?'
+description: 'What changes when agents own strategy and execution? Legal structure, accountability, pricing models, failure modes, and the minimum governance to ship safely.'
 ---
 
-**Question:** What would a fully agentic service agency look like - one where AI agents own strategy *and* execution - and how would I build it without losing control of risk, cost, or accountability?
+**Question:** What would a fully agentic service agency look like - one where AI agents own strategy _and_ execution - and how would I build it without losing control of risk, cost, or accountability?
 
-**Answer:** Treat the firm as a *mission-processing system*: **mission intake → strategy compiler → budget allocator → specialist sub-agents → execution → QA/evals → governance → billing**, with hard control points and auditability.
+**Answer:** Treat the firm as a _mission-processing system_: **mission intake → strategy compiler → budget allocator → specialist sub-agents → execution → QA/evals → governance → billing**, with hard control points and auditability.
 
 ## Before the how: why build a synthetic organisation?
 
@@ -83,40 +83,41 @@ flowchart LR
 
 #### Mission intake (one-page spec)
 
-* Capture the goal, constraints, stakeholders, data access, and success criteria in a standard JSON/YAML schema.
-* Assign a single accountable human sponsor (the client) and an internal operator (you).
+- Capture the goal, constraints, stakeholders, data access, and success criteria in a standard JSON/YAML schema.
+- Assign a single accountable human sponsor (the client) and an internal operator (you).
 
 ```yaml
 mission:
-  id: "leadgen-uk-trades-2025q4"
-  goal: "Generate 50 qualified leads/wk at ≤ £40 CAC"
-  constraints: ["GDPR-compliant sources only", "No brand outreach without approval"]
-  kpis: ["qualified_leads_per_week", "cac", "reply_rate"]
+  id: 'leadgen-uk-trades-2025q4'
+  goal: 'Generate 50 qualified leads/wk at ≤ £40 CAC'
+  constraints:
+    ['GDPR-compliant sources only', 'No brand outreach without approval']
+  kpis: ['qualified_leads_per_week', 'cac', 'reply_rate']
   timebox_days: 30
   budget_max_gbp: 5000
-  approvers: ["client_owner@company", "ops_controller@agency"]
+  approvers: ['client_owner@company', 'ops_controller@agency']
 ```
 
 #### Strategy compiler (from brief to plan)
 
-* Convert the mission into a **task graph** (milestones → tactics → tasks) with dependencies and measurable outputs.
-* Produce a "strategy bill of materials" (data sources, tools, prompts, APIs).
+- Convert the mission into a **task graph** (milestones → tactics → tasks) with dependencies and measurable outputs.
+- Produce a "strategy bill of materials" (data sources, tools, prompts, APIs).
 
 ```json
 {
   "milestones": [
-    {"name":"ICP & channels", "exit":"ICP doc + channel shortlist"},
-    {"name":"Campaign slice", "exit":"10-seed messages + landing slice"},
-    {"name":"QA & canary", "exit":"evals ≥ 0.9; spend ≤ £250"},
-    {"name":"Scale", "exit":"50 QLs/wk @ ≤ £40 CAC"}
+    { "name": "ICP & channels", "exit": "ICP doc + channel shortlist" },
+    { "name": "Campaign slice", "exit": "10-seed messages + landing slice" },
+    { "name": "QA & canary", "exit": "evals ≥ 0.9; spend ≤ £250" },
+    { "name": "Scale", "exit": "50 QLs/wk @ ≤ £40 CAC" }
   ]
 }
 ```
 
 #### Budget allocator (cost ceilings up front)
 
-* Translate plan into **quota/budget** per route (model, data, media spend, labour minutes).
-* Enforce with circuit breakers; fail closed if thresholds trip.
+- Translate plan into **quota/budget** per route (model, data, media spend, labour minutes).
+- Enforce with circuit breakers; fail closed if thresholds trip.
 
 ```yaml
 budgets:
@@ -129,15 +130,15 @@ budgets:
 
 #### Specialist sub-agents (autonomous staffing)
 
-* Instantiate role-specific agents: Researcher, Copywriter, Data Cleaner, Outreach Runner, Analyst.
-* Each agent has a **contract** (inputs, outputs, SLOs, guardrails) and publishes traces.
+- Instantiate role-specific agents: Researcher, Copywriter, Data Cleaner, Outreach Runner, Analyst.
+- Each agent has a **contract** (inputs, outputs, SLOs, guardrails) and publishes traces.
 
 ```json
 {
   "agent": "OutreachRunner",
   "inputs": ["prospect_list.csv", "message_template_id"],
   "output": "send_log.jsonl",
-  "slo": {"deliveries_per_hour": 120, "bounce_rate_max": 0.03},
+  "slo": { "deliveries_per_hour": 120, "bounce_rate_max": 0.03 },
   "guardrails": ["no unapproved domains", "rate-limit 20/min/domain"],
   "handoff_on": ["compliance_flag", "high_value_prospect"]
 }
@@ -145,56 +146,56 @@ budgets:
 
 #### Execution (task graph orchestration)
 
-* Orchestrator assigns tasks, enforces dependencies, retries idempotently, and emits structured events for every step (start/finish/error).
+- Orchestrator assigns tasks, enforces dependencies, retries idempotently, and emits structured events for every step (start/finish/error).
 
 #### QA/evals (quality before scale)
 
-* Run **evals** and human spot checks at milestone exits.
-* Gate scale-up on hitting target scores and respecting spend/latency budgets.
+- Run **evals** and human spot checks at milestone exits.
+- Gate scale-up on hitting target scores and respecting spend/latency budgets.
 
 #### Governance & billing
 
-* Governance gates approve: (a) external comms, (b) budget changes, (c) model switches, (d) data scope changes.
-* Billing converts evidence (time, tokens, media spend, outcomes) into an invoice with a line-item ledger.
+- Governance gates approve: (a) external comms, (b) budget changes, (c) model switches, (d) data scope changes.
+- Billing converts evidence (time, tokens, media spend, outcomes) into an invoice with a line-item ledger.
 
 ## Reliability stack (controls that keep it safe)
 
 #### Task graph orchestration
 
-* Deterministic DAG; retries with exponential backoff; per-task idempotency keys; dead-letter queue for manual review.
+- Deterministic DAG; retries with exponential backoff; per-task idempotency keys; dead-letter queue for manual review.
 
 #### Decision rights
 
-* Define **who** can: change budgets, approve copy, trigger scale beyond canary, or ship anything externally.
+- Define **who** can: change budgets, approve copy, trigger scale beyond canary, or ship anything externally.
 
 ```yaml
 decision_rights:
-  approve_external_copy: ["ClientOwner","AccountLead"]
-  raise_budget_over_20pct: ["OpsController"]
-  model_switch_prod: ["SafetyOfficer","AccountLead"]
+  approve_external_copy: ['ClientOwner', 'AccountLead']
+  raise_budget_over_20pct: ['OpsController']
+  model_switch_prod: ['SafetyOfficer', 'AccountLead']
 ```
 
 #### Guardrails
 
-* Input filters (PII, secrets, prompt-injection), output schemas (JSON with enums), policy checks (compliance, brand terms), tool allow-lists.
+- Input filters (PII, secrets, prompt-injection), output schemas (JSON with enums), policy checks (compliance, brand terms), tool allow-lists.
 
 #### Cost ceilings
 
-* Per-route and per-user spend caps with 80% alerts and 100% trip; separate **eval** and **prod** budgets.
+- Per-route and per-user spend caps with 80% alerts and 100% trip; separate **eval** and **prod** budgets.
 
 #### Human gates at milestones
 
-* Canary → Scale, Brand-touching comms, Data scope expansion, and Contractual commitments require explicit human approval.
+- Canary → Scale, Brand-touching comms, Data scope expansion, and Contractual commitments require explicit human approval.
 
 #### Post-mortems tied to traces/evals
 
-* Every P1 incident triggers an automated bundle: traces, prompts, diffs, eval outcomes, spend, and a timeline. Store with an owner and follow-ups.
+- Every P1 incident triggers an automated bundle: traces, prompts, diffs, eval outcomes, spend, and a timeline. Store with an owner and follow-ups.
 
 ## Evidence & audit trails
 
 #### Minimum fields to log per action
 
-* Actor (agent/human), route, inputs (redacted), outputs, tokens, cost, latency, prompt/template version, tool I/O, decision taken, approver (if any), and the mission/milestone IDs.
+- Actor (agent/human), route, inputs (redacted), outputs, tokens, cost, latency, prompt/template version, tool I/O, decision taken, approver (if any), and the mission/milestone IDs.
 
 ```sql
 CREATE TABLE evidence_ledger(
@@ -211,84 +212,84 @@ CREATE TABLE evidence_ledger(
 
 #### Entity & accountability
 
-* Operate as a **Ltd** with human directors accountable for outputs; agents are tools.
-* Maintain **professional indemnity** and **cyber** insurance; document control points.
+- Operate as a **Ltd** with human directors accountable for outputs; agents are tools.
+- Maintain **professional indemnity** and **cyber** insurance; document control points.
 
 #### Data & contracts
 
-* DPA + processing records; DPAs with vendors; SCCs where relevant.
-* MSAs/SOWs that reflect: experimental phases, **client approvals**, budget ceilings, data-handling, rollback rights, and evidence access.
+- DPA + processing records; DPAs with vendors; SCCs where relevant.
+- MSAs/SOWs that reflect: experimental phases, **client approvals**, budget ceilings, data-handling, rollback rights, and evidence access.
 
 #### Auditability
 
-* Provide clients a read-only view of the evidence ledger and governance approvals tied to invoices.
+- Provide clients a read-only view of the evidence ledger and governance approvals tied to invoices.
 
 ## Pricing models that fit agentic delivery
 
 #### Options to consider
 
-* **Outcome-based fixed scope:** price per qualified lead/case with a floor retainer and clear definitions.
-* **Time-boxed pilot:** 30-day fixed fee with capped spend; success fee on hitting targets.
-* **Usage-based:** tokens + infra + ops minutes at transparent rates with a margin.
-* **Hybrid:** base retainer + outcome bonus; budgets and SLOs published in advance.
+- **Outcome-based fixed scope:** price per qualified lead/case with a floor retainer and clear definitions.
+- **Time-boxed pilot:** 30-day fixed fee with capped spend; success fee on hitting targets.
+- **Usage-based:** tokens + infra + ops minutes at transparent rates with a margin.
+- **Hybrid:** base retainer + outcome bonus; budgets and SLOs published in advance.
 
 ## KPIs (run daily, review weekly)
 
 #### Delivery & quality
 
-* Mission throughput (milestones completed / planned), eval pass-rate, QA accept-rate.
+- Mission throughput (milestones completed / planned), eval pass-rate, QA accept-rate.
 
 #### Financials
 
-* CAC / cost per outcome, spend vs budget (LLM, media, ops minutes), gross margin.
+- CAC / cost per outcome, spend vs budget (LLM, media, ops minutes), gross margin.
 
 #### Reliability
 
-* p95 latency per route, error/retry rates, incident count/MTTR, percent of tasks requiring human handoff.
+- p95 latency per route, error/retry rates, incident count/MTTR, percent of tasks requiring human handoff.
 
 ## 30-day pilot plan (prove it safely)
 
 #### Week 1 - Frame & guard
 
-* Finalise mission spec; wire identity and data access; deploy ledger; set budgets and decision rights; dry-run the strategy compiler.
+- Finalise mission spec; wire identity and data access; deploy ledger; set budgets and decision rights; dry-run the strategy compiler.
 
 #### Week 2 - Thin slice in canary
 
-* Stand up the agent factory for 2–3 roles; run a 10–20% canary; add evals and human QA; enforce external-comms approval.
+- Stand up the agent factory for 2–3 roles; run a 10–20% canary; add evals and human QA; enforce external-comms approval.
 
 #### Week 3 - Tune & scale cautiously
 
-* Fix failure modes; demonstrate budget discipline; scale to 50% if gates pass; start daily dashboard to the client.
+- Fix failure modes; demonstrate budget discipline; scale to 50% if gates pass; start daily dashboard to the client.
 
 #### Week 4 - Stabilise & decide
 
-* Run P1 post-mortem drill; deliver evidence pack, KPI deltas, and cost curves; recommend **GO** (expand), **HOLD** (extend pilot), or **STOP** (rollback).
+- Run P1 post-mortem drill; deliver evidence pack, KPI deltas, and cost curves; recommend **GO** (expand), **HOLD** (extend pilot), or **STOP** (rollback).
 
 ## Failure modes (and how to mitigate)
 
 #### Common issues
 
-* **Scope creep via "just one more data source."**
-* **Copy shipped without approval.**
-* **Runaway spend on eval or scraping.**
-* **Agent loops or duplicate work.**
+- **Scope creep via "just one more data source."**
+- **Copy shipped without approval.**
+- **Runaway spend on eval or scraping.**
+- **Agent loops or duplicate work.**
 
 #### Mitigations
 
-* Lock scope in mission spec; any change requires an approver.
-* Brand/regulated comms require human gate.
-* Separate eval/prod budgets; trip at 100%.
-* Idempotency keys; dedupe jobs; watchdogs for long-running tasks.
+- Lock scope in mission spec; any change requires an approver.
+- Brand/regulated comms require human gate.
+- Separate eval/prod budgets; trip at 100%.
+- Idempotency keys; dedupe jobs; watchdogs for long-running tasks.
 
 ## Minimal contracts & runbooks
 
 #### In your SOW, include
 
-* Scope, success metrics, **budget ceilings**, approval points, data duties, evidence access, rollback terms, and a pilot exit path.
+- Scope, success metrics, **budget ceilings**, approval points, data duties, evidence access, rollback terms, and a pilot exit path.
 
 #### In your runbook, include
 
-* On-call, incident severities, escalation contacts, rollback command, weekly ops review template, and how to rotate eval sets.
+- On-call, incident severities, escalation contacts, rollback command, weekly ops review template, and how to rotate eval sets.
 
 ---
 

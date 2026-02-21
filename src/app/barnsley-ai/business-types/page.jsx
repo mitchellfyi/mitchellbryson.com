@@ -27,7 +27,10 @@ export default function BarnsleyBusinessTypesPage() {
         items={[
           { name: 'Home', url: siteUrl },
           { name: 'AI in Barnsley', url: `${siteUrl}/barnsley-ai` },
-          { name: 'Types of Businesses', url: `${siteUrl}/barnsley-ai/business-types` },
+          {
+            name: 'Types of Businesses',
+            url: `${siteUrl}/barnsley-ai/business-types`,
+          },
         ]}
       />
       <SimpleLayout

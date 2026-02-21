@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
 import { Card } from '@/components/Card'
@@ -36,9 +37,9 @@ export default async function Home() {
             that cut manual work and improve margins. My focus: small,
             verifiable wins that go live fast, then scale. If you need a
             developer that knows what to build and why,{' '}
-            <a href="/contact" className="text-teal-700">
+            <Link href="/contact" className="text-teal-700">
               let&apos;s talk
-            </a>
+            </Link>
             .
           </p>
         </div>

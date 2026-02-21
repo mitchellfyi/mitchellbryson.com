@@ -14,7 +14,7 @@ export function CopyLinkButton({ label = 'Copy link to these results' }) {
   }
 
   return (
-    <Button variant="secondary" onClick={handleCopy}>
+    <Button variant="secondary" onClick={handleCopy} aria-live="polite">
       {copied ? 'Copied!' : label}
     </Button>
   )

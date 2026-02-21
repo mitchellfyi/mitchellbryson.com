@@ -1,23 +1,4 @@
-import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
-
-let resend = null
-function getResend() {
-  if (!resend) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resend
-}
-
-const C = {
-  TEAL: '#14b8a6',
-  HEADING: '#333',
-  SUBHEADING: '#555',
-  TEXT: '#666',
-  BG: '#f8f9fa',
-  WHITE: '#fff',
-  BORDER: '#e9ecef',
-}
+import { C, sendReportAndLead } from '@/lib/email'
 
 const TIER_COLORS = {
   red: { bg: '#fef2f2', border: '#fecaca', text: '#dc2626' },
@@ -26,7 +7,16 @@ const TIER_COLORS = {
   emerald: { bg: '#ecfdf5', border: '#a7f3d0', text: '#059669' },
 }
 
-function buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories, permalink }) {
+function buildEmailHtml({
+  totalScore,
+  tierLabel,
+  tierColor,
+  recommendation,
+  nextSteps,
+  todos,
+  categories,
+  permalink,
+}) {
   const tc = TIER_COLORS[tierColor] || TIER_COLORS.teal
 
   const nextStepsHtml = nextSteps
@@ -66,16 +56,15 @@ function buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, next
         </div>`
       : ''
 
-  const categoriesHtml = categories
-    .map(
-      (cat) =>
-        `<td style="padding: 6px; text-align: center; width: 33%;">
+  const categoriesHtml = categories.map(
+    (cat) =>
+      `<td style="padding: 6px; text-align: center; width: 33%;">
           <div style="background: ${C.BG}; border-radius: 8px; padding: 10px;">
             <div style="font-size: 11px; color: #a1a1aa; text-transform: uppercase;">${cat.label}</div>
             <div style="font-size: 20px; font-weight: bold; color: ${C.HEADING};">${cat.score}<span style="font-size: 13px; color: #a1a1aa; font-weight: normal;">/3</span></div>
           </div>
         </td>`,
-    )
+  )
 
   const row1 = categoriesHtml.slice(0, 3).join('')
   const row2 = categoriesHtml.slice(3).join('')
@@ -122,58 +111,34 @@ function buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, next
 }
 
 export async function POST(request) {
-  try {
-    const { email, toolName, permalink, totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories } =
-      await request.json()
+  const {
+    email,
+    toolName,
+    permalink,
+    totalScore,
+    tierLabel,
+    tierColor,
+    recommendation,
+    nextSteps,
+    todos,
+    categories,
+  } = await request.json()
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
-    }
-
-    const r = getResend()
-
-    // Send report to the user
-    const { error } = await r.emails.send({
-      from: `Mitchell Bryson <${process.env.CONTACT_EMAIL}>`,
-      to: [email],
-      subject: `Your AI Readiness Score: ${totalScore}/18 — ${tierLabel}`,
-      html: buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories, permalink }),
-    })
-
-    if (error) {
-      console.error('Resend error (report):', error)
-      return NextResponse.json({ error: 'Failed to send report' }, { status: 500 })
-    }
-
-    // Notify Mitchell about the lead
-    await r.emails.send({
-      from: `Website <${process.env.CONTACT_EMAIL}>`,
-      to: [process.env.CONTACT_EMAIL],
-      subject: `${toolName}: new lead from ${email}`,
-      replyTo: email,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
-            New ${toolName} Lead
-          </h2>
-          <div style="background: ${C.BG}; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Tool:</strong> ${toolName}</p>
-            <p><strong>Results:</strong> <a href="${permalink}" style="color: ${C.TEAL};">${permalink}</a></p>
-          </div>
-          <p style="color: ${C.TEXT}; font-size: 14px;">Reply directly to this email to reach them.</p>
-        </div>
-      `,
-    })
-
-    return NextResponse.json({ message: 'Report sent successfully' }, { status: 200 })
-  } catch (error) {
-    console.error('API error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
+  return sendReportAndLead({
+    email,
+    toolName,
+    permalink,
+    subject: `Your AI Readiness Score: ${totalScore}/18 — ${tierLabel}`,
+    html: buildEmailHtml({
+      totalScore,
+      tierLabel,
+      tierColor,
+      recommendation,
+      nextSteps,
+      todos,
+      categories,
+      permalink,
+    }),
+    leadSummaryHtml: `<p><strong>Score:</strong> ${totalScore}/18 (${tierLabel})</p>`,
+  })
 }

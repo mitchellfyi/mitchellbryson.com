@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/Button'
 import { EmailReport } from '@/components/tools/EmailReport'
@@ -12,7 +12,10 @@ import { aiIntegrations } from '@/lib/barnsleyPages'
 // ── Integration metadata ────────────────────────────
 
 const INTEGRATION_META = Object.fromEntries(
-  aiIntegrations.map((i) => [i.slug, { title: i.title, description: i.description }]),
+  aiIntegrations.map((i) => [
+    i.slug,
+    { title: i.title, description: i.description },
+  ]),
 )
 
 const ALL_SLUGS = aiIntegrations.map((i) => i.slug)
@@ -141,7 +144,8 @@ const QUESTIONS = [
     ],
   },
   {
-    question: 'If AI could do one thing for your business tomorrow, what would it be?',
+    question:
+      'If AI could do one thing for your business tomorrow, what would it be?',
     options: [
       {
         text: 'Handle customer enquiries without my team having to respond to each one',
@@ -187,19 +191,28 @@ function getRankedResults(scores) {
     .map(([slug, score]) => ({ slug, score, ...INTEGRATION_META[slug] }))
 }
 
-
 // ── Sub-components ──────────────────────────────────
 
 function QuizResults({ scores, answers, onRestart }) {
+  const resultsRef = useRef(null)
+  useEffect(() => {
+    resultsRef.current?.focus()
+  }, [])
+
   const ranked = getRankedResults(scores)
   const primary = ranked[0]
   const alsoExplore = ranked.slice(1)
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8">
+    <div
+      ref={resultsRef}
+      tabIndex={-1}
+      aria-label="Quiz results"
+      className="mx-auto max-w-2xl space-y-8"
+    >
       {/* Primary recommendation */}
       <div className="rounded-2xl border-2 border-teal-500 bg-teal-50 p-6 dark:border-teal-400 dark:bg-teal-500/10">
-        <p className="text-xs font-semibold uppercase tracking-wide text-teal-600 dark:text-teal-400">
+        <p className="text-xs font-semibold tracking-wide text-teal-600 uppercase dark:text-teal-400">
           Recommended for your business
         </p>
         <h3 className="mt-2 text-lg font-bold text-zinc-900 dark:text-zinc-100">
@@ -209,9 +222,7 @@ function QuizResults({ scores, answers, onRestart }) {
           {primary.description}
         </p>
         <div className="mt-4">
-          <Button href={`/barnsley-ai/${primary.slug}`}>
-            Learn more
-          </Button>
+          <Button href={`/barnsley-ai/${primary.slug}`}>Learn more</Button>
         </div>
       </div>
 
@@ -282,7 +293,13 @@ function WhichAIIntegrationInner() {
 
   if (quiz.showResults) {
     const scores = computeScores(quiz.answers)
-    return <QuizResults scores={scores} answers={quiz.answers} onRestart={quiz.handleRestart} />
+    return (
+      <QuizResults
+        scores={scores}
+        answers={quiz.answers}
+        onRestart={quiz.handleRestart}
+      />
+    )
   }
 
   return (

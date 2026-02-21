@@ -1,7 +1,7 @@
 ---
 author: Mitchell Bryson
-date: "2025-02-17"
-title: "EU/UK AI compliance in 2025: mapping the ICO risk toolkit to EU AI Act deadlines for product teams"
+date: '2025-02-17'
+title: 'EU/UK AI compliance in 2025: mapping the ICO risk toolkit to EU AI Act deadlines for product teams'
 description: "What the EU AI Act requires in 2025–2027, how it lines up with the UK ICO's AI & Data Protection Risk Toolkit, and the exact outputs your team should ship."
 ---
 
@@ -13,11 +13,11 @@ The Act entered into force on **1 Aug 2024**. The key application dates for prod
 
 #### Milestones
 
-* **2 Feb 2025 - Prohibited uses & AI literacy** begin applying (e.g., untargeted scraping of facial images for recognition is banned). ([digital-strategy.ec.europa.eu][2])
-* **10 Jul 2025 - GPAI Code of Practice** published by the Commission to help providers demonstrate compliance. Participation is voluntary but influential. ([digital-strategy.ec.europa.eu][3])
-* **2 Aug 2025 - Governance + GPAI obligations** apply (documentation, transparency, copyright summaries, model evaluation for systemic-risk models). ([digital-strategy.ec.europa.eu][2], [Baker McKenzie][4])
-* **2 Aug 2026 - Full application for most systems** (risk management, data/tech docs, monitoring, incident reporting). ([digital-strategy.ec.europa.eu][2])
-* **2 Aug 2027 - Some high-risk, product-embedded systems** gain an extended transition period. ([digital-strategy.ec.europa.eu][2])
+- **2 Feb 2025 - Prohibited uses & AI literacy** begin applying (e.g., untargeted scraping of facial images for recognition is banned). ([digital-strategy.ec.europa.eu][2])
+- **10 Jul 2025 - GPAI Code of Practice** published by the Commission to help providers demonstrate compliance. Participation is voluntary but influential. ([digital-strategy.ec.europa.eu][3])
+- **2 Aug 2025 - Governance + GPAI obligations** apply (documentation, transparency, copyright summaries, model evaluation for systemic-risk models). ([digital-strategy.ec.europa.eu][2], [Baker McKenzie][4])
+- **2 Aug 2026 - Full application for most systems** (risk management, data/tech docs, monitoring, incident reporting). ([digital-strategy.ec.europa.eu][2])
+- **2 Aug 2027 - Some high-risk, product-embedded systems** gain an extended transition period. ([digital-strategy.ec.europa.eu][2])
 
 ## The UK anchor: the ICO AI & Data Protection Risk Toolkit
 
@@ -25,10 +25,10 @@ The ICO toolkit is a practical set of questions, controls, and templates aligned
 
 #### What the ICO toolkit covers (at a glance)
 
-* Governance and accountability (roles, sign-offs, audit trails). ([ICO][5])
-* Data protection impact assessments (DPIA), lawful basis, and necessity tests. ([ICO][5])
-* Training data controls (quality, bias, security) and model monitoring. ([ICO][5])
-* Transparency to users, human oversight, and redress routes. ([ICO][5])
+- Governance and accountability (roles, sign-offs, audit trails). ([ICO][5])
+- Data protection impact assessments (DPIA), lawful basis, and necessity tests. ([ICO][5])
+- Training data controls (quality, bias, security) and model monitoring. ([ICO][5])
+- Transparency to users, human oversight, and redress routes. ([ICO][5])
 
 ## Map: ICO toolkit → EU AI Act obligations
 
@@ -36,89 +36,89 @@ Use the ICO toolkit as your working checklist; add the AI Act-specific outputs n
 
 #### Governance & risk management
 
-* **ICO:** assign owners, record decisions, keep an audit trail.
-* **AI Act add-ons:** maintain a **risk-management system** per AI Act with documented hazard identification, evaluation, and mitigation; add **AI literacy** measures for staff by **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
+- **ICO:** assign owners, record decisions, keep an audit trail.
+- **AI Act add-ons:** maintain a **risk-management system** per AI Act with documented hazard identification, evaluation, and mitigation; add **AI literacy** measures for staff by **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
 
 #### DPIA and technical documentation
 
-* **ICO:** DPIA for high-risk processing; link to assets and vendors.
-* **AI Act add-ons:** keep **technical documentation** and **logs** sufficient for market surveillance authorities; ensure **traceability** of datasets and evaluation results by **Aug 2026**. ([digital-strategy.ec.europa.eu][2])
+- **ICO:** DPIA for high-risk processing; link to assets and vendors.
+- **AI Act add-ons:** keep **technical documentation** and **logs** sufficient for market surveillance authorities; ensure **traceability** of datasets and evaluation results by **Aug 2026**. ([digital-strategy.ec.europa.eu][2])
 
 #### Dataset quality, bias, and data governance
 
-* **ICO:** document sources, lawful basis, minimisation, and quality checks.
-* **AI Act add-ons:** for high-risk systems, implement **data governance and management practices** (relevance, representativeness, error handling) and **post-market monitoring** obligations. ([digital-strategy.ec.europa.eu][2])
+- **ICO:** document sources, lawful basis, minimisation, and quality checks.
+- **AI Act add-ons:** for high-risk systems, implement **data governance and management practices** (relevance, representativeness, error handling) and **post-market monitoring** obligations. ([digital-strategy.ec.europa.eu][2])
 
 #### Human oversight & transparency
 
-* **ICO:** define oversight points and user notices.
-* **AI Act add-ons:** implement **usable human-in-the-loop** controls and end-user **AI interaction disclosures** where required; align to the **prohibition list** from **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
+- **ICO:** define oversight points and user notices.
+- **AI Act add-ons:** implement **usable human-in-the-loop** controls and end-user **AI interaction disclosures** where required; align to the **prohibition list** from **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
 
 #### GPAI (foundation models) specifics
 
-* **ICO:** general risk controls still apply.
-* **AI Act add-ons:** if you **provide a GPAI model**, meet **GPAI transparency** (documentation, copyright data-summary) and, for **systemic-risk models**, perform model evaluation, adversarial testing, cybersecurity, and serious-incident reporting starting **Aug 2025**; legacy models placed pre-Aug 2025 may have until **Aug 2027**. Consider aligning with the **GPAI Code of Practice (Jul 2025)**. ([digital-strategy.ec.europa.eu][2], [EY][6])
+- **ICO:** general risk controls still apply.
+- **AI Act add-ons:** if you **provide a GPAI model**, meet **GPAI transparency** (documentation, copyright data-summary) and, for **systemic-risk models**, perform model evaluation, adversarial testing, cybersecurity, and serious-incident reporting starting **Aug 2025**; legacy models placed pre-Aug 2025 may have until **Aug 2027**. Consider aligning with the **GPAI Code of Practice (Jul 2025)**. ([digital-strategy.ec.europa.eu][2], [EY][6])
 
 ## Ship list: concrete outputs product teams should produce
 
 #### Core documents
 
-* **AI System Register** (purpose, users, data, risks, owners, deployment status).
-* **Risk-Management File** (hazards, mitigations, residual risk, sign-offs).
-* **Technical Documentation** (architecture, data lineage, metrics, evals, logs).
-* **DPIA** + UK/EU privacy notices keyed to specific features. ([ICO][5])
+- **AI System Register** (purpose, users, data, risks, owners, deployment status).
+- **Risk-Management File** (hazards, mitigations, residual risk, sign-offs).
+- **Technical Documentation** (architecture, data lineage, metrics, evals, logs).
+- **DPIA** + UK/EU privacy notices keyed to specific features. ([ICO][5])
 
 #### Operational controls
 
-* **Human oversight SOPs** (when to intervene, rollback, or escalate).
-* **Post-market monitoring plan** (alerts, incident criteria, reporting channel).
-* **Evaluation harness** (accuracy, bias, robustness, drift; release gates). ([digital-strategy.ec.europa.eu][2])
+- **Human oversight SOPs** (when to intervene, rollback, or escalate).
+- **Post-market monitoring plan** (alerts, incident criteria, reporting channel).
+- **Evaluation harness** (accuracy, bias, robustness, drift; release gates). ([digital-strategy.ec.europa.eu][2])
 
 #### For GPAI providers or heavy users
 
-* **Training-data summary** for copyright transparency.
-* **Security & testing plan** for systemic-risk models (red-team/adversarial tests).
-* **Participation decision** on the **GPAI Code of Practice** (document rationale). ([digital-strategy.ec.europa.eu][3])
+- **Training-data summary** for copyright transparency.
+- **Security & testing plan** for systemic-risk models (red-team/adversarial tests).
+- **Participation decision** on the **GPAI Code of Practice** (document rationale). ([digital-strategy.ec.europa.eu][3])
 
 ## 90-day backlog (sequenced)
 
 #### Days 0–15
 
-* Inventory AI use cases; classify risk; identify any **prohibited** candidates; assign product owners. ([digital-strategy.ec.europa.eu][2])
+- Inventory AI use cases; classify risk; identify any **prohibited** candidates; assign product owners. ([digital-strategy.ec.europa.eu][2])
 
 #### Days 16–45
 
-* Complete DPIAs; draft system registers; define human oversight and rollback SOPs.
+- Complete DPIAs; draft system registers; define human oversight and rollback SOPs.
 
 #### Days 46–75
 
-* Stand up evaluation and logging; start post-market monitoring; capture AI literacy activities. ([digital-strategy.ec.europa.eu][2])
+- Stand up evaluation and logging; start post-market monitoring; capture AI literacy activities. ([digital-strategy.ec.europa.eu][2])
 
 #### Days 76–90
 
-* Finalise technical docs; run a release-gate dry-run; prepare incident templates.
+- Finalise technical docs; run a release-gate dry-run; prepare incident templates.
 
 ## Common traps to avoid
 
 #### Treating UK and EU as separate builds
 
-* You can often meet both by using the ICO toolkit as the **operational** backbone and layering AI Act-specific documentation and timing on top. ([ICO][5])
+- You can often meet both by using the ICO toolkit as the **operational** backbone and layering AI Act-specific documentation and timing on top. ([ICO][5])
 
 #### Ignoring GPAI dependencies
 
-* Even if you don't **provide** a GPAI model, your vendors do. Track their **Aug 2025** posture and Code-of-Practice participation. ([digital-strategy.ec.europa.eu][3], [Baker McKenzie][4])
+- Even if you don't **provide** a GPAI model, your vendors do. Track their **Aug 2025** posture and Code-of-Practice participation. ([digital-strategy.ec.europa.eu][3], [Baker McKenzie][4])
 
 #### Waiting for standards to "finish"
 
-* Most obligations apply **before** all standards are final. Ship the docs and controls now; retrofit to future standards where needed. ([digital-strategy.ec.europa.eu][2])
+- Most obligations apply **before** all standards are final. Ship the docs and controls now; retrofit to future standards where needed. ([digital-strategy.ec.europa.eu][2])
 
 ---
 
-*This article is operational guidance for product teams, not legal advice. Source dates and obligations are taken from European Commission materials and the ICO's published toolkit and overview pages; verify applicability to your organisation and model types.* ([digital-strategy.ec.europa.eu][2], [European Commission][1], [ICO][5])
+_This article is operational guidance for product teams, not legal advice. Source dates and obligations are taken from European Commission materials and the ICO's published toolkit and overview pages; verify applicability to your organisation and model types._ ([digital-strategy.ec.europa.eu][2], [European Commission][1], [ICO][5])
 
-[1]: https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en?utm_source=chatgpt.com "AI Act enters into force - European Commission"
+[1]: https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en?utm_source=chatgpt.com 'AI Act enters into force - European Commission'
 [2]: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai?utm_source=chatgpt.com "AI Act | Shaping Europe's digital future - European Union"
-[3]: https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai?utm_source=chatgpt.com "The General-Purpose AI Code of Practice"
-[4]: https://www.bakermckenzie.com/en/insight/publications/2025/08/general-purpose-ai-obligations?utm_source=chatgpt.com "General-purpose AI Obligations Under the EU AI Act Kick ..."
-[5]: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/guidance-on-ai-and-data-protection/ai-and-data-protection-risk-toolkit/?utm_source=chatgpt.com "AI and data protection risk toolkit | ICO"
-[6]: https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/public-policy/documents/ey-gl-eu-ai-act-07-2024.pdf?utm_source=chatgpt.com "The European Union Artificial Intelligence Act"
+[3]: https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai?utm_source=chatgpt.com 'The General-Purpose AI Code of Practice'
+[4]: https://www.bakermckenzie.com/en/insight/publications/2025/08/general-purpose-ai-obligations?utm_source=chatgpt.com 'General-purpose AI Obligations Under the EU AI Act Kick ...'
+[5]: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/guidance-on-ai-and-data-protection/ai-and-data-protection-risk-toolkit/?utm_source=chatgpt.com 'AI and data protection risk toolkit | ICO'
+[6]: https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/insights/public-policy/documents/ey-gl-eu-ai-act-07-2024.pdf?utm_source=chatgpt.com 'The European Union Artificial Intelligence Act'

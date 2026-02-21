@@ -9,10 +9,13 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest",
+    "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "validate": "npm run format && npm run lint:fix && npm run test:ci && npm run build"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

@@ -26,7 +26,10 @@ export default function BarnsleyIntegrationTypesPage() {
         items={[
           { name: 'Home', url: siteUrl },
           { name: 'AI in Barnsley', url: `${siteUrl}/barnsley-ai` },
-          { name: 'Types of AI Integrations', url: `${siteUrl}/barnsley-ai/integration-types` },
+          {
+            name: 'Types of AI Integrations',
+            url: `${siteUrl}/barnsley-ai/integration-types`,
+          },
         ]}
       />
       <SimpleLayout

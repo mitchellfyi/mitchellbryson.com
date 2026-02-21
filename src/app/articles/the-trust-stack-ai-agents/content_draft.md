@@ -11,6 +11,7 @@ today agent deployments treat trust as inherited
 your agent speaks with your authority draws on your credit binds you legally
 works when agents are extensions of human intent like really good email client
 breaks when:
+
 - agents negotiate with other agents whose principal do you trust
 - agents operate semi-autonomously with budget authority
 - agents interact with third parties who need to verify capabilities
@@ -27,6 +28,7 @@ each layer requires different primitives
 layer 1 identity
 
 agent needs stable verifiable identity that answers:
+
 - who operates this agent
 - what can it do
 - what constraints is it under
@@ -41,6 +43,7 @@ capability attestations describe what agent can do verified by third parties
 like professional certifications
 this agent passed evals for contract negotiation in saas procurement domain with 94% accuracy score attested by evaluator
 capabilities include:
+
 - domain competence legal financial technical
 - safety certifications guardrails verified by auditor
 - budget authority levels
@@ -147,6 +150,7 @@ compensating for uncertainty with skin in game
 implementation notes
 
 building blocks exist:
+
 - decentralised identity standards DIDs verifiable credentials can represent agent identity and attestations
 - cryptographic signatures can bind agents to principals verify attestations
 - smart contracts can hold bonds execute slashing conditions
@@ -160,6 +164,7 @@ someone needs to propose minimal viable trust stack and get adoption
 what this enables
 
 with trust infrastructure agents can:
+
 - transact across organisational boundaries without pre-existing relationships
 - build reputation over time that follows them across platforms
 - operate with proportional autonomy more trust more authority

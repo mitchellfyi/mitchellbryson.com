@@ -1,8 +1,8 @@
 ---
 author: Mitchell Bryson
-date: "2025-07-14"
-title: "Margin protection with AI: live pricing rules, invoice QA, and anomaly alerts for e-commerce"
-description: "A practical playbook to protect gross margin in e-commerce using rule-based pricing, automated invoice checks, and anomaly detection with clear audit trails."
+date: '2025-07-14'
+title: 'Margin protection with AI: live pricing rules, invoice QA, and anomaly alerts for e-commerce'
+description: 'A practical playbook to protect gross margin in e-commerce using rule-based pricing, automated invoice checks, and anomaly detection with clear audit trails.'
 ---
 
 AI is useful when it ties directly to money. This playbook covers three systems that usually pay for themselves fast: live pricing rules, invoice QA, and anomaly alerts. Each section includes defaults, implementation notes, and an operator checklist that real teams can run.
@@ -11,9 +11,9 @@ AI is useful when it ties directly to money. This playbook covers three systems 
 
 #### Defaults that work
 
-* Start with rules, not reinforcement learning: formula-based prices with guardrails and a human override lane.
-* Automate invoice checks against POs and price lists before posting to the ledger; escalate with evidence.
-* Alert on margin deltas, cost drift, and conversion anomalies using robust baselines; page a human only when action is clear.
+- Start with rules, not reinforcement learning: formula-based prices with guardrails and a human override lane.
+- Automate invoice checks against POs and price lists before posting to the ledger; escalate with evidence.
+- Alert on margin deltas, cost drift, and conversion anomalies using robust baselines; page a human only when action is clear.
 
 ---
 
@@ -23,9 +23,9 @@ Dynamic pricing is a rules engine plus clean data. Keep the model simple, audita
 
 #### What goes into the price
 
-* Base cost (landed), competitor index, inventory position, delivery SLA, and customer segment.
-* Floors and ceilings: min gross margin %, max price delta vs. RRP, and max daily change %.
-* Exceptions: VIP accounts, MAP policies, and clearance flags.
+- Base cost (landed), competitor index, inventory position, delivery SLA, and customer segment.
+- Floors and ceilings: min gross margin %, max price delta vs. RRP, and max daily change %.
+- Exceptions: VIP accounts, MAP policies, and clearance flags.
 
 ```sql
 -- Example: computed sell price with guardrails
@@ -56,9 +56,9 @@ FROM inputs;
 
 #### Controls to add before you ship
 
-* Price smoothing (cap absolute and relative daily changes).
-* Canary rollout (e.g., 10% of traffic) with automatic rollback on conversion or margin regressions.
-* Full audit log: inputs, rule version, previous price, new price, author.
+- Price smoothing (cap absolute and relative daily changes).
+- Canary rollout (e.g., 10% of traffic) with automatic rollback on conversion or margin regressions.
+- Full audit log: inputs, rule version, previous price, new price, author.
 
 ```python
 # Pseudocode: guardrail + rollback hook
@@ -78,10 +78,10 @@ Accounts Payable is where leakage hides. Automate the checks and hand humans a c
 
 #### What to check on every invoice
 
-* Price variance vs. PO/contract (unit price and discount leakage).
-* Quantity variance vs. GRN or shipped quantity.
-* Duplicate detection (same supplier, amount, date, PO; fuzzy on invoice no.).
-* VAT/Tax mismatches and currency conversions.
+- Price variance vs. PO/contract (unit price and discount leakage).
+- Quantity variance vs. GRN or shipped quantity.
+- Duplicate detection (same supplier, amount, date, PO; fuzzy on invoice no.).
+- VAT/Tax mismatches and currency conversions.
 
 ```sql
 -- Example checks
@@ -99,10 +99,10 @@ WHERE ABS(l.unit_price - p.unit_price) > 0.01
 
 #### Workflow that keeps finance in control
 
-* Extract header + lines (PDF → structured data).
-* Diff against PO/price list; compute variance and expected VAT.
-* If beyond tolerance, open a ticket with: PDF, parsed JSON, diff table, supplier contact, and a suggested resolution.
-* Require two-click approve/deny with a reason code; post the decision to the ledger.
+- Extract header + lines (PDF → structured data).
+- Diff against PO/price list; compute variance and expected VAT.
+- If beyond tolerance, open a ticket with: PDF, parsed JSON, diff table, supplier contact, and a suggested resolution.
+- Require two-click approve/deny with a reason code; post the decision to the ledger.
 
 ---
 
@@ -112,10 +112,10 @@ Alert fatigue is real. Use robust baselines and route only actionable events.
 
 #### Signals worth alerting on
 
-* Product-level gross margin % or COGS per unit spikes.
-* Supplier cost drift > X% week-over-week.
-* Conversion-rate dips after a price change (by segment or channel).
-* Promo and coupon abuse patterns.
+- Product-level gross margin % or COGS per unit spikes.
+- Supplier cost drift > X% week-over-week.
+- Conversion-rate dips after a price change (by segment or channel).
+- Promo and coupon abuse patterns.
 
 ```python
 # Robust z-score over rolling median/IQR
@@ -132,9 +132,9 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Routing rules that reduce noise
 
-* Page ops only if the alert links directly to a reversible action (e.g., revert price, block supplier, pause promo).
-* Bundle low-severity alerts into a daily digest with links to pre-filtered dashboards.
-* Auto-close if the metric returns to normal in N hours.
+- Page ops only if the alert links directly to a reversible action (e.g., revert price, block supplier, pause promo).
+- Bundle low-severity alerts into a daily digest with links to pre-filtered dashboards.
+- Auto-close if the metric returns to normal in N hours.
 
 ---
 
@@ -142,10 +142,10 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Panels to include
 
-* Price changes today: count, avg delta, SKUs with guardrail hits.
-* Margin waterfall: price → discount → shipping → COGS → fees → net margin.
-* AP queue: invoices flagged, estimated savings, oldest SLA.
-* Anomalies: open incidents, owner, ETA to resolution, rollback buttons.
+- Price changes today: count, avg delta, SKUs with guardrail hits.
+- Margin waterfall: price → discount → shipping → COGS → fees → net margin.
+- AP queue: invoices flagged, estimated savings, oldest SLA.
+- Anomalies: open incidents, owner, ETA to resolution, rollback buttons.
 
 ---
 
@@ -153,10 +153,10 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Minimal tables
 
-* `pricing_inputs(sku, cost_landed, competitor_price, inventory_days, segment, rrp, collected_at)`
-* `prices(sku, price, rule_version, changed_at, author, reason)`
-* `ap_invoices` + `ap_invoice_lines` + `potential_duplicates`
-* `alerts(alert_id, type, subject_id, severity, status, opened_at, closed_at)`
+- `pricing_inputs(sku, cost_landed, competitor_price, inventory_days, segment, rrp, collected_at)`
+- `prices(sku, price, rule_version, changed_at, author, reason)`
+- `ap_invoices` + `ap_invoice_lines` + `potential_duplicates`
+- `alerts(alert_id, type, subject_id, severity, status, opened_at, closed_at)`
 
 ---
 
@@ -164,19 +164,19 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Days 0–15
 
-* Wire data sources (costs, competitors, inventory, orders). Define guardrails and approval workflow.
+- Wire data sources (costs, competitors, inventory, orders). Define guardrails and approval workflow.
 
 #### Days 16–45
 
-* Ship pricing rules to canary cohort. Stand up invoice QA with read-only posting and ticket creation.
+- Ship pricing rules to canary cohort. Stand up invoice QA with read-only posting and ticket creation.
 
 #### Days 46–75
 
-* Add anomaly alerts with robust baselines. Start daily finance/ops standup using the dashboard.
+- Add anomaly alerts with robust baselines. Start daily finance/ops standup using the dashboard.
 
 #### Days 76–90
 
-* Expand pricing coverage to 100%. Turn on AP auto-post for invoices within tolerance. Tune alerts and SLAs.
+- Expand pricing coverage to 100%. Turn on AP auto-post for invoices within tolerance. Tune alerts and SLAs.
 
 ---
 
@@ -184,10 +184,10 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### KPIs that show this is working
 
-* Gross margin % and £ by day and by cohort (before/after rule rollout).
-* Overcharge £ detected per week and duplicate invoices blocked.
-* Time-to-detect and time-to-rollback for pricing mistakes.
-* Alert precision (actionable / total) and average handle time.
+- Gross margin % and £ by day and by cohort (before/after rule rollout).
+- Overcharge £ detected per week and duplicate invoices blocked.
+- Time-to-detect and time-to-rollback for pricing mistakes.
+- Alert precision (actionable / total) and average handle time.
 
 ---
 
@@ -195,6 +195,6 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Pragmatic choices
 
-* Prefer deterministic rules first; add ML later for elasticity or demand forecasting.
-* Keep every decision auditable: inputs, rule version, and human approvals.
-* Make rollback a first-class action across pricing and promotions.
+- Prefer deterministic rules first; add ML later for elasticity or demand forecasting.
+- Keep every decision auditable: inputs, rule version, and human approvals.
+- Make rollback a first-class action across pricing and promotions.

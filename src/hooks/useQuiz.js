@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { encodeAnswers, decodeAnswers } from '@/lib/quizHelpers'
 
@@ -30,13 +30,21 @@ export function useQuiz(questionCount) {
     }
   }, [showResults, answers, questionCount])
 
+  const currentQuestionRef = useRef(currentQuestion)
+  useEffect(() => {
+    currentQuestionRef.current = currentQuestion
+  }, [currentQuestion])
+
   const selectedOption = answers[currentQuestion]
   const isLastQuestion = currentQuestion === questionCount - 1
 
   function handleSelect(optionIndex) {
-    setAnswers((prev) => ({ ...prev, [currentQuestion]: optionIndex }))
+    setAnswers((prev) => ({
+      ...prev,
+      [currentQuestionRef.current]: optionIndex,
+    }))
     setTimeout(() => {
-      if (currentQuestion === questionCount - 1) {
+      if (currentQuestionRef.current === questionCount - 1) {
         setShowResults(true)
       } else {
         setCurrentQuestion((prev) => prev + 1)

@@ -53,6 +53,3 @@ Compact playbook
 - Set stop/go rules before starting. Cost ceiling, timebox, minimum response
 - Change one thing at a time. Measure the delta. Keep what moves the metric
 - Archive failures with a note on what to try next. Move on quickly
-
-
-

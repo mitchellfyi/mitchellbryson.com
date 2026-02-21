@@ -6,7 +6,7 @@ export function ContactCTA({
   description = 'I help businesses across South Yorkshire and beyond integrate AI into their workflows. Get in touch to talk through your specific situation.',
 }) {
   return (
-    <div className="mt-24 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 dark:border-zinc-700/40 dark:bg-zinc-800/50 sm:p-8">
+    <div className="mt-24 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 sm:p-8 dark:border-zinc-700/40 dark:bg-zinc-800/50">
       <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
         {heading}
       </h3>

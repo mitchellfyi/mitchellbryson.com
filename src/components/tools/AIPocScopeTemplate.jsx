@@ -16,13 +16,15 @@ const STEPS = [
     key: 'problem',
     label: 'Problem statement',
     type: 'textarea',
-    placeholder: 'What manual process or bottleneck are you trying to solve? Describe the current pain point in a few sentences.',
+    placeholder:
+      'What manual process or bottleneck are you trying to solve? Describe the current pain point in a few sentences.',
   },
   {
     key: 'metric',
     label: 'Success metric',
     type: 'textarea',
-    placeholder: 'How will you measure whether the PoC is successful? e.g. "Reduce processing time from 4 hours to 30 minutes"',
+    placeholder:
+      'How will you measure whether the PoC is successful? e.g. "Reduce processing time from 4 hours to 30 minutes"',
   },
   {
     key: 'dataSource',
@@ -52,7 +54,12 @@ const STEPS = [
     key: 'budget',
     label: 'Budget range',
     type: 'options',
-    options: ['Under \u00a35k', '\u00a35\u201310k', '\u00a310\u201325k', '\u00a325k+'],
+    options: [
+      'Under \u00a35k',
+      '\u00a35\u201310k',
+      '\u00a310\u201325k',
+      '\u00a325k+',
+    ],
   },
 ]
 
@@ -64,31 +71,49 @@ function getChecklist(values) {
   // Data source advice
   const ds = values.dataSource
   if (ds === 4) {
-    items.push('Identify what data you need and start collecting it now — data is usually the longest lead time in an AI project')
+    items.push(
+      'Identify what data you need and start collecting it now — data is usually the longest lead time in an AI project',
+    )
   } else if (ds === 1) {
-    items.push('Audit your documents for quality and consistency — messy data leads to unreliable AI output')
+    items.push(
+      'Audit your documents for quality and consistency — messy data leads to unreliable AI output',
+    )
   } else if (ds === 2) {
-    items.push('Confirm API access and rate limits for your third-party data sources before building')
+    items.push(
+      'Confirm API access and rate limits for your third-party data sources before building',
+    )
   } else {
-    items.push('Verify your data source is accessible programmatically and check for any privacy or compliance requirements')
+    items.push(
+      'Verify your data source is accessible programmatically and check for any privacy or compliance requirements',
+    )
   }
 
   // Timeline advice
   const tl = values.timeline
   if (tl === 0) {
-    items.push('With a 2-week timeline, focus on a single use case and use pre-built APIs rather than custom models')
+    items.push(
+      'With a 2-week timeline, focus on a single use case and use pre-built APIs rather than custom models',
+    )
   } else if (tl === 3) {
-    items.push('Use the first 2 weeks to validate the approach with a throwaway prototype before committing to the full build')
+    items.push(
+      'Use the first 2 weeks to validate the approach with a throwaway prototype before committing to the full build',
+    )
   } else {
-    items.push('Set a mid-point checkpoint to evaluate accuracy and decide whether to continue, pivot, or stop')
+    items.push(
+      'Set a mid-point checkpoint to evaluate accuracy and decide whether to continue, pivot, or stop',
+    )
   }
 
   // Budget and tech advice
   const budget = values.budget
   if (budget === 0) {
-    items.push('Stick to API-based models to avoid infrastructure costs — open-source models need GPU hosting which adds up fast')
+    items.push(
+      'Stick to API-based models to avoid infrastructure costs — open-source models need GPU hosting which adds up fast',
+    )
   } else {
-    items.push('Define a clear success metric now so you know exactly when the PoC is "done" and ready for a go/no-go decision')
+    items.push(
+      'Define a clear success metric now so you know exactly when the PoC is "done" and ready for a go/no-go decision',
+    )
   }
 
   return items.slice(0, 3)
@@ -116,7 +141,8 @@ function encodeState(values) {
   const url = new URL(window.location.pathname, window.location.origin)
   if (values.problem) url.searchParams.set('p', encodeText(values.problem))
   if (values.metric) url.searchParams.set('m', encodeText(values.metric))
-  if (values.dataSource !== undefined) url.searchParams.set('d', values.dataSource)
+  if (values.dataSource !== undefined)
+    url.searchParams.set('d', values.dataSource)
   if (values.timeline !== undefined) url.searchParams.set('t', values.timeline)
   if (values.techPref !== undefined) url.searchParams.set('k', values.techPref)
   if (values.budget !== undefined) url.searchParams.set('b', values.budget)
@@ -168,7 +194,8 @@ function ScopeResults({ values, onRestart }) {
 
   function getCopyText() {
     return STEPS.map(
-      (step) => `## ${stepLabels[step.key]}\n${getDisplayValue(step.key, values[step.key])}`,
+      (step) =>
+        `## ${stepLabels[step.key]}\n${getDisplayValue(step.key, values[step.key])}`,
     ).join('\n\n')
   }
 
@@ -183,14 +210,14 @@ function ScopeResults({ values, onRestart }) {
   return (
     <div className="mx-auto max-w-2xl space-y-8">
       <div className="rounded-2xl border-2 border-teal-500 bg-teal-50 p-6 dark:border-teal-400 dark:bg-teal-500/10">
-        <p className="text-xs font-semibold uppercase tracking-wide text-teal-600 dark:text-teal-400">
+        <p className="text-xs font-semibold tracking-wide text-teal-600 uppercase dark:text-teal-400">
           Your AI PoC scope document
         </p>
 
         <div className="mt-4 space-y-5">
           {STEPS.map((step) => (
             <div key={step.key}>
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
                 {stepLabels[step.key]}
               </h4>
               <p className="mt-1 text-sm leading-relaxed text-zinc-900 dark:text-zinc-100">
@@ -371,9 +398,9 @@ function AIPocScopeTemplateInner() {
                 onChange={(e) => setTextValue(e.target.value)}
                 className={clsx(
                   'w-full rounded-xl border p-4 text-sm leading-relaxed',
-                  'outline-none focus:ring-4 focus:ring-teal-500/10 focus:border-teal-500',
+                  'outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10',
                   'border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-400',
-                  'dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:border-teal-400',
+                  'dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10',
                 )}
               />
             </div>

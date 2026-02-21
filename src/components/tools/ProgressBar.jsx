@@ -1,5 +1,3 @@
-import clsx from 'clsx'
-
 export function ProgressBar({ current, total, label = 'Question' }) {
   return (
     <div className="space-y-2">

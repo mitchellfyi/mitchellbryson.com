@@ -17,6 +17,7 @@ Before writing code, follow these principles:
 ## Quality Gates
 
 All code must pass before commit:
+
 - Linting passes
 - Type checking passes (if applicable)
 - Tests pass
@@ -31,6 +32,7 @@ Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`
 ## Configuration
 
 See `PROJECT.md` for:
+
 - Project metadata
 - Quality gate commands
 - Agent settings

@@ -1,20 +1,20 @@
 ---
 author: Mitchell Bryson
-date: "2025-05-05"
-title: "RAG data quality at scale: deduplication, semantic chunking, and hybrid retrieval that actually improves answers"
-description: "A practical pipeline for high-quality Retrieval-Augmented Generation: remove duplicates, split semantically, fuse lexical + dense search, rerank, and measure."
+date: '2025-05-05'
+title: 'RAG data quality at scale: deduplication, semantic chunking, and hybrid retrieval that actually improves answers'
+description: 'A practical pipeline for high-quality Retrieval-Augmented Generation: remove duplicates, split semantically, fuse lexical + dense search, rerank, and measure.'
 ---
 
 RAG quality is mostly a data problem. Below is a production-oriented pipeline that consistently improves answer accuracy and reduces hallucinations: (1) deduplicate aggressively, (2) split on meaning not characters, (3) use hybrid retrieval (lexical + dense) with fusion, (4) rerank and diversify at query-time, and (5) evaluate with objective metrics before shipping. Evidence and defaults are included throughout. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2], [Weaviate][3])
 
 ## TL;DR (defaults that work)
 
-* **Dedup:** MinHash/SimHash n-gram shingles; keep canonical; cluster near-dupes.
-* **Chunking:** sentence-aware with semantic merge; \~300–500 tokens; small overlap. ([python.langchain.com][4], [docs.cohere.com][5])
-* **Retrieval:** BM25 + dense embeddings with **RRF** fusion or score blending. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
-* **Rerank & diversify:** cross-encoder (e.g., Cohere Rerank / MS MARCO models) + **MMR** to reduce redundancy. ([docs.cohere.com][6], [Sentence Transformers][7], [Elastic][8])
-* **Store:** Postgres + `pgvector` (HNSW for recall/speed; IVFFlat for lower memory). ([GitHub][9], [cloudberry.apache.org][10], [Severalnines][11])
-* **Evaluate:** Ragas (faithfulness, answer relevancy) on a fixed eval set; gate deployments on retrieval precision and groundedness. ([docs.ragas.io][12], [Langfuse][13])
+- **Dedup:** MinHash/SimHash n-gram shingles; keep canonical; cluster near-dupes.
+- **Chunking:** sentence-aware with semantic merge; \~300–500 tokens; small overlap. ([python.langchain.com][4], [docs.cohere.com][5])
+- **Retrieval:** BM25 + dense embeddings with **RRF** fusion or score blending. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
+- **Rerank & diversify:** cross-encoder (e.g., Cohere Rerank / MS MARCO models) + **MMR** to reduce redundancy. ([docs.cohere.com][6], [Sentence Transformers][7], [Elastic][8])
+- **Store:** Postgres + `pgvector` (HNSW for recall/speed; IVFFlat for lower memory). ([GitHub][9], [cloudberry.apache.org][10], [Severalnines][11])
+- **Evaluate:** Ragas (faithfulness, answer relevancy) on a fixed eval set; gate deployments on retrieval precision and groundedness. ([docs.ragas.io][12], [Langfuse][13])
 
 ---
 
@@ -24,10 +24,10 @@ Duplicate and near-duplicate documents distort embeddings and retrieval - especi
 
 #### **What to implement**
 
-* Normalise (lowercase, Unicode NFKC), strip boilerplate/nav.
-* Shingle into 3–5-gram tokens; compute MinHash signatures; LSH into buckets; cluster by Jaccard similarity; optionally validate with SimHash Hamming distance. ([arXiv][14])
-* Keep one canonical item per cluster (freshest; richest metadata).
-* Persist `duplicate_cluster_id` so you can suppress duplicates at query-time.
+- Normalise (lowercase, Unicode NFKC), strip boilerplate/nav.
+- Shingle into 3–5-gram tokens; compute MinHash signatures; LSH into buckets; cluster by Jaccard similarity; optionally validate with SimHash Hamming distance. ([arXiv][14])
+- Keep one canonical item per cluster (freshest; richest metadata).
+- Persist `duplicate_cluster_id` so you can suppress duplicates at query-time.
 
 **Why this matters**
 Google's dedup work on C4 and related corpora shows removing near-dupes reduces verbatim copying and improves efficiency - evidence that duplicates harm model behaviour and evaluation. The same logic holds for RAG stores. ([ACL Anthology][15])
@@ -62,9 +62,9 @@ Chunking drives retrieval hit-rate. Prefer **semantic chunkers** that split by s
 
 ```ts
 // Pseudocode: semantic chunking with fallback
-const sentences = toSentences(cleanText);
-const groups = groupBySemanticSimilarity(sentences, {window: 3, sim=0.75});
-const chunks = mergeAdjacent(groups, {maxTokens: 450, overlapTokens: 40});
+const sentences = toSentences(cleanText)
+const groups = groupBySemanticSimilarity(sentences, { window: 3, sim = 0.75 })
+const chunks = mergeAdjacent(groups, { maxTokens: 450, overlapTokens: 40 })
 ```
 
 **Rule of thumb**
@@ -78,8 +78,8 @@ Lexical and dense retrieval fail in different ways. **Hybrid retrieval** combine
 
 #### Implementation options:
 
-* **Parallel BM25 + vector search**, then **RRF** to combine ranked lists. Many vector DBs and frameworks document this pattern. ([Weaviate][3])
-* In LlamaIndex, `QueryFusionRetriever` improves hybrid ranking over naive score mixing. ([LlamaIndex][16])
+- **Parallel BM25 + vector search**, then **RRF** to combine ranked lists. Many vector DBs and frameworks document this pattern. ([Weaviate][3])
+- In LlamaIndex, `QueryFusionRetriever` improves hybrid ranking over naive score mixing. ([LlamaIndex][16])
 
 ```python
 # Pseudocode: RRF on two ranked lists
@@ -100,8 +100,8 @@ If you're staying in Postgres, use **`pgvector`** with **HNSW** for best speed-r
 
 Even good hybrid retrieval returns redundant or borderline contexts.
 
-* **Cross-encoder rerankers** (e.g., Cohere Rerank or MS MARCO cross-encoders) score each candidate chunk with the query and push the truly relevant ones to the top. This reliably increases precision\@k. ([docs.cohere.com][6], [Sentence Transformers][7])
-* **MMR (Maximal Marginal Relevance)** adds **diversity** by penalising near-duplicates among the selected chunks, which reduces wasted context budget. ([Elastic][8])
+- **Cross-encoder rerankers** (e.g., Cohere Rerank or MS MARCO cross-encoders) score each candidate chunk with the query and push the truly relevant ones to the top. This reliably increases precision\@k. ([docs.cohere.com][6], [Sentence Transformers][7])
+- **MMR (Maximal Marginal Relevance)** adds **diversity** by penalising near-duplicates among the selected chunks, which reduces wasted context budget. ([Elastic][8])
 
 ```python
 # After hybrid retrieval -> top_k=40
@@ -116,8 +116,8 @@ final_ctx = mmr_diversify(query, reranked, k=6, lambda_=0.5)  # diversity
 
 Adopt a small, fixed **eval set** of realistic questions. Measure:
 
-* **Retrieval**: precision/recall\@k on gold passages; or reference-free retrieval quality.
-* **Answer**: faithfulness (groundedness), answer relevancy, and context precision - **Ragas** provides these out of the box and integrates cleanly with tracing. Use it to gate releases. ([docs.ragas.io][12], [Langfuse][13])
+- **Retrieval**: precision/recall\@k on gold passages; or reference-free retrieval quality.
+- **Answer**: faithfulness (groundedness), answer relevancy, and context precision - **Ragas** provides these out of the box and integrates cleanly with tracing. Use it to gate releases. ([docs.ragas.io][12], [Langfuse][13])
 
 ---
 
@@ -142,47 +142,53 @@ flowchart LR
 ## Operational checklist
 
 #### **Ingestion**
-  * Canonicalise URLs/IDs; store `duplicate_cluster_id`.
-  * Blocklists for boilerplate (nav, cookie banners).
+
+- Canonicalise URLs/IDs; store `duplicate_cluster_id`.
+- Blocklists for boilerplate (nav, cookie banners).
 
 #### **Chunking**
-  * Use sentence boundaries + semantic merge; verify average tokens/chunk and overlap. ([python.langchain.com][4])
+
+- Use sentence boundaries + semantic merge; verify average tokens/chunk and overlap. ([python.langchain.com][4])
 
 #### **Retrieval**
-  * Run **BM25 + dense** in parallel; fuse with **RRF**; log per-query which channel won. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
+
+- Run **BM25 + dense** in parallel; fuse with **RRF**; log per-query which channel won. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
 
 #### **Rerank**
-  * Cross-encoder rerank to 8–16 items; **MMR** to 4–8 final contexts. ([docs.cohere.com][6], [Elastic][8])
+
+- Cross-encoder rerank to 8–16 items; **MMR** to 4–8 final contexts. ([docs.cohere.com][6], [Elastic][8])
 
 #### **Store**
-  * `pgvector` index selection: start with **HNSW**; fall back to **IVFFlat** if memory/build time bite. ([GitHub][9], [cloudberry.apache.org][10])
+
+- `pgvector` index selection: start with **HNSW**; fall back to **IVFFlat** if memory/build time bite. ([GitHub][9], [cloudberry.apache.org][10])
 
 #### **Evaluate**
-  * Automate **Ragas** on a nightly sample; block deploys if faithfulness drops >X% or cost/answer rises >Y%. ([docs.ragas.io][12])
+
+- Automate **Ragas** on a nightly sample; block deploys if faithfulness drops >X% or cost/answer rises >Y%. ([docs.ragas.io][12])
 
 ---
 
 ## Notes & sources
 
-* **BM25 remains a strong baseline;** hybrid and late-interaction models often win when fused well (BEIR). ([NeurIPS Datasets Benchmarks Proceedings][1])
-* **RRF** is a simple, robust fusion algorithm with strong evidence across IR literature and is widely used in hybrid search systems. ([G. V. Cormack][2])
-* **Semantic chunking** via sentence grouping + embedding-space similarity is supported in mainstream tooling. ([python.langchain.com][4])
-* **Postgres `pgvector`**: HNSW vs IVFFlat trade-offs are documented by maintainers and major guides. ([GitHub][9], [Severalnines][11])
-* **Rerankers & MMR** (diversity) improve precision and reduce redundancy in the final context window. ([docs.cohere.com][6], [Sentence Transformers][7], [Elastic][8])
+- **BM25 remains a strong baseline;** hybrid and late-interaction models often win when fused well (BEIR). ([NeurIPS Datasets Benchmarks Proceedings][1])
+- **RRF** is a simple, robust fusion algorithm with strong evidence across IR literature and is widely used in hybrid search systems. ([G. V. Cormack][2])
+- **Semantic chunking** via sentence grouping + embedding-space similarity is supported in mainstream tooling. ([python.langchain.com][4])
+- **Postgres `pgvector`**: HNSW vs IVFFlat trade-offs are documented by maintainers and major guides. ([GitHub][9], [Severalnines][11])
+- **Rerankers & MMR** (diversity) improve precision and reduce redundancy in the final context window. ([docs.cohere.com][6], [Sentence Transformers][7], [Elastic][8])
 
-[1]: https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf?utm_source=chatgpt.com "BEIR: A Heterogeneous Benchmark for Zero-shot ..."
-[2]: https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf?utm_source=chatgpt.com "Reciprocal Rank Fusion outperforms Condorcet and ..."
-[3]: https://weaviate.io/blog/hybrid-search-explained?utm_source=chatgpt.com "Hybrid Search Explained"
-[4]: https://python.langchain.com/docs/how_to/semantic-chunker/?utm_source=chatgpt.com "How to split text based on semantic similarity"
-[5]: https://docs.cohere.com/page/chunking-strategies?utm_source=chatgpt.com "Effective Chunking Strategies for RAG"
-[6]: https://docs.cohere.com/reference/rerank?utm_source=chatgpt.com "Rerank API (v2)"
-[7]: https://www.sbert.net/docs/pretrained-models/ce-msmarco.html?utm_source=chatgpt.com "MS MARCO Cross-Encoders"
-[8]: https://www.elastic.co/search-labs/blog/maximum-marginal-relevance-diversify-results?utm_source=chatgpt.com "Diversifying search results with Maximum Marginal ..."
-[9]: https://github.com/pgvector/pgvector?utm_source=chatgpt.com "pgvector/pgvector: Open-source vector similarity search for ..."
-[10]: https://cloudberry.apache.org/docs/advanced-analytics/pgvector-search/?utm_source=chatgpt.com "Use pgvector for Vector Similarity Search"
+[1]: https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/65b9eea6e1cc6bb9f0cd2a47751a186f-Paper-round2.pdf?utm_source=chatgpt.com 'BEIR: A Heterogeneous Benchmark for Zero-shot ...'
+[2]: https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf?utm_source=chatgpt.com 'Reciprocal Rank Fusion outperforms Condorcet and ...'
+[3]: https://weaviate.io/blog/hybrid-search-explained?utm_source=chatgpt.com 'Hybrid Search Explained'
+[4]: https://python.langchain.com/docs/how_to/semantic-chunker/?utm_source=chatgpt.com 'How to split text based on semantic similarity'
+[5]: https://docs.cohere.com/page/chunking-strategies?utm_source=chatgpt.com 'Effective Chunking Strategies for RAG'
+[6]: https://docs.cohere.com/reference/rerank?utm_source=chatgpt.com 'Rerank API (v2)'
+[7]: https://www.sbert.net/docs/pretrained-models/ce-msmarco.html?utm_source=chatgpt.com 'MS MARCO Cross-Encoders'
+[8]: https://www.elastic.co/search-labs/blog/maximum-marginal-relevance-diversify-results?utm_source=chatgpt.com 'Diversifying search results with Maximum Marginal ...'
+[9]: https://github.com/pgvector/pgvector?utm_source=chatgpt.com 'pgvector/pgvector: Open-source vector similarity search for ...'
+[10]: https://cloudberry.apache.org/docs/advanced-analytics/pgvector-search/?utm_source=chatgpt.com 'Use pgvector for Vector Similarity Search'
 [11]: https://severalnines.com/blog/vector-similarity-search-with-postgresqls-pgvector-a-deep-dive/?utm_source=chatgpt.com "Vector Similarity Search with PostgreSQL's pgvector"
-[12]: https://docs.ragas.io/en/latest/concepts/metrics/?utm_source=chatgpt.com "Metrics"
-[13]: https://langfuse.com/guides/cookbook/evaluation_of_rag_with_ragas?utm_source=chatgpt.com "Evaluation of RAG pipelines with Ragas"
-[14]: https://arxiv.org/pdf/2311.17264?utm_source=chatgpt.com "retsim: resilient and efficient text similarity"
-[15]: https://aclanthology.org/2022.acl-long.577.pdf?utm_source=chatgpt.com "[PDF] Deduplicating Training Data Makes Language Models Better"
-[16]: https://docs.llamaindex.ai/en/stable/examples/vector_stores/postgres/?utm_source=chatgpt.com "Postgres Vector Store"
+[12]: https://docs.ragas.io/en/latest/concepts/metrics/?utm_source=chatgpt.com 'Metrics'
+[13]: https://langfuse.com/guides/cookbook/evaluation_of_rag_with_ragas?utm_source=chatgpt.com 'Evaluation of RAG pipelines with Ragas'
+[14]: https://arxiv.org/pdf/2311.17264?utm_source=chatgpt.com 'retsim: resilient and efficient text similarity'
+[15]: https://aclanthology.org/2022.acl-long.577.pdf?utm_source=chatgpt.com '[PDF] Deduplicating Training Data Makes Language Models Better'
+[16]: https://docs.llamaindex.ai/en/stable/examples/vector_stores/postgres/?utm_source=chatgpt.com 'Postgres Vector Store'

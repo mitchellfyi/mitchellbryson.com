@@ -2,7 +2,16 @@ import { Button } from '@/components/Button'
 import { ProgressBar } from '@/components/tools/ProgressBar'
 import { OptionCard } from '@/components/tools/OptionCard'
 
-export function QuizShell({ question, currentQuestion, total, selectedOption, isLastQuestion, onSelect, onNext, onBack }) {
+export function QuizShell({
+  question,
+  currentQuestion,
+  total,
+  selectedOption,
+  isLastQuestion,
+  onSelect,
+  onNext,
+  onBack,
+}) {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">

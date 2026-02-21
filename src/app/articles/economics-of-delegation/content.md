@@ -1,8 +1,8 @@
 ---
 author: Mitchell Bryson
-date: "2026-02-15"
-title: "The Economics of Delegation"
-description: "What happens when cognitive labour becomes infinitely delegable - Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker."
+date: '2026-02-15'
+title: 'The Economics of Delegation'
+description: 'What happens when cognitive labour becomes infinitely delegable - Coasean boundaries dissolve, new scarcities emerge, and leverage ratio becomes the new status marker.'
 ---
 
 Delegation has always been the fundamental economic act of scaling human output. When cognitive labour becomes infinitely delegable to AI agents, the economics of everything changes.
@@ -31,6 +31,7 @@ The firm becomes a "mission specification engine" rather than a "labour coordina
 Middle management exists to translate strategy into execution and aggregate information upward. If agents can do both translation and aggregation, what remains?
 
 What remains:
+
 - Judgment calls that can't be specified
 - Relationship management (trust, politics, culture)
 - Novel problem framing
@@ -51,7 +52,7 @@ When delegation is cheap, what becomes valuable?
 
 **Judgment** - Agents can execute; humans must decide what's worth executing. Prioritisation, taste, ethics, strategy - these remain human. The market will increasingly pay for judgment, not execution.
 
-**Attention** - Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because *work* is abundant.
+**Attention** - Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because _work_ is abundant.
 
 ## The Delegation Paradox
 
@@ -60,6 +61,7 @@ More delegation capacity → more things get attempted → more review required 
 The paradox: infinite leverage without infinite attention creates its own ceiling.
 
 Solutions:
+
 - **Hierarchical delegation** (agents reviewing agents) - requires trust infrastructure
 - **Taste compression** (specifying preferences so tightly that review becomes sampling)
 - **Outcome orientation** (measure results, not process)
@@ -85,6 +87,7 @@ Rise of "outcome as a service" - you pay for leads, not hours; for code deployed
 Human capital was valuable because training took years and execution capacity was limited. With delegation, the value shifts to the system that enables delegation.
 
 Capital flows to:
+
 - Agent infrastructure (the "plumbing")
 - Data moats (agents need information)
 - Trust/reputation systems (delegation requires confidence)
@@ -128,6 +131,6 @@ The flex is "I did this with three agents and two hours of my time."
 - Will people delegate things they shouldn't? (Relationships? Creative expression? Judgment itself?)
 - Does the ability to delegate make us better at articulation, or atrophy it?
 
-The economics of delegation is the economics of leverage. Every technology that made delegation cheaper - writing, printing, computing, networking - reshaped economic structure. AI is the first technology that makes *cognitive* delegation cheap.
+The economics of delegation is the economics of leverage. Every technology that made delegation cheaper - writing, printing, computing, networking - reshaped economic structure. AI is the first technology that makes _cognitive_ delegation cheap.
 
 The question isn't whether this changes everything. It does. The question is: who captures the value, and how fast does it redistribute?

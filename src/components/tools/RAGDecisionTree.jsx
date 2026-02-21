@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { Button } from '@/components/Button'
@@ -13,27 +13,109 @@ import { useQuiz } from '@/hooks/useQuiz'
 
 const RECOMMENDATIONS = {
   vectorDb: {
-    pinecone: { name: 'Pinecone', description: 'Fully managed vector database with enterprise-grade scalability', rationale: 'Best for teams that want zero infrastructure management with reliable performance at scale.' },
-    weaviate: { name: 'Weaviate', description: 'Open-source vector database with built-in hybrid search', rationale: 'Great when you need both vector and keyword search in one system, with the option to self-host.' },
-    qdrant: { name: 'Qdrant', description: 'High-performance open-source vector search engine', rationale: 'Ideal for teams that want fast, efficient vector search with full control over deployment.' },
-    pgvector: { name: 'pgvector', description: 'Vector search extension for PostgreSQL', rationale: 'Perfect when you already use Postgres and want to avoid adding another database to your stack.' },
-    chroma: { name: 'Chroma', description: 'Lightweight embedding database for prototyping and small-scale apps', rationale: 'Best for rapid prototyping and smaller datasets where simplicity matters more than scale.' },
+    pinecone: {
+      name: 'Pinecone',
+      description:
+        'Fully managed vector database with enterprise-grade scalability',
+      rationale:
+        'Best for teams that want zero infrastructure management with reliable performance at scale.',
+    },
+    weaviate: {
+      name: 'Weaviate',
+      description: 'Open-source vector database with built-in hybrid search',
+      rationale:
+        'Great when you need both vector and keyword search in one system, with the option to self-host.',
+    },
+    qdrant: {
+      name: 'Qdrant',
+      description: 'High-performance open-source vector search engine',
+      rationale:
+        'Ideal for teams that want fast, efficient vector search with full control over deployment.',
+    },
+    pgvector: {
+      name: 'pgvector',
+      description: 'Vector search extension for PostgreSQL',
+      rationale:
+        'Perfect when you already use Postgres and want to avoid adding another database to your stack.',
+    },
+    chroma: {
+      name: 'Chroma',
+      description:
+        'Lightweight embedding database for prototyping and small-scale apps',
+      rationale:
+        'Best for rapid prototyping and smaller datasets where simplicity matters more than scale.',
+    },
   },
   embedding: {
-    openai: { name: 'OpenAI text-embedding-3-small', description: 'High-quality embeddings via API with excellent cost/performance ratio', rationale: 'Best general-purpose embedding model — easy to integrate, strong accuracy, reasonable cost.' },
-    cohere: { name: 'Cohere Embed v3', description: 'Multilingual embedding model with compression support', rationale: 'Strong choice for multilingual content or when you need smaller embedding dimensions.' },
-    selfhosted: { name: 'Self-hosted (BGE/E5)', description: 'Open-source models you run on your own infrastructure', rationale: 'Best when data privacy is critical or you want to eliminate per-request API costs.' },
+    openai: {
+      name: 'OpenAI text-embedding-3-small',
+      description:
+        'High-quality embeddings via API with excellent cost/performance ratio',
+      rationale:
+        'Best general-purpose embedding model — easy to integrate, strong accuracy, reasonable cost.',
+    },
+    cohere: {
+      name: 'Cohere Embed v3',
+      description: 'Multilingual embedding model with compression support',
+      rationale:
+        'Strong choice for multilingual content or when you need smaller embedding dimensions.',
+    },
+    selfhosted: {
+      name: 'Self-hosted (BGE/E5)',
+      description: 'Open-source models you run on your own infrastructure',
+      rationale:
+        'Best when data privacy is critical or you want to eliminate per-request API costs.',
+    },
   },
   chunking: {
-    fixed: { name: 'Fixed-size chunking', description: 'Split text into equal-sized chunks by character or token count', rationale: 'Simplest approach — works well for uniform content like articles or documentation.' },
-    recursive: { name: 'Recursive chunking', description: 'Split by paragraphs, then sentences, then characters as needed', rationale: 'Good default for most text content — preserves natural boundaries while controlling size.' },
-    semantic: { name: 'Semantic chunking', description: 'Group text by meaning using embedding similarity', rationale: 'Best when content topics shift frequently and you need each chunk to be self-contained.' },
-    document: { name: 'Document-aware chunking', description: 'Use document structure like headings, sections, and tables', rationale: 'Ideal for structured documents where hierarchy and sections carry important meaning.' },
+    fixed: {
+      name: 'Fixed-size chunking',
+      description:
+        'Split text into equal-sized chunks by character or token count',
+      rationale:
+        'Simplest approach — works well for uniform content like articles or documentation.',
+    },
+    recursive: {
+      name: 'Recursive chunking',
+      description:
+        'Split by paragraphs, then sentences, then characters as needed',
+      rationale:
+        'Good default for most text content — preserves natural boundaries while controlling size.',
+    },
+    semantic: {
+      name: 'Semantic chunking',
+      description: 'Group text by meaning using embedding similarity',
+      rationale:
+        'Best when content topics shift frequently and you need each chunk to be self-contained.',
+    },
+    document: {
+      name: 'Document-aware chunking',
+      description: 'Use document structure like headings, sections, and tables',
+      rationale:
+        'Ideal for structured documents where hierarchy and sections carry important meaning.',
+    },
   },
   reranking: {
-    cohere: { name: 'Cohere Rerank', description: 'API-based reranking that significantly improves retrieval accuracy', rationale: 'Best accuracy boost for the least effort — add it as a post-retrieval step via API.' },
-    crossencoder: { name: 'Cross-encoder reranking', description: 'Self-hosted model that scores query-document pairs for relevance', rationale: 'Best when you need reranking without API costs or want to keep data on-premises.' },
-    none: { name: 'No reranking', description: 'Skip reranking and rely on vector similarity alone', rationale: 'Fine for simple use cases where speed matters more than precision, or data is small.' },
+    cohere: {
+      name: 'Cohere Rerank',
+      description:
+        'API-based reranking that significantly improves retrieval accuracy',
+      rationale:
+        'Best accuracy boost for the least effort — add it as a post-retrieval step via API.',
+    },
+    crossencoder: {
+      name: 'Cross-encoder reranking',
+      description:
+        'Self-hosted model that scores query-document pairs for relevance',
+      rationale:
+        'Best when you need reranking without API costs or want to keep data on-premises.',
+    },
+    none: {
+      name: 'No reranking',
+      description: 'Skip reranking and rely on vector similarity alone',
+      rationale:
+        'Fine for simple use cases where speed matters more than precision, or data is small.',
+    },
   },
 }
 
@@ -58,17 +140,33 @@ const TOOL_SUGGESTIONS = {
     openai: { name: 'OpenAI', href: '/barnsley-ai/integrations/openai' },
   },
   general: [
-    { name: 'Search and retrieval', description: 'Full guide to AI-powered search and retrieval systems', href: '/barnsley-ai/search-and-retrieval' },
-    { name: 'LLM Cost Calculator', description: 'Estimate the API costs for your embedding and LLM calls', href: '/projects/tools/llm-cost-calculator' },
+    {
+      name: 'Search and retrieval',
+      description: 'Full guide to AI-powered search and retrieval systems',
+      href: '/barnsley-ai/search-and-retrieval',
+    },
+    {
+      name: 'LLM Cost Calculator',
+      description: 'Estimate the API costs for your embedding and LLM calls',
+      href: '/projects/tools/llm-cost-calculator',
+    },
   ],
 }
 
 function getSuggestedTools(winners) {
   const tools = []
   const vdb = TOOL_SUGGESTIONS.vectorDb[winners.vectorDb]
-  if (vdb) tools.push({ ...vdb, description: `Learn more about ${vdb.name} on this site` })
+  if (vdb)
+    tools.push({
+      ...vdb,
+      description: `Learn more about ${vdb.name} on this site`,
+    })
   const emb = TOOL_SUGGESTIONS.embedding[winners.embedding]
-  if (emb) tools.push({ ...emb, description: `Learn more about ${emb.name} integrations on this site` })
+  if (emb)
+    tools.push({
+      ...emb,
+      description: `Learn more about ${emb.name} integrations on this site`,
+    })
   tools.push(...TOOL_SUGGESTIONS.general)
   return tools.slice(0, 3)
 }
@@ -361,10 +459,14 @@ function getWinners(scores) {
   return winners
 }
 
-
 // ── Sub-components ──────────────────────────────────
 
 function QuizResults({ scores, answers, onRestart }) {
+  const resultsRef = useRef(null)
+  useEffect(() => {
+    resultsRef.current?.focus()
+  }, [])
+
   const winners = getWinners(scores)
 
   const results = CATEGORIES.map((cat, i) => ({
@@ -377,7 +479,12 @@ function QuizResults({ scores, answers, onRestart }) {
   const suggestedTools = getSuggestedTools(winners)
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8">
+    <div
+      ref={resultsRef}
+      tabIndex={-1}
+      aria-label="Quiz results"
+      className="mx-auto max-w-2xl space-y-8"
+    >
       <div className="space-y-4">
         {results.map((result) => (
           <div
@@ -391,7 +498,7 @@ function QuizResults({ scores, answers, onRestart }) {
           >
             <p
               className={clsx(
-                'text-xs font-semibold uppercase tracking-wide',
+                'text-xs font-semibold tracking-wide uppercase',
                 result.accent
                   ? 'text-teal-600 dark:text-teal-400'
                   : 'text-zinc-500 dark:text-zinc-400',
@@ -485,7 +592,13 @@ function RAGDecisionTreeInner() {
 
   if (quiz.showResults) {
     const scores = computeScores(quiz.answers)
-    return <QuizResults scores={scores} answers={quiz.answers} onRestart={quiz.handleRestart} />
+    return (
+      <QuizResults
+        scores={scores}
+        answers={quiz.answers}
+        onRestart={quiz.handleRestart}
+      />
+    )
   }
 
   return (

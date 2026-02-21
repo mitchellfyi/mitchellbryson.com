@@ -9,7 +9,10 @@ import { getOgImage, siteUrl } from '@/lib/siteConfig'
 import '@/styles/tailwind.css'
 import '@/styles/prism.css'
 
-const defaultOgImage = getOgImage('Mitchell Bryson', 'AI Software Engineer - AI Systems & Automation')
+const defaultOgImage = getOgImage(
+  'Mitchell Bryson',
+  'AI Software Engineer - AI Systems & Automation',
+)
 
 export const metadata = {
   title: {

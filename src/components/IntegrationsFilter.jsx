@@ -17,7 +17,10 @@ function getIntegrationsByCategory(integrations, filterCategories) {
         i.pages?.some((p) => p.slug === option.slug),
       )
       if (items.length > 0) {
-        byCategory.set(option.slug, { title: option.title, integrations: items })
+        byCategory.set(option.slug, {
+          title: option.title,
+          integrations: items,
+        })
       }
     }
   }
@@ -34,13 +37,13 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
 
   const activeLabel =
     filterSlug &&
-    filterCategories.flatMap((g) => g.options).find((o) => o.slug === filterSlug)
-      ?.title
+    filterCategories
+      .flatMap((g) => g.options)
+      .find((o) => o.slug === filterSlug)?.title
 
   const btnBase =
     'cursor-pointer rounded-md px-2.5 py-1 text-sm font-medium transition'
-  const btnActive =
-    'bg-teal-500 text-white dark:bg-teal-600'
+  const btnActive = 'bg-teal-500 text-white dark:bg-teal-600'
   const btnInactive =
     'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
 
@@ -59,6 +62,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
             className={`flex w-full cursor-pointer items-center justify-between rounded-md border border-zinc-200 bg-white px-3 py-2 text-left text-sm dark:border-zinc-700 dark:bg-zinc-900`}
             aria-expanded={dropdownOpen}
             aria-haspopup="listbox"
+            aria-controls="integrations-filter-listbox"
           >
             <span className="text-zinc-800 dark:text-zinc-200">
               {filterSlug ? activeLabel : 'All'}
@@ -70,7 +74,12 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
               stroke="currentColor"
               aria-hidden="true"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
           {dropdownOpen && (
@@ -81,8 +90,10 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                 onClick={() => setDropdownOpen(false)}
               />
               <div
+                id="integrations-filter-listbox"
                 role="listbox"
-                className="absolute left-0 right-0 top-full z-20 mt-1 max-h-64 overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
+                aria-label="Filter by category"
+                className="absolute top-full right-0 left-0 z-20 mt-1 max-h-64 overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
               >
                 <div role="option" aria-selected={!filterSlug}>
                   <button
@@ -97,7 +108,10 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                   </button>
                 </div>
                 {filterCategories.map((group) => (
-                  <div key={group.group} className="border-t border-zinc-100 dark:border-zinc-800">
+                  <div
+                    key={group.group}
+                    className="border-t border-zinc-100 dark:border-zinc-800"
+                  >
                     <div className="px-3 py-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">
                       {group.group}
                     </div>
@@ -108,7 +122,11 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                       if (count === 0) return null
                       const isActive = filterSlug === option.slug
                       return (
-                        <div key={option.slug} role="option" aria-selected={isActive}>
+                        <div
+                          key={option.slug}
+                          role="option"
+                          aria-selected={isActive}
+                        >
                           <button
                             type="button"
                             onClick={() => {
@@ -134,6 +152,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
           <button
             type="button"
             onClick={() => setFilterSlug(null)}
+            aria-pressed={!filterSlug}
             className={`${btnBase} ${!filterSlug ? btnActive : btnInactive}`}
           >
             All
@@ -150,6 +169,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                   key={option.slug}
                   type="button"
                   onClick={() => setFilterSlug(isActive ? null : option.slug)}
+                  aria-pressed={isActive}
                   className={`${btnBase} ${isActive ? btnActive : btnInactive}`}
                 >
                   {option.title}
@@ -177,22 +197,24 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
         </div>
       ) : (
         <div className="space-y-12">
-          {Array.from(byCategory.entries()).map(([slug, { title, integrations: items }]) => (
-            <section key={slug}>
-              <h2 className="mb-4 text-lg font-semibold text-zinc-800 dark:text-zinc-200">
-                {title}
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((integration) => (
-                  <IntegrationCard
-                    key={integration.url}
-                    integration={integration}
-                    pages={integration.pages}
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
+          {Array.from(byCategory.entries()).map(
+            ([slug, { title, integrations: items }]) => (
+              <section key={slug}>
+                <h2 className="mb-4 text-lg font-semibold text-zinc-800 dark:text-zinc-200">
+                  {title}
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.map((integration) => (
+                    <IntegrationCard
+                      key={integration.url}
+                      integration={integration}
+                      pages={integration.pages}
+                    />
+                  ))}
+                </div>
+              </section>
+            ),
+          )}
         </div>
       )}
     </div>

@@ -34,7 +34,7 @@ export function ProfilePageJsonLd() {
       image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer')}&type=home`,
       jobTitle: 'AI Software Engineer',
       description:
-        "Full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+        'Full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.',
       sameAs: [
         'https://github.com/mitchellfyi',
         'https://www.linkedin.com/in/mitchellfyi',
@@ -114,7 +114,10 @@ export function ArticleJsonLd({ article }) {
     },
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['[data-speakable="headline"]', '[data-speakable="description"]'],
+      cssSelector: [
+        '[data-speakable="headline"]',
+        '[data-speakable="description"]',
+      ],
     },
   }
 
@@ -200,7 +203,14 @@ export function FAQPageJsonLd({ faqs }) {
   )
 }
 
-export function PlaceJsonLd({ name, description, url, locality, region, country }) {
+export function PlaceJsonLd({
+  name,
+  description,
+  url,
+  locality,
+  region,
+  country,
+}) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Place',

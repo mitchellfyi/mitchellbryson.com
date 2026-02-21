@@ -1,31 +1,10 @@
-import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
-
-// Email template color constants
-const EMAIL_COLORS = {
-  HEADER_BORDER: '#14b8a6',
-  HEADING: '#333',
-  SUBHEADING: '#555',
-  TEXT: '#666',
-  BACKGROUND: '#f8f9fa',
-  WHITE: '#fff',
-  BORDER: '#e9ecef',
-}
-
-// Lazy initialization to avoid build-time errors
-let resend = null
-function getResend() {
-  if (!resend) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resend
-}
+import { getResend, C, validateEmail } from '@/lib/email'
 
 export async function POST(request) {
   try {
     const { name, email, message } = await request.json()
 
-    // Basic validation
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'All fields are required' },
@@ -33,44 +12,39 @@ export async function POST(request) {
       )
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 },
-      )
+    const emailError = validateEmail(email)
+    if (emailError) {
+      return NextResponse.json({ error: emailError }, { status: 400 })
     }
 
-    // Send email using Resend
-    const { data, error } = await getResend().emails.send({
+    const { error } = await getResend().emails.send({
       from: `Website <${process.env.CONTACT_EMAIL}>`,
-      to: [process.env.CONTACT_EMAIL], // Your email
+      to: [process.env.CONTACT_EMAIL],
       subject: `Contact Form: Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: ${EMAIL_COLORS.HEADING}; border-bottom: 2px solid ${EMAIL_COLORS.HEADER_BORDER}; padding-bottom: 10px;">
+          <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
             New Contact Form Submission
           </h2>
 
-          <div style="background-color: ${EMAIL_COLORS.BACKGROUND}; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: ${EMAIL_COLORS.SUBHEADING}; margin-top: 0;">Contact Details</h3>
+          <div style="background-color: ${C.BG}; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: ${C.SUBHEADING}; margin-top: 0;">Contact Details</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
           </div>
 
-          <div style="background-color: ${EMAIL_COLORS.WHITE}; padding: 20px; border: 1px solid ${EMAIL_COLORS.BORDER}; border-radius: 8px;">
-            <h3 style="color: ${EMAIL_COLORS.SUBHEADING}; margin-top: 0;">Message</h3>
+          <div style="background-color: ${C.WHITE}; padding: 20px; border: 1px solid ${C.BORDER}; border-radius: 8px;">
+            <h3 style="color: ${C.SUBHEADING}; margin-top: 0;">Message</h3>
             <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
           </div>
 
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid ${EMAIL_COLORS.BORDER}; color: ${EMAIL_COLORS.TEXT}; font-size: 14px;">
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid ${C.BORDER}; color: ${C.TEXT}; font-size: 14px;">
             <p>This message was sent from your website's contact form.</p>
             <p>Reply directly to this email to respond to ${name}.</p>
           </div>
         </div>
       `,
-      replyTo: email, // This allows you to reply directly to the sender
+      replyTo: email,
     })
 
     if (error) {
@@ -82,7 +56,7 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      { message: 'Email sent successfully', id: data.id },
+      { message: 'Email sent successfully' },
       { status: 200 },
     )
   } catch (error) {

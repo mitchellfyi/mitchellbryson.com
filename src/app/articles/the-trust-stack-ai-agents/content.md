@@ -1,7 +1,7 @@
 ---
 author: Mitchell Bryson
-date: "2026-02-08"
-title: "The Trust Stack: Identity, Reputation, and Accountability for AI Agents"
+date: '2026-02-08'
+title: 'The Trust Stack: Identity, Reputation, and Accountability for AI Agents'
 description: "As AI agents become economic actors - negotiating, transacting, and making commitments - they'll need infrastructure we haven't built yet: verifiable identity, earned reputation, and enforceable accountability."
 ---
 
@@ -49,7 +49,7 @@ flowchart TB
 
 ### Layer 1: Identity
 
-An agent needs a stable, verifiable identity that answers: *Who operates this agent? What can it do? What constraints is it under?*
+An agent needs a stable, verifiable identity that answers: _Who operates this agent? What can it do? What constraints is it under?_
 
 **Principal binding** is the foundation. Every agent acts on behalf of someone - a person, company, or (eventually) another agent. That relationship should be cryptographically verifiable. Not "this agent claims to represent Acme Corp" but "here is a signed attestation from Acme Corp delegating these specific authorities to this agent."
 
@@ -70,24 +70,24 @@ Identity says who you are; reputation says whether to trust you. Agent reputatio
 
 ```yaml
 # Sketch: reputation attestation from a completed engagement
-agent: "acme-procurement-agent-v3"
-engagement_id: "eng_2026_001"
-principal: "acme-corp"
-counterparty: "vendor-xyz"
+agent: 'acme-procurement-agent-v3'
+engagement_id: 'eng_2026_001'
+principal: 'acme-corp'
+counterparty: 'vendor-xyz'
 outcome:
   completed: true
   terms_met: true
   disputes: 0
-  cost_variance: -3.2%  # under budget
+  cost_variance: -3.2% # under budget
   counterparty_rating: 4.7/5
-attested_by: "deal-platform-abc"
-timestamp: "2026-02-01T14:32:00Z"
-signature: "..."
+attested_by: 'deal-platform-abc'
+timestamp: '2026-02-01T14:32:00Z'
+signature: '...'
 ```
 
 **Peer ratings** come from other agents and humans who've interacted with this agent. Was it responsive? Did it honour commitments? Did it escalate appropriately? These subjective signals complement objective outcomes.
 
-**Audit trails** provide the evidence behind reputation claims. A high reputation score without an inspectable trail is just a number. The audit trail lets counterparties verify: *show me the last 10 engagements and their outcomes*.
+**Audit trails** provide the evidence behind reputation claims. A high reputation score without an inspectable trail is just a number. The audit trail lets counterparties verify: _show me the last 10 engagements and their outcomes_.
 
 ### Layer 3: Accountability
 
@@ -115,7 +115,7 @@ sequenceDiagram
     participant B as Agent B (Seller)
     participant R as Reputation Registry
     participant E as Escrow/Bond Service
-    
+
     A->>B: Initiate negotiation + identity attestation
     B->>R: Query Agent A reputation
     R-->>B: Performance history + attestations

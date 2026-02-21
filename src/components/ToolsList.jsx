@@ -48,7 +48,8 @@ export function ToolsList({ tools }) {
       </nav>
 
       <div role="status" className="sr-only">
-        Showing {filteredTools.length} tool{filteredTools.length !== 1 ? 's' : ''}
+        Showing {filteredTools.length} tool
+        {filteredTools.length !== 1 ? 's' : ''}
       </div>
 
       <ul

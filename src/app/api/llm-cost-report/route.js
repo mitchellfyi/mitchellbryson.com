@@ -1,6 +1,15 @@
 import { C, sendReportAndLead } from '@/lib/email'
 
-function buildEmailHtml({ cheapestModel, cheapestProvider, cheapestMonthly, inputTokens, outputTokens, requestsPerDay, costs, permalink }) {
+function buildEmailHtml({
+  cheapestModel,
+  cheapestProvider,
+  cheapestMonthly,
+  inputTokens,
+  outputTokens,
+  requestsPerDay,
+  costs,
+  permalink,
+}) {
   const costRows = costs
     .map(
       (m, i) =>
@@ -59,15 +68,34 @@ function buildEmailHtml({ cheapestModel, cheapestProvider, cheapestMonthly, inpu
 }
 
 export async function POST(request) {
-  const { email, toolName, permalink, cheapestModel, cheapestProvider, cheapestMonthly, inputTokens, outputTokens, requestsPerDay, costs } =
-    await request.json()
+  const {
+    email,
+    toolName,
+    permalink,
+    cheapestModel,
+    cheapestProvider,
+    cheapestMonthly,
+    inputTokens,
+    outputTokens,
+    requestsPerDay,
+    costs,
+  } = await request.json()
 
   return sendReportAndLead({
     email,
     toolName,
     permalink,
     subject: `Your LLM Cost Comparison: ${cheapestModel} from ${cheapestMonthly}/mo`,
-    html: buildEmailHtml({ cheapestModel, cheapestProvider, cheapestMonthly, inputTokens, outputTokens, requestsPerDay, costs, permalink }),
+    html: buildEmailHtml({
+      cheapestModel,
+      cheapestProvider,
+      cheapestMonthly,
+      inputTokens,
+      outputTokens,
+      requestsPerDay,
+      costs,
+      permalink,
+    }),
     leadSummaryHtml: `<p><strong>Cheapest:</strong> ${cheapestModel} at ${cheapestMonthly}/mo</p>`,
   })
 }

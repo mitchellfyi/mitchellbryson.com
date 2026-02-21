@@ -7,9 +7,21 @@ import clsx from 'clsx'
 
 const navItems = [
   { href: '/barnsley-ai', label: 'Barnsley AI', shortLabel: 'Barnsley' },
-  { href: '/barnsley-ai/integration-types', label: 'AI integration types', shortLabel: 'AI types' },
-  { href: '/barnsley-ai/business-types', label: 'Business types', shortLabel: 'Business' },
-  { href: '/barnsley-ai/ai-integrations', label: 'AI integrations', shortLabel: 'Integrations' },
+  {
+    href: '/barnsley-ai/integration-types',
+    label: 'AI integration types',
+    shortLabel: 'AI types',
+  },
+  {
+    href: '/barnsley-ai/business-types',
+    label: 'Business types',
+    shortLabel: 'Business',
+  },
+  {
+    href: '/barnsley-ai/ai-integrations',
+    label: 'AI integrations',
+    shortLabel: 'Integrations',
+  },
 ]
 
 export function BarnsleyNav() {

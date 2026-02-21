@@ -200,7 +200,8 @@ export function NeuralNetworkBg({ className }) {
           const dy = node.y - mouse.y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < MOUSE_RADIUS && dist > 0) {
-            const force = ((MOUSE_RADIUS - dist) / MOUSE_RADIUS) * MOUSE_REPEL_STRENGTH
+            const force =
+              ((MOUSE_RADIUS - dist) / MOUSE_RADIUS) * MOUSE_REPEL_STRENGTH
             node.vx += (dx / dist) * force
             node.vy += (dy / dist) * force
           }

@@ -4,7 +4,9 @@ function buildDiagramHtml(results) {
   return results
     .map((r, i) => {
       const isFirst = i === 0
-      const boxBorder = isFirst ? `2px solid ${C.TEAL}` : `1px solid ${C.BORDER}`
+      const boxBorder = isFirst
+        ? `2px solid ${C.TEAL}`
+        : `1px solid ${C.BORDER}`
       const boxBg = isFirst ? '#f0fdfa' : C.BG
       const labelColor = isFirst ? '#0d9488' : '#a1a1aa'
 
@@ -29,22 +31,20 @@ function buildDiagramHtml(results) {
 
 function buildEmailHtml({ results, permalink }) {
   const cardsHtml = results
-    .map(
-      (r) => {
-        const siteLinkHtml = r.siteLink
-          ? `<a href="https://mitchellbryson.com${r.siteLink}" style="color: ${C.TEAL}; font-size: 13px; font-weight: bold; text-decoration: none; margin-right: 16px;">How I use it &rarr;</a>`
-          : ''
-        const docsLinkHtml = r.docs
-          ? `<a href="${r.docs}" style="color: #a1a1aa; font-size: 13px; font-weight: bold; text-decoration: none;">Docs &rarr;</a>`
-          : ''
-        return `<div style="background: ${C.BG}; border: 1px solid ${C.BORDER}; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;">
+    .map((r) => {
+      const siteLinkHtml = r.siteLink
+        ? `<a href="https://mitchellbryson.com${r.siteLink}" style="color: ${C.TEAL}; font-size: 13px; font-weight: bold; text-decoration: none; margin-right: 16px;">How I use it &rarr;</a>`
+        : ''
+      const docsLinkHtml = r.docs
+        ? `<a href="${r.docs}" style="color: #a1a1aa; font-size: 13px; font-weight: bold; text-decoration: none;">Docs &rarr;</a>`
+        : ''
+      return `<div style="background: ${C.BG}; border: 1px solid ${C.BORDER}; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;">
           <p style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #0d9488; margin: 0 0 6px;">${r.category}</p>
           <h3 style="color: ${C.HEADING}; margin: 0 0 4px; font-size: 16px;">${r.name}</h3>
           <p style="color: ${C.TEXT}; font-size: 13px; line-height: 1.5; margin: 0 0 8px;">${r.rationale}</p>
           ${siteLinkHtml}${docsLinkHtml}
         </div>`
-      },
-    )
+    })
     .join('')
 
   const diagramHtml = buildDiagramHtml(results)

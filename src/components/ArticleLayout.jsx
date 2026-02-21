@@ -38,7 +38,7 @@ function RelatedArticles({ articles }) {
                 {article.title}
               </h3>
               {article.description && (
-                <p className="mt-1 text-sm text-zinc-600 line-clamp-2 dark:text-zinc-400">
+                <p className="mt-1 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
                   {article.description}
                 </p>
               )}
@@ -75,7 +75,10 @@ export function ArticleLayout({ article, relatedArticles, children }) {
           )}
           <article>
             <header className="flex flex-col">
-              <h1 data-speakable="headline" className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+              <h1
+                data-speakable="headline"
+                className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100"
+              >
                 {article.title}
               </h1>
               {article.description && (
@@ -114,7 +117,12 @@ export function ArticleLayout({ article, relatedArticles, children }) {
               </div>
             )}
             <Prose className="mt-8" data-mdx-content>
-              <MarkdownContent content={isDraft && hasDraft ? article.draftContent : article.content} rehypeRaw>
+              <MarkdownContent
+                content={
+                  isDraft && hasDraft ? article.draftContent : article.content
+                }
+                rehypeRaw
+              >
                 {children}
               </MarkdownContent>
               <hr />

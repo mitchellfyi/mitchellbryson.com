@@ -1,8 +1,8 @@
 ---
 author: Mitchell Bryson
-date: "2025-09-07"
-title: "Proving ROI in 10 days: a pilot template for AI in Growth & Ops (metrics, cut-offs, handover)"
-description: "A tight, repeatable 10-day pilot that shows financial impact, defines stop/go cut-offs, and ends with a clean handover."
+date: '2025-09-07'
+title: 'Proving ROI in 10 days: a pilot template for AI in Growth & Ops (metrics, cut-offs, handover)'
+description: 'A tight, repeatable 10-day pilot that shows financial impact, defines stop/go cut-offs, and ends with a clean handover.'
 ---
 
 You don't need a six-month project to prove AI value. Run a **10-day pilot** that is cheap, instrumented, and easy to roll back. This template gives the schedule, metrics, cut-offs, and handover materials you can reuse for Growth & Ops use-cases (support triage, order status, invoice QA, pricing rules, etc.).
@@ -11,48 +11,48 @@ You don't need a six-month project to prove AI value. Run a **10-day pilot** tha
 
 #### Days 0–1 - Scope & baseline
 
-* Define one narrow user journey (e.g., "Where is my order?", "AP invoice check", "price update on 200 SKUs").
-* Freeze a **baseline window** (last 14–30 days).
-* Agree the **primary KPI** and **target threshold** (example targets below).
-* Set a **hard cost ceiling** and a canary cohort (e.g., 10–20% of traffic).
+- Define one narrow user journey (e.g., "Where is my order?", "AP invoice check", "price update on 200 SKUs").
+- Freeze a **baseline window** (last 14–30 days).
+- Agree the **primary KPI** and **target threshold** (example targets below).
+- Set a **hard cost ceiling** and a canary cohort (e.g., 10–20% of traffic).
 
 #### Days 2–3 - Wire data & guardrails
 
-* Connect the minimum data sources (orders, tickets, POs/price lists).
-* Add **tracing** (inputs, outputs, latency, tokens/costs).
-* Add **guardrails** (schema validation, escalation path, rate limits).
-* Create an **eval set** (10–30 realistic cases) to check quality daily.
+- Connect the minimum data sources (orders, tickets, POs/price lists).
+- Add **tracing** (inputs, outputs, latency, tokens/costs).
+- Add **guardrails** (schema validation, escalation path, rate limits).
+- Create an **eval set** (10–30 realistic cases) to check quality daily.
 
 #### Days 4–5 - Ship a thin slice
 
-* Enable the feature for the canary cohort only.
-* Log all decisions with evidence (citations, diffs, audit trail).
-* Start a daily scoreboard (see KPI table template below).
+- Enable the feature for the canary cohort only.
+- Log all decisions with evidence (citations, diffs, audit trail).
+- Start a daily scoreboard (see KPI table template below).
 
 #### Days 6–7 - Tune or stop
 
-* Review KPI movement vs baseline; fix obvious misses.
-* If **cut-offs** are hit (quality, spend, or error thresholds), **stop** and document why.
+- Review KPI movement vs baseline; fix obvious misses.
+- If **cut-offs** are hit (quality, spend, or error thresholds), **stop** and document why.
 
 #### Days 8–9 - Document & handover prep
 
-* Finalise runbooks, dashboards, and rollback steps.
-* Collect stakeholder feedback (support, finance, ops).
+- Finalise runbooks, dashboards, and rollback steps.
+- Collect stakeholder feedback (support, finance, ops).
 
 #### Day 10 - Decision
 
-* If KPIs pass and budget holds, expand to 50–100% with monitoring.
-* Otherwise, roll back and keep the artefacts for the next attempt.
+- If KPIs pass and budget holds, expand to 50–100% with monitoring.
+- Otherwise, roll back and keep the artefacts for the next attempt.
 
 ## Metrics that prove value
 
 #### Core financials (pick the ones that fit your pilot)
 
-* **£ Saved / week** from invoice variance & duplicates blocked.
-* **Tickets deflected %** and **median first response time**.
-* **Gross margin % / £** movement after pricing rule changes.
-* **Conversion rate** and **refund rate** where applicable.
-* **Cost per resolved item** (tokens + infra + minutes of human time).
+- **£ Saved / week** from invoice variance & duplicates blocked.
+- **Tickets deflected %** and **median first response time**.
+- **Gross margin % / £** movement after pricing rule changes.
+- **Conversion rate** and **refund rate** where applicable.
+- **Cost per resolved item** (tokens + infra + minutes of human time).
 
 ```python
 # Simple ROI helpers used in the daily scoreboard
@@ -71,32 +71,32 @@ def margin_delta_pct(gm_after, gm_before):
 
 #### Stop immediately if
 
-* Output **quality** fails: eval score or human QA < **0.85** on the chosen metric.
-* **Budget** exceeded: pilot spend > **£X/day** or **£Y/conversation**.
-* **Latency** p95 > **Z seconds** for two consecutive days.
+- Output **quality** fails: eval score or human QA < **0.85** on the chosen metric.
+- **Budget** exceeded: pilot spend > **£X/day** or **£Y/conversation**.
+- **Latency** p95 > **Z seconds** for two consecutive days.
 
 #### Continue/expand if
 
-* KPI moves by **≥ target** (see defaults below) **and** cost per unit is stable or improving for 3 days.
-* No critical incidents or escalations without audit evidence.
+- KPI moves by **≥ target** (see defaults below) **and** cost per unit is stable or improving for 3 days.
+- No critical incidents or escalations without audit evidence.
 
 ## Default KPI targets (sane starting points)
 
 #### Ops / Support triage
 
-* **Deflection:** +15–30% vs baseline.
-* **FRT:** −30–50% median first response time.
-* **QA pass-rate:** ≥ 90% of sampled answers acceptable.
+- **Deflection:** +15–30% vs baseline.
+- **FRT:** −30–50% median first response time.
+- **QA pass-rate:** ≥ 90% of sampled answers acceptable.
 
 #### AP / Invoice QA
 
-* **Overcharge detection:** >= 0.5 to 1.5% of AP value flagged with < 5% false positives.
-* **Duplicate invoices caught:** >= 80% of known dupes in backtests.
+- **Overcharge detection:** >= 0.5 to 1.5% of AP value flagged with < 5% false positives.
+- **Duplicate invoices caught:** >= 80% of known dupes in backtests.
 
 #### Pricing rules
 
-* **Gross margin:** +1–3% on canary SKUs with no conversion drop beyond −5% relative.
-* **Rollback time:** < 15 minutes from trigger to revert.
+- **Gross margin:** +1–3% on canary SKUs with no conversion drop beyond −5% relative.
+- **Rollback time:** < 15 minutes from trigger to revert.
 
 ## Daily scoreboard (CSV you can paste into Sheets)
 
@@ -111,22 +111,22 @@ date,kpi_name,baseline_value,pilot_value,delta,budget_spend_gbp,unit_cost_gbp,in
 
 #### Documents
 
-* **Decision memo** (see template) with KPI results and a clear verdict.
-* **Runbook**: on-call, escalation, rollback, and weekly checks.
-* **Data map**: tables, joins, and owners; privacy notes.
+- **Decision memo** (see template) with KPI results and a clear verdict.
+- **Runbook**: on-call, escalation, rollback, and weekly checks.
+- **Data map**: tables, joins, and owners; privacy notes.
 
 #### Assets
 
-* **Dashboards**: KPIs, spend, latency, evals.
-* **Tracing**: searchable logs with request→answer→cost linkage.
-* **Eval set**: frozen cases + procedure for updates.
+- **Dashboards**: KPIs, spend, latency, evals.
+- **Tracing**: searchable logs with request→answer→cost linkage.
+- **Eval set**: frozen cases + procedure for updates.
 
 ```yaml
 # decision-memo.yml
-pilot: "Support Triage WhatsApp"
-owner: "Ops"
-period: "2025-09-01..2025-09-10"
-baseline_window: "2025-08-15..2025-08-31"
+pilot: 'Support Triage WhatsApp'
+owner: 'Ops'
+period: '2025-09-01..2025-09-10'
+baseline_window: '2025-08-15..2025-08-31'
 kpis:
   - name: deflection_rate
     baseline: 0.32
@@ -138,51 +138,51 @@ kpis:
 budgets:
   daily_gbp: 50
   per_conv_gbp: 0.07
-result: "GO - expand to 50% traffic with same guardrails"
+result: 'GO - expand to 50% traffic with same guardrails'
 risks:
-  - "Peak-time latency near threshold; monitor p95"
+  - 'Peak-time latency near threshold; monitor p95'
 ```
 
 ## Example pilot slices (pick one)
 
 #### Support: "Where is my order?"
 
-* Authenticate customer; look up order; answer with ETA, policy, and **handoff** button.
-* KPIs: deflection %, FRT, cost/conversation, QA pass-rate.
+- Authenticate customer; look up order; answer with ETA, policy, and **handoff** button.
+- KPIs: deflection %, FRT, cost/conversation, QA pass-rate.
 
 #### AP: "Invoice QA on top 5 suppliers"
 
-* Parse PDF; compare to PO/price list; flag variance/duplicates; open ticket.
-* KPIs: £ overcharge detected, false-positive rate, minutes saved/invoice.
+- Parse PDF; compare to PO/price list; flag variance/duplicates; open ticket.
+- KPIs: £ overcharge detected, false-positive rate, minutes saved/invoice.
 
 #### Pricing: "Guardrailed price update for 200 SKUs"
 
-* Apply formula price with caps; canary to 10%; auto-rollback if conversion drops.
-* KPIs: GM% delta, conversion delta, rollback MTTR.
+- Apply formula price with caps; canary to 10%; auto-rollback if conversion drops.
+- KPIs: GM% delta, conversion delta, rollback MTTR.
 
 ## Minimal instrumentation (don't skip)
 
 #### Capture on every request
 
-* Route/feature, user/session, prompt template, inputs (redacted), outputs, **citations/evidence**, latency, tokens, **cost**, decision taken (auto, escalated, rolled back).
+- Route/feature, user/session, prompt template, inputs (redacted), outputs, **citations/evidence**, latency, tokens, **cost**, decision taken (auto, escalated, rolled back).
 
 #### Dashboards to publish
 
-* Spend vs budget; p50/p95 latency; eval trend; KPI trend vs baseline.
+- Spend vs budget; p50/p95 latency; eval trend; KPI trend vs baseline.
 
 ## Risk checklist
 
 #### Before enabling traffic
 
-* Legal/privacy reviewed the data map and redaction.
-* Escalation path staffed; SLAs agreed.
-* Canary cohort and **kill switch** verified.
+- Legal/privacy reviewed the data map and redaction.
+- Escalation path staffed; SLAs agreed.
+- Canary cohort and **kill switch** verified.
 
 #### During the pilot
 
-* Daily QA sample reviewed by the business owner.
-* Incidents labelled and linked to traces.
-* Costs monitored with 80% alert and hard stop at 100%.
+- Daily QA sample reviewed by the business owner.
+- Incidents labelled and linked to traces.
+- Costs monitored with 80% alert and hard stop at 100%.
 
 ## Rollback play (one command)
 

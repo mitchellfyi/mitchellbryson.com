@@ -1,24 +1,64 @@
 'use client'
 
-import { useState, useEffect, useId, Suspense } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import clsx from 'clsx'
-import { Button } from '@/components/Button'
 import { EmailReport } from '@/components/tools/EmailReport'
 import { CopyLinkButton } from '@/components/tools/CopyLinkButton'
+import { InputGroup } from '@/components/tools/InputGroup'
 
 // ── Model pricing (USD per 1M tokens, early 2025) ───
 
 const MODELS = [
   { name: 'GPT-4o', provider: 'OpenAI', inputPer1M: 2.5, outputPer1M: 10.0 },
-  { name: 'GPT-4o mini', provider: 'OpenAI', inputPer1M: 0.15, outputPer1M: 0.6 },
-  { name: 'Claude 3.5 Sonnet', provider: 'Anthropic', inputPer1M: 3.0, outputPer1M: 15.0 },
-  { name: 'Claude 3.5 Haiku', provider: 'Anthropic', inputPer1M: 0.8, outputPer1M: 4.0 },
-  { name: 'Gemini 1.5 Pro', provider: 'Google', inputPer1M: 1.25, outputPer1M: 5.0 },
-  { name: 'Gemini 1.5 Flash', provider: 'Google', inputPer1M: 0.075, outputPer1M: 0.3 },
-  { name: 'Mistral Large', provider: 'Mistral', inputPer1M: 2.0, outputPer1M: 6.0 },
-  { name: 'Llama 3.1 70B', provider: 'Together AI', inputPer1M: 0.88, outputPer1M: 0.88 },
-  { name: 'Llama 3.1 8B', provider: 'Together AI', inputPer1M: 0.18, outputPer1M: 0.18 },
+  {
+    name: 'GPT-4o mini',
+    provider: 'OpenAI',
+    inputPer1M: 0.15,
+    outputPer1M: 0.6,
+  },
+  {
+    name: 'Claude 3.5 Sonnet',
+    provider: 'Anthropic',
+    inputPer1M: 3.0,
+    outputPer1M: 15.0,
+  },
+  {
+    name: 'Claude 3.5 Haiku',
+    provider: 'Anthropic',
+    inputPer1M: 0.8,
+    outputPer1M: 4.0,
+  },
+  {
+    name: 'Gemini 1.5 Pro',
+    provider: 'Google',
+    inputPer1M: 1.25,
+    outputPer1M: 5.0,
+  },
+  {
+    name: 'Gemini 1.5 Flash',
+    provider: 'Google',
+    inputPer1M: 0.075,
+    outputPer1M: 0.3,
+  },
+  {
+    name: 'Mistral Large',
+    provider: 'Mistral',
+    inputPer1M: 2.0,
+    outputPer1M: 6.0,
+  },
+  {
+    name: 'Llama 3.1 70B',
+    provider: 'Together AI',
+    inputPer1M: 0.88,
+    outputPer1M: 0.88,
+  },
+  {
+    name: 'Llama 3.1 8B',
+    provider: 'Together AI',
+    inputPer1M: 0.18,
+    outputPer1M: 0.18,
+  },
 ]
 
 // ── Helpers ──────────────────────────────────────────
@@ -39,61 +79,6 @@ function formatUSD(amount) {
   if (amount < 1) return `$${amount.toFixed(3)}`
   if (amount < 100) return `$${amount.toFixed(2)}`
   return `$${Math.round(amount).toLocaleString('en-US')}`
-}
-
-// ── Sub-components ───────────────────────────────────
-
-function InputGroup({ label, description, value, onChange, min, max, step = 1 }) {
-  const id = useId()
-  const numberId = `${id}-number`
-  const descId = description ? `${id}-desc` : undefined
-
-  return (
-    <div className="space-y-2">
-      <div className="flex items-baseline justify-between">
-        <label htmlFor={numberId} className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {label}
-        </label>
-        <span className="text-sm text-zinc-500 dark:text-zinc-400">
-          {value.toLocaleString('en-US')}
-        </span>
-      </div>
-      {description && (
-        <p id={descId} className="text-xs text-zinc-500 dark:text-zinc-400">{description}</p>
-      )}
-      <div className="flex items-center gap-3">
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
-          aria-label={label}
-          aria-describedby={descId}
-          className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-zinc-200 accent-teal-500 dark:bg-zinc-700"
-        />
-        <input
-          type="number"
-          id={numberId}
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(e) => {
-            const v = Number(e.target.value)
-            if (v >= min && v <= max) onChange(v)
-          }}
-          aria-describedby={descId}
-          className={clsx(
-            'w-24 rounded-md bg-white px-3 py-1.5 text-sm shadow-sm',
-            'outline outline-zinc-900/10 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500',
-            'dark:bg-zinc-800 dark:text-zinc-200 dark:outline-zinc-700 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400',
-          )}
-        />
-      </div>
-    </div>
-  )
 }
 
 // ── Main component ───────────────────────────────────
@@ -117,9 +102,12 @@ function LLMCostCalculatorInner() {
     const it = searchParams.get('it')
     const ot = searchParams.get('ot')
     const rpd = searchParams.get('rpd')
-    if (it) setInputTokens(Math.min(10000, Math.max(100, parseInt(it, 10) || 1000)))
-    if (ot) setOutputTokens(Math.min(10000, Math.max(100, parseInt(ot, 10) || 500)))
-    if (rpd) setRequestsPerDay(Math.min(10000, Math.max(1, parseInt(rpd, 10) || 100)))
+    if (it)
+      setInputTokens(Math.min(10000, Math.max(100, parseInt(it, 10) || 1000)))
+    if (ot)
+      setOutputTokens(Math.min(10000, Math.max(100, parseInt(ot, 10) || 500)))
+    if (rpd)
+      setRequestsPerDay(Math.min(10000, Math.max(1, parseInt(rpd, 10) || 100)))
   }, [searchParams])
 
   // Keep URL in sync
@@ -141,7 +129,7 @@ function LLMCostCalculatorInner() {
     <>
       <div className="grid gap-10 lg:grid-cols-5">
         {/* Inputs */}
-        <div className="space-y-6 lg:col-span-2 lg:sticky lg:top-8 lg:self-start">
+        <div className="space-y-6 lg:sticky lg:top-8 lg:col-span-2 lg:self-start">
           <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
             <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               Your usage
@@ -184,19 +172,34 @@ function LLMCostCalculatorInner() {
               Cost comparison
             </h3>
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-sm" aria-label="LLM cost comparison">
+              <table
+                className="w-full text-sm"
+                aria-label="LLM cost comparison"
+              >
                 <thead>
                   <tr className="border-b border-zinc-200 dark:border-zinc-700">
-                    <th scope="col" className="pb-2 px-4 text-left font-medium text-zinc-500 dark:text-zinc-400">
+                    <th
+                      scope="col"
+                      className="px-4 pb-2 text-left font-medium text-zinc-500 dark:text-zinc-400"
+                    >
                       Model
                     </th>
-                    <th scope="col" className="pb-2 pr-4 text-right font-medium text-zinc-500 dark:text-zinc-400">
+                    <th
+                      scope="col"
+                      className="pr-4 pb-2 text-right font-medium text-zinc-500 dark:text-zinc-400"
+                    >
                       Per request
                     </th>
-                    <th scope="col" className="pb-2 pr-4 text-right font-medium text-zinc-500 dark:text-zinc-400">
+                    <th
+                      scope="col"
+                      className="pr-4 pb-2 text-right font-medium text-zinc-500 dark:text-zinc-400"
+                    >
                       Daily
                     </th>
-                    <th scope="col" className="pb-2 pr-4 text-right font-medium text-zinc-500 dark:text-zinc-400">
+                    <th
+                      scope="col"
+                      className="pr-4 pb-2 text-right font-medium text-zinc-500 dark:text-zinc-400"
+                    >
                       Monthly
                     </th>
                   </tr>
@@ -210,7 +213,7 @@ function LLMCostCalculatorInner() {
                         i === 0 && 'bg-teal-50 dark:bg-teal-500/10',
                       )}
                     >
-                      <td className="py-2.5 px-4">
+                      <td className="px-4 py-2.5">
                         <div
                           className={clsx(
                             'font-medium',
@@ -261,9 +264,9 @@ function LLMCostCalculatorInner() {
               </table>
             </div>
             <p className="mt-4 text-xs text-zinc-400 dark:text-zinc-500">
-              Prices are approximate and based on publicly listed API pricing as of
-              early 2025. Actual costs may vary with volume discounts, batching, and
-              caching.
+              Prices are approximate and based on publicly listed API pricing as
+              of early 2025. Actual costs may vary with volume discounts,
+              batching, and caching.
             </p>
 
             <div className="mt-4">

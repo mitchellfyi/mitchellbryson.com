@@ -16,6 +16,7 @@ Personal website and blog of Mitchell Bryson - writings on AI agents, autonomous
 ### Articles
 
 Essays and thought pieces on:
+
 - AI agent ecosystems and agent-to-agent interactions
 - Autonomous finance and AI CFOs
 - Synthetic organizations and AI-first agencies
@@ -56,12 +57,12 @@ CONTACT_EMAIL=your-email@example.com
 
 ## CI/CD
 
-| Workflow | Trigger | Purpose |
-|----------|---------|---------|
-| **CI** | PRs to `main` | Lint, build, security audit |
-| **Deploy Production** | Push to `main` | CI + deploy summary |
-| **Self-Healing CI** | CI failure | Auto-creates issues, assigns to Copilot |
-| **Rollback** | Manual | Rollback to known-good commit |
+| Workflow              | Trigger        | Purpose                                 |
+| --------------------- | -------------- | --------------------------------------- |
+| **CI**                | PRs to `main`  | Lint, build, security audit             |
+| **Deploy Production** | Push to `main` | CI + deploy summary                     |
+| **Self-Healing CI**   | CI failure     | Auto-creates issues, assigns to Copilot |
+| **Rollback**          | Manual         | Rollback to known-good commit           |
 
 Deployments are handled by Vercel's Git integration.
 

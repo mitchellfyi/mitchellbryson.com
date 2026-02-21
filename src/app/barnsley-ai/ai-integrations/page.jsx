@@ -31,7 +31,10 @@ export default function BarnsleyAiIntegrationsPage() {
         items={[
           { name: 'Home', url: siteUrl },
           { name: 'AI in Barnsley', url: `${siteUrl}/barnsley-ai` },
-          { name: 'AI Integrations', url: `${siteUrl}/barnsley-ai/ai-integrations` },
+          {
+            name: 'AI Integrations',
+            url: `${siteUrl}/barnsley-ai/ai-integrations`,
+          },
         ]}
       />
       <SimpleLayout

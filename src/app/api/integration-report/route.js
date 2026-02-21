@@ -67,7 +67,8 @@ function buildEmailHtml({ recommended, alsoExplore, permalink }) {
 }
 
 export async function POST(request) {
-  const { email, toolName, permalink, recommended, alsoExplore } = await request.json()
+  const { email, toolName, permalink, recommended, alsoExplore } =
+    await request.json()
 
   return sendReportAndLead({
     email,

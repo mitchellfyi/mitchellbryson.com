@@ -23,7 +23,7 @@ export const projectTools = [
     category: 'local',
     status: 'Coming soon',
     longDescription:
-      'Answer a short set of questions about your data, processes, team, and goals. The tool generates a readiness score with a one-paragraph recommendation tailored to your situation — whether you should start with a quick win, invest in data foundations, or jump straight into an AI pilot. Useful for businesses that know AI is relevant but aren\'t sure where to begin.',
+      "Answer a short set of questions about your data, processes, team, and goals. The tool generates a readiness score with a one-paragraph recommendation tailored to your situation — whether you should start with a quick win, invest in data foundations, or jump straight into an AI pilot. Useful for businesses that know AI is relevant but aren't sure where to begin.",
   },
   {
     slug: 'which-ai-integration',
@@ -79,11 +79,11 @@ export const projectTools = [
     slug: 'tech-stack-picker',
     name: 'Tech Stack Picker',
     description:
-      'Describe what you\'re building plus your constraints, and get a recommended tech stack with rationale.',
+      "Describe what you're building plus your constraints, and get a recommended tech stack with rationale.",
     category: 'startup',
     status: 'Coming soon',
     longDescription:
-      'Answer questions about what you\'re building (web app, API, mobile, AI product), your constraints (budget, team size, timeline, scale expectations), and your preferences (languages, hosting). The tool recommends a specific tech stack — framework, database, hosting, CI/CD, and AI layer — with a short rationale for each choice. Built on experience shipping products across Next.js, Rails, React, and various AI stacks.',
+      "Answer questions about what you're building (web app, API, mobile, AI product), your constraints (budget, team size, timeline, scale expectations), and your preferences (languages, hosting). The tool recommends a specific tech stack — framework, database, hosting, CI/CD, and AI layer — with a short rationale for each choice. Built on experience shipping products across Next.js, Rails, React, and various AI stacks.",
   },
 ]
 

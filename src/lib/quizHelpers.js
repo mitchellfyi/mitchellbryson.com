@@ -1,5 +1,7 @@
 export function encodeAnswers(answers, questionCount) {
-  return Array.from({ length: questionCount }, (_, i) => answers[i] ?? 0).join('')
+  return Array.from({ length: questionCount }, (_, i) => answers[i] ?? 0).join(
+    '',
+  )
 }
 
 export function decodeAnswers(str, questionCount) {

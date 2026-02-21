@@ -1,11 +1,11 @@
 ---
 author: Mitchell Bryson
-date: "2025-11-02"
-title: "Human Gates, Agent Throughput: An autonomy ladder that scales without losing control"
-description: "A practical model for growing AI agent autonomy - levels, controls, and KPIs - grounded in risk frameworks (NIST AI RMF, ISO/IEC 42001) and aligned with EU AI Act oversight."
+date: '2025-11-02'
+title: 'Human Gates, Agent Throughput: An autonomy ladder that scales without losing control'
+description: 'A practical model for growing AI agent autonomy - levels, controls, and KPIs - grounded in risk frameworks (NIST AI RMF, ISO/IEC 42001) and aligned with EU AI Act oversight.'
 ---
 
-If you want agents to move fast *and* stay safe, you need two things: a clear **autonomy ladder** and explicit **human gates**. This article proposes a maintainable ladder (L0–L5), the controls required at each step, and the KPIs that prove you can scale without losing governance. It borrows the idea of staged autonomy from mature safety-critical domains, then adapts it to B2B software and services. ([SAE International][1], [UNECE Wiki][2])
+If you want agents to move fast _and_ stay safe, you need two things: a clear **autonomy ladder** and explicit **human gates**. This article proposes a maintainable ladder (L0–L5), the controls required at each step, and the KPIs that prove you can scale without losing governance. It borrows the idea of staged autonomy from mature safety-critical domains, then adapts it to B2B software and services. ([SAE International][1], [UNECE Wiki][2])
 
 ## Why a ladder (not a leap)
 
@@ -21,46 +21,46 @@ Each level defines **what agents may do**, the **required gates/controls**, and 
 
 ### L0 - Suggest
 
-* **Scope:** Drafts, analyses, candidate actions; no external effects.
-* **Gates/controls:** Prompt and output schema validation; logging; basic evals.
-* **Upgrade criteria:** ≥90% eval pass-rate on curated cases for 2 weeks; no safety policy violations.
+- **Scope:** Drafts, analyses, candidate actions; no external effects.
+- **Gates/controls:** Prompt and output schema validation; logging; basic evals.
+- **Upgrade criteria:** ≥90% eval pass-rate on curated cases for 2 weeks; no safety policy violations.
 
 ### L1 - Execute with pre-approval
 
-* **Scope:** Executes actions after a human taps "approve."
-* **Gates/controls:** Mandatory review UI, per-action diff, spend estimate; rollback button.
-* **Upgrade criteria:** Reviewer acceptance ≥95%; average approval latency < 5 min; zero unapproved sends.
+- **Scope:** Executes actions after a human taps "approve."
+- **Gates/controls:** Mandatory review UI, per-action diff, spend estimate; rollback button.
+- **Upgrade criteria:** Reviewer acceptance ≥95%; average approval latency < 5 min; zero unapproved sends.
 
 ### L2 - Templated autonomy
 
-* **Scope:** Executes within tight templates (e.g., support replies with citations; price updates with bounds).
-* **Gates/controls:** Guardrails (schema, policy allow-lists), rate limits, per-route cost caps, audit trail.
-* **Upgrade criteria:** KPI lift with no increase in incident rate; cost/unit stable; MTTR < 15 min on rollbacks.
+- **Scope:** Executes within tight templates (e.g., support replies with citations; price updates with bounds).
+- **Gates/controls:** Guardrails (schema, policy allow-lists), rate limits, per-route cost caps, audit trail.
+- **Upgrade criteria:** KPI lift with no increase in incident rate; cost/unit stable; MTTR < 15 min on rollbacks.
 
 ### L3 - Budget-bounded autonomy
 
-* **Scope:** Executes and spends inside pre-set budgets (tokens/media) with **human gates** at milestones.
-* **Gates/controls:** Daily and per-request spend ceilings with alerts; milestone approvals; canary traffic only.
-* **Upgrade criteria:** Meet targets on a 10–20% cohort for 2–4 weeks; zero critical incidents.
+- **Scope:** Executes and spends inside pre-set budgets (tokens/media) with **human gates** at milestones.
+- **Gates/controls:** Daily and per-request spend ceilings with alerts; milestone approvals; canary traffic only.
+- **Upgrade criteria:** Meet targets on a 10–20% cohort for 2–4 weeks; zero critical incidents.
 
 ### L4 - Canary end-to-end
 
-* **Scope:** Full mission slice (e.g., leadgen for one segment) end-to-end in a canary.
-* **Gates/controls:** Release gates tied to evals and SLOs; change-management; incident playbooks.
-* **Upgrade criteria:** KPI deltas hold at canary → 50% without regressions; budget variance < 10%.
+- **Scope:** Full mission slice (e.g., leadgen for one segment) end-to-end in a canary.
+- **Gates/controls:** Release gates tied to evals and SLOs; change-management; incident playbooks.
+- **Upgrade criteria:** KPI deltas hold at canary → 50% without regressions; budget variance < 10%.
 
 ### L5 - Broad autonomy (policy-bounded)
 
-* **Scope:** Wide execution with **policy** and **budget** guardrails; humans handle exceptions and audits.
-* **Gates/controls:** Continuous monitoring, drift detection, periodic post-hoc audits, kill-switch.
-* **Stay conditions:** No systemic issues; compliance duties (oversight, logging) continue under EU AI Act where applicable. ([Trilateral Research][9])
+- **Scope:** Wide execution with **policy** and **budget** guardrails; humans handle exceptions and audits.
+- **Gates/controls:** Continuous monitoring, drift detection, periodic post-hoc audits, kill-switch.
+- **Stay conditions:** No systemic issues; compliance duties (oversight, logging) continue under EU AI Act where applicable. ([Trilateral Research][9])
 
 ## Control stack (what changes as autonomy rises)
 
-* **Governance:** Map decision rights; who can raise budgets, switch models, or expand scope. Align to NIST AI RMF's GOVERN/MAP/MESURE/MANAGE functions; make them visible in docs and dashboards. ([NIST][3])
-* **Oversight:** Keep humans **in** or **on** the loop depending on level; enforce gates at external-facing milestones (brand, legal, financial). The EU AI Act requires human oversight and logging for high-risk uses - design for this from L1 upward. ([Trilateral Research][9])
-* **Management system:** Treat the ladder as a management process (policy → plan → operate → review) per ISO/IEC 42001. ([ISO][5])
-* **Traceability:** Capture inputs/outputs, tokens, cost, latency, model+prompt versions, tool I/O, and decisions for every action; this underpins audits and post-mortems recommended by NIST. ([NIST Publications][4])
+- **Governance:** Map decision rights; who can raise budgets, switch models, or expand scope. Align to NIST AI RMF's GOVERN/MAP/MESURE/MANAGE functions; make them visible in docs and dashboards. ([NIST][3])
+- **Oversight:** Keep humans **in** or **on** the loop depending on level; enforce gates at external-facing milestones (brand, legal, financial). The EU AI Act requires human oversight and logging for high-risk uses - design for this from L1 upward. ([Trilateral Research][9])
+- **Management system:** Treat the ladder as a management process (policy → plan → operate → review) per ISO/IEC 42001. ([ISO][5])
+- **Traceability:** Capture inputs/outputs, tokens, cost, latency, model+prompt versions, tool I/O, and decisions for every action; this underpins audits and post-mortems recommended by NIST. ([NIST Publications][4])
 
 ## Reference workflow
 
@@ -78,22 +78,22 @@ flowchart LR
 
 ## KPIs that prove you can move up a level
 
-* **Reliability:** p95 latency, error rate, MTTR, incident count/severity (weekly).
-* **Quality:** Eval pass-rate (faithfulness/accuracy), QA acceptance rate, policy-violation count.
-* **Economics:** Cost per outcome (tokens+infra+minutes), budget utilisation, unit margin.
-* **Control health:** % actions with approver, % actions with complete traces, audit findings closed.
+- **Reliability:** p95 latency, error rate, MTTR, incident count/severity (weekly).
+- **Quality:** Eval pass-rate (faithfulness/accuracy), QA acceptance rate, policy-violation count.
+- **Economics:** Cost per outcome (tokens+infra+minutes), budget utilisation, unit margin.
+- **Control health:** % actions with approver, % actions with complete traces, audit findings closed.
 
 ## 30-day pilot to introduce the ladder
 
-* **Week 1 - Frame & assign.** Pick one mission and run a structured **risk/scope check**; start at L0/L1. Publish decision rights, budgets, and gates. Ground oversight in NIST AI RMF concepts (govern, measure, manage). ([NIST][3])
-* **Week 2 - Templated autonomy (L2).** Add schemas, policy filters, rate limits, and per-route cost ceilings. Start a small canary; implement rollback.
-* **Week 3 - Budget-bounded autonomy (L3).** Introduce daily/per-request caps and milestone approvals. Track KPIs and evals; aim for MTTR < 15 min.
-* **Week 4 - Canary E2E (L4).** Expand to a full slice with release gates and post-mortems tied to traces. If you operate in the EU, verify human-oversight and logging align with the AI Act's high-risk controls before scaling. ([Trilateral Research][9])
+- **Week 1 - Frame & assign.** Pick one mission and run a structured **risk/scope check**; start at L0/L1. Publish decision rights, budgets, and gates. Ground oversight in NIST AI RMF concepts (govern, measure, manage). ([NIST][3])
+- **Week 2 - Templated autonomy (L2).** Add schemas, policy filters, rate limits, and per-route cost ceilings. Start a small canary; implement rollback.
+- **Week 3 - Budget-bounded autonomy (L3).** Introduce daily/per-request caps and milestone approvals. Track KPIs and evals; aim for MTTR < 15 min.
+- **Week 4 - Canary E2E (L4).** Expand to a full slice with release gates and post-mortems tied to traces. If you operate in the EU, verify human-oversight and logging align with the AI Act's high-risk controls before scaling. ([Trilateral Research][9])
 
 ## Compliance touchpoints (don't bolt them on later)
 
-* **Human oversight & logging:** Designate oversight roles; ensure logs capture what a regulator or auditor would need (who, what, when, why). This tracks with EU AI Act obligations for high-risk systems. ([Trilateral Research][9])
-* **Management system:** Document policies, roles, competence, supplier controls, and continual improvement loops; that's the spine of ISO/IEC 42001. ([ISO][5])
+- **Human oversight & logging:** Designate oversight roles; ensure logs capture what a regulator or auditor would need (who, what, when, why). This tracks with EU AI Act obligations for high-risk systems. ([Trilateral Research][9])
+- **Management system:** Document policies, roles, competence, supplier controls, and continual improvement loops; that's the spine of ISO/IEC 42001. ([ISO][5])
 
 ## Notes on analogy
 
@@ -103,13 +103,13 @@ I draw the **ladder** idea from established autonomy taxonomies (e.g., SAE J3016
 
 **Bottom line:** Treat autonomy as something you **earn** with evidence. Define levels, enforce human gates, and tie every step to traces, evals, and budgets. With that discipline, you can increase agent throughput without losing control.
 
-[1]: https://www.sae.org/blog/sae-j3016-update?utm_source=chatgpt.com "SAE Levels of Driving Automation™ Refined for Clarity and ..."
-[2]: https://wiki.unece.org/download/attachments/128418539/SAE%20J3016_202104.pdf?api=v2&utm_source=chatgpt.com "SAE J3016_202104.pdf"
-[3]: https://www.nist.gov/itl/ai-risk-management-framework?utm_source=chatgpt.com "AI Risk Management Framework"
-[4]: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf?utm_source=chatgpt.com "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
-[5]: https://www.iso.org/standard/42001?utm_source=chatgpt.com "ISO/IEC 42001:2023 - AI management systems"
-[6]: https://kpmg.com/ch/en/insights/artificial-intelligence/iso-iec-42001.html?utm_source=chatgpt.com "ISO/IEC 42001: a new standard for AI governance"
-[7]: https://wp0.vanderbilt.edu/lawreview/wp-content/uploads/sites/278/2023/03/Humans-in-the-Loop.pdf?utm_source=chatgpt.com "Humans in the Loop"
-[8]: https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2287.pdf?utm_source=chatgpt.com "Human-in-the-loop Technical Document Annotation"
-[9]: https://trilateralresearch.com/responsible-ai/eu-ai-act-implementation-timeline-mapping-your-models-to-the-new-risk-tiers?utm_source=chatgpt.com "EU AI Act timeline and risk tiers explained"
-[10]: https://www.sae.org/binaries/content/assets/cm/content/blog/sae-j3016-visual-chart_5.3.21.pdf?utm_source=chatgpt.com "sae j3016tm levels of driving automationtm"
+[1]: https://www.sae.org/blog/sae-j3016-update?utm_source=chatgpt.com 'SAE Levels of Driving Automation™ Refined for Clarity and ...'
+[2]: https://wiki.unece.org/download/attachments/128418539/SAE%20J3016_202104.pdf?api=v2&utm_source=chatgpt.com 'SAE J3016_202104.pdf'
+[3]: https://www.nist.gov/itl/ai-risk-management-framework?utm_source=chatgpt.com 'AI Risk Management Framework'
+[4]: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf?utm_source=chatgpt.com 'Artificial Intelligence Risk Management Framework (AI RMF 1.0)'
+[5]: https://www.iso.org/standard/42001?utm_source=chatgpt.com 'ISO/IEC 42001:2023 - AI management systems'
+[6]: https://kpmg.com/ch/en/insights/artificial-intelligence/iso-iec-42001.html?utm_source=chatgpt.com 'ISO/IEC 42001: a new standard for AI governance'
+[7]: https://wp0.vanderbilt.edu/lawreview/wp-content/uploads/sites/278/2023/03/Humans-in-the-Loop.pdf?utm_source=chatgpt.com 'Humans in the Loop'
+[8]: https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2287.pdf?utm_source=chatgpt.com 'Human-in-the-loop Technical Document Annotation'
+[9]: https://trilateralresearch.com/responsible-ai/eu-ai-act-implementation-timeline-mapping-your-models-to-the-new-risk-tiers?utm_source=chatgpt.com 'EU AI Act timeline and risk tiers explained'
+[10]: https://www.sae.org/binaries/content/assets/cm/content/blog/sae-j3016-visual-chart_5.3.21.pdf?utm_source=chatgpt.com 'sae j3016tm levels of driving automationtm'

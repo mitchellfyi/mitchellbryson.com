@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { EmailReport } from '@/components/tools/EmailReport'
@@ -14,62 +14,135 @@ import { useQuiz } from '@/hooks/useQuiz'
 const QUESTIONS = [
   {
     category: 'data',
-    question: 'How is most of your important business information stored today?',
+    question:
+      'How is most of your important business information stored today?',
     options: [
-      { score: 0, text: "Mostly on paper, in people's heads, or scattered across personal files" },
-      { score: 1, text: 'In spreadsheets and shared drives, but not always up to date' },
-      { score: 2, text: "In a central system (like a CRM, accounting software, or database) but we don't do much with it" },
-      { score: 3, text: 'In well-organised digital systems, and we already use it for reports or dashboards' },
+      {
+        score: 0,
+        text: "Mostly on paper, in people's heads, or scattered across personal files",
+      },
+      {
+        score: 1,
+        text: 'In spreadsheets and shared drives, but not always up to date',
+      },
+      {
+        score: 2,
+        text: "In a central system (like a CRM, accounting software, or database) but we don't do much with it",
+      },
+      {
+        score: 3,
+        text: 'In well-organised digital systems, and we already use it for reports or dashboards',
+      },
     ],
   },
   {
     category: 'processes',
-    question: 'Think about the most repetitive task in your business. How would you describe it?',
+    question:
+      'Think about the most repetitive task in your business. How would you describe it?',
     options: [
-      { score: 0, text: "We don't really have any clearly defined processes — everyone just gets on with it" },
-      { score: 1, text: 'There are a few repetitive tasks, but they change a lot depending on the situation' },
-      { score: 2, text: 'We have clear, repeatable workflows that staff follow consistently' },
-      { score: 3, text: 'We have documented, step-by-step processes that are already partly automated (e.g. email templates, form workflows)' },
+      {
+        score: 0,
+        text: "We don't really have any clearly defined processes — everyone just gets on with it",
+      },
+      {
+        score: 1,
+        text: 'There are a few repetitive tasks, but they change a lot depending on the situation',
+      },
+      {
+        score: 2,
+        text: 'We have clear, repeatable workflows that staff follow consistently',
+      },
+      {
+        score: 3,
+        text: 'We have documented, step-by-step processes that are already partly automated (e.g. email templates, form workflows)',
+      },
     ],
   },
   {
     category: 'team',
-    question: 'How would your team react if you introduced a new digital tool tomorrow?',
+    question:
+      'How would your team react if you introduced a new digital tool tomorrow?',
     options: [
       { score: 0, text: 'Most people would resist it or struggle to learn it' },
-      { score: 1, text: 'A few people would try it, but most would need a lot of support' },
-      { score: 2, text: 'The team is generally open to new tools and picks them up fairly quickly' },
-      { score: 3, text: 'We\'ve already adopted several new tools recently and the team actively looks for better ways to work' },
+      {
+        score: 1,
+        text: 'A few people would try it, but most would need a lot of support',
+      },
+      {
+        score: 2,
+        text: 'The team is generally open to new tools and picks them up fairly quickly',
+      },
+      {
+        score: 3,
+        text: "We've already adopted several new tools recently and the team actively looks for better ways to work",
+      },
     ],
   },
   {
     category: 'budget',
-    question: 'How much could you realistically invest in an AI project over the next 12 months?',
+    question:
+      'How much could you realistically invest in an AI project over the next 12 months?',
     options: [
-      { score: 0, text: "Nothing right now — we'd need to see results before spending anything" },
-      { score: 1, text: "A small amount (under \u00A32,000) to test something low-risk" },
-      { score: 2, text: "A reasonable budget (\u00A32,000\u2013\u00A310,000) if the business case is clear" },
-      { score: 3, text: "We have budget set aside (\u00A310,000+) and are actively looking to invest in AI or automation" },
+      {
+        score: 0,
+        text: "Nothing right now — we'd need to see results before spending anything",
+      },
+      {
+        score: 1,
+        text: 'A small amount (under \u00A32,000) to test something low-risk',
+      },
+      {
+        score: 2,
+        text: 'A reasonable budget (\u00A32,000\u2013\u00A310,000) if the business case is clear',
+      },
+      {
+        score: 3,
+        text: 'We have budget set aside (\u00A310,000+) and are actively looking to invest in AI or automation',
+      },
     ],
   },
   {
     category: 'techStack',
     question: 'What does your current technology setup look like?',
     options: [
-      { score: 0, text: 'We mostly use basic tools — email, phone, maybe a simple website' },
-      { score: 1, text: 'We use some cloud software (e.g. Xero, Mailchimp, Google Workspace) but nothing connected' },
-      { score: 2, text: 'We have several cloud tools and some of them are connected or share data' },
-      { score: 3, text: 'We have an integrated tech stack with APIs, automations, or custom software already in place' },
+      {
+        score: 0,
+        text: 'We mostly use basic tools — email, phone, maybe a simple website',
+      },
+      {
+        score: 1,
+        text: 'We use some cloud software (e.g. Xero, Mailchimp, Google Workspace) but nothing connected',
+      },
+      {
+        score: 2,
+        text: 'We have several cloud tools and some of them are connected or share data',
+      },
+      {
+        score: 3,
+        text: 'We have an integrated tech stack with APIs, automations, or custom software already in place',
+      },
     ],
   },
   {
     category: 'strategy',
     question: 'What would you most want AI to do for your business?',
     options: [
-      { score: 0, text: "I'm not sure yet — I just know everyone's talking about it" },
-      { score: 1, text: 'I have a general idea (e.g. "save us time" or "help with marketing") but nothing specific' },
-      { score: 2, text: 'I can point to one or two specific tasks or bottlenecks where AI might help' },
-      { score: 3, text: "I have a clear problem, I know what success looks like, and I'm ready to act on it" },
+      {
+        score: 0,
+        text: "I'm not sure yet — I just know everyone's talking about it",
+      },
+      {
+        score: 1,
+        text: 'I have a general idea (e.g. "save us time" or "help with marketing") but nothing specific',
+      },
+      {
+        score: 2,
+        text: 'I can point to one or two specific tasks or bottlenecks where AI might help',
+      },
+      {
+        score: 3,
+        text: "I have a clear problem, I know what success looks like, and I'm ready to act on it",
+      },
     ],
   },
 ]
@@ -174,40 +247,112 @@ const NEXT_STEPS = {
 
 const IMPROVEMENT_TODOS = {
   data: [
-    { current: 0, text: 'Move key business information out of paper files and into a digital system' },
-    { current: 1, text: 'Consolidate scattered spreadsheets into a single, up-to-date source of truth' },
-    { current: 2, text: 'Start using your existing data for simple reports or dashboards to spot patterns' },
-    { current: 3, text: 'Audit your data for gaps or inconsistencies before feeding it into an AI system' },
+    {
+      current: 0,
+      text: 'Move key business information out of paper files and into a digital system',
+    },
+    {
+      current: 1,
+      text: 'Consolidate scattered spreadsheets into a single, up-to-date source of truth',
+    },
+    {
+      current: 2,
+      text: 'Start using your existing data for simple reports or dashboards to spot patterns',
+    },
+    {
+      current: 3,
+      text: 'Audit your data for gaps or inconsistencies before feeding it into an AI system',
+    },
   ],
   processes: [
-    { current: 0, text: 'Document your top 3 most time-consuming tasks step by step' },
-    { current: 1, text: 'Standardise your most common workflows so they run the same way every time' },
-    { current: 2, text: 'Automate one repeatable process with templates, forms, or a simple workflow tool' },
-    { current: 3, text: 'Identify which automated workflows would benefit most from AI decision-making' },
+    {
+      current: 0,
+      text: 'Document your top 3 most time-consuming tasks step by step',
+    },
+    {
+      current: 1,
+      text: 'Standardise your most common workflows so they run the same way every time',
+    },
+    {
+      current: 2,
+      text: 'Automate one repeatable process with templates, forms, or a simple workflow tool',
+    },
+    {
+      current: 3,
+      text: 'Identify which automated workflows would benefit most from AI decision-making',
+    },
   ],
   team: [
-    { current: 0, text: 'Run a short training session on a simple digital tool to build confidence' },
-    { current: 1, text: 'Identify one or two team champions who can trial new tools and share feedback' },
-    { current: 2, text: 'Encourage the team to suggest tools or improvements — make it part of the culture' },
-    { current: 3, text: 'Brief the team on AI basics so they can help identify the best use cases' },
+    {
+      current: 0,
+      text: 'Run a short training session on a simple digital tool to build confidence',
+    },
+    {
+      current: 1,
+      text: 'Identify one or two team champions who can trial new tools and share feedback',
+    },
+    {
+      current: 2,
+      text: 'Encourage the team to suggest tools or improvements — make it part of the culture',
+    },
+    {
+      current: 3,
+      text: 'Brief the team on AI basics so they can help identify the best use cases',
+    },
   ],
   budget: [
-    { current: 0, text: 'Calculate the cost of one manual process (hours x hourly rate x 52 weeks) to build a business case' },
-    { current: 1, text: 'Set aside a small test budget and look for low-cost AI tools with free tiers' },
-    { current: 2, text: 'Build a formal business case for AI investment with projected ROI and timeline' },
-    { current: 3, text: 'Allocate budget for a proof of concept with clear success criteria and a defined timeline' },
+    {
+      current: 0,
+      text: 'Calculate the cost of one manual process (hours x hourly rate x 52 weeks) to build a business case',
+    },
+    {
+      current: 1,
+      text: 'Set aside a small test budget and look for low-cost AI tools with free tiers',
+    },
+    {
+      current: 2,
+      text: 'Build a formal business case for AI investment with projected ROI and timeline',
+    },
+    {
+      current: 3,
+      text: 'Allocate budget for a proof of concept with clear success criteria and a defined timeline',
+    },
   ],
   techStack: [
-    { current: 0, text: 'Adopt at least one cloud-based tool for a core business function (accounting, CRM, or email marketing)' },
-    { current: 1, text: 'Connect your existing cloud tools so data flows between them automatically' },
-    { current: 2, text: 'Explore whether your current tools have AI features or API integrations you\'re not using yet' },
-    { current: 3, text: 'Map out your tech stack and identify where an AI layer would add the most value' },
+    {
+      current: 0,
+      text: 'Adopt at least one cloud-based tool for a core business function (accounting, CRM, or email marketing)',
+    },
+    {
+      current: 1,
+      text: 'Connect your existing cloud tools so data flows between them automatically',
+    },
+    {
+      current: 2,
+      text: "Explore whether your current tools have AI features or API integrations you're not using yet",
+    },
+    {
+      current: 3,
+      text: 'Map out your tech stack and identify where an AI layer would add the most value',
+    },
   ],
   strategy: [
-    { current: 0, text: 'List your three biggest business pain points and consider which might benefit from automation' },
-    { current: 1, text: 'Pick one specific task and define exactly what "better" looks like (faster, cheaper, fewer errors)' },
-    { current: 2, text: 'Write a one-paragraph problem statement: what you want AI to solve and how you\'ll measure success' },
-    { current: 3, text: 'Create a shortlist of AI partners or solutions and schedule introductory calls this month' },
+    {
+      current: 0,
+      text: 'List your three biggest business pain points and consider which might benefit from automation',
+    },
+    {
+      current: 1,
+      text: 'Pick one specific task and define exactly what "better" looks like (faster, cheaper, fewer errors)',
+    },
+    {
+      current: 2,
+      text: "Write a one-paragraph problem statement: what you want AI to solve and how you'll measure success",
+    },
+    {
+      current: 3,
+      text: 'Create a shortlist of AI partners or solutions and schedule introductory calls this month',
+    },
   ],
 }
 
@@ -226,7 +371,7 @@ function ScoreRing({ score, maxScore, color }) {
 
   return (
     <div className="flex flex-col items-center">
-      <svg width="160" height="160" className="-rotate-90">
+      <svg width="160" height="160" className="-rotate-90" aria-hidden="true">
         <circle
           cx="80"
           cy="80"
@@ -247,9 +392,14 @@ function ScoreRing({ score, maxScore, color }) {
           className={clsx('transition-all duration-700', styles.stroke)}
         />
       </svg>
-      <div className="absolute flex flex-col items-center justify-center" style={{ width: 160, height: 160 }}>
+      <div
+        className="absolute flex flex-col items-center justify-center"
+        style={{ width: 160, height: 160 }}
+      >
         <span className={clsx('text-4xl font-bold', styles.text)}>{score}</span>
-        <span className="text-sm text-zinc-500 dark:text-zinc-400">out of {maxScore}</span>
+        <span className="text-sm text-zinc-500 dark:text-zinc-400">
+          out of {maxScore}
+        </span>
       </div>
     </div>
   )
@@ -269,7 +419,10 @@ function CategoryBreakdown({ answers }) {
               {CATEGORY_LABELS[q.category]}
             </p>
             <p className="mt-1 text-lg font-bold text-zinc-900 dark:text-zinc-100">
-              {score}<span className="text-sm font-normal text-zinc-400 dark:text-zinc-500">/3</span>
+              {score}
+              <span className="text-sm font-normal text-zinc-400 dark:text-zinc-500">
+                /3
+              </span>
             </p>
             <div className="mt-1.5 h-1 rounded-full bg-zinc-200 dark:bg-zinc-700">
               <div
@@ -285,30 +438,42 @@ function CategoryBreakdown({ answers }) {
 }
 
 function QuizResults({ answers, onRestart }) {
+  const resultsRef = useRef(null)
+  useEffect(() => {
+    resultsRef.current?.focus()
+  }, [])
+
   const totalScore = Object.values(answers).reduce((sum, s) => sum + s, 0)
   const tier = getTier(totalScore)
   const styles = TIER_STYLES[tier.color]
   const nextSteps = NEXT_STEPS[tier.color]
 
   // Build to-do list — one item per category, sorted by lowest score first, limited to 3
-  const scoredTodos = QUESTIONS
-    .map((q, i) => {
-      const score = answers[i] ?? 0
-      const todo = IMPROVEMENT_TODOS[q.category]?.find((t) => t.current === score)
-      if (!todo) return null
-      return { category: CATEGORY_LABELS[q.category], text: todo.text, score }
-    })
+  const scoredTodos = QUESTIONS.map((q, i) => {
+    const score = answers[i] ?? 0
+    const todo = IMPROVEMENT_TODOS[q.category]?.find((t) => t.current === score)
+    if (!todo) return null
+    return { category: CATEGORY_LABELS[q.category], text: todo.text, score }
+  })
     .filter(Boolean)
     .sort((a, b) => a.score - b.score)
     .slice(0, 3)
 
   const todos = [
     ...scoredTodos,
-    { category: 'Next step', text: 'Reach out to an AI service provider to discuss your options and learn what\u2019s possible for your business' },
+    {
+      category: 'Next step',
+      text: 'Reach out to an AI service provider to discuss your options and learn what\u2019s possible for your business',
+    },
   ]
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8">
+    <div
+      ref={resultsRef}
+      tabIndex={-1}
+      aria-label="Quiz results"
+      className="mx-auto max-w-2xl space-y-8"
+    >
       <div className="flex flex-col items-center rounded-2xl border border-zinc-100 p-8 dark:border-zinc-700/40">
         <div className="relative">
           <ScoreRing score={totalScore} maxScore={18} color={tier.color} />

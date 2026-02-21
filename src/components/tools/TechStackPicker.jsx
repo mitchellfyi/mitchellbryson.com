@@ -13,33 +13,149 @@ import { useQuiz } from '@/hooks/useQuiz'
 
 const TECH = {
   framework: {
-    nextjs: { name: 'Next.js', category: 'Framework', rationale: 'Full-stack React with SSR, API routes, and a huge ecosystem', docs: 'https://nextjs.org/docs' },
-    django: { name: 'Django', category: 'Framework', rationale: 'Batteries-included Python framework with ORM, admin, and auth built in', docs: 'https://docs.djangoproject.com' },
-    rails: { name: 'Rails', category: 'Framework', rationale: 'Rapid development with convention over configuration and mature tooling', docs: 'https://guides.rubyonrails.org' },
-    fastapi: { name: 'FastAPI', category: 'Framework', rationale: 'Modern Python API framework with automatic docs and async support', docs: 'https://fastapi.tiangolo.com' },
+    nextjs: {
+      name: 'Next.js',
+      category: 'Framework',
+      rationale: 'Full-stack React with SSR, API routes, and a huge ecosystem',
+      docs: 'https://nextjs.org/docs',
+    },
+    django: {
+      name: 'Django',
+      category: 'Framework',
+      rationale:
+        'Batteries-included Python framework with ORM, admin, and auth built in',
+      docs: 'https://docs.djangoproject.com',
+    },
+    rails: {
+      name: 'Rails',
+      category: 'Framework',
+      rationale:
+        'Rapid development with convention over configuration and mature tooling',
+      docs: 'https://guides.rubyonrails.org',
+    },
+    fastapi: {
+      name: 'FastAPI',
+      category: 'Framework',
+      rationale:
+        'Modern Python API framework with automatic docs and async support',
+      docs: 'https://fastapi.tiangolo.com',
+    },
   },
   database: {
-    postgresql: { name: 'PostgreSQL', category: 'Database', rationale: 'Battle-tested relational database with excellent extension ecosystem', docs: 'https://www.postgresql.org/docs' },
-    supabase: { name: 'Supabase', category: 'Database', rationale: 'Managed Postgres with auth, real-time, and instant APIs built in', docs: 'https://supabase.com/docs', siteLink: '/uses/supabase' },
-    mongodb: { name: 'MongoDB', category: 'Database', rationale: 'Flexible document database ideal for rapidly evolving schemas', docs: 'https://www.mongodb.com/docs' },
-    planetscale: { name: 'PlanetScale', category: 'Database', rationale: 'Serverless MySQL with branching, zero-downtime schema changes', docs: 'https://planetscale.com/docs' },
+    postgresql: {
+      name: 'PostgreSQL',
+      category: 'Database',
+      rationale:
+        'Battle-tested relational database with excellent extension ecosystem',
+      docs: 'https://www.postgresql.org/docs',
+    },
+    supabase: {
+      name: 'Supabase',
+      category: 'Database',
+      rationale:
+        'Managed Postgres with auth, real-time, and instant APIs built in',
+      docs: 'https://supabase.com/docs',
+      siteLink: '/uses/supabase',
+    },
+    mongodb: {
+      name: 'MongoDB',
+      category: 'Database',
+      rationale:
+        'Flexible document database ideal for rapidly evolving schemas',
+      docs: 'https://www.mongodb.com/docs',
+    },
+    planetscale: {
+      name: 'PlanetScale',
+      category: 'Database',
+      rationale:
+        'Serverless MySQL with branching, zero-downtime schema changes',
+      docs: 'https://planetscale.com/docs',
+    },
   },
   hosting: {
-    vercel: { name: 'Vercel', category: 'Hosting', rationale: 'Zero-config deploys optimised for Next.js with edge functions', docs: 'https://vercel.com/docs', siteLink: '/uses/vercel' },
-    railway: { name: 'Railway', category: 'Hosting', rationale: 'Simple cloud platform that deploys anything from a Dockerfile or repo', docs: 'https://docs.railway.app' },
-    aws: { name: 'AWS', category: 'Hosting', rationale: 'Full cloud provider with maximum flexibility and enterprise-grade scale', docs: 'https://docs.aws.amazon.com' },
-    render: { name: 'Render', category: 'Hosting', rationale: 'Easy managed infrastructure with built-in SSL, auto-deploys, and free tier', docs: 'https://render.com/docs' },
+    vercel: {
+      name: 'Vercel',
+      category: 'Hosting',
+      rationale:
+        'Zero-config deploys optimised for Next.js with edge functions',
+      docs: 'https://vercel.com/docs',
+      siteLink: '/uses/vercel',
+    },
+    railway: {
+      name: 'Railway',
+      category: 'Hosting',
+      rationale:
+        'Simple cloud platform that deploys anything from a Dockerfile or repo',
+      docs: 'https://docs.railway.app',
+    },
+    aws: {
+      name: 'AWS',
+      category: 'Hosting',
+      rationale:
+        'Full cloud provider with maximum flexibility and enterprise-grade scale',
+      docs: 'https://docs.aws.amazon.com',
+    },
+    render: {
+      name: 'Render',
+      category: 'Hosting',
+      rationale:
+        'Easy managed infrastructure with built-in SSL, auto-deploys, and free tier',
+      docs: 'https://render.com/docs',
+    },
   },
   cicd: {
-    github: { name: 'GitHub Actions', category: 'CI/CD', rationale: 'Integrated directly into GitHub with thousands of community actions', docs: 'https://docs.github.com/en/actions' },
-    vercelci: { name: 'Vercel CI', category: 'CI/CD', rationale: 'Automatic preview deploys and checks on every push — zero config', docs: 'https://vercel.com/docs/deployments/preview-deployments' },
-    gitlab: { name: 'GitLab CI', category: 'CI/CD', rationale: 'Powerful pipeline DSL with built-in container registry and runners', docs: 'https://docs.gitlab.com/ee/ci' },
+    github: {
+      name: 'GitHub Actions',
+      category: 'CI/CD',
+      rationale:
+        'Integrated directly into GitHub with thousands of community actions',
+      docs: 'https://docs.github.com/en/actions',
+    },
+    vercelci: {
+      name: 'Vercel CI',
+      category: 'CI/CD',
+      rationale:
+        'Automatic preview deploys and checks on every push — zero config',
+      docs: 'https://vercel.com/docs/deployments/preview-deployments',
+    },
+    gitlab: {
+      name: 'GitLab CI',
+      category: 'CI/CD',
+      rationale:
+        'Powerful pipeline DSL with built-in container registry and runners',
+      docs: 'https://docs.gitlab.com/ee/ci',
+    },
   },
   aiLayer: {
-    vercelai: { name: 'Vercel AI SDK', category: 'AI Layer', rationale: 'Streaming-first SDK for building AI-powered UIs with React', docs: 'https://sdk.vercel.ai/docs', siteLink: '/barnsley-ai/integrations/vercel-ai-sdk' },
-    langchain: { name: 'LangChain', category: 'AI Layer', rationale: 'Comprehensive framework for chaining LLM calls, tools, and retrieval', docs: 'https://js.langchain.com/docs', siteLink: '/barnsley-ai/integrations/langchain' },
-    openaiapi: { name: 'OpenAI API', category: 'AI Layer', rationale: 'Direct API access for maximum control with minimal abstraction', docs: 'https://platform.openai.com/docs', siteLink: '/barnsley-ai/integrations/openai' },
-    none: { name: 'No AI layer needed', category: 'AI Layer', rationale: 'Your project does not require an AI component', docs: null },
+    vercelai: {
+      name: 'Vercel AI SDK',
+      category: 'AI Layer',
+      rationale: 'Streaming-first SDK for building AI-powered UIs with React',
+      docs: 'https://sdk.vercel.ai/docs',
+      siteLink: '/barnsley-ai/integrations/vercel-ai-sdk',
+    },
+    langchain: {
+      name: 'LangChain',
+      category: 'AI Layer',
+      rationale:
+        'Comprehensive framework for chaining LLM calls, tools, and retrieval',
+      docs: 'https://js.langchain.com/docs',
+      siteLink: '/barnsley-ai/integrations/langchain',
+    },
+    openaiapi: {
+      name: 'OpenAI API',
+      category: 'AI Layer',
+      rationale:
+        'Direct API access for maximum control with minimal abstraction',
+      docs: 'https://platform.openai.com/docs',
+      siteLink: '/barnsley-ai/integrations/openai',
+    },
+    none: {
+      name: 'No AI layer needed',
+      category: 'AI Layer',
+      rationale: 'Your project does not require an AI component',
+      docs: null,
+    },
   },
 }
 
@@ -316,7 +432,6 @@ function getWinners(scores) {
   return winners
 }
 
-
 // ── Sub-components ──────────────────────────────────
 
 function StackDiagram({ results }) {
@@ -338,7 +453,7 @@ function StackDiagram({ results }) {
             >
               <p
                 className={clsx(
-                  'text-[10px] font-bold uppercase tracking-wider',
+                  'text-[10px] font-bold tracking-wider uppercase',
                   i === 0
                     ? 'text-teal-600 dark:text-teal-400'
                     : 'text-zinc-400 dark:text-zinc-500',
@@ -351,7 +466,10 @@ function StackDiagram({ results }) {
               </p>
             </div>
             {i < results.length - 1 && (
-              <div className="flex flex-col items-center py-0.5" aria-hidden="true">
+              <div
+                className="flex flex-col items-center py-0.5"
+                aria-hidden="true"
+              >
                 <div className="h-3 w-0.5 bg-zinc-300 dark:bg-zinc-600" />
                 <svg
                   className="h-2 w-3 text-zinc-300 dark:text-zinc-600"
@@ -387,7 +505,7 @@ function QuizResults({ scores, answers, onRestart }) {
             key={result.cat}
             className="rounded-2xl border border-zinc-100 p-5 dark:border-zinc-700/40"
           >
-            <p className="text-xs font-semibold uppercase tracking-wide text-teal-600 dark:text-teal-400">
+            <p className="text-xs font-semibold tracking-wide text-teal-600 uppercase dark:text-teal-400">
               {result.category}
             </p>
             <h3 className="mt-2 text-lg font-bold text-zinc-900 dark:text-zinc-100">
@@ -460,7 +578,13 @@ function TechStackPickerInner() {
 
   if (quiz.showResults) {
     const scores = computeScores(quiz.answers)
-    return <QuizResults scores={scores} answers={quiz.answers} onRestart={quiz.handleRestart} />
+    return (
+      <QuizResults
+        scores={scores}
+        answers={quiz.answers}
+        onRestart={quiz.handleRestart}
+      />
+    )
   }
 
   return (

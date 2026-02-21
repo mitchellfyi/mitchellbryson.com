@@ -128,7 +128,10 @@ export function ContactForm() {
         </div>
 
         {submitStatus === 'success' && (
-          <div role="alert" className="rounded-md bg-green-50 p-4 dark:bg-green-900/20">
+          <div
+            role="alert"
+            className="rounded-md bg-green-50 p-4 dark:bg-green-900/20"
+          >
             <div className="text-sm text-green-800 dark:text-green-200">
               Thank you for your message! I&apos;ll get back to you soon.
             </div>
@@ -136,7 +139,10 @@ export function ContactForm() {
         )}
 
         {submitStatus === 'error' && (
-          <div role="alert" className="rounded-md bg-red-50 p-4 dark:bg-red-900/20">
+          <div
+            role="alert"
+            className="rounded-md bg-red-50 p-4 dark:bg-red-900/20"
+          >
             <div className="text-sm text-red-800 dark:text-red-200">
               Sorry, there was an error sending your message. Please try again.
             </div>

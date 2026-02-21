@@ -55,7 +55,10 @@ export function Newsletter() {
       </p>
 
       {submitStatus === 'success' && (
-        <div role="alert" className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20">
+        <div
+          role="alert"
+          className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20"
+        >
           <div className="text-sm text-green-800 dark:text-green-200">
             Thanks for subscribing! You&apos;ll hear from me soon.
           </div>
@@ -63,7 +66,10 @@ export function Newsletter() {
       )}
 
       {submitStatus === 'error' && (
-        <div role="alert" className="mt-4 rounded-md bg-red-50 p-3 dark:bg-red-900/20">
+        <div
+          role="alert"
+          className="mt-4 rounded-md bg-red-50 p-3 dark:bg-red-900/20"
+        >
           <div className="text-sm text-red-800 dark:text-red-200">
             Sorry, there was an error subscribing. Please try again.
           </div>

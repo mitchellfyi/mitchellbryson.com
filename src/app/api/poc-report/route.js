@@ -1,12 +1,12 @@
-import { C, sendReportAndLead } from '@/lib/email'
+import { C, escapeHtml, sendReportAndLead } from '@/lib/email'
 
 function buildEmailHtml({ sections, checklist, permalink }) {
   const sectionsHtml = sections
     .map(
       (s) =>
         `<div style="margin-bottom: 20px;">
-          <h3 style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #a1a1aa; margin: 0 0 6px;">${s.label}</h3>
-          <p style="color: ${C.HEADING}; font-size: 14px; line-height: 1.6; margin: 0;">${s.value}</p>
+          <h3 style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #a1a1aa; margin: 0 0 6px;">${escapeHtml(s.label)}</h3>
+          <p style="color: ${C.HEADING}; font-size: 14px; line-height: 1.6; margin: 0;">${escapeHtml(s.value)}</p>
         </div>`,
     )
     .join('')
@@ -24,12 +24,16 @@ function buildEmailHtml({ sections, checklist, permalink }) {
       <div style="margin-top: 24px;">
         <h3 style="color: ${C.SUBHEADING}; margin: 0 0 12px;">What to do next</h3>
         <table style="width: 100%; border-collapse: collapse;">
-          ${(checklist || []).map((item, i) => `<tr>
+          ${(checklist || [])
+            .map(
+              (item, i) => `<tr>
             <td style="padding: 8px 12px; vertical-align: top;">
               <span style="display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; background: ${i === 0 ? C.TEAL : '#d4d4d8'}; color: ${i === 0 ? '#fff' : '#52525b'}; font-size: 12px; font-weight: bold;">${i + 1}</span>
             </td>
             <td style="padding: 8px 12px; color: ${C.TEXT}; font-size: 14px; line-height: 1.5;">${item}</td>
-          </tr>`).join('')}
+          </tr>`,
+            )
+            .join('')}
         </table>
       </div>
 
@@ -42,7 +46,8 @@ function buildEmailHtml({ sections, checklist, permalink }) {
 }
 
 export async function POST(request) {
-  const { email, toolName, permalink, sections, checklist } = await request.json()
+  const { email, toolName, permalink, sections, checklist } =
+    await request.json()
 
   return sendReportAndLead({
     email,
@@ -50,6 +55,11 @@ export async function POST(request) {
     permalink,
     subject: 'Your AI PoC Scope Document',
     html: buildEmailHtml({ sections, checklist, permalink }),
-    leadSummaryHtml: sections.map((s) => `<p><strong>${s.label}:</strong> ${s.value}</p>`).join(''),
+    leadSummaryHtml: sections
+      .map(
+        (s) =>
+          `<p><strong>${escapeHtml(s.label)}:</strong> ${escapeHtml(s.value)}</p>`,
+      )
+      .join(''),
   })
 }
