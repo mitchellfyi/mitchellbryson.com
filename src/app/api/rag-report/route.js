@@ -1,22 +1,4 @@
-import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
-
-let resend = null
-function getResend() {
-  if (!resend) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resend
-}
-
-const C = {
-  TEAL: '#14b8a6',
-  HEADING: '#333',
-  SUBHEADING: '#555',
-  TEXT: '#666',
-  BG: '#f8f9fa',
-  BORDER: '#e9ecef',
-}
+import { C, sendReportAndLead } from '@/lib/email'
 
 function buildEmailHtml({ results, suggestedTools, permalink }) {
   const cardsHtml = results
@@ -26,7 +8,7 @@ function buildEmailHtml({ results, suggestedTools, permalink }) {
           <p style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: ${i === 0 ? '#0d9488' : '#a1a1aa'}; margin: 0 0 8px;">${r.category}</p>
           <h3 style="color: ${C.HEADING}; margin: 0 0 4px; font-size: 16px;">${r.name}</h3>
           <p style="color: ${C.TEXT}; font-size: 13px; line-height: 1.5; margin: 0 0 10px;">${r.description}</p>
-          <div style="background: ${i === 0 ? '#fff' : '#fff'}; border-radius: 6px; padding: 10px 14px;">
+          <div style="background: #fff; border-radius: 6px; padding: 10px 14px;">
             <p style="font-size: 11px; font-weight: bold; color: #a1a1aa; margin: 0 0 4px;">Why this choice</p>
             <p style="color: ${C.TEXT}; font-size: 13px; line-height: 1.5; margin: 0;">${r.rationale}</p>
           </div>
@@ -85,59 +67,17 @@ function buildEmailHtml({ results, suggestedTools, permalink }) {
 }
 
 export async function POST(request) {
-  try {
-    const { email, toolName, permalink, results, suggestedTools, answers } = await request.json()
+  const { email, toolName, permalink, results, suggestedTools } = await request.json()
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
-    }
+  const vectorDb = results[0]?.name || 'your stack'
+  const embedding = results[1]?.name || ''
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
-    }
-
-    const r = getResend()
-
-    const vectorDb = results[0]?.name || 'your stack'
-    const embedding = results[1]?.name || ''
-
-    const { error } = await r.emails.send({
-      from: `Mitchell Bryson <${process.env.CONTACT_EMAIL}>`,
-      to: [email],
-      subject: `Your RAG Architecture: ${vectorDb} + ${embedding}`,
-      html: buildEmailHtml({ results, suggestedTools, permalink }),
-    })
-
-    if (error) {
-      console.error('Resend error (RAG report):', error)
-      return NextResponse.json({ error: 'Failed to send report' }, { status: 500 })
-    }
-
-    await r.emails.send({
-      from: `Website <${process.env.CONTACT_EMAIL}>`,
-      to: [process.env.CONTACT_EMAIL],
-      subject: `${toolName}: new lead from ${email}`,
-      replyTo: email,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
-            New ${toolName} Lead
-          </h2>
-          <div style="background: ${C.BG}; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Tool:</strong> ${toolName}</p>
-            <p><strong>Stack:</strong> ${results.map((r) => r.name).join(', ')}</p>
-            <p><strong>Results:</strong> <a href="${permalink}" style="color: ${C.TEAL};">${permalink}</a></p>
-          </div>
-          <p style="color: ${C.TEXT}; font-size: 14px;">Reply directly to this email to reach them.</p>
-        </div>
-      `,
-    })
-
-    return NextResponse.json({ message: 'Report sent successfully' }, { status: 200 })
-  } catch (error) {
-    console.error('API error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
+  return sendReportAndLead({
+    email,
+    toolName,
+    permalink,
+    subject: `Your RAG Architecture: ${vectorDb} + ${embedding}`,
+    html: buildEmailHtml({ results, suggestedTools, permalink }),
+    leadSummaryHtml: `<p><strong>Stack:</strong> ${results.map((r) => r.name).join(', ')}</p>`,
+  })
 }

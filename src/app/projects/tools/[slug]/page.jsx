@@ -16,6 +16,17 @@ import { BuildVsBuyVsAI } from '@/components/tools/BuildVsBuyVsAI'
 import { TechStackPicker } from '@/components/tools/TechStackPicker'
 import { ContactCTA } from '@/components/ContactCTA'
 
+const TOOL_COMPONENTS = {
+  'ai-roi-calculator': AIROICalculator,
+  'ai-readiness-score': AIReadinessScore,
+  'which-ai-integration': WhichAIIntegration,
+  'llm-cost-calculator': LLMCostCalculator,
+  'rag-decision-tree': RAGDecisionTree,
+  'ai-poc-scope-template': AIPocScopeTemplate,
+  'build-vs-buy-vs-ai': BuildVsBuyVsAI,
+  'tech-stack-picker': TechStackPicker,
+}
+
 export async function generateStaticParams() {
   return getAllProjectToolSlugs().map((slug) => ({ slug }))
 }
@@ -86,36 +97,24 @@ export default async function ProjectToolPage({ params }) {
             <p>{tool.longDescription}</p>
           </div>
 
-          {slug === 'ai-roi-calculator' ? (
-            <AIROICalculator />
-          ) : slug === 'ai-readiness-score' ? (
-            <AIReadinessScore />
-          ) : slug === 'which-ai-integration' ? (
-            <WhichAIIntegration />
-          ) : slug === 'llm-cost-calculator' ? (
-            <LLMCostCalculator />
-          ) : slug === 'rag-decision-tree' ? (
-            <RAGDecisionTree />
-          ) : slug === 'ai-poc-scope-template' ? (
-            <AIPocScopeTemplate />
-          ) : slug === 'build-vs-buy-vs-ai' ? (
-            <BuildVsBuyVsAI />
-          ) : slug === 'tech-stack-picker' ? (
-            <TechStackPicker />
-          ) : (
-            <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
-              <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
-                Want to be notified when this tool launches?{' '}
-                <Link
-                  href="/contact"
-                  className="underline transition hover:text-teal-900 dark:hover:text-teal-300"
-                >
-                  Get in touch
-                </Link>
-                .
-              </p>
-            </div>
-          )}
+          {(() => {
+            const ToolComponent = TOOL_COMPONENTS[slug]
+            if (ToolComponent) return <ToolComponent />
+            return (
+              <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
+                <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
+                  Want to be notified when this tool launches?{' '}
+                  <Link
+                    href="/contact"
+                    className="underline transition hover:text-teal-900 dark:hover:text-teal-300"
+                  >
+                    Get in touch
+                  </Link>
+                  .
+                </p>
+              </div>
+            )
+          })()}
 
           <ContactCTA />
 

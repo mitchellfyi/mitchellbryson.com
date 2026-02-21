@@ -4,6 +4,7 @@ import { ContactCTA } from '@/components/ContactCTA'
 import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
+import { PlaceJsonLd } from '@/components/JsonLd'
 import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import {
   aiIntegrations,
@@ -13,21 +14,6 @@ import {
 } from '@/lib/barnsleyPages'
 import { projectTools } from '@/lib/projectTools'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
-
-const placeJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Place',
-  name: 'Mitchell Bryson - AI Software Engineer',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Barnsley',
-    addressRegion: 'South Yorkshire',
-    addressCountry: 'GB',
-  },
-  url: `${siteUrl}/barnsley-ai`,
-  description:
-    'AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for Barnsley businesses.',
-}
 
 export const metadata = buildMetadata({
   title: 'AI Software Engineer Barnsley | AI Development South Yorkshire',
@@ -52,9 +38,13 @@ export default function BarnsleyPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(placeJsonLd) }}
+      <PlaceJsonLd
+        name="Mitchell Bryson - AI Software Engineer"
+        description="AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for Barnsley businesses."
+        url={`${siteUrl}/barnsley-ai`}
+        locality="Barnsley"
+        region="South Yorkshire"
+        country="GB"
       />
       <Container className="pt-16 sm:pt-32 -mt-16 sm:-mt-32">
         <div className="relative -mx-4 px-4 py-24 sm:-mx-8 sm:px-8 sm:py-32">

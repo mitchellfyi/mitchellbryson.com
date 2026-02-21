@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { Suspense } from 'react'
 import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { EmailReport } from '@/components/tools/EmailReport'
 import { CopyLinkButton } from '@/components/tools/CopyLinkButton'
+import { ProgressBar } from '@/components/tools/ProgressBar'
+import { OptionCard } from '@/components/tools/OptionCard'
+import { useQuiz } from '@/hooks/useQuiz'
 
 // ── Data ─────────────────────────────────────────────
 
@@ -213,85 +215,7 @@ function getTier(score) {
   return TIERS.find((t) => score >= t.min && score <= t.max) || TIERS[0]
 }
 
-function encodeAnswers(answers) {
-  return QUESTIONS.map((_, i) => answers[i] ?? 0).join('')
-}
-
-function decodeAnswers(str) {
-  if (!str || str.length !== QUESTIONS.length) return null
-  const answers = {}
-  for (let i = 0; i < str.length; i++) {
-    const v = parseInt(str[i], 10)
-    if (isNaN(v) || v < 0 || v > 3) return null
-    answers[i] = v
-  }
-  return answers
-}
-
 // ── Sub-components ───────────────────────────────────
-
-function ProgressBar({ current, total }) {
-  return (
-    <div className="space-y-2">
-      <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-        Question {current + 1} of {total}
-      </p>
-      <div
-        className="h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700"
-        role="progressbar"
-        aria-valuenow={current + 1}
-        aria-valuemin={1}
-        aria-valuemax={total}
-      >
-        <div
-          className="h-1.5 rounded-full bg-teal-500 transition-all duration-300 dark:bg-teal-400"
-          style={{ width: `${((current + 1) / total) * 100}%` }}
-        />
-      </div>
-    </div>
-  )
-}
-
-function OptionCard({ option, selected, onSelect }) {
-  return (
-    <button
-      type="button"
-      role="radio"
-      aria-checked={selected}
-      onClick={() => onSelect(option.score)}
-      className={clsx(
-        'flex w-full cursor-pointer items-start gap-3 rounded-xl border p-4 text-left transition',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-900',
-        selected
-          ? 'border-teal-500 bg-teal-50 ring-2 ring-teal-500/20 dark:border-teal-400 dark:bg-teal-500/10 dark:ring-teal-400/20'
-          : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50',
-      )}
-    >
-      <span
-        className={clsx(
-          'mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition',
-          selected
-            ? 'border-teal-500 bg-teal-500 dark:border-teal-400 dark:bg-teal-400'
-            : 'border-zinc-300 dark:border-zinc-600',
-        )}
-      >
-        {selected && (
-          <span className="h-2 w-2 rounded-full bg-white" />
-        )}
-      </span>
-      <span
-        className={clsx(
-          'text-sm',
-          selected
-            ? 'font-medium text-teal-900 dark:text-teal-100'
-            : 'text-zinc-700 dark:text-zinc-300',
-        )}
-      >
-        {option.text}
-      </span>
-    </button>
-  )
-}
 
 function ScoreRing({ score, maxScore, color }) {
   const radius = 64
@@ -505,77 +429,18 @@ export function AIReadinessScore() {
 }
 
 function AIReadinessScoreInner() {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState({})
-  const [showResults, setShowResults] = useState(false)
+  const quiz = useQuiz(QUESTIONS.length)
 
-  // Load from permalink on mount
-  useEffect(() => {
-    const r = searchParams.get('r')
-    if (r) {
-      const decoded = decodeAnswers(r)
-      if (decoded) {
-        setAnswers(decoded)
-        setShowResults(true)
-      }
-    }
-  }, [searchParams])
-
-  // Update URL when results are shown
-  useEffect(() => {
-    if (showResults && Object.keys(answers).length === QUESTIONS.length) {
-      const url = new URL(window.location.pathname, window.location.origin)
-      url.searchParams.set('r', encodeAnswers(answers))
-      window.history.replaceState(null, '', url.toString())
-    }
-  }, [showResults, answers])
-
-  const question = QUESTIONS[currentQuestion]
-  const selectedScore = answers[currentQuestion]
-  const isLastQuestion = currentQuestion === QUESTIONS.length - 1
-
-  function handleSelect(score) {
-    setAnswers((prev) => ({ ...prev, [currentQuestion]: score }))
-    // Auto-advance after a short delay so the user sees their selection
-    setTimeout(() => {
-      if (currentQuestion === QUESTIONS.length - 1) {
-        setShowResults(true)
-      } else {
-        setCurrentQuestion((prev) => prev + 1)
-      }
-    }, 300)
+  if (quiz.showResults) {
+    return <QuizResults answers={quiz.answers} onRestart={quiz.handleRestart} />
   }
 
-  function handleNext() {
-    if (isLastQuestion) {
-      setShowResults(true)
-    } else {
-      setCurrentQuestion((prev) => prev + 1)
-    }
-  }
-
-  function handleBack() {
-    setCurrentQuestion((prev) => prev - 1)
-  }
-
-  function handleRestart() {
-    setCurrentQuestion(0)
-    setAnswers({})
-    setShowResults(false)
-    // Clear the permalink from URL
-    router.replace(window.location.pathname, { scroll: false })
-  }
-
-  if (showResults) {
-    return <QuizResults answers={answers} onRestart={handleRestart} />
-  }
+  const question = QUESTIONS[quiz.currentQuestion]
 
   return (
     <div className="mx-auto max-w-2xl">
       <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-        <ProgressBar current={currentQuestion} total={QUESTIONS.length} />
+        <ProgressBar current={quiz.currentQuestion} total={QUESTIONS.length} />
 
         <fieldset className="mt-6">
           <legend className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
@@ -583,30 +448,31 @@ function AIReadinessScoreInner() {
           </legend>
 
           <div className="mt-4 space-y-3" role="radiogroup">
-            {question.options.map((option) => (
+            {question.options.map((option, i) => (
               <OptionCard
                 key={option.score}
-                option={option}
-                selected={selectedScore === option.score}
-                onSelect={handleSelect}
+                text={option.text}
+                index={i}
+                selected={quiz.selectedOption === i}
+                onSelect={quiz.handleSelect}
               />
             ))}
           </div>
         </fieldset>
 
         <div className="mt-6 flex items-center justify-between">
-          {currentQuestion > 0 ? (
-            <Button variant="secondary" onClick={handleBack}>
+          {quiz.currentQuestion > 0 ? (
+            <Button variant="secondary" onClick={quiz.handleBack}>
               Back
             </Button>
           ) : (
             <span />
           )}
           <Button
-            onClick={handleNext}
-            disabled={selectedScore === undefined}
+            onClick={quiz.handleNext}
+            disabled={quiz.selectedOption === undefined}
           >
-            {isLastQuestion ? 'See your results' : 'Next'}
+            {quiz.isLastQuestion ? 'See your results' : 'Next'}
           </Button>
         </div>
       </div>

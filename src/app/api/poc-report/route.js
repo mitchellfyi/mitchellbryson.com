@@ -1,22 +1,4 @@
-import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
-
-let resend = null
-function getResend() {
-  if (!resend) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resend
-}
-
-const C = {
-  TEAL: '#14b8a6',
-  HEADING: '#333',
-  SUBHEADING: '#555',
-  TEXT: '#666',
-  BG: '#f8f9fa',
-  BORDER: '#e9ecef',
-}
+import { C, sendReportAndLead } from '@/lib/email'
 
 function buildEmailHtml({ sections, checklist, permalink }) {
   const sectionsHtml = sections
@@ -60,56 +42,14 @@ function buildEmailHtml({ sections, checklist, permalink }) {
 }
 
 export async function POST(request) {
-  try {
-    const { email, toolName, permalink, sections, checklist } = await request.json()
+  const { email, toolName, permalink, sections, checklist } = await request.json()
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
-    }
-
-    const r = getResend()
-
-    const { error } = await r.emails.send({
-      from: `Mitchell Bryson <${process.env.CONTACT_EMAIL}>`,
-      to: [email],
-      subject: 'Your AI PoC Scope Document',
-      html: buildEmailHtml({ sections, checklist, permalink }),
-    })
-
-    if (error) {
-      console.error('Resend error (PoC report):', error)
-      return NextResponse.json({ error: 'Failed to send report' }, { status: 500 })
-    }
-
-    await r.emails.send({
-      from: `Website <${process.env.CONTACT_EMAIL}>`,
-      to: [process.env.CONTACT_EMAIL],
-      subject: `${toolName}: new lead from ${email}`,
-      replyTo: email,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
-            New ${toolName} Lead
-          </h2>
-          <div style="background: ${C.BG}; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Tool:</strong> ${toolName}</p>
-            ${sections.map((s) => `<p><strong>${s.label}:</strong> ${s.value}</p>`).join('')}
-            <p><strong>Results:</strong> <a href="${permalink}" style="color: ${C.TEAL};">${permalink}</a></p>
-          </div>
-          <p style="color: ${C.TEXT}; font-size: 14px;">Reply directly to this email to reach them.</p>
-        </div>
-      `,
-    })
-
-    return NextResponse.json({ message: 'Report sent successfully' }, { status: 200 })
-  } catch (error) {
-    console.error('API error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
+  return sendReportAndLead({
+    email,
+    toolName,
+    permalink,
+    subject: 'Your AI PoC Scope Document',
+    html: buildEmailHtml({ sections, checklist, permalink }),
+    leadSummaryHtml: sections.map((s) => `<p><strong>${s.label}:</strong> ${s.value}</p>`).join(''),
+  })
 }

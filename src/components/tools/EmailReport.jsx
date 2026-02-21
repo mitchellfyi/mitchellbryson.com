@@ -59,13 +59,13 @@ export function EmailReport({ toolName, reportEndpoint, reportData }) {
       </p>
 
       {status === 'sent' ? (
-        <p className="mt-4 text-sm font-medium text-teal-700 dark:text-teal-300">
+        <p role="status" className="mt-4 text-sm font-medium text-teal-700 dark:text-teal-300">
           Report sent! Check your inbox.
         </p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-4">
           {status === 'error' && (
-            <div className="mb-3 rounded-md bg-red-50 p-3 dark:bg-red-900/20">
+            <div role="alert" className="mb-3 rounded-md bg-red-50 p-3 dark:bg-red-900/20">
               <p className="text-sm text-red-800 dark:text-red-200">
                 Sorry, there was an error sending the report. Please try again.
               </p>
@@ -76,6 +76,7 @@ export function EmailReport({ toolName, reportEndpoint, reportData }) {
             <input
               type="email"
               required
+              aria-label="Email address"
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

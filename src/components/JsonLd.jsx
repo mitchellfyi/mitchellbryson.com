@@ -200,6 +200,29 @@ export function FAQPageJsonLd({ faqs }) {
   )
 }
 
+export function PlaceJsonLd({ name, description, url, locality, region, country }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name,
+    description,
+    url,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: locality,
+      addressRegion: region,
+      addressCountry: country,
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
 export function BreadcrumbJsonLd({ items }) {
   const jsonLd = {
     '@context': 'https://schema.org',

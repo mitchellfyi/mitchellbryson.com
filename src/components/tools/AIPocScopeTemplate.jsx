@@ -6,6 +6,8 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { EmailReport } from '@/components/tools/EmailReport'
 import { CopyLinkButton } from '@/components/tools/CopyLinkButton'
+import { ProgressBar } from '@/components/tools/ProgressBar'
+import { OptionCard } from '@/components/tools/OptionCard'
 
 // ── Steps ───────────────────────────────────────────
 
@@ -143,67 +145,6 @@ function decodeState(searchParams) {
 }
 
 // ── Sub-components ──────────────────────────────────
-
-function ProgressBar({ current, total }) {
-  return (
-    <div className="space-y-2">
-      <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-        Step {current + 1} of {total}
-      </p>
-      <div
-        className="h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700"
-        role="progressbar"
-        aria-valuenow={current + 1}
-        aria-valuemin={1}
-        aria-valuemax={total}
-      >
-        <div
-          className="h-1.5 rounded-full bg-teal-500 transition-all duration-300 dark:bg-teal-400"
-          style={{ width: `${((current + 1) / total) * 100}%` }}
-        />
-      </div>
-    </div>
-  )
-}
-
-function OptionCard({ text, index, selected, onSelect }) {
-  return (
-    <button
-      type="button"
-      role="radio"
-      aria-checked={selected}
-      onClick={() => onSelect(index)}
-      className={clsx(
-        'flex w-full cursor-pointer items-start gap-3 rounded-xl border p-4 text-left transition',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-900',
-        selected
-          ? 'border-teal-500 bg-teal-50 ring-2 ring-teal-500/20 dark:border-teal-400 dark:bg-teal-500/10 dark:ring-teal-400/20'
-          : 'border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50',
-      )}
-    >
-      <span
-        className={clsx(
-          'mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition',
-          selected
-            ? 'border-teal-500 bg-teal-500 dark:border-teal-400 dark:bg-teal-400'
-            : 'border-zinc-300 dark:border-zinc-600',
-        )}
-      >
-        {selected && <span className="h-2 w-2 rounded-full bg-white" />}
-      </span>
-      <span
-        className={clsx(
-          'text-sm',
-          selected
-            ? 'font-medium text-teal-900 dark:text-teal-100'
-            : 'text-zinc-700 dark:text-zinc-300',
-        )}
-      >
-        {text}
-      </span>
-    </button>
-  )
-}
 
 function ScopeResults({ values, onRestart }) {
   const checklist = getChecklist(values)
@@ -385,6 +326,19 @@ function AIPocScopeTemplateInner() {
     }
   }
 
+  function handleOptionNext() {
+    if (values[step.key] === undefined) return
+    if (isLastStep) {
+      setShowResults(true)
+    } else {
+      setCurrentStep((prev) => prev + 1)
+      const nextStep = STEPS[currentStep + 1]
+      if (nextStep?.type === 'textarea') {
+        setTextValue(values[nextStep.key] || '')
+      }
+    }
+  }
+
   function handleRestart() {
     setCurrentStep(0)
     setValues({})
@@ -400,7 +354,7 @@ function AIPocScopeTemplateInner() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-        <ProgressBar current={currentStep} total={STEPS.length} />
+        <ProgressBar current={currentStep} total={STEPS.length} label="Step" />
 
         <div className="mt-6">
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
@@ -411,6 +365,7 @@ function AIPocScopeTemplateInner() {
             <div className="mt-4 space-y-4">
               <textarea
                 rows={4}
+                aria-label={step.label}
                 placeholder={step.placeholder}
                 value={textValue}
                 onChange={(e) => setTextValue(e.target.value)}
@@ -452,19 +407,7 @@ function AIPocScopeTemplateInner() {
           )}
           {step.type === 'options' && (
             <Button
-              onClick={() => {
-                if (values[step.key] !== undefined) {
-                  if (isLastStep) {
-                    setShowResults(true)
-                  } else {
-                    setCurrentStep((prev) => prev + 1)
-                    const nextStep = STEPS[currentStep + 1]
-                    if (nextStep?.type === 'textarea') {
-                      setTextValue(values[nextStep.key] || '')
-                    }
-                  }
-                }
-              }}
+              onClick={handleOptionNext}
               disabled={values[step.key] === undefined}
             >
               {isLastStep ? 'Generate scope' : 'Next'}
