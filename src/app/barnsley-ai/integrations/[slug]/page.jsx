@@ -9,6 +9,7 @@ import {
   getAllIntegrationsWithPages,
   getIntegrationBySlug,
 } from '@/lib/barnsleyPages'
+import { integrationContent } from '@/lib/integrationContent'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
@@ -73,6 +74,8 @@ export default async function IntegrationPage({ params }) {
   }
 
   const faviconUrl = getFaviconUrl(integration.url, integration.logoDomain)
+  const content = integrationContent[integration.name]
+  const paragraphs = content ? content.split('\n\n').filter(Boolean) : []
 
   const allIntegrations = getAllIntegrationsWithPages()
   const siblingIntegrations = allIntegrations.filter(
@@ -86,12 +89,9 @@ export default async function IntegrationPage({ params }) {
 
   return (
     <SimpleLayout
-      title={integration.name}
-      intro={integration.description}
-    >
-      <div className="space-y-10">
-        <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-700">
+      title={
+        <span className="flex items-center gap-4">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-700">
             <Image
               src={faviconUrl}
               alt=""
@@ -99,32 +99,47 @@ export default async function IntegrationPage({ params }) {
               height={48}
               className="rounded-lg object-contain"
             />
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href={integration.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-600 transition hover:bg-teal-500/20 dark:text-teal-400"
+          </span>
+          {integration.name}
+        </span>
+      }
+      intro={integration.description}
+    >
+      <div className="space-y-10">
+        <div>
+          <Link
+            href={integration.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-600 transition hover:bg-teal-500/20 dark:text-teal-400"
+          >
+            Visit website
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="h-3.5 w-3.5"
             >
-              Visit website
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="h-3.5 w-3.5"
-              >
-                <path
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-          </div>
+              <path
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
+
+        {paragraphs.length > 0 && (
+          <div className="prose dark:prose-invert max-w-2xl space-y-6">
+            {paragraphs.map((paragraph, i) => (
+              <p key={i} className="text-zinc-600 dark:text-zinc-400">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
 
         {integration.pages && integration.pages.length > 0 && (
           <section>
