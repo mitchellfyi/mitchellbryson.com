@@ -14,7 +14,7 @@ const COVER_HEIGHT = 630
 export async function generateCoverImage(dallePrompt, slug) {
   console.log('[image] Starting cover image generation...')
   console.log(`[image]   slug: ${slug}`)
-  console.log(`[image]   target: ${COVER_WIDTH}x${COVER_HEIGHT} PNG`)
+  console.log(`[image]   target: ${COVER_WIDTH}x${COVER_HEIGHT} WebP`)
 
   const {
     buffer: rawBuffer,
@@ -33,12 +33,12 @@ export async function generateCoverImage(dallePrompt, slug) {
   console.log(`[image] Resizing to ${COVER_WIDTH}x${COVER_HEIGHT}...`)
   const resized = await sharp(rawBuffer)
     .resize(COVER_WIDTH, COVER_HEIGHT, { fit: 'cover', position: 'centre' })
-    .png({ quality: 90 })
+    .webp({ quality: 80 })
     .toBuffer()
 
   console.log(`[image] Resized: ${resized.length} bytes`)
 
-  const outputPath = path.join(IMAGES_DIR, `${slug}.png`)
+  const outputPath = path.join(IMAGES_DIR, `${slug}.webp`)
   fs.mkdirSync(path.dirname(outputPath), { recursive: true })
   fs.writeFileSync(outputPath, resized)
 

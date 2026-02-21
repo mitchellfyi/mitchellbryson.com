@@ -374,7 +374,9 @@ async function main() {
     const linkPattern = /\[([^\]]+)\]\(\/[^)]+\)/g
     const linksAdded = [...linkedContent.matchAll(linkPattern)]
     console.log(`[step:links] Links added: ${linksAdded.length}`)
-    linksAdded.forEach((m) => console.log(`[step:links]   "${m[1]}" → ${m[0].match(/\(([^)]+)\)/)[1]}`))
+    linksAdded.forEach((m) =>
+      console.log(`[step:links]   "${m[1]}" → ${m[0].match(/\(([^)]+)\)/)[1]}`),
+    )
 
     logStep('internalLinks', {
       status: 'success',
@@ -578,7 +580,9 @@ description: "${escapeYaml(description)}"
     console.log(
       `[step:cross-link] Prompt config: model=${crossLinkPrompt.config.model}, max_tokens=${crossLinkPrompt.config.max_tokens}`,
     )
-    console.log(`[step:cross-link] Checking ${existingArticles.length} existing articles`)
+    console.log(
+      `[step:cross-link] Checking ${existingArticles.length} existing articles`,
+    )
 
     for (const article of existingArticles) {
       const articlePath = path.join(ARTICLES_DIR, article.slug, 'content.md')
@@ -587,7 +591,9 @@ description: "${escapeYaml(description)}"
       // Split frontmatter from body
       const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
       if (!fmMatch) {
-        console.log(`[step:cross-link]   ${article.slug}: skipped (no frontmatter)`)
+        console.log(
+          `[step:cross-link]   ${article.slug}: skipped (no frontmatter)`,
+        )
         continue
       }
       const existingFrontmatter = fmMatch[0]
@@ -595,7 +601,9 @@ description: "${escapeYaml(description)}"
 
       // Skip if already links to the new article
       if (existingBody.includes(`/articles/${slug}`)) {
-        console.log(`[step:cross-link]   ${article.slug}: already links to new article`)
+        console.log(
+          `[step:cross-link]   ${article.slug}: already links to new article`,
+        )
         continue
       }
 
@@ -627,7 +635,9 @@ description: "${escapeYaml(description)}"
         crossLinkedArticles.push(article.slug)
         console.log(`[step:cross-link]   ${article.slug}: linked`)
       } else {
-        console.log(`[step:cross-link]   ${article.slug}: no relevant link found`)
+        console.log(
+          `[step:cross-link]   ${article.slug}: no relevant link found`,
+        )
       }
     }
 
@@ -675,7 +685,9 @@ description: "${escapeYaml(description)}"
     `  Total duration: ${(manifest.totals.pipelineDurationMs / 1000).toFixed(1)}s`,
   )
   console.log(`  Errors:         ${manifest.errors.length}`)
-  console.log(`  Cross-linked:   ${crossLinkedArticles.length} existing articles`)
+  console.log(
+    `  Cross-linked:   ${crossLinkedArticles.length} existing articles`,
+  )
   crossLinkedArticles.forEach((s) => console.log(`    - ${s}`))
   console.log()
   console.log(`  Sources:`)
@@ -688,7 +700,9 @@ description: "${escapeYaml(description)}"
       .map((s) => `src/app/articles/${s}/content.md`)
       .join('\n')
     fs.writeFileSync('/tmp/cross-linked-articles.txt', paths)
-    console.log(`[pipeline] Cross-linked article paths written to /tmp/cross-linked-articles.txt`)
+    console.log(
+      `[pipeline] Cross-linked article paths written to /tmp/cross-linked-articles.txt`,
+    )
   }
 }
 

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3003",
     "build": "next build",
     "start": "next start",
     "lint": "eslint src/",
@@ -15,7 +15,9 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:watch": "vitest watch",
-    "validate": "npm run format && npm run lint:fix && npm run test:ci && npm run build"
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "validate": "npm run format && npm run lint:fix && npm run test:ci && npm run test:e2e && npm run build"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -40,12 +42,13 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^10.0.0",
+    "eslint": "^9.39.3",
     "eslint-config-next": "^16.1.0",
     "happy-dom": "^20.6.1",
     "prettier": "^3.6.2",

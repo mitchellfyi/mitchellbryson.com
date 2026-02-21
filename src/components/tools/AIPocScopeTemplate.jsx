@@ -288,19 +288,11 @@ export function AIPocScopeTemplate() {
 function AIPocScopeTemplateInner() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const decoded = decodeState(searchParams)
   const [currentStep, setCurrentStep] = useState(0)
-  const [values, setValues] = useState({})
-  const [showResults, setShowResults] = useState(false)
+  const [values, setValues] = useState(() => decoded || {})
+  const [showResults, setShowResults] = useState(() => !!decoded)
   const [textValue, setTextValue] = useState('')
-
-  // Load from permalink on mount
-  useEffect(() => {
-    const decoded = decodeState(searchParams)
-    if (decoded) {
-      setValues(decoded)
-      setShowResults(true)
-    }
-  }, [searchParams])
 
   // Update URL when results are shown
   useEffect(() => {

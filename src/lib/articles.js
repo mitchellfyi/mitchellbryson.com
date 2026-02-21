@@ -29,11 +29,17 @@ async function importMarkdownArticle(articleDir) {
     draftContent = draft
   }
 
-  // Auto-detect cover image based on slug
-  const coverImagePath = `/images/articles/${articleDir}.png`
-  const coverImageExists = fs.existsSync(
+  // Auto-detect cover image based on slug (prefer WebP, fall back to PNG)
+  const webpExists = fs.existsSync(
+    path.join('./public/images/articles', `${articleDir}.webp`),
+  )
+  const pngExists = fs.existsSync(
     path.join('./public/images/articles', `${articleDir}.png`),
   )
+  const coverImagePath = webpExists
+    ? `/images/articles/${articleDir}.webp`
+    : `/images/articles/${articleDir}.png`
+  const coverImageExists = webpExists || pngExists
 
   return {
     slug: articleDir,

@@ -27,6 +27,10 @@ Essays and thought pieces on:
 
 Showcases of open-source and experimental projects.
 
+## Prerequisites
+
+- Node.js >= 22 (see `.nvmrc`)
+
 ## Development
 
 ```bash
@@ -41,18 +45,30 @@ npm run build
 
 # Lint
 npm run lint
+
+# Format
+npm run format
+
+# Run tests
+npm run test
+
+# Run all checks (format, lint, test, e2e, build)
+npm run validate
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view locally.
 
 ### Environment Variables
 
-Create a `.env.local` file:
+Copy `.env.example` to `.env.local`:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://mitchellbryson.com
-RESEND_API_KEY=your_resend_api_key
-CONTACT_EMAIL=your-email@example.com
+NEXT_PUBLIC_SITE_URL=https://mitchellbryson.com   # Public site URL for meta tags
+RESEND_API_KEY=your_resend_api_key                # Resend API key for contact form emails
+CONTACT_EMAIL=your-email@example.com              # Recipient for contact form submissions
+OPENAI_API_KEY=your-openai-api-key                # OpenAI key for article generation script
+CLAUDE_CODE_OAUTH_TOKEN=your-token                # Claude Code token for article generation CI
+GH_PAT=your-github-pat                            # GitHub PAT for article generation PR creation
 ```
 
 ## CI/CD
@@ -65,14 +81,6 @@ CONTACT_EMAIL=your-email@example.com
 | **Rollback**          | Manual         | Rollback to known-good commit           |
 
 Deployments are handled by Vercel's Git integration.
-
-### Local Checks
-
-```bash
-npm run lint        # ESLint
-npm run build       # Production build
-npm audit --audit-level=critical  # Security audit
-```
 
 ## License
 

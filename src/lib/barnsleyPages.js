@@ -1466,17 +1466,24 @@ export function getAllIntegrationSlugs() {
   return getAllIntegrationsWithPages().map((i) => i.slug)
 }
 
-/** Pick n random integrations (deterministic per build) */
+/** Pick n random integrations */
 export function getRandomIntegrations(n) {
-  const all = getAllIntegrationsWithPages()
-  const shuffled = [...all].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, n)
+  return fisherYatesSample(getAllIntegrationsWithPages(), n)
 }
 
-/** Pick n random items from an array (deterministic per build) */
+/** Pick n random items from an array */
 export function getRandomItems(arr, n) {
-  const shuffled = [...arr].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, n)
+  return fisherYatesSample(arr, n)
+}
+
+/** Fisher-Yates shuffle, returning the first n items */
+function fisherYatesSample(arr, n) {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a.slice(0, n)
 }
 
 /** Find the contextSentence for a specific integration on a specific page */

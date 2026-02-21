@@ -33,9 +33,9 @@ const runUrl =
   `https://github.com/${process.env.GITHUB_REPOSITORY || ''}/actions`
 
 const crossLinkStep = manifest.steps.crossLink || {}
-const crossLinked = (crossLinkStep.updatedSlugs || [])
-  .map((s) => `- \`${s}\``)
-  .join('\n') || '(none)'
+const crossLinked =
+  (crossLinkStep.updatedSlugs || []).map((s) => `- \`${s}\``).join('\n') ||
+  '(none)'
 
 const vars = {
   TITLE: manifest.article.title,

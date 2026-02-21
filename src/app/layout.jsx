@@ -11,16 +11,16 @@ import '@/styles/prism.css'
 
 const defaultOgImage = getOgImage(
   'Mitchell Bryson',
-  'AI Software Engineer - AI Systems & Automation',
+  'Full-Stack AI Software Engineer',
 )
 
 export const metadata = {
   title: {
     template: '%s - Mitchell Bryson',
-    default: 'Mitchell Bryson - AI Software Engineer',
+    default: 'Mitchell Bryson - Full-Stack AI Software Engineer',
   },
   description:
-    "I'm Mitchell, an AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
+    "I'm Mitchell, a full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
   authors: [{ name: 'Mitchell Bryson', url: `${siteUrl}/about` }],
   creator: 'Mitchell Bryson',
   alternates: {
@@ -30,7 +30,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Mitchell Bryson - AI Software Engineer',
+    title: 'Mitchell Bryson - Full-Stack AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     url: siteUrl,
@@ -40,7 +40,7 @@ export const metadata = {
         url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: 'Mitchell Bryson - AI Software Engineer',
+        alt: 'Mitchell Bryson - Full-Stack AI Software Engineer',
       },
     ],
     locale: 'en_GB',
@@ -48,7 +48,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mitchell Bryson - AI Software Engineer',
+    title: 'Mitchell Bryson - Full-Stack AI Software Engineer',
     description:
       'I design and ship practical AI systems that cut manual work and improve margins.',
     images: [defaultOgImage],

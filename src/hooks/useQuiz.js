@@ -5,21 +5,11 @@ import { encodeAnswers, decodeAnswers } from '@/lib/quizHelpers'
 export function useQuiz(questionCount) {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const r = searchParams.get('r')
+  const decoded = r ? decodeAnswers(r, questionCount) : null
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState({})
-  const [showResults, setShowResults] = useState(false)
-
-  // Load from permalink on mount
-  useEffect(() => {
-    const r = searchParams.get('r')
-    if (r) {
-      const decoded = decodeAnswers(r, questionCount)
-      if (decoded) {
-        setAnswers(decoded)
-        setShowResults(true)
-      }
-    }
-  }, [searchParams, questionCount])
+  const [answers, setAnswers] = useState(() => decoded || {})
+  const [showResults, setShowResults] = useState(() => !!decoded)
 
   // Update URL when results are shown
   useEffect(() => {

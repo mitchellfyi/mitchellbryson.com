@@ -91,24 +91,24 @@ export function LLMCostCalculator() {
   )
 }
 
+function parseParam(sp, key, defaultVal, min, max) {
+  const v = sp.get(key)
+  return v
+    ? Math.min(max, Math.max(min, parseInt(v, 10) || defaultVal))
+    : defaultVal
+}
+
 function LLMCostCalculatorInner() {
   const searchParams = useSearchParams()
-  const [inputTokens, setInputTokens] = useState(1000)
-  const [outputTokens, setOutputTokens] = useState(500)
-  const [requestsPerDay, setRequestsPerDay] = useState(100)
-
-  // Load from permalink on mount
-  useEffect(() => {
-    const it = searchParams.get('it')
-    const ot = searchParams.get('ot')
-    const rpd = searchParams.get('rpd')
-    if (it)
-      setInputTokens(Math.min(10000, Math.max(100, parseInt(it, 10) || 1000)))
-    if (ot)
-      setOutputTokens(Math.min(10000, Math.max(100, parseInt(ot, 10) || 500)))
-    if (rpd)
-      setRequestsPerDay(Math.min(10000, Math.max(1, parseInt(rpd, 10) || 100)))
-  }, [searchParams])
+  const [inputTokens, setInputTokens] = useState(() =>
+    parseParam(searchParams, 'it', 1000, 100, 10000),
+  )
+  const [outputTokens, setOutputTokens] = useState(() =>
+    parseParam(searchParams, 'ot', 500, 100, 10000),
+  )
+  const [requestsPerDay, setRequestsPerDay] = useState(() =>
+    parseParam(searchParams, 'rpd', 100, 1, 10000),
+  )
 
   // Keep URL in sync
   useEffect(() => {

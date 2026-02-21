@@ -56,9 +56,10 @@ export default function BarnsleyPage() {
               AI Software Engineer in Barnsley
             </h1>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-              I&apos;m an AI developer based in Barnsley, South Yorkshire, and
-              work with Barnsley businesses and across the UK to design and ship
-              practical AI systems that cut manual work and improve margins.
+              I&apos;m a full-stack AI Software Engineer based in Barnsley,
+              South Yorkshire, and work with Barnsley businesses and across the
+              UK to design and ship practical AI systems that cut manual work
+              and improve margins.
             </p>
           </header>
         </div>
@@ -66,16 +67,16 @@ export default function BarnsleyPage() {
           <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
             <div className="prose max-w-2xl space-y-12 dark:prose-invert">
               <p className="text-zinc-600 dark:text-zinc-400">
-                Whether you're a Barnsley-based business looking to automate
-                workflows with AI, integrate AI into your product, or explore
-                what's possible with modern AI tooling in Barnsley, I'd be happy
-                to chat. Remote work is the norm, but I'm in the Barnsley area
-                for in-person AI discussions when it helps.
+                Whether you&apos;re a Barnsley-based business looking to
+                automate workflows with AI, integrate AI into your product, or
+                explore what&apos;s possible with modern AI tooling in Barnsley,
+                I&apos;d be happy to chat. Remote work is the norm, but I&apos;m
+                in the Barnsley area for in-person AI discussions when it helps.
               </p>
 
               <div className="rounded-lg border border-teal-200 bg-teal-50/50 px-8 dark:border-teal-800/50 dark:bg-teal-900/10">
                 <p className="text-zinc-600 dark:text-zinc-400">
-                  Barnsley was named the UK's first government-backed{' '}
+                  Barnsley was named the UK&apos;s first government-backed{' '}
                   <a
                     href="https://www.bbc.com/news/articles/c8j3dvjld94o"
                     target="_blank"
@@ -136,9 +137,10 @@ export default function BarnsleyPage() {
                   Types of businesses I work with
                 </h2>
                 <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-                  I've worked across sectors and team sizes. Barnsley and South
-                  Yorkshire have a strong mix of traditional and digital
-                  businesses adopting AI - here's who I typically help with AI:
+                  I&apos;ve worked across sectors and team sizes. Barnsley and
+                  South Yorkshire have a strong mix of traditional and digital
+                  businesses adopting AI - here&apos;s who I typically help with
+                  AI:
                 </p>
                 <ul className="mt-4 space-y-2 text-zinc-600 dark:text-zinc-400">
                   {featuredBusinessTypes.map((item) => (

@@ -73,11 +73,9 @@ export default async function ProjectToolPage({ params }) {
         title={
           <span className="flex items-start gap-4">
             <span className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              {(() => {
-                const ToolIcon = getToolIcon(slug)
-                const toolColor = getToolColor(slug)
-                return <ToolIcon className={`h-6 w-6 ${toolColor}`} />
-              })()}
+              {getToolIcon(slug)({
+                className: `h-6 w-6 ${getToolColor(slug)}`,
+              })}
             </span>
             {tool.name}
           </span>

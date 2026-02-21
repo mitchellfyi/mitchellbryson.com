@@ -71,30 +71,30 @@ export function AIROICalculator() {
   )
 }
 
+function parseParam(sp, key, defaultVal, min, max) {
+  const v = sp.get(key)
+  return v
+    ? Math.min(max, Math.max(min, parseInt(v, 10) || defaultVal))
+    : defaultVal
+}
+
 function AIROICalculatorInner() {
   const searchParams = useSearchParams()
-  const [staff, setStaff] = useState(5)
-  const [hoursPerWeek, setHoursPerWeek] = useState(10)
-  const [hourlyCost, setHourlyCost] = useState(25)
-  const [efficiency, setEfficiency] = useState(70)
-  const [implementationCost, setImplementationCost] = useState(15000)
-
-  // Load from permalink on mount
-  useEffect(() => {
-    const s = searchParams.get('s')
-    const h = searchParams.get('h')
-    const c = searchParams.get('c')
-    const e = searchParams.get('e')
-    const i = searchParams.get('i')
-    if (s) setStaff(Math.min(100, Math.max(1, parseInt(s, 10) || 5)))
-    if (h) setHoursPerWeek(Math.min(40, Math.max(1, parseInt(h, 10) || 10)))
-    if (c) setHourlyCost(Math.min(200, Math.max(5, parseInt(c, 10) || 25)))
-    if (e) setEfficiency(Math.min(100, Math.max(10, parseInt(e, 10) || 70)))
-    if (i)
-      setImplementationCost(
-        Math.min(100000, Math.max(0, parseInt(i, 10) || 15000)),
-      )
-  }, [searchParams])
+  const [staff, setStaff] = useState(() =>
+    parseParam(searchParams, 's', 5, 1, 100),
+  )
+  const [hoursPerWeek, setHoursPerWeek] = useState(() =>
+    parseParam(searchParams, 'h', 10, 1, 40),
+  )
+  const [hourlyCost, setHourlyCost] = useState(() =>
+    parseParam(searchParams, 'c', 25, 5, 200),
+  )
+  const [efficiency, setEfficiency] = useState(() =>
+    parseParam(searchParams, 'e', 70, 10, 100),
+  )
+  const [implementationCost, setImplementationCost] = useState(() =>
+    parseParam(searchParams, 'i', 15000, 0, 100000),
+  )
 
   // Keep URL in sync with inputs
   useEffect(() => {

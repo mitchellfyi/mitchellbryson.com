@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
@@ -11,13 +10,15 @@ import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
-      <Link
+      <a
         href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-700 dark:text-zinc-200 dark:hover:text-teal-500"
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
-      </Link>
+      </a>
     </li>
   )
 }
@@ -36,9 +37,9 @@ function MailIcon(props) {
 export const metadata = buildMetadata({
   title: 'About',
   description:
-    "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+    "I'm Mitchell Bryson, a full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
   ogDescription:
-    'Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.',
+    'Full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.',
   url: `${siteUrl}/about`,
   type: 'profile',
 })
@@ -57,21 +58,22 @@ export default function About() {
                 alt="Mitchell Bryson portrait photo"
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+                priority
               />
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-              I build practical systems that ship fast and create measurable
-              value.
+              I design and ship practical systems that cut manual work and
+              improve margins.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I&apos;m a full-stack AI Software Engineer. I build engaging
-                products and practical systems that ship fast, reduce manual
-                work, and create measurable value for teams. I&apos;ve been
-                making websites and apps since 2000, and I still prefer small,
-                verifiable wins over grand promises.
+                I&apos;m a full-stack AI Software Engineer. I design, develop
+                and ship engaging products and practical systems that cut manual
+                work and improve margins. I&apos;ve been making websites and
+                apps since 2000, and I still prefer small, verifiable wins over
+                grand promises.
               </p>
 
               <div>

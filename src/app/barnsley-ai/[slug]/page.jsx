@@ -81,8 +81,8 @@ export default async function BarnsleySubPage({ params }) {
                 Example AI integrations
               </h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                AI services and tools I've integrated for Barnsley businesses
-                include:
+                AI services and tools I&apos;ve integrated for Barnsley
+                businesses include:
               </p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {page.integrations.map((integration) => (
@@ -115,7 +115,10 @@ export default async function BarnsleySubPage({ params }) {
                       className="flex items-start gap-4 rounded-xl border border-zinc-100 p-4 transition hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-700/40 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50"
                     >
                       <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-zinc-900/5 dark:bg-zinc-800 dark:ring-zinc-700/50">
-                        <ToolIcon className={`h-4 w-4 ${toolColor}`} />
+                        <ToolIcon
+                          className={`h-4 w-4 ${toolColor}`}
+                          aria-hidden="true"
+                        />
                       </span>
                       <div className="min-w-0">
                         <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">

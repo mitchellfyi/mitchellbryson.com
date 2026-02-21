@@ -30,7 +30,7 @@ export async function GET() {
 
 ## About
 
-Mitchell Bryson is a full-stack AI Software Engineer based in Barnsley, South Yorkshire, UK. He builds engaging products and practical systems that ship fast, reduce manual work, and create measurable value. He has been making websites and apps since 2000.
+Mitchell Bryson is a full-stack AI Software Engineer based in Barnsley, South Yorkshire, UK. He designs, develops and ships engaging products and practical systems that cut manual work and improve margins. He has been making websites and apps since 2000.
 
 Specialities: product strategy, modern web stacks (Next.js, React, Rails, Tailwind), and applied AI (LLMs in real SaaS workflows — search, support, data/ops).
 
