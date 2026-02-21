@@ -10,10 +10,10 @@ export function formatDate(dateString) {
   }
 
   const year = date.getUTCFullYear()
-  const month = date.toLocaleDateString('en-US', {
+  const month = date.toLocaleDateString('en-GB', {
     month: 'short',
     timeZone: 'UTC',
   })
   const day = date.getUTCDate()
-  return `${month} ${day}, ${year}`
+  return `${day} ${month} ${year}`
 }

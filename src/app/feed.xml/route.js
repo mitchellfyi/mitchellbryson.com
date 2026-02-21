@@ -16,6 +16,7 @@ export async function GET() {
     author,
     id: siteUrl,
     link: siteUrl,
+    hub: 'https://pubsubhubbub.superfeedr.com',
     image: `${siteUrl}/favicon.ico`,
     favicon: `${siteUrl}/favicon.ico`,
     copyright: `© ${new Date().getFullYear()} Mitchell Bryson. All rights reserved.`,
