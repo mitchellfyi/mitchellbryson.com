@@ -130,6 +130,158 @@ export function MusicIcon(props) {
   )
 }
 
+// Tool icons
+
+export function CalculatorIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="4" y="2" width="16" height="20" rx="2" />
+      <path d="M8 6h8M8 10h2M8 14h2M8 18h2M14 10h2M14 14h2M14 18h2" />
+    </BaseIcon>
+  )
+}
+
+export function GaugeIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z" />
+      <path d="M12 12l4-4" />
+      <circle cx="12" cy="12" r="1.5" />
+      <path d="M7 17h10" />
+    </BaseIcon>
+  )
+}
+
+export function QuestionTreeIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx="12" cy="5" r="2.5" />
+      <circle cx="5" cy="19" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="M12 7.5v4M8 14l-3 2.5M16 14l3 2.5" />
+      <path d="M8 14h8" />
+    </BaseIcon>
+  )
+}
+
+export function CoinsIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </BaseIcon>
+  )
+}
+
+export function FlowchartIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="3" y="3" width="7" height="5" rx="1" />
+      <rect x="14" y="3" width="7" height="5" rx="1" />
+      <rect x="8.5" y="16" width="7" height="5" rx="1" />
+      <path d="M6.5 8v3h11V8M12 11v5" />
+    </BaseIcon>
+  )
+}
+
+export function ClipboardIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M9 3h6a1 1 0 0 1 1 1H8a1 1 0 0 1 1-1Z" />
+      <rect x="5" y="5" width="14" height="17" rx="2" />
+      <path d="M9 10h6M9 14h6M9 18h3" />
+    </BaseIcon>
+  )
+}
+
+export function ScaleIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12 3v18M5 7l7-4 7 4" />
+      <path d="M5 7l-2 8h6L5 7ZM19 7l-2 8h6l-4-8Z" />
+    </BaseIcon>
+  )
+}
+
+export function LayersIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m12 2 10 5-10 5L2 7l10-5Z" />
+      <path d="m2 12 10 5 10-5" />
+      <path d="m2 17 10 5 10-5" />
+    </BaseIcon>
+  )
+}
+
+const TOOL_ICON_MAP = {
+  'ai-roi-calculator': CalculatorIcon,
+  'ai-readiness-score': GaugeIcon,
+  'which-ai-integration': QuestionTreeIcon,
+  'llm-cost-calculator': CoinsIcon,
+  'rag-decision-tree': FlowchartIcon,
+  'ai-poc-scope-template': ClipboardIcon,
+  'build-vs-buy-vs-ai': ScaleIcon,
+  'tech-stack-picker': LayersIcon,
+}
+
+const TOOL_COLOR_MAP = {
+  'ai-roi-calculator': 'text-emerald-600 dark:text-emerald-400',
+  'ai-readiness-score': 'text-blue-600 dark:text-blue-400',
+  'which-ai-integration': 'text-purple-600 dark:text-purple-400',
+  'llm-cost-calculator': 'text-amber-600 dark:text-amber-400',
+  'rag-decision-tree': 'text-cyan-600 dark:text-cyan-400',
+  'ai-poc-scope-template': 'text-rose-600 dark:text-rose-400',
+  'build-vs-buy-vs-ai': 'text-orange-600 dark:text-orange-400',
+  'tech-stack-picker': 'text-indigo-600 dark:text-indigo-400',
+}
+
+export function getToolIcon(slug) {
+  return TOOL_ICON_MAP[slug] || CodeIcon
+}
+
+export function getToolColor(slug) {
+  return TOOL_COLOR_MAP[slug] || 'text-zinc-600 dark:text-zinc-400'
+}
+
 export function getProjectIcon(project) {
   const name = (project?.name || project?.title || '').toLowerCase()
   if (name.includes('launchonomy')) return RocketIcon

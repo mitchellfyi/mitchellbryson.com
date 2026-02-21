@@ -1,6 +1,7 @@
 import { getAllArticles } from '@/lib/articles'
 import { allBarnsleyPages, getAllIntegrationsWithPages } from '@/lib/barnsleyPages'
 import { siteUrl } from '@/lib/siteConfig'
+import { projectTools } from '@/lib/projectTools'
 import { tools } from '@/lib/tools'
 
 export default async function sitemap() {
@@ -25,6 +26,7 @@ export default async function sitemap() {
     { url: `${siteUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/articles`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${siteUrl}/projects`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/projects/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/uses`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/barnsley-ai`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/barnsley-ai/ai-integrations`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -47,5 +49,12 @@ export default async function sitemap() {
     priority: 0.5,
   }))
 
-  return [...staticPages, ...barnsleySubUrls, ...integrationUrls, ...toolUrls, ...articleUrls]
+  const projectToolUrls = projectTools.map((tool) => ({
+    url: `${siteUrl}/projects/tools/${tool.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...staticPages, ...barnsleySubUrls, ...integrationUrls, ...toolUrls, ...projectToolUrls, ...articleUrls]
 }

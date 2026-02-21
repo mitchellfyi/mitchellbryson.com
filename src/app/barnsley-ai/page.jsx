@@ -3,12 +3,14 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
+import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import {
   aiIntegrations,
   businessTypes,
   getRandomIntegrations,
   getRandomItems,
 } from '@/lib/barnsleyPages'
+import { projectTools } from '@/lib/projectTools'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 const placeJsonLd = {
@@ -190,6 +192,39 @@ export default function BarnsleyPage() {
                 className="block text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all integrations →
+              </Link>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                Free AI tools
+              </h2>
+              <ul className="space-y-2">
+                {projectTools.map((tool) => {
+                  const ToolIcon = getToolIcon(tool.slug)
+                  const toolColor = getToolColor(tool.slug)
+                  return (
+                    <li key={tool.slug}>
+                      <Link
+                        href={`/projects/tools/${tool.slug}`}
+                        className="group flex items-center gap-3 rounded-lg border border-zinc-100 px-3 py-2.5 transition hover:border-zinc-200 hover:bg-zinc-50 dark:border-zinc-700/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/50"
+                      >
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                          <ToolIcon className={`h-4 w-4 ${toolColor}`} />
+                        </span>
+                        <span className="text-sm font-medium text-zinc-700 transition group-hover:text-teal-700 dark:text-zinc-300 dark:group-hover:text-teal-400">
+                          {tool.name}
+                        </span>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+              <Link
+                href="/projects/tools"
+                className="block text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
+              >
+                View all tools →
               </Link>
             </div>
           </div>
