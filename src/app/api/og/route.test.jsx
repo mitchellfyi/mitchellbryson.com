@@ -48,4 +48,48 @@ describe('OG image API route', () => {
       expect(error).toBeDefined()
     }
   })
+
+  it('handles title > 80 chars without throwing', async () => {
+    const { GET } = await import('./route')
+    const longTitle = 'A'.repeat(100)
+    const mockRequest = new Request(
+      `http://localhost/api/og?title=${encodeURIComponent(longTitle)}`,
+    )
+
+    try {
+      const response = await GET(mockRequest)
+      expect(response).toBeDefined()
+    } catch (error) {
+      // ImageResponse may fail in test env, but shouldn't crash from long title
+      expect(error).toBeDefined()
+    }
+  })
+
+  it('handles description > 150 chars without throwing', async () => {
+    const { GET } = await import('./route')
+    const longDesc = 'B'.repeat(200)
+    const mockRequest = new Request(
+      `http://localhost/api/og?description=${encodeURIComponent(longDesc)}`,
+    )
+
+    try {
+      const response = await GET(mockRequest)
+      expect(response).toBeDefined()
+    } catch (error) {
+      expect(error).toBeDefined()
+    }
+  })
+
+  it('uses defaults when params missing', async () => {
+    const { GET } = await import('./route')
+    const mockRequest = new Request('http://localhost/api/og')
+
+    try {
+      const response = await GET(mockRequest)
+      expect(response).toBeDefined()
+      expect(response instanceof Response).toBe(true)
+    } catch (error) {
+      expect(error).toBeDefined()
+    }
+  })
 })

@@ -50,4 +50,39 @@ describe('RSS feed route', () => {
     expect(content).toContain('<rss')
     expect(content).toContain('</rss>')
   })
+
+  it('contains channel with title', async () => {
+    const { GET } = await import('./route')
+
+    const response = await GET()
+    const content = await response.text()
+
+    expect(content).toContain('<channel>')
+    expect(content).toMatch(/<title>.+<\/title>/)
+  })
+
+  it('contains at least one item', async () => {
+    const { GET } = await import('./route')
+
+    const response = await GET()
+    const content = await response.text()
+
+    expect(content).toContain('<item>')
+  })
+
+  it('items have title, link, and pubDate', async () => {
+    const { GET } = await import('./route')
+
+    const response = await GET()
+    const content = await response.text()
+
+    // Extract items section
+    const itemMatch = content.match(/<item>[\s\S]*?<\/item>/)
+    expect(itemMatch).not.toBeNull()
+
+    const item = itemMatch[0]
+    expect(item).toMatch(/<title>.+<\/title>/)
+    expect(item).toMatch(/<link>.+<\/link>/)
+    expect(item).toMatch(/<pubDate>.+<\/pubDate>/)
+  })
 })

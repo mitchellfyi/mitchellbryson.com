@@ -53,4 +53,47 @@ describe('articles module', () => {
       })
     }
   })
+
+  it('all articles have required properties', async () => {
+    const { getAllArticles } = await import('./articles')
+    const articles = await getAllArticles()
+
+    articles.forEach((article) => {
+      expect(article).toHaveProperty('slug')
+      expect(article).toHaveProperty('title')
+      expect(article).toHaveProperty('date')
+      expect(article).toHaveProperty('content')
+      expect(article).toHaveProperty('readingTime')
+    })
+  })
+})
+
+describe('getRelatedArticles', () => {
+  it('excludes the current slug', async () => {
+    const { getAllArticles, getRelatedArticles } = await import('./articles')
+    const articles = await getAllArticles()
+    if (articles.length === 0) return
+
+    const currentSlug = articles[0].slug
+    const related = await getRelatedArticles(currentSlug)
+    related.forEach((a) => expect(a.slug).not.toBe(currentSlug))
+  })
+
+  it('defaults to 3 results', async () => {
+    const { getAllArticles, getRelatedArticles } = await import('./articles')
+    const articles = await getAllArticles()
+    if (articles.length <= 1) return
+
+    const related = await getRelatedArticles(articles[0].slug)
+    expect(related.length).toBeLessThanOrEqual(3)
+  })
+
+  it('respects count param', async () => {
+    const { getAllArticles, getRelatedArticles } = await import('./articles')
+    const articles = await getAllArticles()
+    if (articles.length <= 1) return
+
+    const related = await getRelatedArticles(articles[0].slug, 1)
+    expect(related).toHaveLength(1)
+  })
 })

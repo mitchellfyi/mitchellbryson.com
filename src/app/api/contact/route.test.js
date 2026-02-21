@@ -1,21 +1,45 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-// Integration tests for contact API route
+const mockSend = vi.fn()
+
+vi.mock('@/lib/email', () => ({
+  getResend: () => ({ emails: { send: mockSend } }),
+  C: {
+    TEAL: '#14b8a6',
+    HEADING: '#333',
+    SUBHEADING: '#555',
+    TEXT: '#666',
+    BG: '#f8f9fa',
+    WHITE: '#fff',
+    BORDER: '#e9ecef',
+  },
+  validateEmail: (email) => {
+    if (!email) return 'Email is required'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Invalid email address'
+    return null
+  },
+}))
+
 describe('contact API route', () => {
-  it('module exports POST function', async () => {
-    const routeModule = await import('./route')
-    expect(typeof routeModule.POST).toBe('function')
+  let POST
+
+  beforeEach(async () => {
+    vi.resetModules()
+    mockSend.mockReset()
+    mockSend.mockResolvedValue({ error: null })
+    const mod = await import('./route')
+    POST = mod.POST
   })
 
-  it('POST function is async', async () => {
-    const { POST } = await import('./route')
+  it('module exports POST function', () => {
+    expect(typeof POST).toBe('function')
+  })
+
+  it('POST function is async', () => {
     expect(POST.constructor.name).toBe('AsyncFunction')
   })
 
   it('validates required fields', async () => {
-    const { POST } = await import('./route')
-
-    // Mock request with missing fields
     const mockRequest = {
       json: async () => ({
         name: '',
@@ -25,14 +49,24 @@ describe('contact API route', () => {
     }
 
     const response = await POST(mockRequest)
-    expect(response).toBeDefined()
     expect(response.status).toBe(400)
   })
 
-  it('validates email format', async () => {
-    const { POST } = await import('./route')
+  it('returns error message for missing fields', async () => {
+    const mockRequest = {
+      json: async () => ({
+        name: '',
+        email: 'test@example.com',
+        message: 'Test message',
+      }),
+    }
 
-    // Mock request with invalid email
+    const response = await POST(mockRequest)
+    const body = await response.json()
+    expect(body.error).toBe('All fields are required')
+  })
+
+  it('validates email format', async () => {
     const mockRequest = {
       json: async () => ({
         name: 'Test User',
@@ -42,14 +76,24 @@ describe('contact API route', () => {
     }
 
     const response = await POST(mockRequest)
-    expect(response).toBeDefined()
     expect(response.status).toBe(400)
   })
 
-  it('handles valid contact form submission', async () => {
-    const { POST } = await import('./route')
+  it('returns error message for bad email', async () => {
+    const mockRequest = {
+      json: async () => ({
+        name: 'Test User',
+        email: 'not-an-email',
+        message: 'Test message',
+      }),
+    }
 
-    // Mock request with valid data
+    const response = await POST(mockRequest)
+    const body = await response.json()
+    expect(body.error).toBe('Invalid email address')
+  })
+
+  it('returns 200 with success message for valid submission', async () => {
     const mockRequest = {
       json: async () => ({
         name: 'Test User',
@@ -59,16 +103,12 @@ describe('contact API route', () => {
     }
 
     const response = await POST(mockRequest)
-    expect(response).toBeDefined()
-    expect(typeof response.status).toBe('number')
-    // Status will be either 200 (success) or 500 (if Resend API fails)
-    expect([200, 500]).toContain(response.status)
+    expect(response.status).toBe(200)
+    const body = await response.json()
+    expect(body.message).toBe('Email sent successfully')
   })
 
   it('handles JSON parsing errors', async () => {
-    const { POST } = await import('./route')
-
-    // Mock request that throws on json()
     const mockRequest = {
       json: async () => {
         throw new Error('Invalid JSON')
@@ -76,7 +116,20 @@ describe('contact API route', () => {
     }
 
     const response = await POST(mockRequest)
-    expect(response).toBeDefined()
+    expect(response.status).toBe(500)
+  })
+
+  it('returns 500 when Resend API fails', async () => {
+    mockSend.mockResolvedValue({ error: 'API error' })
+    const mockRequest = {
+      json: async () => ({
+        name: 'Test User',
+        email: 'test@example.com',
+        message: 'Test message',
+      }),
+    }
+
+    const response = await POST(mockRequest)
     expect(response.status).toBe(500)
   })
 })
