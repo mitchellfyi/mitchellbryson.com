@@ -28,6 +28,7 @@ export function BarnsleyNav() {
           <Link
             key={item.href}
             href={item.href}
+            aria-current={isActive ? 'page' : undefined}
             className={clsx(
               'rounded-md px-3 py-1.5 text-sm font-medium transition',
               isActive

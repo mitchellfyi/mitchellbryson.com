@@ -926,6 +926,14 @@ export function getRandomItems(arr, n) {
   return shuffled.slice(0, n)
 }
 
+/** Find the contextSentence for a specific integration on a specific page */
+export function getContextForPage(integrationName, pageSlug) {
+  const page = allBarnsleyPages.find((p) => p.slug === pageSlug)
+  if (!page?.integrations) return null
+  const match = page.integrations.find((i) => i.name === integrationName)
+  return match?.contextSentence || null
+}
+
 /** Filter categories for the integrations page: AI types and business types */
 export const integrationFilterCategories = [
   { group: 'AI integration types', options: aiIntegrations.map((p) => ({ slug: p.slug, title: p.title })) },

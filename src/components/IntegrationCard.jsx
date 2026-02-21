@@ -19,7 +19,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
         {!imgError ? (
           <Image
             src={faviconUrl}
-            alt=""
+            alt={`${integration.name} logo`}
             width={48}
             height={48}
             className="rounded-lg object-contain"
@@ -49,7 +49,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
             <span key={page.slug}>
               <Link
                 href={`/barnsley-ai/${page.slug}`}
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 {page.title}
               </Link>
@@ -61,7 +61,8 @@ export function IntegrationCard({ integration, pages, showContext }) {
       <div className="mt-auto flex items-center gap-4 pt-3">
         <Link
           href={`/barnsley-ai/integrations/${slug}`}
-          className="inline-flex items-center text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+          aria-label={`Learn more about ${integration.name}`}
+          className="inline-flex items-center text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
         >
           Learn more
           <ChevronRightIcon className="ml-1 h-4 w-4" />
@@ -70,6 +71,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
           href={integration.url}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Visit ${integration.name} website`}
           className="inline-flex items-center text-sm font-medium text-zinc-500 transition hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
         >
           Visit site

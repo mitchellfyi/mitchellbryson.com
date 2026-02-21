@@ -2,29 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/Button'
-
-function MailIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
+import { MailEnvelopeIcon } from '@/components/Icons'
 
 export function Newsletter() {
   const [email, setEmail] = useState('')
@@ -69,7 +47,7 @@ export function Newsletter() {
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailIcon className="h-6 w-6 flex-none" />
+        <MailEnvelopeIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Stay up to date</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
@@ -77,7 +55,7 @@ export function Newsletter() {
       </p>
 
       {submitStatus === 'success' && (
-        <div className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20">
+        <div role="alert" className="mt-4 rounded-md bg-green-50 p-3 dark:bg-green-900/20">
           <div className="text-sm text-green-800 dark:text-green-200">
             Thanks for subscribing! You&apos;ll hear from me soon.
           </div>
@@ -85,7 +63,7 @@ export function Newsletter() {
       )}
 
       {submitStatus === 'error' && (
-        <div className="mt-4 rounded-md bg-red-50 p-3 dark:bg-red-900/20">
+        <div role="alert" className="mt-4 rounded-md bg-red-50 p-3 dark:bg-red-900/20">
           <div className="text-sm text-red-800 dark:text-red-200">
             Sorry, there was an error subscribing. Please try again.
           </div>
@@ -108,6 +86,7 @@ export function Newsletter() {
           type="submit"
           className="ml-4 flex-none"
           disabled={isSubmitting}
+          aria-busy={isSubmitting}
         >
           {isSubmitting ? 'Subscribing...' : 'Subscribe'}
         </Button>

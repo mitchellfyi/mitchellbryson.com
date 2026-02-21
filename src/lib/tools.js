@@ -181,6 +181,20 @@ export const tools = [
   },
 ]
 
+export const CATEGORY_LABELS = {
+  'ai-coding': 'AI & Coding',
+  data: 'Data',
+  automation: 'Automation',
+  productivity: 'Productivity',
+  hosting: 'Hosting',
+  infrastructure: 'Infrastructure',
+}
+
+export const TOOL_CATEGORIES = [
+  { id: 'all', label: 'All' },
+  ...Object.entries(CATEGORY_LABELS).map(([id, label]) => ({ id, label })),
+]
+
 export function getTool(slug) {
   return tools.find((tool) => tool.slug === slug)
 }

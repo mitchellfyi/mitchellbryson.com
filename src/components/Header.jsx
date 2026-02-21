@@ -127,8 +127,6 @@ function MobileNavigation(props) {
             <MobileNavItem href="/articles">Articles</MobileNavItem>
             <MobileNavItem href="/projects">Projects</MobileNavItem>
             <MobileNavItem href="/tools">Tools</MobileNavItem>
-            {/* <MobileNavItem href="/speaking">Speaking</MobileNavItem> */}
-            {/* <MobileNavItem href="/uses">Uses</MobileNavItem> */}
             <MobileNavItem href="/contact">Contact</MobileNavItem>
           </ul>
         </nav>
@@ -153,11 +151,12 @@ function NavItem({ href, children }) {
     <li>
       <Link
         href={href}
+        aria-current={isActive ? 'page' : undefined}
         className={clsx(
           'relative block rounded-md px-3 py-2 transition focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-zinc-900',
           isActive
-            ? 'text-teal-500 dark:text-teal-400'
-            : 'hover:text-teal-500 dark:hover:text-teal-400',
+            ? 'text-teal-700 dark:text-teal-400'
+            : 'hover:text-teal-700 dark:hover:text-teal-400',
         )}
       >
         {children}
@@ -177,8 +176,6 @@ function DesktopNavigation(props) {
         <NavItem href="/articles">Articles</NavItem>
         <NavItem href="/projects">Projects</NavItem>
         <NavItem href="/tools">Tools</NavItem>
-        {/* <NavItem href="/speaking">Speaking</NavItem> */}
-        {/* <NavItem href="/uses">Uses</NavItem> */}
         <NavItem href="/contact">Contact</NavItem>
       </ul>
     </nav>

@@ -6,7 +6,7 @@ function NavLink({ href, children }) {
   return (
     <Link
       href={href}
-      className="rounded-md transition hover:text-teal-500 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:text-teal-400 dark:focus-visible:ring-offset-zinc-900"
+      className="rounded-md transition hover:text-teal-700 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:text-teal-400 dark:focus-visible:ring-offset-zinc-900"
     >
       {children}
     </Link>
@@ -28,8 +28,6 @@ export function Footer() {
                 <NavLink href="/articles">Articles</NavLink>
                 <NavLink href="/projects">Projects</NavLink>
                 <NavLink href="/tools">Tools</NavLink>
-                {/* <NavLink href="/speaking">Speaking</NavLink> */}
-                {/* <NavLink href="/uses">Uses</NavLink> */}
                 <NavLink href="/contact">Contact</NavLink>
                 <NavLink href="/barnsley-ai">AI in Barnsley, UK</NavLink>
               </nav>

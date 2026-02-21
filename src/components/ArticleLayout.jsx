@@ -3,31 +3,14 @@
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import rehypeRaw from 'rehype-raw'
-
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
+import { ArrowLeftIcon } from '@/components/Icons'
 import { Newsletter } from '@/components/Newsletter'
+import { MarkdownContent } from '@/components/MarkdownContent'
 import { Prose } from '@/components/Prose'
 import { ArticleToggle } from '@/components/ArticleToggle'
 import { formatDate } from '@/lib/formatDate'
-
-function ArrowLeftIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
 
 export function ArticleLayout({ article, children }) {
   let router = useRouter()
@@ -93,35 +76,9 @@ export function ArticleLayout({ article, children }) {
               </div>
             )}
             <Prose className="mt-8" data-mdx-content>
-              {article.content ? (
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw]}
-                  components={{
-                    code({ node, inline, className, children, ...props }) {
-                      const match = /language-(\w+)/.exec(className || '')
-                      return !inline && match ? (
-                        <SyntaxHighlighter
-                          style={atomDark}
-                          language={match[1]}
-                          PreTag="div"
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
-                      ) : (
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      )
-                    },
-                  }}
-                >
-                  {isDraft && hasDraft ? article.draftContent : article.content}
-                </ReactMarkdown>
-              ) : (
-                children
-              )}
+              <MarkdownContent content={isDraft && hasDraft ? article.draftContent : article.content} rehypeRaw>
+                {children}
+              </MarkdownContent>
               <hr />
             </Prose>
           </article>

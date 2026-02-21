@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { IntegrationCard } from '@/components/IntegrationCard'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
   aiIntegrations,
@@ -11,7 +12,7 @@ import {
   getBarnsleyPage,
   getRandomItems,
 } from '@/lib/barnsleyPages'
-import { getOgImage, siteUrl } from '@/lib/siteConfig'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   return allBarnsleyPages.map((page) => ({
@@ -24,46 +25,23 @@ export async function generateMetadata({ params }) {
   const page = getBarnsleyPage(slug)
   if (!page) return {}
 
-  const pageUrl = `${siteUrl}/barnsley-ai/${slug}`
   const metaDescription =
     page.description.length >= 140
       ? page.description
       : `${page.title} for Barnsley businesses. ${page.description}`
 
-  return {
+  return buildMetadata({
     title: `${page.title} Barnsley | AI Development`,
     description: metaDescription,
+    url: `${siteUrl}/barnsley-ai/${slug}`,
+    ogTitle: `${page.title} Barnsley | AI Software Engineer`,
     keywords: [
       `${page.title} Barnsley`,
       'AI Barnsley',
       'AI South Yorkshire',
       page.category === 'ai' ? 'AI integration Barnsley' : 'AI consultant Barnsley',
     ],
-    alternates: {
-      canonical: pageUrl,
-    },
-    openGraph: {
-      title: `${page.title} Barnsley | AI Software Engineer - Mitchell Bryson`,
-      description: metaDescription,
-      url: pageUrl,
-      siteName: 'Mitchell Bryson',
-      locale: 'en_GB',
-      type: 'website',
-      images: [
-        {
-          url: getOgImage(`${page.title} Barnsley`, metaDescription),
-          width: 1200,
-          height: 630,
-          alt: `${page.title} Barnsley - Mitchell Bryson`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${page.title} Barnsley | AI Development - Mitchell Bryson`,
-      description: metaDescription,
-    },
-  }
+  })
 }
 
 export default async function BarnsleySubPage({ params }) {
@@ -78,10 +56,18 @@ export default async function BarnsleySubPage({ params }) {
   const featuredAiIntegrations = getRandomItems(aiIntegrations, 3)
 
   return (
-    <SimpleLayout
-      title={page.title}
-      intro={page.description}
-    >
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'AI in Barnsley', url: `${siteUrl}/barnsley-ai` },
+          { name: page.title, url: `${siteUrl}/barnsley-ai/${slug}` },
+        ]}
+      />
+      <SimpleLayout
+        title={page.title}
+        intro={page.description}
+      >
       <div className="space-y-8">
         <ContentParagraphs content={page.content} />
 
@@ -116,7 +102,7 @@ export default async function BarnsleySubPage({ params }) {
                 <li key={item.slug}>
                   <Link
                     href={`/barnsley-ai/${item.slug}`}
-                    className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                    className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
                   >
                     {item.title}
                   </Link>
@@ -128,7 +114,7 @@ export default async function BarnsleySubPage({ params }) {
             <p className="mt-3 text-zinc-600 dark:text-zinc-400">
               <Link
                 href="/barnsley-ai/business-types"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all business types →
               </Link>
@@ -146,7 +132,7 @@ export default async function BarnsleySubPage({ params }) {
                 <li key={item.slug}>
                   <Link
                     href={`/barnsley-ai/${item.slug}`}
-                    className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                    className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
                   >
                     {item.title}
                   </Link>
@@ -158,7 +144,7 @@ export default async function BarnsleySubPage({ params }) {
             <p className="mt-3 text-zinc-600 dark:text-zinc-400">
               <Link
                 href="/barnsley-ai/integration-types"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all integration types →
               </Link>
@@ -167,5 +153,6 @@ export default async function BarnsleySubPage({ params }) {
         )}
       </div>
     </SimpleLayout>
+    </>
   )
 }

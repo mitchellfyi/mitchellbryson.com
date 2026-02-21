@@ -8,7 +8,7 @@ import {
   getRandomIntegrations,
   getRandomItems,
 } from '@/lib/barnsleyPages'
-import { getOgImage, siteUrl } from '@/lib/siteConfig'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 const placeJsonLd = {
   '@context': 'https://schema.org',
@@ -25,12 +25,12 @@ const placeJsonLd = {
     'AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for Barnsley businesses.',
 }
 
-const metaDescription =
-  'AI Software Engineer in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for manufacturing, retail, and professional services.'
-
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'AI Software Engineer Barnsley | AI Development South Yorkshire',
-  description: metaDescription,
+  description:
+    'AI Software Engineer in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for manufacturing, retail, and professional services.',
+  url: `${siteUrl}/barnsley-ai`,
+  ogTitle: 'AI Software Engineer Barnsley | AI Development',
   keywords: [
     'AI Barnsley',
     'AI developer Barnsley',
@@ -39,31 +39,7 @@ export const metadata = {
     'AI consultant South Yorkshire',
     'AI chatbots Barnsley',
   ],
-  alternates: {
-    canonical: `${siteUrl}/barnsley-ai`,
-  },
-  openGraph: {
-    title: 'AI Software Engineer Barnsley | AI Development - Mitchell Bryson',
-    description: metaDescription,
-    url: `${siteUrl}/barnsley-ai`,
-    siteName: 'Mitchell Bryson',
-    locale: 'en_GB',
-    type: 'website',
-    images: [
-      {
-        url: getOgImage('AI Software Engineer Barnsley', metaDescription),
-        width: 1200,
-        height: 630,
-        alt: 'AI Software Engineer Barnsley - Mitchell Bryson',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Software Engineer Barnsley | AI Development - Mitchell Bryson',
-    description: metaDescription,
-  },
-}
+})
 
 export default function BarnsleyPage() {
   const featuredIntegrations = getRandomIntegrations(3)
@@ -97,7 +73,7 @@ export default function BarnsleyPage() {
                 href="https://www.bbc.com/news/articles/c8j3dvjld94o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 Tech Town
               </a>{' '}
@@ -107,7 +83,7 @@ export default function BarnsleyPage() {
                 href="https://www.gov.uk/government/news/barnsley-becomes-uks-first-government-backed-tech-town"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 GOV.UK
               </a>
@@ -128,7 +104,7 @@ export default function BarnsleyPage() {
                 <li key={item.slug}>
                   <Link
                     href={`/barnsley-ai/${item.slug}`}
-                    className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                    className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
                   >
                     {item.title}
                   </Link>
@@ -140,7 +116,7 @@ export default function BarnsleyPage() {
             <p className="mt-3 text-zinc-600 dark:text-zinc-400">
               <Link
                 href="/barnsley-ai/integration-types"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all integration types →
               </Link>
@@ -161,7 +137,7 @@ export default function BarnsleyPage() {
                 <li key={item.slug}>
                   <Link
                     href={`/barnsley-ai/${item.slug}`}
-                    className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                    className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
                   >
                     {item.title}
                   </Link>
@@ -173,7 +149,7 @@ export default function BarnsleyPage() {
             <p className="mt-3 text-zinc-600 dark:text-zinc-400">
               <Link
                 href="/barnsley-ai/business-types"
-                className="font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all business types →
               </Link>
@@ -197,7 +173,7 @@ export default function BarnsleyPage() {
               </div>
               <Link
                 href="/barnsley-ai/ai-integrations"
-                className="block text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                className="block text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
               >
                 View all integrations →
               </Link>

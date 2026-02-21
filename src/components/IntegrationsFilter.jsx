@@ -68,6 +68,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
@@ -83,7 +84,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                 role="listbox"
                 className="absolute left-0 right-0 top-full z-20 mt-1 max-h-64 overflow-auto rounded-md border border-zinc-200 bg-white py-1 shadow-lg dark:border-zinc-700 dark:bg-zinc-900"
               >
-                <div role="option">
+                <div role="option" aria-selected={!filterSlug}>
                   <button
                     type="button"
                     onClick={() => {
@@ -107,7 +108,7 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
                       if (count === 0) return null
                       const isActive = filterSlug === option.slug
                       return (
-                        <div key={option.slug} role="option">
+                        <div key={option.slug} role="option" aria-selected={isActive}>
                           <button
                             type="button"
                             onClick={() => {
@@ -158,6 +159,10 @@ export function IntegrationsFilter({ integrations, filterCategories }) {
             }),
           )}
         </div>
+      </div>
+
+      <div role="status" className="sr-only">
+        Showing {filtered.length} integration{filtered.length !== 1 ? 's' : ''}
       </div>
 
       {filterSlug ? (

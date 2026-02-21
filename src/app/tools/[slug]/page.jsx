@@ -5,8 +5,8 @@ import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { ArrowTopRightIcon } from '@/components/Icons'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
-import { getOgImage, siteUrl } from '@/lib/siteConfig'
-import { getAllToolSlugs, getTool, tools } from '@/lib/tools'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
+import { CATEGORY_LABELS, getAllToolSlugs, getTool, tools } from '@/lib/tools'
 
 export async function generateStaticParams() {
   return getAllToolSlugs().map((slug) => ({ slug }))
@@ -17,47 +17,11 @@ export async function generateMetadata({ params }) {
   const tool = getTool(slug)
   if (!tool) return {}
 
-  const pageUrl = `${siteUrl}/tools/${slug}`
-  const ogImage = getOgImage(tool.name, tool.description)
-
-  return {
+  return buildMetadata({
     title: tool.name,
     description: tool.description,
-    alternates: {
-      canonical: pageUrl,
-    },
-    openGraph: {
-      title: `${tool.name} - Mitchell Bryson`,
-      description: tool.description,
-      url: pageUrl,
-      siteName: 'Mitchell Bryson',
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${tool.name} - Mitchell Bryson`,
-        },
-      ],
-      locale: 'en_US',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${tool.name} - Mitchell Bryson`,
-      description: tool.description,
-      images: [ogImage],
-    },
-  }
-}
-
-const CATEGORY_LABELS = {
-  'ai-coding': 'AI & Coding',
-  data: 'Data',
-  automation: 'Automation',
-  productivity: 'Productivity',
-  hosting: 'Hosting',
-  infrastructure: 'Infrastructure',
+    url: `${siteUrl}/tools/${slug}`,
+  })
 }
 
 export default async function ToolPage({ params }) {
@@ -91,7 +55,7 @@ export default async function ToolPage({ params }) {
             href={tool.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition hover:text-teal-700 dark:text-zinc-400 dark:hover:text-teal-400"
           >
             Visit website
             <ArrowTopRightIcon className="h-4 w-4" />
@@ -127,7 +91,7 @@ export default async function ToolPage({ params }) {
         <div className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
           <Link
             href="/tools"
-            className="text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+            className="text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
           >
             ← Back to all tools
           </Link>

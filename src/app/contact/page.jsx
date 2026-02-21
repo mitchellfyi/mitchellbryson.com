@@ -58,7 +58,7 @@ export default function Contact() {
           respond as soon as possible. You can also reach me directly at{' '}
           <a
             href="mailto:website@mitchellbryson.com"
-            className="text-teal-500 transition-colors hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+            className="text-teal-700 transition-colors hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
           >
             website@mitchellbryson.com
           </a>
@@ -73,13 +73,14 @@ export default function Contact() {
               htmlFor="name"
               className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
             >
-              Name
+              Name<span aria-hidden="true"> *</span>
             </label>
             <input
               type="text"
               name="name"
               id="name"
               required
+              aria-required="true"
               value={formData.name}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
@@ -91,13 +92,14 @@ export default function Contact() {
               htmlFor="email"
               className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
             >
-              Email
+              Email<span aria-hidden="true"> *</span>
             </label>
             <input
               type="email"
               name="email"
               id="email"
               required
+              aria-required="true"
               value={formData.email}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
@@ -110,13 +112,14 @@ export default function Contact() {
             htmlFor="message"
             className="block text-sm font-medium text-zinc-800 dark:text-zinc-200"
           >
-            Message
+            Message<span aria-hidden="true"> *</span>
           </label>
           <textarea
             name="message"
             id="message"
             rows={6}
             required
+            aria-required="true"
             value={formData.message}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500"
@@ -125,7 +128,7 @@ export default function Contact() {
         </div>
 
         {submitStatus === 'success' && (
-          <div className="rounded-md bg-green-50 p-4 dark:bg-green-900/20">
+          <div role="alert" className="rounded-md bg-green-50 p-4 dark:bg-green-900/20">
             <div className="text-sm text-green-800 dark:text-green-200">
               Thank you for your message! I&apos;ll get back to you soon.
             </div>
@@ -133,7 +136,7 @@ export default function Contact() {
         )}
 
         {submitStatus === 'error' && (
-          <div className="rounded-md bg-red-50 p-4 dark:bg-red-900/20">
+          <div role="alert" className="rounded-md bg-red-50 p-4 dark:bg-red-900/20">
             <div className="text-sm text-red-800 dark:text-red-200">
               Sorry, there was an error sending your message. Please try again.
             </div>
@@ -144,6 +147,7 @@ export default function Contact() {
           <Button
             type="submit"
             disabled={isSubmitting}
+            aria-busy={isSubmitting}
             className="min-w-[120px]"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}

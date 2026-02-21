@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/ArticleLayout'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getAllArticles } from '@/lib/articles'
-import { getOgImage, siteUrl } from '@/lib/siteConfig'
+import { getOgImage, siteName, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   const articles = await getAllArticles()
@@ -37,7 +37,8 @@ export async function generateMetadata({ params }) {
       description: article.description,
       type: 'article',
       url: articleUrl,
-      siteName: 'Mitchell Bryson',
+      siteName,
+      locale: 'en_GB',
       publishedTime: article.date,
       authors: [article.author],
       images: [

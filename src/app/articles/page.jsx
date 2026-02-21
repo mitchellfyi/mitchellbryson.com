@@ -3,7 +3,8 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
-import { siteUrl } from '@/lib/siteConfig'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 function Article({ article }) {
   return (
@@ -65,45 +66,24 @@ function Article({ article }) {
   )
 }
 
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Articles')}&description=${encodeURIComponent('Thoughts on AI, programming, product development, and more.')}&type=article`
-
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Articles',
   description:
     'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
-  alternates: {
-    canonical: `${siteUrl}/articles`,
-  },
-  openGraph: {
-    title: 'Articles - Mitchell Bryson',
-    description:
-      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
-    url: `${siteUrl}/articles`,
-    siteName: 'Mitchell Bryson',
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: 'Articles - Mitchell Bryson',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Articles - Mitchell Bryson',
-    description:
-      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
-    images: [defaultOgImage],
-  },
-}
+  url: `${siteUrl}/articles`,
+})
 
 export default async function ArticlesIndex() {
   let articles = await getAllArticles()
 
   return (
+    <>
+    <BreadcrumbJsonLd
+      items={[
+        { name: 'Home', url: siteUrl },
+        { name: 'Articles', url: `${siteUrl}/articles` },
+      ]}
+    />
     <SimpleLayout
       title="Writing on product development, company building, and the AI industry."
       intro="All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order."
@@ -116,5 +96,6 @@ export default async function ArticlesIndex() {
         </div>
       </div>
     </SimpleLayout>
+    </>
   )
 }

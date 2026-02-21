@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { ProjectLayout } from '@/components/ProjectLayout'
 import { getAllProjects } from '@/lib/projects'
-import { siteUrl } from '@/lib/siteConfig'
+import { siteName, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   const projects = await getAllProjects()
@@ -29,7 +30,9 @@ export async function generateMetadata({ params }) {
       title: project.title,
       description: project.description,
       type: 'article',
-      siteName: 'Mitchell Bryson',
+      url: `${siteUrl}/projects/${slug}`,
+      siteName,
+      locale: 'en_GB',
       authors: [project.author],
       images: project.coverImage
         ? [
@@ -60,5 +63,16 @@ export default async function ProjectPage({ params }) {
     notFound()
   }
 
-  return <ProjectLayout project={project} />
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'Projects', url: `${siteUrl}/projects` },
+          { name: project.title, url: `${siteUrl}/projects/${slug}` },
+        ]}
+      />
+      <ProjectLayout project={project} />
+    </>
+  )
 }

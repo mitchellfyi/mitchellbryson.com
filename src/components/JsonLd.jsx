@@ -13,11 +13,6 @@ export function WebSiteJsonLd() {
       name: 'Mitchell Bryson',
       url: siteUrl,
     },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteUrl}/articles?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
   }
 
   return (
@@ -120,6 +115,34 @@ export function ArticleJsonLd({ article }) {
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: ['[data-speakable="headline"]', '[data-speakable="description"]'],
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function SoftwareApplicationJsonLd({ name, description, url }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name,
+    description,
+    url,
+    applicationCategory: 'DeveloperApplication',
+    author: {
+      '@type': 'Person',
+      name: 'Mitchell Bryson',
+      url: siteUrl,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'GBP',
     },
   }
 

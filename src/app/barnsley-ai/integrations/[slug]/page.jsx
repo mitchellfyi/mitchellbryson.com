@@ -4,15 +4,16 @@ import { notFound } from 'next/navigation'
 
 import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { ExternalLinkIcon } from '@/components/Icons'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
-  allBarnsleyPages,
   getAllIntegrationSlugs,
   getAllIntegrationsWithPages,
+  getContextForPage,
   getIntegrationBySlug,
 } from '@/lib/barnsleyPages'
 import { integrationContent } from '@/lib/integrationContent'
-import { getFaviconUrl, getOgImage, siteUrl } from '@/lib/siteConfig'
+import { buildMetadata, getFaviconUrl, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   return getAllIntegrationSlugs().map((slug) => ({ slug }))
@@ -23,38 +24,11 @@ export async function generateMetadata({ params }) {
   const integration = getIntegrationBySlug(slug)
   if (!integration) return {}
 
-  const pageUrl = `${siteUrl}/barnsley-ai/integrations/${slug}`
-  const metaTitle = `${integration.name} AI Integration Barnsley`
-  const metaDescription = `${integration.name} - ${integration.description} AI integration for Barnsley businesses by Mitchell Bryson.`
-
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    alternates: {
-      canonical: pageUrl,
-    },
-    openGraph: {
-      title: `${metaTitle} - Mitchell Bryson`,
-      description: metaDescription,
-      url: pageUrl,
-      siteName: 'Mitchell Bryson',
-      locale: 'en_GB',
-      type: 'website',
-      images: [
-        {
-          url: getOgImage(integration.name, metaDescription),
-          width: 1200,
-          height: 630,
-          alt: `${integration.name} - Mitchell Bryson`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${metaTitle} - Mitchell Bryson`,
-      description: metaDescription,
-    },
-  }
+  return buildMetadata({
+    title: `${integration.name} AI Integration Barnsley`,
+    description: `${integration.name} - ${integration.description} AI integration for Barnsley businesses by Mitchell Bryson.`,
+    url: `${siteUrl}/barnsley-ai/integrations/${slug}`,
+  })
 }
 
 export default async function IntegrationPage({ params }) {
@@ -79,13 +53,22 @@ export default async function IntegrationPage({ params }) {
   const related = siblingIntegrations.slice(0, 6)
 
   return (
-    <SimpleLayout
-      title={
-        <span className="flex items-center gap-4">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-700">
-            <Image
-              src={faviconUrl}
-              alt=""
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'AI in Barnsley', url: `${siteUrl}/barnsley-ai` },
+          { name: 'Integrations', url: `${siteUrl}/barnsley-ai/ai-integrations` },
+          { name: integration.name, url: `${siteUrl}/barnsley-ai/integrations/${slug}` },
+        ]}
+      />
+      <SimpleLayout
+        title={
+          <span className="flex items-center gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-700">
+              <Image
+                src={faviconUrl}
+                alt={integration.name}
               width={48}
               height={48}
               className="rounded-lg object-contain"
@@ -129,7 +112,7 @@ export default async function IntegrationPage({ params }) {
                   >
                     <Link
                       href={`/barnsley-ai/${page.slug}`}
-                      className="text-base font-semibold text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+                      className="text-base font-semibold text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
                     >
                       {page.title}
                     </Link>
@@ -172,20 +155,13 @@ export default async function IntegrationPage({ params }) {
         <div className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
           <Link
             href="/barnsley-ai/ai-integrations"
-            className="text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+            className="text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
           >
             ← Back to all integrations
           </Link>
         </div>
       </div>
     </SimpleLayout>
+    </>
   )
-}
-
-/** Find the contextSentence for a specific integration on a specific page */
-function getContextForPage(integrationName, pageSlug) {
-  const page = allBarnsleyPages.find((p) => p.slug === pageSlug)
-  if (!page?.integrations) return null
-  const match = page.integrations.find((i) => i.name === integrationName)
-  return match?.contextSentence || null
 }

@@ -1,39 +1,23 @@
-import { siteUrl } from '@/lib/siteConfig'
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Contact')}&description=${encodeURIComponent("Get in touch with Mitchell Bryson.")}&type=article`
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Contact',
   description:
     "Get in touch with me at website@mitchellbryson.com. I'd love to hear from you.",
-  alternates: {
-    canonical: `${siteUrl}/contact`,
-  },
-  openGraph: {
-    title: 'Contact - Mitchell Bryson',
-    description:
-      "Get in touch with me at website@mitchellbryson.com. I'd love to hear from you.",
-    url: `${siteUrl}/contact`,
-    siteName: 'Mitchell Bryson',
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: 'Contact - Mitchell Bryson',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Contact - Mitchell Bryson',
-    description:
-      "Get in touch with me at website@mitchellbryson.com. I'd love to hear from you.",
-    images: [defaultOgImage],
-  },
-}
+  url: `${siteUrl}/contact`,
+})
 
 export default function ContactLayout({ children }) {
-  return children
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'Contact', url: `${siteUrl}/contact` },
+        ]}
+      />
+      {children}
+    </>
+  )
 }

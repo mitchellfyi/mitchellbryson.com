@@ -1,124 +1,11 @@
-import Image from 'next/image'
-import Link from 'next/link'
-
 import { Container } from '@/components/Container'
 import { Newsletter } from '@/components/Newsletter'
 import { Card } from '@/components/Card'
 import { Resume } from '@/components/Resume'
 import { Projects } from '@/components/Projects'
-import {
-  GitHubIcon,
-  LinkedInIcon,
-} from '@/components/SocialIcons'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
-// Hardcoded pinned projects
-const homePinnedProjects = [
-  {
-    name: 'launchonomy',
-    description:
-      'A system for orchestrating AI agents to complete "missions" through consensus driven decision-making and workflow automation.',
-    html_url: 'https://github.com/mitchellfyi/launchonomy',
-  },
-  {
-    name: 'pitchplease',
-    description:
-      'A Next.js app and Agentic AI workflow for uploading a pitch deck and turning it into a AI generated video, with voiceover and narrator.',
-    html_url: 'https://github.com/mitchellfyi/pitchplease',
-  },
-  // {
-  //   name: 'inbox-triage-app',
-  //   description:
-  //     "A web-based email triage companion that helps you summarise email threads, understand attachments and generate reply drafts - all running primarily on-device using Chrome's built-in AI.",
-  //   html_url: 'https://github.com/mitchellfyi/inbox-triage-app',
-  // },
-  {
-    name: 'inbox-triage-extension',
-    description:
-      'Triage your inbox with AI-powered email summaries, attachment analysis, and reply drafts - all processed locally for complete privacy.',
-    html_url: 'https://github.com/mitchellfyi/inbox-triage-extension',
-  },
-  {
-    name: 'agentic-commerce-protocol',
-    description:
-      'RFC: Fulfilment for the Agentic Commerce Protocol - defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
-    html_url:
-      'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
-  },
-  {
-    name: 'lofield.fm',
-    description:
-      'Create lofi beats using natural language. Just describe what you want, and AI generates the music for you.',
-    html_url: 'https://github.com/mitchellfyi/lofield.fm',
-  },
-]
-
-function MailIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function BriefcaseIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function SocialLink({ icon: Icon, ...props }) {
-  return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
-  )
-}
+import { pinnedProjects } from '@/lib/pinnedProjects'
 
 function Article({ article }) {
   return (
@@ -135,7 +22,7 @@ function Article({ article }) {
 
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 6)
-  let projects = homePinnedProjects
+  let projects = pinnedProjects
 
   return (
     <>
@@ -149,29 +36,11 @@ export default async function Home() {
             that cut manual work and improve margins. My focus: small,
             verifiable wins that go live fast, then scale. If you need a
             developer that knows what to build and why,{' '}
-            <a href="/contact" className="text-teal-500">
+            <a href="/contact" className="text-teal-700">
               let&apos;s talk
             </a>
             .
           </p>
-          <div className="mt-6 flex gap-6">
-            {/* <SocialLink href="#" aria-label="Follow on X" icon={XIcon} /> */}
-            {/* <SocialLink
-              href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            /> */}
-            {/* <SocialLink
-              href="#"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            /> */}
-            {/* <SocialLink
-              href="#"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            /> */}
-          </div>
         </div>
       </Container>
       <Container className="mt-24 md:mt-28">

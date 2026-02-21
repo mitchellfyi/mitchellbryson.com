@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
-import { WebSiteJsonLd, ProfilePageJsonLd } from '@/components/JsonLd'
+import { WebSiteJsonLd } from '@/components/JsonLd'
 
 import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
@@ -38,7 +38,7 @@ export const metadata = {
         alt: 'Mitchell Bryson - AI Software Engineer',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_GB',
     type: 'website',
   },
   twitter: {
@@ -80,7 +80,6 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <WebSiteJsonLd />
-        <ProfilePageJsonLd />
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>

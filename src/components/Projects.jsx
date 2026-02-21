@@ -1,43 +1,6 @@
 import Link from 'next/link'
+import { ArrowTopRightIcon, CodeIcon } from '@/components/Icons'
 import { getProjectIcon, getProjectColor } from '@/components/ProjectIcons'
-
-function CodeIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M8.5 14.5 4 10l4.5-4.5M15.5 9.5 20 14l-4.5 4.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
-
-function ExternalLinkIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M15 3h6v6M10 14 21 3M21 3v6M21 3h-6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
 
 function renderProjectIcon(project) {
   const Icon = getProjectIcon(project)
@@ -61,7 +24,7 @@ function Project({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.name} (opens in new tab)`}
-            className="transition-colors hover:text-teal-500"
+            className="transition-colors hover:text-teal-700"
           >
             {project.name}
           </Link>
@@ -93,7 +56,7 @@ export function Projects({ projects }) {
         className="group mt-6 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 outline-offset-2 transition hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 active:transition-none dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70"
       >
         View all projects
-        <ExternalLinkIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowTopRightIcon className="h-4 w-4 text-zinc-400 transition group-active:text-zinc-600 dark:group-hover:text-zinc-50 dark:group-active:text-zinc-50" />
       </Link>
     </div>
   )

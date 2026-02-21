@@ -11,11 +11,13 @@ export function buildMetadata({
   title,
   description,
   url,
-  locale = 'en_US',
+  locale = 'en_GB',
   ogTitle,
+  ogDescription,
   keywords,
+  type = 'website',
 }) {
-  const ogImage = getOgImage(ogTitle || title, description)
+  const ogImage = getOgImage(ogTitle || title, ogDescription || description)
   return {
     title,
     description,
@@ -23,7 +25,7 @@ export function buildMetadata({
     alternates: { canonical: url },
     openGraph: {
       title: `${ogTitle || title} - ${siteName}`,
-      description,
+      description: ogDescription || description,
       url,
       siteName,
       images: [
@@ -35,12 +37,12 @@ export function buildMetadata({
         },
       ],
       locale,
-      type: 'website',
+      type,
     },
     twitter: {
       card: 'summary_large_image',
       title: `${ogTitle || title} - ${siteName}`,
-      description,
+      description: ogDescription || description,
       images: [ogImage],
     },
   }

@@ -7,16 +7,16 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import { PersonJsonLd } from '@/components/JsonLd'
+import { PersonJsonLd, ProfilePageJsonLd } from '@/components/JsonLd'
 import portraitImage from '@/images/portrait.jpg'
-import { siteUrl } from '@/lib/siteConfig'
+import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-700 dark:text-zinc-200 dark:hover:text-teal-500"
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
@@ -36,45 +36,21 @@ function MailIcon(props) {
   )
 }
 
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('About')}&description=${encodeURIComponent("Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.")}&type=article`
-
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'About',
   description:
     "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
-  alternates: {
-    canonical: `${siteUrl}/about`,
-  },
-  openGraph: {
-    title: 'About - Mitchell Bryson',
-    description:
-      "Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.",
-    url: `${siteUrl}/about`,
-    siteName: 'Mitchell Bryson',
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: 'About - Mitchell Bryson',
-      },
-    ],
-    locale: 'en_US',
-    type: 'profile',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About - Mitchell Bryson',
-    description:
-      "Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.",
-    images: [defaultOgImage],
-  },
-}
+  ogDescription:
+    "Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.",
+  url: `${siteUrl}/about`,
+  type: 'profile',
+})
 
 export default function About() {
   return (
     <>
       <PersonJsonLd />
+      <ProfilePageJsonLd />
       <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
@@ -163,12 +139,6 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            {/* <SocialLink href="#" icon={XIcon}>
-              Follow on X
-            </SocialLink> */}
-            {/* <SocialLink href="#" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink> */}
             <SocialLink
               href="https://github.com/mitchellfyi"
               icon={GitHubIcon}

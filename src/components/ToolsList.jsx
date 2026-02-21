@@ -5,16 +5,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { ChevronRightIcon } from '@/components/Icons'
-
-const CATEGORIES = [
-  { id: 'all', label: 'All' },
-  { id: 'ai-coding', label: 'AI & Coding' },
-  { id: 'data', label: 'Data' },
-  { id: 'automation', label: 'Automation' },
-  { id: 'productivity', label: 'Productivity' },
-  { id: 'hosting', label: 'Hosting' },
-  { id: 'infrastructure', label: 'Infrastructure' },
-]
+import { TOOL_CATEGORIES } from '@/lib/tools'
 
 export function ToolsList({ tools }) {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -30,7 +21,7 @@ export function ToolsList({ tools }) {
         aria-label="Filter tools by category"
         className="mb-8 flex flex-wrap gap-2"
       >
-        {CATEGORIES.map((category) => {
+        {TOOL_CATEGORIES.map((category) => {
           const count =
             category.id === 'all'
               ? tools.length
@@ -41,6 +32,7 @@ export function ToolsList({ tools }) {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
+              aria-pressed={activeCategory === category.id}
               className={clsx(
                 'cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition',
                 activeCategory === category.id
@@ -54,6 +46,10 @@ export function ToolsList({ tools }) {
           )
         })}
       </nav>
+
+      <div role="status" className="sr-only">
+        Showing {filteredTools.length} tool{filteredTools.length !== 1 ? 's' : ''}
+      </div>
 
       <ul
         role="list"
@@ -69,7 +65,7 @@ export function ToolsList({ tools }) {
                 <h3 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                   {tool.name}
                 </h3>
-                <ChevronRightIcon className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-500 dark:group-hover:text-teal-400" />
+                <ChevronRightIcon className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-700 dark:group-hover:text-teal-400" />
               </div>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 {tool.description}

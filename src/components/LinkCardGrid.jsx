@@ -17,7 +17,7 @@ export function LinkCardGrid({ items, hrefPrefix }) {
           <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
             {item.description}
           </p>
-          <span className="mt-2 inline-flex items-center text-sm font-medium text-teal-500 transition group-hover:text-teal-600 dark:text-teal-400 dark:group-hover:text-teal-300">
+          <span className="mt-2 inline-flex items-center text-sm font-medium text-teal-700 transition group-hover:text-teal-800 dark:text-teal-400 dark:group-hover:text-teal-300">
             Read more
             <ChevronRightIcon className="ml-1 h-4 w-4" />
           </span>

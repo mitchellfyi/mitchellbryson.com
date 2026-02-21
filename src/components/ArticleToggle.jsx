@@ -66,6 +66,7 @@ export function ArticleToggle({ isDraft, onToggle, className = '' }) {
               : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
           }`}
           aria-label="Switch to AI formatted version"
+          aria-pressed={!isDraft}
         >
           <DocumentIcon className="h-4 w-4" />
           AI Formatted
@@ -79,6 +80,7 @@ export function ArticleToggle({ isDraft, onToggle, className = '' }) {
               : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
           }`}
           aria-label="Switch to draft version"
+          aria-pressed={isDraft}
         >
           <EditIcon className="h-4 w-4" />
           Draft
