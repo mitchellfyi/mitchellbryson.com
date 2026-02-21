@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
+import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
-import { SimpleLayout } from '@/components/SimpleLayout'
+import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
 import {
   aiIntegrations,
   businessTypes,
@@ -52,10 +53,23 @@ export default function BarnsleyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(placeJsonLd) }}
       />
-      <SimpleLayout
-        title="AI Software Engineer in Barnsley"
-        intro="I'm an AI developer based in Barnsley, South Yorkshire, and work with Barnsley businesses and across the UK to design and ship practical AI systems that cut manual work and improve margins."
-      >
+      <Container className="pt-16 sm:pt-32 -mt-16 sm:-mt-32">
+        <div className="relative -mx-4 px-4 py-24 sm:-mx-8 sm:px-8 sm:py-32">
+          <NeuralNetworkBg />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white dark:from-zinc-900" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-zinc-900" />
+          <header className="relative max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+              AI Software Engineer in Barnsley
+            </h1>
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              I&apos;m an AI developer based in Barnsley, South Yorkshire, and
+              work with Barnsley businesses and across the UK to design and ship
+              practical AI systems that cut manual work and improve margins.
+            </p>
+          </header>
+        </div>
+        <div className="mt-6 sm:mt-8">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="prose dark:prose-invert max-w-2xl space-y-12">
           <p className="text-zinc-600 dark:text-zinc-400">
@@ -180,7 +194,8 @@ export default function BarnsleyPage() {
             </div>
           </div>
         </div>
-      </SimpleLayout>
+        </div>
+      </Container>
     </>
   )
 }
