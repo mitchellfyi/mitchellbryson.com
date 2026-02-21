@@ -52,7 +52,7 @@ jobs:
           echo "Run ID: ${{ github.run_id }}"
           echo "Timestamp: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           token: ${{ secrets.GH_PAT }}
 
@@ -90,7 +90,7 @@ jobs:
       - name: Upload manifest artifact
         if: always()
         continue-on-error: true
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@47309c993abb98030a35d55ef7ff34b7fa1074b5 # v4.6.2
         with:
           name: news-manifest
           retention-days: 30
