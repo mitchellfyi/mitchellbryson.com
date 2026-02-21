@@ -1,0 +1,190 @@
+name: Generate Article
+
+on:
+  schedule:
+    - cron: '0 9 * * 0' # Every Sunday 9am UTC
+    - cron: '0 9 * * 3' # Every Wednesday 9am UTC
+  workflow_dispatch:
+    inputs:
+      topic_hint:
+        description: 'Optional topic hint to guide research'
+        required: false
+        type: string
+
+concurrency:
+  group: generate-article
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    name: Generate Article
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Debug - workflow context
+        run: |
+          echo "=== Workflow Context ==="
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run number: ${{ github.run_number }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Timestamp: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+          echo "Topic hint: ${{ inputs.topic_hint || '(none)' }}"
+          echo ""
+          echo "=== Secrets Check ==="
+          echo "ANTHROPIC_API_KEY set: ${{ secrets.ANTHROPIC_API_KEY != '' }}"
+          echo "OPENAI_API_KEY set: ${{ secrets.OPENAI_API_KEY != '' }}"
+          echo "GH_PAT set: ${{ secrets.GH_PAT != '' }}"
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Debug - repo state
+        run: |
+          echo "=== Repository State ==="
+          echo "Branch: $(git branch --show-current)"
+          echo "Last commit: $(git log --oneline -1)"
+          echo "Article count: $(ls -d src/app/articles/*/content.md 2>/dev/null | wc -l)"
+          echo "Existing articles:"
+          ls -d src/app/articles/*/content.md 2>/dev/null | sed 's|src/app/articles/||;s|/content.md||' | while read slug; do
+            echo "  - ${slug}"
+          done
+          echo ""
+          echo "=== Prompt files ==="
+          ls -la prompts/article-generation/
+          echo ""
+          echo "=== Script files ==="
+          find scripts/generate-article -type f | sort
+
+      - name: Setup Node
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          echo "=== Installing dependencies ==="
+          npm ci
+          echo ""
+          echo "=== Key packages ==="
+          echo "sharp: $(node -e "console.log(require('sharp/package.json').version)" 2>/dev/null || echo 'not found')"
+          echo "gray-matter: $(node -e "console.log(require('gray-matter/package.json').version)" 2>/dev/null || echo 'not found')"
+
+      - name: Generate article
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TOPIC_HINT: ${{ inputs.topic_hint || '' }}
+        run: node scripts/generate-article/index.mjs
+
+      - name: Debug - generated files
+        if: always()
+        continue-on-error: true
+        run: |
+          echo "=== Generated file check ==="
+          if [ -f /tmp/article-slug.txt ]; then
+            SLUG=$(cat /tmp/article-slug.txt)
+            echo "Slug: ${SLUG}"
+            echo ""
+
+            echo "--- content.md (first 30 lines) ---"
+            head -30 "src/app/articles/${SLUG}/content.md" 2>/dev/null || echo "(not found)"
+            echo ""
+
+            echo "--- content_draft.md (first 20 lines) ---"
+            head -20 "src/app/articles/${SLUG}/content_draft.md" 2>/dev/null || echo "(not found)"
+            echo ""
+
+            echo "--- manifest.json ---"
+            cat "src/app/articles/${SLUG}/manifest.json" 2>/dev/null || echo "(not found)"
+            echo ""
+
+            echo "--- cover image ---"
+            if [ -f "public/images/articles/${SLUG}.png" ]; then
+              ls -la "public/images/articles/${SLUG}.png"
+            else
+              echo "(not found)"
+            fi
+          else
+            echo "No slug file found — generation may have failed"
+            echo ""
+            echo "--- Partial manifest (if any) ---"
+            cat /tmp/article-generation/manifest.json 2>/dev/null || echo "(none)"
+          fi
+
+      - name: Upload manifest artifact
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: article-manifest
+          retention-days: 30
+          path: |
+            src/app/articles/*/manifest.json
+            /tmp/article-generation/manifest.json
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          SLUG=$(cat /tmp/article-slug.txt)
+          TITLE=$(cat /tmp/article-title.txt)
+
+          echo "=== Creating PR ==="
+          echo "Slug: ${SLUG}"
+          echo "Title: ${TITLE}"
+
+          BRANCH="article/${SLUG}"
+          echo "Branch: ${BRANCH}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Delete remote branch if it exists (from a previous failed run)
+          git push origin --delete "${BRANCH}" 2>/dev/null || true
+
+          git checkout -b "${BRANCH}"
+          echo "Created branch: ${BRANCH}"
+
+          # Stage files
+          git add "src/app/articles/${SLUG}/"
+          echo "Staged article directory"
+
+          if [ -f "public/images/articles/${SLUG}.png" ]; then
+            git add "public/images/articles/${SLUG}.png"
+            echo "Staged cover image"
+          else
+            echo "No cover image to stage"
+          fi
+
+          git status
+
+          # Use file-based commit message to avoid shell escaping issues
+          echo "feat(article): ${TITLE}" > /tmp/commit-msg.txt
+          git commit -F /tmp/commit-msg.txt
+          echo "Committed"
+
+          git push origin "${BRANCH}"
+          echo "Pushed to origin/${BRANCH}"
+
+          # Render PR body from template + manifest
+          echo "Rendering PR body from template..."
+          node scripts/generate-article/render-pr-body.mjs "${SLUG}"
+
+          echo "--- PR body preview ---"
+          cat /tmp/pr-body.md
+          echo "---"
+
+          gh pr create \
+            --title "New article: ${TITLE}" \
+            --body-file /tmp/pr-body.md
+
+          echo "PR created successfully"
