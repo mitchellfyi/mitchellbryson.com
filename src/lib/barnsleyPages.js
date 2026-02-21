@@ -868,6 +868,14 @@ export function getBarnsleyPage(slug) {
   return allBarnsleyPages.find((p) => p.slug === slug)
 }
 
+/** Generate a URL-safe slug from an integration name */
+export function integrationSlug(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
 /** All unique integrations across barnsley pages, with page references */
 export function getAllIntegrationsWithPages() {
   const byUrl = new Map()
@@ -883,6 +891,7 @@ export function getAllIntegrationsWithPages() {
         }
       } else {
         byUrl.set(key, {
+          slug: integrationSlug(integration.name),
           ...integration,
           pages: [pageRef],
         })
@@ -892,6 +901,16 @@ export function getAllIntegrationsWithPages() {
   return Array.from(byUrl.values()).sort((a, b) =>
     a.name.localeCompare(b.name),
   )
+}
+
+/** Get a single integration by its slug */
+export function getIntegrationBySlug(slug) {
+  return getAllIntegrationsWithPages().find((i) => i.slug === slug)
+}
+
+/** Get all unique integration slugs for static generation */
+export function getAllIntegrationSlugs() {
+  return getAllIntegrationsWithPages().map((i) => i.slug)
 }
 
 /** Pick n random integrations (deterministic per build) */

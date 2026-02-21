@@ -14,21 +14,6 @@ const CATEGORIES = [
   { id: 'infrastructure', label: 'Infrastructure' },
 ]
 
-function ExternalLinkIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M15 3h6v6M10 14 21 3M21 3v6M21 3h-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 export function ToolsList({ tools }) {
   const [activeCategory, setActiveCategory] = useState('all')
 
@@ -75,16 +60,27 @@ export function ToolsList({ tools }) {
         {filteredTools.map((tool) => (
           <li key={tool.name}>
             <Link
-              href={tool.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/tools/${tool.slug}`}
               className="group flex flex-col rounded-2xl border border-zinc-100 p-6 transition hover:border-zinc-200 hover:bg-zinc-50 dark:border-zinc-700/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/50"
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                   {tool.name}
                 </h3>
-                <ExternalLinkIcon className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-500 dark:group-hover:text-teal-400" />
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-500 dark:group-hover:text-teal-400"
+                >
+                  <path
+                    d="M9 5l7 7-7 7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 {tool.description}
