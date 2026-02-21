@@ -4,7 +4,7 @@ import { ContactCTA } from '@/components/ContactCTA'
 import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
-import { PlaceJsonLd } from '@/components/JsonLd'
+import { BreadcrumbJsonLd, PlaceJsonLd } from '@/components/JsonLd'
 import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import {
   aiIntegrations,
@@ -38,6 +38,12 @@ export default function BarnsleyPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'AI Software Engineer Barnsley', url: `${siteUrl}/barnsley-ai` },
+        ]}
+      />
       <PlaceJsonLd
         name="Mitchell Bryson - AI Software Engineer"
         description="AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for Barnsley businesses."

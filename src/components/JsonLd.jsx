@@ -7,7 +7,7 @@ export function WebSiteJsonLd() {
     name: 'Mitchell Bryson',
     url: siteUrl,
     description:
-      "I'm Mitchell, an AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
+      "I'm Mitchell, a full-stack AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
     author: {
       '@type': 'Person',
       name: 'Mitchell Bryson',
@@ -31,8 +31,8 @@ export function ProfilePageJsonLd() {
       '@type': 'Person',
       name: 'Mitchell Bryson',
       url: siteUrl,
-      image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer')}&type=home`,
-      jobTitle: 'AI Software Engineer',
+      image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('Full-stack AI Software Engineer')}&type=home`,
+      jobTitle: 'Full-stack AI Software Engineer',
       description:
         'Full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.',
       sameAs: [
@@ -67,8 +67,8 @@ export function PersonJsonLd() {
     '@type': 'Person',
     name: 'Mitchell Bryson',
     url: siteUrl,
-    image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer')}&type=home`,
-    jobTitle: 'AI Software Engineer',
+    image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('Full-stack AI Software Engineer')}&type=home`,
+    jobTitle: 'Full-stack AI Software Engineer',
     description:
       "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
     sameAs: [
@@ -86,8 +86,8 @@ export function PersonJsonLd() {
   )
 }
 
-export function ArticleJsonLd({ article }) {
-  const articleUrl = `${siteUrl}/articles/${article.slug}`
+export function ArticleJsonLd({ article, url }) {
+  const articleUrl = url || `${siteUrl}/articles/${article.slug}`
   const imageUrl = article.coverImage
     ? `${siteUrl}${article.coverImage}`
     : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`

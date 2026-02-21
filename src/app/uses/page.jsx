@@ -7,7 +7,7 @@ import { tools } from '@/lib/tools'
 export const metadata = buildMetadata({
   title: 'Uses',
   description:
-    'Software and tools I use for development, automation, and productivity.',
+    'Software and tools that power my daily workflow - from AI coding agents and automations to hosting, DNS, and email.',
   url: `${siteUrl}/uses`,
 })
 

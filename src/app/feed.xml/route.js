@@ -17,7 +17,7 @@ export async function GET(req) {
   let feed = new Feed({
     title: author.name,
     description:
-      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
+      'Articles and news on AI, programming, product development, and more, collected in chronological order.',
     author,
     id: siteUrl,
     link: siteUrl,

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
       canonical: itemUrl,
     },
     openGraph: {
-      title: item.title,
+      title: `${item.title} - ${siteName}`,
       description: item.description,
       type: 'article',
       url: itemUrl,
@@ -75,7 +75,7 @@ export default async function NewsItemPage({ params }) {
 
   return (
     <>
-      <ArticleJsonLd article={{ ...item, slug }} />
+      <ArticleJsonLd article={{ ...item, slug }} url={`${siteUrl}/news/${slug}`} />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', url: siteUrl },

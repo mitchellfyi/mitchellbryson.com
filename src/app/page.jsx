@@ -33,8 +33,8 @@ export default async function Home() {
             I&apos;m Mitchell, a full-stack AI Software Engineer.
           </h1>
           <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400">
-            I design, develop and ship engaging products and practical systems
-            that cut manual work and improve margins. My focus: small,
+            I design, develop and ship practical AI systems that cut manual work
+            and improve margins. My focus: small,
             verifiable wins that go live fast, then scale. If you need a
             developer that knows what to build and why,{' '}
             <Link href="/contact" className="text-teal-700">

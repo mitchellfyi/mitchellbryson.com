@@ -2,6 +2,7 @@
 
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import Image from 'next/image'
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
@@ -22,7 +23,7 @@ function RelatedArticles({ articles }) {
       </h2>
       <div className="mt-6 space-y-8">
         {articles.map((article) => (
-          <a
+          <Link
             key={article.slug}
             href={`/articles/${article.slug}`}
             className="group block"
@@ -43,7 +44,7 @@ function RelatedArticles({ articles }) {
                 </p>
               )}
             </article>
-          </a>
+          </Link>
         ))}
       </div>
     </section>
