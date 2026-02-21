@@ -11,6 +11,7 @@ import {
 } from '@/components/SocialIcons'
 import { PersonJsonLd } from '@/components/JsonLd'
 import portraitImage from '@/images/portrait.jpg'
+import { siteUrl } from '@/lib/siteConfig'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -37,7 +38,6 @@ function MailIcon(props) {
   )
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('About')}&description=${encodeURIComponent("Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.")}&type=article`
 
 export const metadata = {

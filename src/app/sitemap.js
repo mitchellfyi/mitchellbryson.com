@@ -1,8 +1,7 @@
 import { getAllArticles } from '@/lib/articles'
 import { allBarnsleyPages, getAllIntegrationsWithPages } from '@/lib/barnsleyPages'
+import { siteUrl } from '@/lib/siteConfig'
 import { tools } from '@/lib/tools'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
 export default async function sitemap() {
   const articles = await getAllArticles()
@@ -31,6 +30,8 @@ export default async function sitemap() {
     { url: `${siteUrl}/barnsley-ai/ai-integrations`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/barnsley-ai/integration-types`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/barnsley-ai/business-types`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${siteUrl}/speaking`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${siteUrl}/uses`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${siteUrl}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
   ]
 

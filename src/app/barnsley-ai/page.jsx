@@ -8,12 +8,7 @@ import {
   getRandomIntegrations,
   getRandomItems,
 } from '@/lib/barnsleyPages'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-
-function getOgImage(title, description) {
-  return `${siteUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=home`
-}
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
 const placeJsonLd = {
   '@context': 'https://schema.org',

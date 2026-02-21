@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 
+import { ChevronRightIcon } from '@/components/Icons'
+
 const CATEGORIES = [
   { id: 'all', label: 'All' },
   { id: 'ai-coding', label: 'AI & Coding' },
@@ -67,20 +69,7 @@ export function ToolsList({ tools }) {
                 <h3 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                   {tool.name}
                 </h3>
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-500 dark:group-hover:text-teal-400"
-                >
-                  <path
-                    d="M9 5l7 7-7 7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <ChevronRightIcon className="h-4 w-4 text-zinc-400 transition group-hover:text-teal-500 dark:group-hover:text-teal-400" />
               </div>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 {tool.description}

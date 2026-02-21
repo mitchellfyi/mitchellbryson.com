@@ -10,6 +10,7 @@ import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import { getProjectIcon, getProjectColor } from '@/components/ProjectIcons'
+import { siteUrl } from '@/lib/siteConfig'
 
 // Logo mapping for all projects
 const logoMap = {
@@ -31,7 +32,6 @@ function LinkIcon(props) {
   )
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Projects')}&description=${encodeURIComponent("Things I've made trying to put my dent in the universe.")}&type=article`
 
 export const metadata = {

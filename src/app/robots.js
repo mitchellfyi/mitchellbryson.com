@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { siteUrl } from '@/lib/siteConfig'
 
 export default function robots() {
   return {

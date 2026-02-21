@@ -4,15 +4,10 @@ import {
   getAllIntegrationsWithPages,
   integrationFilterCategories,
 } from '@/lib/barnsleyPages'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
 const metaDescription =
   'AI tools and services for Barnsley businesses - AI chatbots, document processing, AI search, workflow automation, and custom AI product features.'
-
-function getOgImage(title, description) {
-  return `${siteUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=home`
-}
 
 export const metadata = {
   title: 'AI Integrations Barnsley | AI Tools & Services South Yorkshire',

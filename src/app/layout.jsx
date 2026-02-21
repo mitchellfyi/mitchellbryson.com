@@ -4,11 +4,12 @@ import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 import { WebSiteJsonLd, ProfilePageJsonLd } from '@/components/JsonLd'
 
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
+
 import '@/styles/tailwind.css'
 import '@/styles/prism.css'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer - AI Systems & Automation')}&type=home`
+const defaultOgImage = getOgImage('Mitchell Bryson', 'AI Software Engineer - AI Systems & Automation')
 
 export const metadata = {
   title: {

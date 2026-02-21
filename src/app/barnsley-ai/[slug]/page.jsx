@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
@@ -10,17 +11,12 @@ import {
   getBarnsleyPage,
   getRandomItems,
 } from '@/lib/barnsleyPages'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   return allBarnsleyPages.map((page) => ({
     slug: page.slug,
   }))
-}
-
-function getOgImage(title, description) {
-  return `${siteUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=home`
 }
 
 export async function generateMetadata({ params }) {
@@ -78,7 +74,6 @@ export default async function BarnsleySubPage({ params }) {
     notFound()
   }
 
-  const paragraphs = page.content.split('\n\n').filter(Boolean)
   const featuredBusinessTypes = getRandomItems(businessTypes, 3)
   const featuredAiIntegrations = getRandomItems(aiIntegrations, 3)
 
@@ -88,13 +83,7 @@ export default async function BarnsleySubPage({ params }) {
       intro={page.description}
     >
       <div className="space-y-8">
-        <div className="prose dark:prose-invert max-w-2xl space-y-6">
-          {paragraphs.map((paragraph, i) => (
-            <p key={i} className="text-zinc-600 dark:text-zinc-400">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <ContentParagraphs content={page.content} />
 
         {page.integrations && (
           <section className="max-w-4xl">

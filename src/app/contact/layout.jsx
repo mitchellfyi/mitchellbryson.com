@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { siteUrl } from '@/lib/siteConfig'
 const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Contact')}&description=${encodeURIComponent("Get in touch with Mitchell Bryson.")}&type=article`
 
 export const metadata = {

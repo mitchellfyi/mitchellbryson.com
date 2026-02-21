@@ -1,9 +1,9 @@
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { ToolsList } from '@/components/ToolsList'
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 import { tools } from '@/lib/tools'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Tools')}&description=${encodeURIComponent('Software and tools I use for development, automation, and productivity.')}&type=home`
+const defaultOgImage = getOgImage('Tools', 'Software and tools I use for development, automation, and productivity.')
 
 export const metadata = {
   title: 'Tools',

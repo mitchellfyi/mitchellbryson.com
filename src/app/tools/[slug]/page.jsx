@@ -1,18 +1,15 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ContentParagraphs } from '@/components/ContentParagraphs'
+import { ArrowTopRightIcon } from '@/components/Icons'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 import { getAllToolSlugs, getTool, tools } from '@/lib/tools'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
 export async function generateStaticParams() {
   return getAllToolSlugs().map((slug) => ({ slug }))
-}
-
-function getOgImage(title, description) {
-  return `${siteUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=home`
 }
 
 export async function generateMetadata({ params }) {
@@ -71,8 +68,6 @@ export default async function ToolPage({ params }) {
     notFound()
   }
 
-  const paragraphs = tool.content.split('\n\n').filter(Boolean)
-
   const relatedTools = tools.filter(
     (t) => t.category === tool.category && t.slug !== tool.slug,
   )
@@ -99,30 +94,11 @@ export default async function ToolPage({ params }) {
             className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
           >
             Visit website
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="h-4 w-4"
-            >
-              <path
-                d="M15 3h6v6M10 14 21 3M21 3v6M21 3h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowTopRightIcon className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="prose dark:prose-invert max-w-2xl space-y-6">
-          {paragraphs.map((paragraph, i) => (
-            <p key={i} className="text-zinc-600 dark:text-zinc-400">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <ContentParagraphs content={tool.content} />
 
         {relatedTools.length > 0 && (
           <section className="max-w-4xl border-t border-zinc-100 pt-10 dark:border-zinc-700/40">

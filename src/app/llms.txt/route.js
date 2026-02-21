@@ -1,7 +1,7 @@
 import { getAllArticles } from '@/lib/articles'
 import { tools } from '@/lib/tools'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { siteUrl } from '@/lib/siteConfig'
 
 export async function GET() {
   const articles = await getAllArticles()

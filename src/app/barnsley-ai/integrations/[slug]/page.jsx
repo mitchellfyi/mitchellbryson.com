@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ContentParagraphs } from '@/components/ContentParagraphs'
+import { ExternalLinkIcon } from '@/components/Icons'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
   allBarnsleyPages,
@@ -10,15 +12,10 @@ import {
   getIntegrationBySlug,
 } from '@/lib/barnsleyPages'
 import { integrationContent } from '@/lib/integrationContent'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { getFaviconUrl, getOgImage, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   return getAllIntegrationSlugs().map((slug) => ({ slug }))
-}
-
-function getOgImage(title, description) {
-  return `${siteUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=home`
 }
 
 export async function generateMetadata({ params }) {
@@ -60,11 +57,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-function getFaviconUrl(url, logoDomain) {
-  const domain = logoDomain || new URL(url).hostname.replace(/^www\./, '')
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
-}
-
 export default async function IntegrationPage({ params }) {
   const { slug } = await params
   const integration = getIntegrationBySlug(slug)
@@ -74,8 +66,7 @@ export default async function IntegrationPage({ params }) {
   }
 
   const faviconUrl = getFaviconUrl(integration.url, integration.logoDomain)
-  const content = integrationContent[integration.name]
-  const paragraphs = content ? content.split('\n\n').filter(Boolean) : []
+  const content = integrationContent[slug]
 
   const allIntegrations = getAllIntegrationsWithPages()
   const siblingIntegrations = allIntegrations.filter(
@@ -114,32 +105,11 @@ export default async function IntegrationPage({ params }) {
             className="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-600 transition hover:bg-teal-500/20 dark:text-teal-400"
           >
             Visit website
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="h-3.5 w-3.5"
-            >
-              <path
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ExternalLinkIcon className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        {paragraphs.length > 0 && (
-          <div className="prose dark:prose-invert max-w-2xl space-y-6">
-            {paragraphs.map((paragraph, i) => (
-              <p key={i} className="text-zinc-600 dark:text-zinc-400">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        )}
+        {content && <ContentParagraphs content={content} />}
 
         {integration.pages && integration.pages.length > 0 && (
           <section>

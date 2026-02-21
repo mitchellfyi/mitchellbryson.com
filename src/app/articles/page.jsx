@@ -3,6 +3,7 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { siteUrl } from '@/lib/siteConfig'
 
 function Article({ article }) {
   return (
@@ -64,7 +65,6 @@ function Article({ article }) {
   )
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Articles')}&description=${encodeURIComponent('Thoughts on AI, programming, product development, and more.')}&type=article`
 
 export const metadata = {

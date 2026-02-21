@@ -4,12 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { ChevronRightIcon, ExternalLinkIcon } from '@/components/Icons'
 import { integrationSlug } from '@/lib/barnsleyPages'
-
-function getFaviconUrl(url, logoDomain) {
-  const domain = logoDomain || new URL(url).hostname.replace(/^www\./, '')
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
-}
+import { getFaviconUrl } from '@/lib/siteConfig'
 
 export function IntegrationCard({ integration, pages, showContext }) {
   const [imgError, setImgError] = useState(false)
@@ -67,19 +64,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
           className="inline-flex items-center text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
         >
           Learn more
-          <svg
-            className="ml-1 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <ChevronRightIcon className="ml-1 h-4 w-4" />
         </Link>
         <a
           href={integration.url}
@@ -88,19 +73,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
           className="inline-flex items-center text-sm font-medium text-zinc-500 transition hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
         >
           Visit site
-          <svg
-            className="ml-1 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
+          <ExternalLinkIcon className="ml-1 h-4 w-4" />
         </a>
       </div>
     </div>

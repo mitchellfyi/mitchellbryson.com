@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { ProjectLayout } from '@/components/ProjectLayout'
 import { getAllProjects } from '@/lib/projects'
+import { siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   const projects = await getAllProjects()
@@ -18,8 +19,6 @@ export async function generateMetadata({ params }) {
     return {}
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-
   return {
     title: project.title,
     description: project.description,
@@ -30,6 +29,7 @@ export async function generateMetadata({ params }) {
       title: project.title,
       description: project.description,
       type: 'article',
+      siteName: 'Mitchell Bryson',
       authors: [project.author],
       images: project.coverImage
         ? [

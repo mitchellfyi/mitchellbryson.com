@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/ArticleLayout'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getAllArticles } from '@/lib/articles'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+import { getOgImage, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
   const articles = await getAllArticles()
@@ -21,12 +20,9 @@ export async function generateMetadata({ params }) {
     return {}
   }
 
-  // Generate dynamic OG image URL
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
   const ogImageUrl = article.coverImage
     ? `${siteUrl}${article.coverImage}`
-    : `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&description=${encodeURIComponent(article.description || '')}&type=article`
+    : getOgImage(article.title, article.description || '', 'article')
 
   const articleUrl = `${siteUrl}/articles/${slug}`
 
