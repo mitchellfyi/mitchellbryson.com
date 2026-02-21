@@ -1,7 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import clsx from 'clsx'
+import { Button } from '@/components/Button'
+import { EmailReport } from '@/components/tools/EmailReport'
+import { CopyLinkButton } from '@/components/tools/CopyLinkButton'
 
 function InputGroup({ label, description, value, onChange, min, max, step = 1, prefix, suffix }) {
   return (
@@ -114,11 +118,48 @@ function formatPayback(months) {
 }
 
 export function AIROICalculator() {
+  return (
+    <Suspense fallback={null}>
+      <AIROICalculatorInner />
+    </Suspense>
+  )
+}
+
+function AIROICalculatorInner() {
+  const searchParams = useSearchParams()
   const [staff, setStaff] = useState(5)
   const [hoursPerWeek, setHoursPerWeek] = useState(10)
   const [hourlyCost, setHourlyCost] = useState(25)
   const [efficiency, setEfficiency] = useState(70)
   const [implementationCost, setImplementationCost] = useState(15000)
+
+  // Load from permalink on mount
+  useEffect(() => {
+    const s = searchParams.get('s')
+    const h = searchParams.get('h')
+    const c = searchParams.get('c')
+    const e = searchParams.get('e')
+    const i = searchParams.get('i')
+    if (s) setStaff(Math.min(100, Math.max(1, parseInt(s, 10) || 5)))
+    if (h) setHoursPerWeek(Math.min(40, Math.max(1, parseInt(h, 10) || 10)))
+    if (c) setHourlyCost(Math.min(200, Math.max(5, parseInt(c, 10) || 25)))
+    if (e) setEfficiency(Math.min(100, Math.max(10, parseInt(e, 10) || 70)))
+    if (i) setImplementationCost(Math.min(100000, Math.max(0, parseInt(i, 10) || 15000)))
+  }, [searchParams])
+
+  // Keep URL in sync with inputs
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const url = new URL(window.location.pathname, window.location.origin)
+      url.searchParams.set('s', staff)
+      url.searchParams.set('h', hoursPerWeek)
+      url.searchParams.set('c', hourlyCost)
+      url.searchParams.set('e', efficiency)
+      url.searchParams.set('i', implementationCost)
+      window.history.replaceState(null, '', url.toString())
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [staff, hoursPerWeek, hourlyCost, efficiency, implementationCost])
 
   const currentAnnualCost = staff * hoursPerWeek * 52 * hourlyCost
   const annualSavings = currentAnnualCost * (efficiency / 100)
@@ -128,6 +169,7 @@ export function AIROICalculator() {
   const threeYearNet = annualSavings * 3 - implementationCost
 
   return (
+    <>
     <div className="grid gap-10 lg:grid-cols-5">
       {/* Inputs */}
       <div className="space-y-6 lg:col-span-3">
@@ -237,8 +279,26 @@ export function AIROICalculator() {
             Estimates are illustrative. Actual results depend on process
             complexity, data quality, and implementation approach.
           </p>
+
+          <CopyLinkButton />
         </div>
       </div>
     </div>
+
+    <EmailReport
+      toolName="AI ROI Calculator"
+      reportEndpoint="/api/roi-report"
+      reportData={{
+        annualSavings: formatCurrency(annualSavings),
+        currentAnnualCost: formatCurrency(currentAnnualCost),
+        hoursFreed: `${Math.round(hoursFreed).toLocaleString('en-GB')} hrs`,
+        hoursPerWeek: `${Math.round(hoursFreed / 52)} hours per week`,
+        paybackPeriod: formatPayback(paybackMonths),
+        implementationCost: formatCurrency(implementationCost),
+        threeYearNet: formatCurrency(Math.max(0, threeYearNet)),
+        threeYearBreaksEven: threeYearNet >= 0,
+      }}
+    />
+    </>
   )
 }

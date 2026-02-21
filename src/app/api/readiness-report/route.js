@@ -1,0 +1,179 @@
+import { Resend } from 'resend'
+import { NextResponse } from 'next/server'
+
+let resend = null
+function getResend() {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
+
+const C = {
+  TEAL: '#14b8a6',
+  HEADING: '#333',
+  SUBHEADING: '#555',
+  TEXT: '#666',
+  BG: '#f8f9fa',
+  WHITE: '#fff',
+  BORDER: '#e9ecef',
+}
+
+const TIER_COLORS = {
+  red: { bg: '#fef2f2', border: '#fecaca', text: '#dc2626' },
+  amber: { bg: '#fffbeb', border: '#fde68a', text: '#d97706' },
+  teal: { bg: '#f0fdfa', border: '#99f6e4', text: '#0d9488' },
+  emerald: { bg: '#ecfdf5', border: '#a7f3d0', text: '#059669' },
+}
+
+function buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories, permalink }) {
+  const tc = TIER_COLORS[tierColor] || TIER_COLORS.teal
+
+  const nextStepsHtml = nextSteps
+    .map(
+      (step, i) =>
+        `<tr>
+          <td style="padding: 8px 12px; vertical-align: top;">
+            <span style="display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; background: ${i === 0 ? C.TEAL : '#d4d4d8'}; color: ${i === 0 ? '#fff' : '#52525b'}; font-size: 12px; font-weight: bold;">${i + 1}</span>
+          </td>
+          <td style="padding: 8px 12px; color: ${C.TEXT}; font-size: 14px; line-height: 1.5;">${step}</td>
+        </tr>`,
+    )
+    .join('')
+
+  const todosHtml =
+    todos.length > 0
+      ? `
+        <div style="margin-top: 24px;">
+          <h3 style="color: ${C.SUBHEADING}; margin: 0 0 4px;">Your improvement checklist</h3>
+          <p style="color: ${C.TEXT}; font-size: 13px; margin: 0 0 12px;">Work through these to improve your readiness score.</p>
+          <table style="width: 100%; border-collapse: collapse;">
+            ${todos
+              .map(
+                (todo) =>
+                  `<tr>
+                    <td style="padding: 8px 12px; vertical-align: top;">
+                      <span style="display: inline-block; width: 18px; height: 18px; border: 2px solid #d4d4d8; border-radius: 3px;"></span>
+                    </td>
+                    <td style="padding: 8px 12px;">
+                      <span style="font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.5px;">${todo.category}</span>
+                      <p style="margin: 2px 0 0; color: ${C.TEXT}; font-size: 14px; line-height: 1.5;">${todo.text}</p>
+                    </td>
+                  </tr>`,
+              )
+              .join('')}
+          </table>
+        </div>`
+      : ''
+
+  const categoriesHtml = categories
+    .map(
+      (cat) =>
+        `<td style="padding: 6px; text-align: center; width: 33%;">
+          <div style="background: ${C.BG}; border-radius: 8px; padding: 10px;">
+            <div style="font-size: 11px; color: #a1a1aa; text-transform: uppercase;">${cat.label}</div>
+            <div style="font-size: 20px; font-weight: bold; color: ${C.HEADING};">${cat.score}<span style="font-size: 13px; color: #a1a1aa; font-weight: normal;">/3</span></div>
+          </div>
+        </td>`,
+    )
+
+  const row1 = categoriesHtml.slice(0, 3).join('')
+  const row2 = categoriesHtml.slice(3).join('')
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
+        Your AI Readiness Score
+      </h2>
+
+      <div style="text-align: center; padding: 24px; background: ${C.BG}; border-radius: 12px; margin: 20px 0;">
+        <div style="font-size: 48px; font-weight: bold; color: ${tc.text};">${totalScore}<span style="font-size: 20px; color: #a1a1aa; font-weight: normal;">/18</span></div>
+        <div style="font-size: 18px; font-weight: bold; color: ${tc.text}; margin-top: 4px;">${tierLabel}</div>
+      </div>
+
+      <div style="background: ${tc.bg}; border: 1px solid ${tc.border}; border-radius: 12px; padding: 16px 20px; margin: 20px 0;">
+        <h3 style="color: ${tc.text}; margin: 0 0 8px; font-size: 14px;">Your recommendation</h3>
+        <p style="color: ${C.TEXT}; font-size: 14px; line-height: 1.6; margin: 0;">${recommendation}</p>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <h3 style="color: ${C.SUBHEADING}; margin: 0 0 12px;">Next steps</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          ${nextStepsHtml}
+        </table>
+      </div>
+
+      ${todosHtml}
+
+      <div style="margin-top: 24px;">
+        <h3 style="color: ${C.SUBHEADING}; margin: 0 0 12px;">How you scored</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>${row1}</tr>
+          <tr>${row2}</tr>
+        </table>
+      </div>
+
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid ${C.BORDER}; color: ${C.TEXT}; font-size: 13px;">
+        <p>This report was generated by the <a href="${permalink || 'https://mitchellbryson.com/projects/tools/ai-readiness-score'}" style="color: ${C.TEAL};">AI Readiness Score</a> tool on mitchellbryson.com.</p>
+        <p>Want to discuss your results? <a href="https://mitchellbryson.com/contact" style="color: ${C.TEAL};">Get in touch</a>.</p>
+      </div>
+    </div>
+  `
+}
+
+export async function POST(request) {
+  try {
+    const { email, toolName, permalink, totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories } =
+      await request.json()
+
+    if (!email) {
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
+    }
+
+    const r = getResend()
+
+    // Send report to the user
+    const { error } = await r.emails.send({
+      from: `Mitchell Bryson <${process.env.CONTACT_EMAIL}>`,
+      to: [email],
+      subject: `Your AI Readiness Score: ${totalScore}/18 — ${tierLabel}`,
+      html: buildEmailHtml({ totalScore, tierLabel, tierColor, recommendation, nextSteps, todos, categories, permalink }),
+    })
+
+    if (error) {
+      console.error('Resend error (report):', error)
+      return NextResponse.json({ error: 'Failed to send report' }, { status: 500 })
+    }
+
+    // Notify Mitchell about the lead
+    await r.emails.send({
+      from: `Website <${process.env.CONTACT_EMAIL}>`,
+      to: [process.env.CONTACT_EMAIL],
+      subject: `${toolName}: new lead from ${email}`,
+      replyTo: email,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: ${C.HEADING}; border-bottom: 2px solid ${C.TEAL}; padding-bottom: 10px;">
+            New ${toolName} Lead
+          </h2>
+          <div style="background: ${C.BG}; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Tool:</strong> ${toolName}</p>
+            <p><strong>Results:</strong> <a href="${permalink}" style="color: ${C.TEAL};">${permalink}</a></p>
+          </div>
+          <p style="color: ${C.TEXT}; font-size: 14px;">Reply directly to this email to reach them.</p>
+        </div>
+      `,
+    })
+
+    return NextResponse.json({ message: 'Report sent successfully' }, { status: 200 })
+  } catch (error) {
+    console.error('API error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}

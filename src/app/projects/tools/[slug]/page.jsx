@@ -6,6 +6,7 @@ import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 import { getAllProjectToolSlugs, getProjectTool } from '@/lib/projectTools'
+import { AIReadinessScore } from '@/components/tools/AIReadinessScore'
 import { AIROICalculator } from '@/components/tools/AIROICalculator'
 import { ContactCTA } from '@/components/ContactCTA'
 
@@ -81,6 +82,8 @@ export default async function ProjectToolPage({ params }) {
 
           {slug === 'ai-roi-calculator' ? (
             <AIROICalculator />
+          ) : slug === 'ai-readiness-score' ? (
+            <AIReadinessScore />
           ) : (
             <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
               <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
