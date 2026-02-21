@@ -5,12 +5,14 @@ import {
   getAllIntegrationsWithPages,
 } from '@/lib/barnsleyPages'
 import { siteUrl } from '@/lib/siteConfig'
+import { getAllProjects } from '@/lib/projects'
 import { projectTools } from '@/lib/projectTools'
 import { tools } from '@/lib/tools'
 
 export default async function sitemap() {
   const articles = await getAllArticles()
   const news = await getAllNews()
+  const projects = await getAllProjects()
 
   const articleUrls = articles.map((article) => ({
     url: `${siteUrl}/articles/${article.slug}`,
@@ -130,6 +132,13 @@ export default async function sitemap() {
     priority: 0.5,
   }))
 
+  const projectUrls = projects.map((project) => ({
+    url: `${siteUrl}/projects/${project.slug}`,
+    lastModified: project.date ? new Date(project.date) : new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   const projectToolUrls = projectTools.map((tool) => ({
     url: `${siteUrl}/projects/tools/${tool.slug}`,
     lastModified: new Date(),
@@ -142,6 +151,7 @@ export default async function sitemap() {
     ...barnsleySubUrls,
     ...integrationUrls,
     ...toolUrls,
+    ...projectUrls,
     ...projectToolUrls,
     ...articleUrls,
     ...newsUrls,

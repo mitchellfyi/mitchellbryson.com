@@ -116,6 +116,20 @@ export function CodeIcon(props) {
   )
 }
 
+export function TerminalIcon(props) {
+  return (
+    <BaseIcon
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="m7 9 3 3-3 3M13 15h4" />
+    </BaseIcon>
+  )
+}
+
 export function MusicIcon(props) {
   return (
     <BaseIcon
@@ -291,6 +305,7 @@ export function getProjectIcon(project) {
   if (name.includes('commerce') || name.includes('protocol')) return CartIcon
   if (name.includes('phone') || name.includes('validator'))
     return PhoneCheckIcon
+  if (name.includes('doyaken')) return TerminalIcon
   if (name.includes('lofield')) return MusicIcon
   return CodeIcon
 }
@@ -308,6 +323,7 @@ export function getProjectColor(project) {
     return 'text-teal-600 dark:text-teal-400'
   if (name.includes('phone') || name.includes('validator'))
     return 'text-rose-600 dark:text-rose-400'
+  if (name.includes('doyaken')) return 'text-orange-600 dark:text-orange-400'
   if (name.includes('lofield')) return 'text-violet-600 dark:text-violet-400'
   return 'text-zinc-600 dark:text-zinc-400'
 }

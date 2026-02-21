@@ -29,6 +29,7 @@ export default async function Projects() {
     title: project.name,
     description: project.description,
     html_url: project.html_url,
+    detail: project.detail,
   }))
 
   return (
@@ -106,13 +107,15 @@ export default async function Projects() {
             {projects.map((project) => {
               const Icon = getProjectIcon(project)
               const color = getProjectColor(project)
+              const href = project.detail
+                ? `/projects/${project.slug}`
+                : project.html_url
+              const linkProps = project.detail
+                ? {}
+                : { target: '_blank', rel: 'noopener noreferrer' }
               return (
                 <Card as="li" key={project.slug}>
-                  <Card.Link
-                    href={project.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Card.Link href={href} {...linkProps}>
                     <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
                       <Icon className={`h-6 w-6 ${color}`} />
                     </div>
@@ -121,7 +124,7 @@ export default async function Projects() {
                     </h2>
                     <Card.Description>{project.description}</Card.Description>
                     <p className="relative z-10 mt-6 text-sm font-medium text-zinc-400 transition group-hover:text-teal-700 dark:text-zinc-200">
-                      View on GitHub
+                      {project.detail ? 'View project' : 'View on GitHub'}
                     </p>
                   </Card.Link>
                 </Card>
