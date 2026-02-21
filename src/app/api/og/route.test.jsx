@@ -12,9 +12,9 @@ describe('OG image API route', () => {
     expect(GET.constructor.name).toBe('AsyncFunction')
   })
 
-  it('exports runtime as edge', async () => {
+  it('does not export an edge runtime', async () => {
     const routeModule = await import('./route')
-    expect(routeModule.runtime).toBe('edge')
+    expect(routeModule.runtime).toBeUndefined()
   })
 
   it('handles requests with default parameters', async () => {
