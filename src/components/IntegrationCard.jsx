@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { integrationSlug } from '@/lib/barnsleyPages'
+
 function getFaviconUrl(url, logoDomain) {
   const domain = logoDomain || new URL(url).hostname.replace(/^www\./, '')
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
@@ -12,17 +14,10 @@ function getFaviconUrl(url, logoDomain) {
 export function IntegrationCard({ integration, pages, showContext }) {
   const [imgError, setImgError] = useState(false)
   const faviconUrl = getFaviconUrl(integration.url, integration.logoDomain)
-  const useDivWrapper = Array.isArray(pages)
-  const Wrapper = useDivWrapper ? 'div' : 'a'
-  const wrapperProps = useDivWrapper
-    ? {}
-    : { href: integration.url, target: '_blank', rel: 'noopener noreferrer' }
+  const slug = integration.slug || integrationSlug(integration.name)
 
   return (
-    <Wrapper
-      {...wrapperProps}
-      className="group flex flex-col rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 transition hover:border-teal-300 hover:bg-teal-50/30 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-teal-600 dark:hover:bg-teal-900/20"
-    >
+    <div className="group flex flex-col rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 transition hover:border-teal-300 hover:bg-teal-50/30 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-teal-600 dark:hover:bg-teal-900/20">
       <div className="mb-3 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-2 dark:bg-zinc-900">
         {!imgError ? (
           <Image
@@ -30,7 +25,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
             alt=""
             width={48}
             height={48}
-            className="object-contain rounded-lg"
+            className="rounded-lg object-contain"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -45,7 +40,9 @@ export function IntegrationCard({ integration, pages, showContext }) {
       {integration.description && (
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
           {integration.description}
-          {showContext && integration.contextSentence && ` ${integration.contextSentence}`}
+          {showContext &&
+            integration.contextSentence &&
+            ` ${integration.contextSentence}`}
         </p>
       )}
       {pages && pages.length > 0 && (
@@ -64,12 +61,31 @@ export function IntegrationCard({ integration, pages, showContext }) {
           ))}
         </p>
       )}
-      {useDivWrapper ? (
+      <div className="mt-auto flex items-center gap-4 pt-3">
+        <Link
+          href={`/barnsley-ai/integrations/${slug}`}
+          className="inline-flex items-center text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300"
+        >
+          Learn more
+          <svg
+            className="ml-1 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </Link>
         <a
           href={integration.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-flex items-center text-sm font-medium text-teal-500 transition hover:text-teal-600 dark:text-teal-400 dark:group-hover:text-teal-300"
+          className="inline-flex items-center text-sm font-medium text-zinc-500 transition hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
         >
           Visit site
           <svg
@@ -86,24 +102,7 @@ export function IntegrationCard({ integration, pages, showContext }) {
             />
           </svg>
         </a>
-      ) : (
-        <span className="mt-2 inline-flex items-center text-sm font-medium text-teal-500 transition group-hover:text-teal-600 dark:text-teal-400 dark:group-hover:text-teal-300">
-          Visit site
-          <svg
-            className="ml-1 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
-        </span>
-      )}
-    </Wrapper>
+      </div>
+    </div>
   )
 }

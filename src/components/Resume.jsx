@@ -87,13 +87,13 @@ function Role({ role }) {
 
 export function Resume() {
   let resume = [
-    // {
-    //   company: 'Open to work',
-    //   title: 'AI Software Engineer',
-    //   logo: logoOpenCircle,
-    //   start: '2026',
-    //   end: 'present',
-    // },
+    {
+      company: 'AI Product Engineer',
+      title: 'Start-ups / Scale-ups',
+      logo: logoOpenCircle,
+      start: '2025',
+      end: 'present',
+    },
     // {
     //   company: 'Materials Market',
     //   title: 'Software Engineer',
@@ -130,11 +130,18 @@ export function Resume() {
     //   end: '2015',
     // },
     {
-      company: 'Various',
-      title: 'Software Engineer / Designer',
+      company: 'Full-stack Product Engineer',
+      title: 'Start-ups / Scale-ups',
+      logo: logoOpenCircle,
+      start: '2010',
+      end: '2025',
+    },
+    {
+      company: 'UX/UI Designer / Front-end Developer',
+      title: 'Enterprise Technology',
       logo: logoOpenCircle,
       start: '2000',
-      end: '2025',
+      end: '2010',
     },
   ]
 

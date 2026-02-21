@@ -1,5 +1,6 @@
 import { getAllArticles } from '@/lib/articles'
-import { allBarnsleyPages } from '@/lib/barnsleyPages'
+import { allBarnsleyPages, getAllIntegrationsWithPages } from '@/lib/barnsleyPages'
+import { tools } from '@/lib/tools'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
@@ -33,5 +34,19 @@ export default async function sitemap() {
     { url: `${siteUrl}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
   ]
 
-  return [...staticPages, ...barnsleySubUrls, ...articleUrls]
+  const toolUrls = tools.map((tool) => ({
+    url: `${siteUrl}/tools/${tool.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  const integrationUrls = getAllIntegrationsWithPages().map((integration) => ({
+    url: `${siteUrl}/barnsley-ai/integrations/${integration.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
+  return [...staticPages, ...barnsleySubUrls, ...integrationUrls, ...toolUrls, ...articleUrls]
 }
