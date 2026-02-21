@@ -6,6 +6,8 @@ import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 import { getAllProjectToolSlugs, getProjectTool } from '@/lib/projectTools'
+import { AIROICalculator } from '@/components/tools/AIROICalculator'
+import { ContactCTA } from '@/components/ContactCTA'
 
 export async function generateStaticParams() {
   return getAllProjectToolSlugs().map((slug) => ({ slug }))
@@ -77,18 +79,24 @@ export default async function ProjectToolPage({ params }) {
             <p>{tool.longDescription}</p>
           </div>
 
-          <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
-            <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
-              Want to be notified when this tool launches?{' '}
-              <Link
-                href="/contact"
-                className="underline transition hover:text-teal-900 dark:hover:text-teal-300"
-              >
-                Get in touch
-              </Link>
-              .
-            </p>
-          </div>
+          {slug === 'ai-roi-calculator' ? (
+            <AIROICalculator />
+          ) : (
+            <div className="rounded-2xl border border-teal-200 bg-teal-50 p-6 dark:border-teal-500/20 dark:bg-teal-500/5">
+              <p className="text-sm font-medium text-teal-800 dark:text-teal-400">
+                Want to be notified when this tool launches?{' '}
+                <Link
+                  href="/contact"
+                  className="underline transition hover:text-teal-900 dark:hover:text-teal-300"
+                >
+                  Get in touch
+                </Link>
+                .
+              </p>
+            </div>
+          )}
+
+          <ContactCTA />
 
           <div className="flex items-center gap-6">
             <Link

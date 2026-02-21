@@ -1,3 +1,4 @@
+import { ContactCTA } from '@/components/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { LinkCardGrid } from '@/components/LinkCardGrid'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -35,6 +36,9 @@ export default function BarnsleyBusinessTypesPage() {
       >
         <div className="max-w-4xl space-y-6">
           <LinkCardGrid items={businessTypes} hrefPrefix="/barnsley-ai/" />
+        </div>
+        <div className="mt-12">
+          <ContactCTA />
         </div>
       </SimpleLayout>
     </>

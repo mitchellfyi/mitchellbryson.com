@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ContactCTA } from '@/components/ContactCTA'
 import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { ExternalLinkIcon } from '@/components/Icons'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
@@ -151,6 +152,8 @@ export default async function IntegrationPage({ params }) {
             </div>
           </section>
         )}
+
+        <ContactCTA />
 
         <div className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
           <Link

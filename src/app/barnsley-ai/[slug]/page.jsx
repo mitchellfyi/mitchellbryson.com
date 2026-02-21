@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ContactCTA } from '@/components/ContactCTA'
 import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/JsonLd'
@@ -175,6 +176,7 @@ export default async function BarnsleySubPage({ params }) {
             </dl>
           </section>
         )}
+        <ContactCTA />
       </div>
     </SimpleLayout>
     </>

@@ -1,3 +1,4 @@
+import { ContactCTA } from '@/components/ContactCTA'
 import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { IntegrationsFilter } from '@/components/IntegrationsFilter'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -42,6 +43,9 @@ export default function BarnsleyAiIntegrationsPage() {
             integrations={integrations}
             filterCategories={integrationFilterCategories}
           />
+        </div>
+        <div className="mt-12">
+          <ContactCTA />
         </div>
       </SimpleLayout>
     </>

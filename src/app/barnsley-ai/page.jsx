@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { ContactCTA } from '@/components/ContactCTA'
 import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
@@ -228,6 +229,10 @@ export default function BarnsleyPage() {
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="mt-16">
+          <ContactCTA />
         </div>
         </div>
       </Container>
