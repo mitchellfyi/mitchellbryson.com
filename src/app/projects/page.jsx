@@ -98,12 +98,6 @@ const pinned = [
       'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
   },
   {
-    name: 'doyaken-cli',
-    description:
-      'A standalone multi-project autonomous agent CLI that works with any AI coding agent. Install once, use on any project.',
-    html_url: 'https://github.com/mitchellfyi/doyaken-cli',
-  },
-  {
     name: 'lofield.fm',
     description:
       'Create lofi beats using natural language. Just describe what you want, and AI generates the music for you.',

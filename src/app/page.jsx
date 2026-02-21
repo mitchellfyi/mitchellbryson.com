@@ -8,9 +8,7 @@ import { Resume } from '@/components/Resume'
 import { Projects } from '@/components/Projects'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
-  XIcon,
 } from '@/components/SocialIcons'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
@@ -46,12 +44,6 @@ const homePinnedProjects = [
       'RFC: Fulfilment for the Agentic Commerce Protocol - defines the fulfilment lifecycle (order confirmation, shipment, delivery, returns), agent↔merchant messages, and state transitions.',
     html_url:
       'https://github.com/mitchellfyi/agentic-commerce-protocol/blob/63cce68aaafbd7ab3b0cd0cfa5154305a952f40d/rfcs/rfc.fulfilment.md',
-  },
-  {
-    name: 'doyaken-cli',
-    description:
-      'A standalone multi-project autonomous agent CLI that works with any AI coding agent. Install once, use on any project.',
-    html_url: 'https://github.com/mitchellfyi/doyaken-cli',
   },
   {
     name: 'lofield.fm',

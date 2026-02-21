@@ -109,7 +109,7 @@ export function Newsletter() {
           className="ml-4 flex-none"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Joining...' : 'Join'}
+          {isSubmitting ? 'Subscribing...' : 'Subscribe'}
         </Button>
       </div>
     </form>
