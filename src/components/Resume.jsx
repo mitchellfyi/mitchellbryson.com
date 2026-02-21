@@ -87,13 +87,13 @@ function Role({ role }) {
 
 export function Resume() {
   let resume = [
-    {
-      company: 'Open to work',
-      title: 'AI Software Engineer',
-      logo: logoOpenCircle,
-      start: '2026',
-      end: 'present',
-    },
+    // {
+    //   company: 'Open to work',
+    //   title: 'AI Software Engineer',
+    //   logo: logoOpenCircle,
+    //   start: '2026',
+    //   end: 'present',
+    // },
     // {
     //   company: 'Materials Market',
     //   title: 'Software Engineer',
