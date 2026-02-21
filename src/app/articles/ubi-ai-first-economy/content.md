@@ -5,11 +5,11 @@ title: 'Tokens, Dividends, or Data Wages? Designing UBI for an AI-First Economy'
 description: 'If AI does most work, what does "income" become? This piece explores plausible UBI designs for an AI-heavy future - cash dividends from AI windfalls, "universal basic compute" credits, and data-as-labor royalties - grounded in what we''ve learned from real basic-income pilots and existing dividend models. It sketches how such systems might emerge, who funds them, and how access to powerful AI could be rationed fairly without stifling innovation.'
 ---
 
-If AI can deliver most goods and services with minimal human labor, we'll still need a way to distribute **purchasing power** and **capability access**. Call it income, dividends, or credits - the design matters. We already have real-world hints from basic-income pilots and sovereign dividends; the novel work is stitching those precedents to a future where access to **powerful AI and compute** may be as foundational as cash.
+If AI can deliver [most goods and services with minimal human labor](/articles/synthetic-organisations-ai-agency), we'll still need a way to distribute **purchasing power** and **[capability access](/articles/economics-of-delegation)**. Call it income, dividends, or credits - the design matters. We already have real-world hints from basic-income pilots and sovereign dividends; the novel work is stitching those precedents to a future where access to **powerful AI and compute** may be as foundational as cash.
 
 ## 1) Why UBI re-enters the chat with frontier AI
 
-As automation expands into cognitive tasks, labor income can decouple from production. Before speculating, it's worth grounding in what high-quality pilots actually found.
+As [automation expands into cognitive tasks](/articles/the-bottleneck-economy-where-ai-can-save), labor income can decouple from production. Before speculating, it's worth grounding in what high-quality pilots actually found.
 
 - **Finland's randomized basic-income experiment (2017–2018)** reported improved wellbeing and modest, mixed employment effects, not the collapse some feared. Researchers found **better mental health and life satisfaction** among recipients, while employment impacts were small and statistically uncertain. ([julkaisut.valtioneuvosto.fi][1], [Finland Toolbox][2])
 - **Stockton's SEED guaranteed-income pilot** (US\$500/month, 2019–2020) observed reduced income volatility, improved mental health, and - in a widely discussed result - **higher rates of full-time employment** among recipients after one year. ([SEED][3], [PMC][4])
@@ -92,8 +92,8 @@ In the optimistic scenario, individuals run **agent swarms** that multiply perso
 
 ## 8) What to prototype in the next 12–24 months
 
-- **City-level "AI dividend."** Capture measured savings from public-sector automation (document processing, eligibility checks) and share them back to residents as small **cash + compute** stipends; publish quarterly ledgers.
-- **National compute stipend for students/SMEs.** Treat compute like a utility: metered, audited, and fairly priced; measure learning and productivity outcomes.
+- **City-level "AI dividend."** Capture [measured savings from public-sector automation](/projects/tools/ai-roi-calculator) (document processing, eligibility checks) and share them back to residents as small **cash + compute** stipends; publish quarterly ledgers.
+- **National compute stipend for students/SMEs.** Treat compute like a utility: [metered, audited, and fairly priced](/articles/llm-ops-maintenance-architecture); measure learning and productivity outcomes.
 - **Data-for-cash pilots.** Stand up opt-in **data wage** markets using standardized licenses and privacy tech; publish prices and allow revocation, building on the "data as labor" framework. ([American Economic Association][11])
 
 ---

@@ -1,3 +1,5 @@
+import { withRetry } from './retry.mjs'
+
 const API_URL = 'https://api.anthropic.com/v1/messages'
 
 // Prefer API key (works everywhere); fall back to OAuth token (Claude Code Action only)
@@ -53,11 +55,12 @@ export async function callClaude({
     `[anthropic] [${stepName}]   prompt length: ${prompt.length} chars`,
   )
 
-  let lastError
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    const startTime = Date.now()
-    try {
-      console.log(`[anthropic] [${stepName}] Attempt ${attempt}/3...`)
+  return withRetry(
+    async ({ attempt, maxAttempts }) => {
+      const startTime = Date.now()
+      console.log(
+        `[anthropic] [${stepName}] Attempt ${attempt}/${maxAttempts}...`,
+      )
 
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -118,22 +121,8 @@ export async function callClaude({
         durationMs: elapsed,
         attempts: attempt,
       }
-    } catch (err) {
-      const elapsed = Date.now() - startTime
-      lastError = err
-      console.error(
-        `[anthropic] [${stepName}] Attempt ${attempt}/3 failed (${elapsed}ms): ${err.message}`,
-      )
-      if (attempt < 3) {
-        const delay = Math.pow(2, attempt) * 1000
-        console.log(`[anthropic] [${stepName}] Retrying in ${delay / 1000}s...`)
-        await sleep(delay)
-      }
-    }
-  }
-
-  throw new Error(
-    `[${stepName}] Anthropic API failed after 3 attempts: ${lastError.message}`,
+    },
+    { stepName: `anthropic] [${stepName}` },
   )
 }
 
@@ -149,8 +138,4 @@ function extractText(response) {
   }
   console.warn('[anthropic] No text blocks found in response')
   return ''
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
 }

@@ -5,11 +5,11 @@ title: 'Zero-Integration Partnerships: Agents that auto-generate, validate, and 
 description: 'A blueprint for agentic B2B integrations that generate OpenAPI/AsyncAPI contracts, prove compatibility with contract tests, and self-maintain as systems change.'
 ---
 
-Traditional B2B partnering dies on integration: weeks or months of mapping fields, haggling over payloads, and fixing breakages every time someone changes a field name. In supply chains and finance, **onboarding a trading partner often takes a week to a month - or longer**. The market has tried EDI networks, unified APIs, and prebuilt connectors to reduce that burden, but they still leave you with coordination costs and drift. The question is: **can agents generate, verify, and maintain the API boundary for us - so "integration" becomes a no-meeting handshake?** ([Cleo][1], [eliassen.com][2])
+Traditional B2B partnering dies on integration: weeks or months of mapping fields, haggling over payloads, and fixing breakages every time someone changes a field name. In supply chains and finance, **[onboarding a trading partner](/articles/the-bottleneck-economy-where-ai-can-save) often takes a week to a month - or longer**. The market has tried EDI networks, unified APIs, and prebuilt connectors to reduce that burden, but they still leave you with coordination costs and drift. The question is: **can agents generate, verify, and maintain the API boundary for us - so "integration" becomes a no-meeting handshake?** ([Cleo][1], [eliassen.com][2])
 
 ## The idea in one line
 
-Agents take a mission ("exchange orders, invoices, statuses"), **learn each side's systems**, **propose a shared contract** (OpenAPI for request/response, AsyncAPI for events), **compile adapters**, **prove compatibility** with contract tests, and **watch for drift** - re-generating mappings and specs when either side changes. Concepts like **unified APIs** show the value of normalizing across providers; the leap here is to have agents generate that normalization per-partner, on demand. ([Merge][3])
+Agents take a mission ("exchange orders, invoices, statuses"), **learn each side's systems**, **propose a shared contract** (OpenAPI for request/response, AsyncAPI for events), **compile adapters**, **prove compatibility** with contract tests, and **watch for drift** - re-generating mappings and specs when either side changes. Concepts like **unified APIs** show the value of normalizing across providers; the leap here is to have [agents generate that normalization](/articles/synthetic-organisations-ai-agency) per-partner, on demand. ([Merge][3])
 
 ## Why this matters now
 
@@ -32,7 +32,7 @@ flowchart LR
   H --> I[Evidence Ledger (traces, costs, decisions)]
 ```
 
-**Flow:** ingest sample payloads and docs → infer entities and events → propose contracts → compile adapters (validation, mapping, auth) → run contract tests → gate release → monitor drift and re-synthesize as needed. **Everything is logged** to an evidence ledger for audit and debugging. ([docs.pact.io][6], [stoplight.io][5])
+**Flow:** ingest sample payloads and docs → infer entities and events → propose contracts → compile adapters (validation, mapping, auth) → run contract tests → gate release → monitor drift and re-synthesize as needed. **Everything is logged** to an [evidence ledger](/articles/the-trust-stack-ai-agents) for audit and debugging. ([docs.pact.io][6], [stoplight.io][5])
 
 ## Operating model (end-to-end)
 
@@ -65,7 +65,7 @@ Once live, a watcher compares **observed payloads** and **specs** for divergence
 
 ### Decision rights and gates
 
-You keep control by placing human gates on: contract approval, auth scope, rate limits, and any mapping that touches regulated fields. No agent merges its own PRs to production branches.
+You keep control by placing [human gates](/articles/human-gates-ai-agent-throughput) on: contract approval, auth scope, rate limits, and any mapping that touches regulated fields. No agent merges its own PRs to production branches.
 
 ### Guardrails
 
@@ -75,7 +75,7 @@ You keep control by placing human gates on: contract approval, auth scope, rate 
 
 ### Cost ceilings
 
-Set spend caps for discovery, mock traffic, and egress. Alert at 80%; trip at 100%. This matters when agents enumerate large partner catalogs or hydrate sandboxes.
+[Set spend caps](/articles/margin-protection-with-ai) for discovery, mock traffic, and egress. Alert at 80%; trip at 100%. This matters when agents enumerate large partner catalogs or hydrate sandboxes.
 
 ### Evidence ledger
 

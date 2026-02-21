@@ -5,17 +5,17 @@ title: 'Agent-to-Agent Procurement: Autonomous negotiation, contracting, and set
 description: "A philosophical but concrete blueprint for how buyer and supplier agents could negotiate terms, compile enforceable contracts, and settle instantly across today's rails."
 ---
 
-Most B2B partnerships stall on integration and coordination. The future worth aiming for is simpler: two companies point agents at each other, declare policies and limits, then let them **negotiate, contract, and settle** - with humans staying in charge of goals and guardrails. The pieces for this already exist in the wild: machine-readable business documents (UBL/Peppol), legally recognised **smart legal contracts**, and instant payments over **ISO 20022** rails. Tie them together with agent negotiation and you get "mission in, value out" for procurement. ([docs.oasis-open.org][1], [OpenPeppol][2], [lawcom.gov.uk][3], [ISO20022][4])
+Most B2B partnerships stall on integration and coordination. The future worth aiming for is simpler: two companies point agents at each other, declare policies and limits, then let them **negotiate, contract, and settle** - with humans staying in charge of goals and guardrails. The pieces for this already exist in the wild: machine-readable business documents (UBL/Peppol), legally recognised **[smart legal contracts](/articles/the-trust-stack-ai-agents)**, and instant payments over **ISO 20022** rails. Tie them together with agent negotiation and you get "mission in, value out" for procurement. ([docs.oasis-open.org][1], [OpenPeppol][2], [lawcom.gov.uk][3], [ISO20022][4])
 
 ## Why imagine agent-to-agent procurement?
 
-Because the expensive part of B2B trade isn't price discovery - it's the **time and variance** between "we should work together" and "money settled, goods moving." Agents that speak in contracts and proofs can compress that path. And unlike consumer chatbots, this isn't novelty: the enterprise stack already has standards for **orders, invoices, and events** (UBL/Peppol) and payment messages (ISO 20022). The open question is orchestration: can autonomous negotiators find terms that satisfy both policies, with humans approving the jump to production? ([docs.oasis-open.org][1], [Peppol Documentation][5], [ISO20022][4])
+Because the expensive part of B2B trade isn't price discovery - it's the **[time and variance](/articles/the-bottleneck-economy-where-ai-can-save)** between "we should work together" and "money settled, goods moving." Agents that speak in contracts and proofs can compress that path. And unlike consumer chatbots, this isn't novelty: the enterprise stack already has standards for **orders, invoices, and events** (UBL/Peppol) and payment messages (ISO 20022). The open question is orchestration: can autonomous negotiators find terms that satisfy both policies, with [humans approving](/articles/human-gates-ai-agent-throughput) the jump to production? ([docs.oasis-open.org][1], [Peppol Documentation][5], [ISO20022][4])
 
 ## Premises (grounded, not sci-fi)
 
 - **Documents are already code-like.** UBL defines Orders, Despatch Advice, and Invoices as structured schemas; Peppol operationalises their exchange at scale. Agents don't need to invent a format - they can compose with it. ([docs.oasis-open.org][1], [OpenPeppol][2])
 - **Contracts can execute.** UK law recognises _smart legal contracts_ as enforceable; a contract that triggers delivery, invoicing, or price adjustments on data events is viable in mainstream jurisdictions. ([lawcom.gov.uk][3], [Accord Project][6])
-- **Settlement can be instant.** ISO 20022 underpins modern payment schemes, including "instant credit transfers" in the EU that make funds available in \~10 seconds - fast enough for event-driven settlement. ([ISO20022][4], [European Central Bank][7])
+- **Settlement can be instant.** ISO 20022 underpins modern payment schemes, including "instant credit transfers" in the EU that make [funds available](/articles/ai-cfo-autonomous-finance) in \~10 seconds - fast enough for event-driven settlement. ([ISO20022][4], [European Central Bank][7])
 - **Negotiation is a studied domain.** Automated negotiating agents have been benchmarked for years (ANAC), and multi-agent "contracting" patterns date back to the Contract Net Protocol. We're not starting from zero; we're composing. ([scml.cs.brown.edu][8], [eecs.ucf.edu][9])
 
 ## How it might work (end-to-end)
@@ -57,7 +57,7 @@ Because the expensive part of B2B trade isn't price discovery - it's the **time 
 
 **Title as an API.** In MLETR jurisdictions, the "document of title" is an API object with a history; assignment of title can trigger release of funds or insurance updates without manual paperwork. ([uncitral.un.org][10])
 
-**Zero-integration by construction.** Because the agents speak Peppol/UBL on the wire and log ISO-20022 payment proofs, onboarding a new partner becomes a **policy + adapter** exercise rather than a six-week project. ([OpenPeppol][2], [docs.oasis-open.org][1])
+**[Zero-integration](/articles/zero-integration-ai-api) by construction.** Because the agents speak Peppol/UBL on the wire and log ISO-20022 payment proofs, onboarding a new partner becomes a **policy + adapter** exercise rather than a six-week project. ([OpenPeppol][2], [docs.oasis-open.org][1])
 
 ## What still needs solving
 

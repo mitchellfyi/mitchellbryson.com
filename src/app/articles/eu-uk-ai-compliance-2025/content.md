@@ -42,17 +42,17 @@ Use the ICO toolkit as your working checklist; add the AI Act-specific outputs n
 #### DPIA and technical documentation
 
 - **ICO:** DPIA for high-risk processing; link to assets and vendors.
-- **AI Act add-ons:** keep **technical documentation** and **logs** sufficient for market surveillance authorities; ensure **traceability** of datasets and evaluation results by **Aug 2026**. ([digital-strategy.ec.europa.eu][2])
+- **AI Act add-ons:** keep **technical documentation** and **logs** sufficient for market surveillance authorities; ensure **[traceability](/articles/the-trust-stack-ai-agents)** of datasets and evaluation results by **Aug 2026**. ([digital-strategy.ec.europa.eu][2])
 
 #### Dataset quality, bias, and data governance
 
 - **ICO:** document sources, lawful basis, minimisation, and quality checks.
-- **AI Act add-ons:** for high-risk systems, implement **data governance and management practices** (relevance, representativeness, error handling) and **post-market monitoring** obligations. ([digital-strategy.ec.europa.eu][2])
+- **AI Act add-ons:** for high-risk systems, implement **data governance and [management practices](/articles/llm-ops-maintenance-architecture)** (relevance, representativeness, error handling) and **post-market monitoring** obligations. ([digital-strategy.ec.europa.eu][2])
 
 #### Human oversight & transparency
 
 - **ICO:** define oversight points and user notices.
-- **AI Act add-ons:** implement **usable human-in-the-loop** controls and end-user **AI interaction disclosures** where required; align to the **prohibition list** from **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
+- **AI Act add-ons:** implement **usable [human-in-the-loop](/articles/human-gates-ai-agent-throughput)** controls and end-user **AI interaction disclosures** where required; align to the **prohibition list** from **Feb 2025**. ([digital-strategy.ec.europa.eu][2])
 
 #### GPAI (foundation models) specifics
 

@@ -9,6 +9,7 @@ import {
 } from './lib/articles.mjs'
 import { generateCoverImage } from './lib/image.mjs'
 import { loadPrompt, loadReference, resolvePrompt } from './lib/prompts.mjs'
+import { buildSiteMap } from './lib/sitemap.mjs'
 
 const ARTICLES_DIR = path.resolve('src/app/articles')
 const pipelineStart = Date.now()
@@ -340,9 +341,69 @@ async function main() {
   })
   console.log()
 
-  // ── Step 4: Image prompt ──────────────────────────
+  // ── Step 4: Internal links ─────────────────────────
 
-  console.log('─── Step 4: Image Prompt ──────────────────')
+  console.log('─── Step 4: Internal Links ────────────────')
+  let linkedContent = articleContent
+  try {
+    const linksPrompt = loadPrompt('05-internal-links.md')
+    console.log(
+      `[step:links] Prompt config: model=${linksPrompt.config.model}, max_tokens=${linksPrompt.config.max_tokens}`,
+    )
+
+    const siteMap = buildSiteMap()
+    console.log(`[step:links] Site map: ${siteMap.length} chars`)
+
+    const linksText = resolvePrompt(linksPrompt.template, {
+      article_content: articleContent,
+      site_map: siteMap,
+    })
+    console.log(`[step:links] Resolved prompt: ${linksText.length} chars`)
+
+    const linksResult = await callClaude({
+      model: linksPrompt.config.model,
+      maxTokens: linksPrompt.config.max_tokens,
+      temperature: linksPrompt.config.temperature,
+      prompt: linksText,
+      stepName: 'internal-links',
+    })
+
+    linkedContent = linksResult.text.trim()
+
+    // Count links added
+    const linkPattern = /\[([^\]]+)\]\(\/[^)]+\)/g
+    const linksAdded = [...linkedContent.matchAll(linkPattern)]
+    console.log(`[step:links] Links added: ${linksAdded.length}`)
+    linksAdded.forEach((m) => console.log(`[step:links]   "${m[1]}" → ${m[0].match(/\(([^)]+)\)/)[1]}`))
+
+    logStep('internalLinks', {
+      status: 'success',
+      model: linksResult.model,
+      usage: linksResult.usage,
+      durationMs: linksResult.durationMs,
+      attempts: linksResult.attempts,
+      output: {
+        linksAdded: linksAdded.length,
+        links: linksAdded.map((m) => ({
+          text: m[1],
+          url: m[0].match(/\(([^)]+)\)/)[1],
+        })),
+      },
+    })
+  } catch (err) {
+    console.error(`[step:links] Failed: ${err.message}`)
+    console.warn(`[step:links] Continuing with unlinked article`)
+    logError('internalLinks', err)
+    logStep('internalLinks', {
+      status: 'failed',
+      error: err.message,
+    })
+  }
+  console.log()
+
+  // ── Step 5: Image prompt ──────────────────────────
+
+  console.log('─── Step 5: Image Prompt ──────────────────')
   const imagePrompt = loadPrompt('04-image.md')
   console.log(
     `[step:image-prompt] Prompt config: model=${imagePrompt.config.model}, max_tokens=${imagePrompt.config.max_tokens}`,
@@ -383,9 +444,9 @@ async function main() {
   })
   console.log()
 
-  // ── Step 5: Generate cover image ──────────────────
+  // ── Step 6: Generate cover image ──────────────────
 
-  console.log('─── Step 5: Image Generation ──────────────')
+  console.log('─── Step 6: Image Generation ──────────────')
   let imageGenerated = false
   let imageMeta = null
   try {
@@ -414,9 +475,9 @@ async function main() {
   }
   console.log()
 
-  // ── Step 6: Write files ───────────────────────────
+  // ── Step 7: Write files ───────────────────────────
 
-  console.log('─── Step 6: Write Files ───────────────────')
+  console.log('─── Step 7: Write Files ───────────────────')
   const articleDir = path.join(ARTICLES_DIR, slug)
   fs.mkdirSync(articleDir, { recursive: true })
   console.log(`[step:write] Created directory: ${articleDir}`)
@@ -441,7 +502,7 @@ description: "${escapeYaml(description)}"
 
   // Write final article
   const contentPath = path.join(articleDir, 'content.md')
-  const contentFull = `${frontmatter}\n\n${articleContent}\n`
+  const contentFull = `${frontmatter}\n\n${linkedContent}\n`
   fs.writeFileSync(contentPath, contentFull)
   console.log(
     `[step:write] Written: ${contentPath} (${contentFull.length} chars)`,
@@ -508,6 +569,86 @@ description: "${escapeYaml(description)}"
   })
   console.log()
 
+  // ── Step 8: Cross-link existing articles ──────────
+
+  console.log('─── Step 8: Cross-Link Existing Articles ──')
+  const crossLinkedArticles = []
+  try {
+    const crossLinkPrompt = loadPrompt('06-cross-link.md')
+    console.log(
+      `[step:cross-link] Prompt config: model=${crossLinkPrompt.config.model}, max_tokens=${crossLinkPrompt.config.max_tokens}`,
+    )
+    console.log(`[step:cross-link] Checking ${existingArticles.length} existing articles`)
+
+    for (const article of existingArticles) {
+      const articlePath = path.join(ARTICLES_DIR, article.slug, 'content.md')
+      const raw = fs.readFileSync(articlePath, 'utf8')
+
+      // Split frontmatter from body
+      const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
+      if (!fmMatch) {
+        console.log(`[step:cross-link]   ${article.slug}: skipped (no frontmatter)`)
+        continue
+      }
+      const existingFrontmatter = fmMatch[0]
+      const existingBody = raw.slice(existingFrontmatter.length).trim()
+
+      // Skip if already links to the new article
+      if (existingBody.includes(`/articles/${slug}`)) {
+        console.log(`[step:cross-link]   ${article.slug}: already links to new article`)
+        continue
+      }
+
+      const crossLinkText = resolvePrompt(crossLinkPrompt.template, {
+        new_title: title,
+        new_description: description,
+        new_slug: slug,
+        existing_content: existingBody,
+      })
+
+      const crossLinkResult = await callClaude({
+        model: crossLinkPrompt.config.model,
+        maxTokens: crossLinkPrompt.config.max_tokens,
+        temperature: crossLinkPrompt.config.temperature,
+        prompt: crossLinkText,
+        stepName: `cross-link:${article.slug}`,
+      })
+
+      manifest.totals.inputTokens += crossLinkResult.usage.inputTokens || 0
+      manifest.totals.outputTokens += crossLinkResult.usage.outputTokens || 0
+      manifest.totals.apiCalls++
+
+      const updatedBody = crossLinkResult.text.trim()
+
+      // Check if any link to the new article was actually added
+      if (updatedBody.includes(`/articles/${slug}`)) {
+        const updatedFull = `${existingFrontmatter}\n${updatedBody}\n`
+        fs.writeFileSync(articlePath, updatedFull)
+        crossLinkedArticles.push(article.slug)
+        console.log(`[step:cross-link]   ${article.slug}: linked`)
+      } else {
+        console.log(`[step:cross-link]   ${article.slug}: no relevant link found`)
+      }
+    }
+
+    logStep('crossLink', {
+      status: 'success',
+      articlesChecked: existingArticles.length,
+      articlesUpdated: crossLinkedArticles.length,
+      updatedSlugs: crossLinkedArticles,
+    })
+  } catch (err) {
+    console.error(`[step:cross-link] Failed: ${err.message}`)
+    logError('crossLink', err)
+    logStep('crossLink', {
+      status: 'failed',
+      error: err.message,
+      articlesUpdatedBeforeFailure: crossLinkedArticles.length,
+      updatedSlugs: crossLinkedArticles,
+    })
+  }
+  console.log()
+
   // ── Summary ───────────────────────────────────────
 
   console.log('╔══════════════════════════════════════════╗')
@@ -534,10 +675,21 @@ description: "${escapeYaml(description)}"
     `  Total duration: ${(manifest.totals.pipelineDurationMs / 1000).toFixed(1)}s`,
   )
   console.log(`  Errors:         ${manifest.errors.length}`)
+  console.log(`  Cross-linked:   ${crossLinkedArticles.length} existing articles`)
+  crossLinkedArticles.forEach((s) => console.log(`    - ${s}`))
   console.log()
   console.log(`  Sources:`)
   ;(research.sources || []).forEach((s) => console.log(`    - ${s}`))
   console.log()
+
+  // Write cross-linked article paths for the workflow to stage
+  if (crossLinkedArticles.length > 0) {
+    const paths = crossLinkedArticles
+      .map((s) => `src/app/articles/${s}/content.md`)
+      .join('\n')
+    fs.writeFileSync('/tmp/cross-linked-articles.txt', paths)
+    console.log(`[pipeline] Cross-linked article paths written to /tmp/cross-linked-articles.txt`)
+  }
 }
 
 main().catch((err) => {

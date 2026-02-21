@@ -5,7 +5,7 @@ title: 'Margin protection with AI: live pricing rules, invoice QA, and anomaly a
 description: 'A practical playbook to protect gross margin in e-commerce using rule-based pricing, automated invoice checks, and anomaly detection with clear audit trails.'
 ---
 
-AI is useful when it ties directly to money. This playbook covers three systems that usually pay for themselves fast: live pricing rules, invoice QA, and anomaly alerts. Each section includes defaults, implementation notes, and an operator checklist that real teams can run.
+AI is useful when it ties directly to money. This playbook covers three systems that usually [pay for themselves](/articles/ai-prove-roi-in-10-days) fast: live pricing rules, invoice QA, and anomaly alerts. Each section includes defaults, implementation notes, and an operator checklist that real teams can run.
 
 ## TL;DR
 
@@ -58,7 +58,7 @@ FROM inputs;
 
 - Price smoothing (cap absolute and relative daily changes).
 - Canary rollout (e.g., 10% of traffic) with automatic rollback on conversion or margin regressions.
-- Full audit log: inputs, rule version, previous price, new price, author.
+- Full [audit log](/articles/the-trust-stack-ai-agents): inputs, rule version, previous price, new price, author.
 
 ```python
 # Pseudocode: guardrail + rollback hook
@@ -164,7 +164,7 @@ if robust_z(series_margin_pct_sku123) < -3:
 
 #### Days 0–15
 
-- Wire data sources (costs, competitors, inventory, orders). Define guardrails and approval workflow.
+- Wire data sources (costs, competitors, inventory, orders). Define [guardrails and approval workflow](/articles/human-gates-ai-agent-throughput).
 
 #### Days 16–45
 
@@ -196,5 +196,5 @@ if robust_z(series_margin_pct_sku123) < -3:
 #### Pragmatic choices
 
 - Prefer deterministic rules first; add ML later for elasticity or demand forecasting.
-- Keep every decision auditable: inputs, rule version, and human approvals.
+- Keep every decision [auditable](/articles/llm-ops-maintenance-architecture): inputs, rule version, and human approvals.
 - Make rollback a first-class action across pricing and promotions.

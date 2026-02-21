@@ -74,7 +74,7 @@ Start around **300–500 tokens** per chunk with **\~10–20% overlap** for text
 
 ## Hybrid retrieval that actually finds things
 
-Lexical and dense retrieval fail in different ways. **Hybrid retrieval** combines BM25/keyword with dense vectors and fuses results - commonly via **Reciprocal Rank Fusion (RRF)** or score blending. BM25 remains a robust baseline across domains (BEIR), and RRF is a simple, well-studied fusion method that often outperforms either signal alone. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
+Lexical and dense retrieval fail in different ways. **[Hybrid retrieval](/projects/tools/rag-decision-tree)** combines BM25/keyword with dense vectors and fuses results - commonly via **Reciprocal Rank Fusion (RRF)** or score blending. BM25 remains a robust baseline across domains (BEIR), and RRF is a simple, well-studied fusion method that often outperforms either signal alone. ([NeurIPS Datasets Benchmarks Proceedings][1], [G. V. Cormack][2])
 
 #### Implementation options:
 
@@ -114,7 +114,7 @@ final_ctx = mmr_diversify(query, reranked, k=6, lambda_=0.5)  # diversity
 
 ## Evaluate before (and after) shipping
 
-Adopt a small, fixed **eval set** of realistic questions. Measure:
+Adopt a small, fixed **[eval set](/articles/ai-prove-roi-in-10-days)** of realistic questions. Measure:
 
 - **Retrieval**: precision/recall\@k on gold passages; or reference-free retrieval quality.
 - **Answer**: faithfulness (groundedness), answer relevancy, and context precision - **Ragas** provides these out of the box and integrates cleanly with tracing. Use it to gate releases. ([docs.ragas.io][12], [Langfuse][13])
@@ -164,7 +164,7 @@ flowchart LR
 
 #### **Evaluate**
 
-- Automate **Ragas** on a nightly sample; block deploys if faithfulness drops >X% or cost/answer rises >Y%. ([docs.ragas.io][12])
+- Automate **Ragas** on a nightly sample; [block deploys](/articles/llm-ops-maintenance-architecture) if faithfulness drops >X% or [cost/answer rises >Y%](/projects/tools/llm-cost-calculator). ([docs.ragas.io][12])
 
 ---
 

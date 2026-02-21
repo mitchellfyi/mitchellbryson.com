@@ -28,6 +28,10 @@ export function loadReference(filename) {
  */
 export function resolvePrompt(template, variables = {}) {
   return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
-    return variables[key] !== undefined ? String(variables[key]) : ''
+    if (variables[key] === undefined) {
+      console.warn(`[prompts] Unresolved variable: {{${key}}}`)
+      return ''
+    }
+    return String(variables[key])
   })
 }

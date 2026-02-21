@@ -1,3 +1,5 @@
+import { withRetry } from './retry.mjs'
+
 const API_URL = 'https://api.openai.com/v1/images/generations'
 const API_KEY = process.env.OPENAI_API_KEY
 
@@ -15,11 +17,10 @@ export async function generateImage(prompt) {
   console.log(`[openai]   prompt: ${prompt.slice(0, 150)}...`)
   console.log(`[openai]   size: 1536x1024, quality: medium`)
 
-  let lastError
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    const startTime = Date.now()
-    try {
-      console.log(`[openai] Attempt ${attempt}/3...`)
+  return withRetry(
+    async ({ attempt, maxAttempts }) => {
+      const startTime = Date.now()
+      console.log(`[openai] Attempt ${attempt}/${maxAttempts}...`)
 
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -54,19 +55,7 @@ export async function generateImage(prompt) {
       )
 
       return { buffer, durationMs: elapsed, attempts: attempt }
-    } catch (err) {
-      const elapsed = Date.now() - startTime
-      lastError = err
-      console.error(
-        `[openai] Attempt ${attempt}/3 failed (${elapsed}ms): ${err.message}`,
-      )
-      if (attempt < 3) {
-        const delay = Math.pow(2, attempt) * 1000
-        console.log(`[openai] Retrying in ${delay / 1000}s...`)
-        await new Promise((resolve) => setTimeout(resolve, delay))
-      }
-    }
-  }
-
-  throw lastError
+    },
+    { stepName: 'openai' },
+  )
 }

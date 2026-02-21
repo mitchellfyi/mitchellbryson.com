@@ -5,7 +5,7 @@ title: "The Bottleneck Economy: Where AI Can Save Weeks (Conveyancing, Hiring, A
 description: "From UK home sales stuck in 12–20+ week conveyancing cycles, to hiring that drags ~40 days, to finance teams drowning in reconciliations, some sectors are structurally overdue for AI efficiency gains. We'll start with conveyancing/housing, recruiting discovery/matching, and accounting close/reconciliation - then add insurance claims, construction ops, healthcare admin, and public-sector back-office - showing where agentic workflows (document intake, contract checks, entity matching, claims triage) can cut weeks to days, and why the timing finally makes sense."
 ---
 
-The UK economy is full of **calendar-shaped bottlenecks**: property transactions that take months, hiring cycles that stall for weeks, finance teams closing the books in slow motion. These aren't failure-of-will problems - they're workflow problems made of documents, checks, handoffs, and missing data. That's exactly the terrain where **agentic AI** shines: structured intake → rule-bound checks → escalation → audit trail.
+The UK economy is full of **calendar-shaped bottlenecks**: property transactions that take months, hiring cycles that stall for weeks, finance teams closing the books in slow motion. These aren't failure-of-will problems - they're workflow problems made of documents, checks, handoffs, and missing data. That's exactly the terrain where **[agentic AI](/articles/synthetic-organisations-ai-agency)** shines: structured intake → rule-bound checks → escalation → audit trail.
 
 ## Why these sectors, why now
 
@@ -25,7 +25,7 @@ Conveyancing is a **multi-party orchestration** problem - solicitors, lenders, l
 
 #### What to implement
 
-- **Document intake + validation:** Agents pre-flight Property Information Forms, ID/AML packs, and mortgage docs; they chase missing fields and validate against known datasets, logging everything to a case ledger.
+- **[Document intake + validation](/articles/ai-rag-data-quality-at-scale):** Agents pre-flight Property Information Forms, ID/AML packs, and mortgage docs; they chase missing fields and validate against known datasets, logging everything to a case ledger.
 - **Search orchestration:** A "search conductor" agent requests local authority, water, and environmental searches early; it tracks SLAs and escalates when turnaround times slip.
 - **Title QA & requisition drafting:** A review agent cross-checks title, lease terms, and exceptions; it drafts standardized Land Registry requisition responses for human sign-off.
 - **Chain tracker & nudger:** A coordinator agent maintains a privacy-safe chain state, nudging counterparties when dependencies unblock, with escalation paths to humans.
@@ -51,7 +51,7 @@ The hardest parts of recruiting - **discovery, triage, scheduling** - are struct
 
 ## Accounting close & reconciliation: declare everything, automate the rest
 
-Closing is 80% **matching and proving**. Agents can do the heavy lifting while humans set policy and investigate exceptions.
+Closing is 80% **matching and proving**. [Agents can do the heavy lifting](/articles/ai-cfo-autonomous-finance) while humans set policy and investigate exceptions.
 
 #### What to implement
 
@@ -85,10 +85,10 @@ Legacy systems and fragmented data are a known drag. Start by turning forms into
 
 ## Governance guardrails (the boring bits that make it safe)
 
-- **Human gates at the right moments:** brand/legal comms, offer letters, contract terms, irreversible ledger postings.
+- **[Human gates](/articles/human-gates-ai-agent-throughput) at the right moments:** brand/legal comms, offer letters, contract terms, irreversible ledger postings.
 - **Budgets and caps:** per-route token and vendor spend ceilings with alerts and hard trips.
 - **Policies as code:** allow-lists, schema validation, PII redaction, fairness checks for hiring; explicit case-law and regulator guidance embedded for conveyancing and claims.
-- **Evidence ledger:** tamper-evident logs of inputs, outputs, costs, approvals, and model/prompt versions - the antidote to "black box" fears.
+- **[Evidence ledger](/articles/the-trust-stack-ai-agents):** tamper-evident logs of inputs, outputs, costs, approvals, and model/prompt versions - the antidote to "black box" fears.
 
 ---
 

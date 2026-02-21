@@ -9,7 +9,7 @@ If you want agents to move fast _and_ stay safe, you need two things: a clear **
 
 ## Why a ladder (not a leap)
 
-Risk frameworks emphasise governance, traceability, and human oversight as autonomy increases; a ladder lets you **earn** autonomy with evidence rather than grant it by belief. Use NIST's AI RMF to drive governance, measurement, and manage functions, and ISO/IEC 42001 to institutionalise the management system behind them. ([NIST][3], [NIST Publications][4], [ISO][5], [KPMG][6])
+Risk frameworks emphasise governance, traceability, and human oversight as autonomy increases; a ladder lets you **earn** autonomy with evidence rather than grant it by belief. The [economics of delegation](/articles/economics-of-delegation) shift when you can prove control at each rung. Use NIST's AI RMF to drive governance, measurement, and manage functions, and ISO/IEC 42001 to institutionalise the management system behind them. ([NIST][3], [NIST Publications][4], [ISO][5], [KPMG][6])
 
 ## Human-in/on-the-loop (working definitions)
 
@@ -17,7 +17,7 @@ We'll use "human-in-the-loop" when a person must approve or co-produce an outcom
 
 ## The autonomy ladder (L0 → L5)
 
-Each level defines **what agents may do**, the **required gates/controls**, and **upgrade criteria**. Keep your evidence in a tamper-evident log (traces, evals, costs, decisions).
+Each level defines **what agents may do**, the **required gates/controls**, and **upgrade criteria**. Keep your evidence in a tamper-evident log ([traces, evals, costs, decisions](/articles/llm-ops-maintenance-architecture)).
 
 ### L0 - Suggest
 
@@ -53,14 +53,14 @@ Each level defines **what agents may do**, the **required gates/controls**, and 
 
 - **Scope:** Wide execution with **policy** and **budget** guardrails; humans handle exceptions and audits.
 - **Gates/controls:** Continuous monitoring, drift detection, periodic post-hoc audits, kill-switch.
-- **Stay conditions:** No systemic issues; compliance duties (oversight, logging) continue under EU AI Act where applicable. ([Trilateral Research][9])
+- **Stay conditions:** No systemic issues; compliance duties (oversight, logging) continue under [EU AI Act](/articles/eu-uk-ai-compliance-2025) where applicable. ([Trilateral Research][9])
 
 ## Control stack (what changes as autonomy rises)
 
 - **Governance:** Map decision rights; who can raise budgets, switch models, or expand scope. Align to NIST AI RMF's GOVERN/MAP/MESURE/MANAGE functions; make them visible in docs and dashboards. ([NIST][3])
 - **Oversight:** Keep humans **in** or **on** the loop depending on level; enforce gates at external-facing milestones (brand, legal, financial). The EU AI Act requires human oversight and logging for high-risk uses - design for this from L1 upward. ([Trilateral Research][9])
 - **Management system:** Treat the ladder as a management process (policy → plan → operate → review) per ISO/IEC 42001. ([ISO][5])
-- **Traceability:** Capture inputs/outputs, tokens, cost, latency, model+prompt versions, tool I/O, and decisions for every action; this underpins audits and post-mortems recommended by NIST. ([NIST Publications][4])
+- **[Traceability](/articles/the-trust-stack-ai-agents):** Capture inputs/outputs, tokens, cost, latency, model+prompt versions, tool I/O, and decisions for every action; this underpins audits and post-mortems recommended by NIST. ([NIST Publications][4])
 
 ## Reference workflow
 

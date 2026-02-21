@@ -31,7 +31,7 @@ Participants submit experiment intents ("lift price 2–5% for SKU set in region
 
 ### 4) Recommendations out, not secrets
 
-Each firm receives only its own recommended prices and allocations, plus **coarse** market health signals (e.g., demand shock likelihood) with privacy guarantees. No party sees a competitor's granular strategy or data.
+Each firm receives only its own [recommended prices and allocations](/articles/margin-protection-with-ai), plus **coarse** market health signals (e.g., demand shock likelihood) with privacy guarantees. No party sees a competitor's granular strategy or data.
 
 ### 5) Continuous learning with drift watch
 
@@ -55,9 +55,9 @@ flowchart LR
 
 ## Novel design patterns
 
-**Programmatic antitrust.** Encode horizontal-guideline constraints as code: ban queries that reconstruct competitor price paths; throttle experiment cadence; and require **independence proofs** (e.g., your recommendation changes only with your costs/constraints, not a rival's specific bid). This shifts compliance from training slides to compute policy. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
+**Programmatic antitrust.** Encode horizontal-guideline constraints as code: ban queries that reconstruct competitor price paths; throttle experiment cadence; and require **independence proofs** (e.g., your recommendation changes only with your costs/constraints, not a rival's specific bid). This shifts [compliance](/articles/eu-uk-ai-compliance-2025) from training slides to compute policy. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
 
-**Confidence as a contract.** Recommendations ship with statistical confidence and the **privacy budget** expended (epsilon). Finance can then govern risk - e.g., accept actions only above a confidence threshold and within an epsilon budget per quarter, aligning to NIST guidance on evaluating DP guarantees. ([NIST Publications][3])
+**Confidence as a contract.** Recommendations ship with statistical confidence and the **privacy budget** expended (epsilon). Finance can then govern risk - e.g., accept actions only above a [confidence threshold](/articles/the-trust-stack-ai-agents) and within an epsilon budget per quarter, aligning to NIST guidance on evaluating DP guarantees. ([NIST Publications][3])
 
 **Zero raw joins.** Instead of centralizing data, use **federated joins** or secure MPC to compute cross-firm metrics (e.g., regional stockout risk) without exposing tables. The twin gets the metric; nobody sees the join keys. ([e3s-conferences.org][11])
 
@@ -69,7 +69,7 @@ The promise dies if the twin becomes a coordination tool. Bake in **independence
 
 ## What to pilot first
 
-Start with two non-competing partners that share a bottleneck - say a supplier and a retailer - then add a single competing retailer under strict clean-room policies. Use a **Snowflake or AWS clean room** to prototype; limit scope to one SKU family and one region; send only aggregates with **differential privacy**; and measure **time-to-insight** and **forecast error vs. baseline**. If the guardrails hold, expand the SKU set and participants. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][9])
+[Start with two non-competing partners](/articles/ai-prove-roi-in-10-days) that share a bottleneck - say a supplier and a retailer - then add a single competing retailer under strict clean-room policies. Use a **Snowflake or AWS clean room** to prototype; limit scope to one SKU family and one region; send only aggregates with **differential privacy**; and measure **time-to-insight** and **forecast error vs. baseline**. If the guardrails hold, expand the SKU set and participants. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][9])
 
 ---
 

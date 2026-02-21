@@ -5,7 +5,7 @@ title: 'The Trust Stack: Identity, Reputation, and Accountability for AI Agents'
 description: "As AI agents become economic actors - negotiating, transacting, and making commitments - they'll need infrastructure we haven't built yet: verifiable identity, earned reputation, and enforceable accountability."
 ---
 
-When agents start doing real work in the economy - not just answering questions but negotiating contracts, making purchases, and entering commitments on behalf of principals - we'll discover that our infrastructure assumes humanity. Credit checks, business references, contract law, reputation systems: all of it presumes a person or registered entity on the other side. We need a **trust stack** for agents.
+When agents start doing real work in the economy - not just answering questions but [negotiating contracts, making purchases](/articles/ai-agent-to-agent-procurement), and entering commitments on behalf of principals - we'll discover that our infrastructure assumes humanity. Credit checks, business references, contract law, reputation systems: all of it presumes a person or registered entity on the other side. We need a **trust stack** for agents.
 
 ## The problem: agents without provenance
 
@@ -107,7 +107,7 @@ When two agents negotiate, each should be able to:
 2. **Check reputation**: query performance history and attestations
 3. **Assess accountability**: understand what recourse exists if things go wrong
 
-This transforms negotiation. Today, agents mostly operate in walled gardens with implicit trust. Tomorrow, agents from different organisations will need to establish trust dynamically, perhaps even building it over multiple interactions.
+This transforms negotiation. Today, agents mostly operate in walled gardens with implicit trust. Tomorrow, agents from different [organisations](/articles/synthetic-organisations-ai-agency) will need to establish trust dynamically, perhaps even building it over multiple interactions.
 
 ```mermaid
 sequenceDiagram
@@ -177,7 +177,7 @@ The economy gets more efficient because agent-to-agent friction drops. The risks
 
 ## A thesis
 
-The bottleneck for agent autonomy isn't capability - it's trust. We can build agents that negotiate, transact, and commit. We can't yet verify that an unknown agent is safe to do business with. The trust stack is the infrastructure that unlocks agent-to-agent commerce at scale.
+The [bottleneck for agent autonomy](/articles/human-gates-ai-agent-throughput) isn't capability - it's trust. We can build agents that negotiate, transact, and commit. We can't yet verify that an [unknown agent is safe to do business with](/articles/economics-of-delegation). The trust stack is the infrastructure that unlocks agent-to-agent commerce at scale.
 
 The companies that build this infrastructure - the agent identity providers, reputation aggregators, and accountability underwriters - will be as important to the agent economy as credit bureaus and payment networks are to the current one.
 

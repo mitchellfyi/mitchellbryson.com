@@ -27,6 +27,10 @@
 - `src/app/articles/{{SLUG}}/manifest.json` — Generation manifest
 - `public/images/articles/{{SLUG}}.png` — Cover image (DALL-E)
 
+### Cross-linked articles
+
+{{CROSS_LINKED}}
+
 ### Review checklist
 
 - [ ] Title and description are compelling

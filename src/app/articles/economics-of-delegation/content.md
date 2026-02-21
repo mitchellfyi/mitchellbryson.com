@@ -7,7 +7,7 @@ description: 'What happens when cognitive labour becomes infinitely delegable - 
 
 Delegation has always been the fundamental economic act of scaling human output. When cognitive labour becomes infinitely delegable to AI agents, the economics of everything changes.
 
-What happens when the bottleneck isn't "can I afford to hire someone" but "can I specify what I want clearly enough"? The cost of delegation drops to near-zero. The constraint shifts entirely to articulation and judgment.
+What happens when [the bottleneck](/articles/the-bottleneck-economy-where-ai-can-save) isn't "can I afford to hire someone" but "can I specify what I want clearly enough"? The cost of delegation drops to near-zero. The constraint shifts entirely to articulation and judgment.
 
 ## The Historical Arc of Delegation
 
@@ -40,7 +40,7 @@ The middle doesn't disappear - it gets radically compressed.
 
 ### Leverage Becomes Unlimited for Individuals
 
-A single person can now orchestrate research teams, content production, customer service, and operations through agent delegation. The solo operator with agent leverage can compete with teams. The "one-person unicorn" becomes structurally possible.
+A single person can now [orchestrate](/articles/synthetic-organisations-ai-agency) research teams, content production, customer service, and operations through agent delegation. The [solo operator with agent leverage](/articles/meet-kell-autonomous-ai-operator) can compete with teams. The "one-person unicorn" becomes structurally possible.
 
 But: the constraint shifts to the person's capacity for specification and judgment.
 
@@ -62,7 +62,7 @@ The paradox: infinite leverage without infinite attention creates its own ceilin
 
 Solutions:
 
-- **Hierarchical delegation** (agents reviewing agents) - requires trust infrastructure
+- **Hierarchical delegation** (agents reviewing agents) - requires [trust infrastructure](/articles/the-trust-stack-ai-agents)
 - **Taste compression** (specifying preferences so tightly that review becomes sampling)
 - **Outcome orientation** (measure results, not process)
 
@@ -88,7 +88,7 @@ Human capital was valuable because training took years and execution capacity wa
 
 Capital flows to:
 
-- Agent infrastructure (the "plumbing")
+- [Agent infrastructure](/articles/llm-ops-maintenance-architecture) (the "plumbing")
 - Data moats (agents need information)
 - Trust/reputation systems (delegation requires confidence)
 - Specification tools (helping humans articulate)

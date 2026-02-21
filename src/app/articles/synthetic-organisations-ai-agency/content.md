@@ -17,7 +17,7 @@ A fully agent-run agency is a response to latency, variance, and weak observabil
 
 ### What the company becomes
 
-When agents do the work, the firm acts like a mission processor: goals in, strategies compiled, tasks executed, proofs logged. The durable assets are data, prompts, policies, and an evidence trail. Humans shift from typing to setting aims and constraints.
+When agents do the work, the firm acts like a mission processor: goals in, strategies compiled, tasks executed, proofs logged. The durable assets are data, prompts, policies, and an evidence trail. Humans shift from typing to [setting aims and constraints](/articles/economics-of-delegation).
 
 ### Accountability
 
@@ -25,7 +25,7 @@ Accountability stays human. Agents operate with constrained authority and revoca
 
 ### Trust
 
-Trust comes from reversibility and measurement, not optimism. Release gates, budget ceilings, and fast rollback keep the blast radius small. The default posture is fail-closed: escalate or stop when uncertain.
+[Trust comes from reversibility and measurement](/articles/the-trust-stack-ai-agents), not optimism. Release gates, budget ceilings, and fast rollback keep the blast radius small. The default posture is fail-closed: escalate or stop when uncertain.
 
 ### People and roles
 
@@ -33,7 +33,7 @@ This does not erase people; it reassigns them. Judgment, relationships, and bran
 
 ### Ethics and law
 
-Treat agents as processors, minimise data, and make explanation and appeal available. Keep a human veto on brand, legal, financial, and safety-critical actions. Contracts and DPAs should reflect these control points.
+Treat agents as processors, minimise data, and make explanation and appeal available. Keep a human veto on brand, legal, financial, and [safety-critical actions](/articles/eu-uk-ai-compliance-2025). Contracts and DPAs should reflect these control points.
 
 ### Hypotheses to test
 
@@ -41,7 +41,7 @@ If missions are framed as measurable outcomes with cost ceilings, agents should 
 
 ### Design stance
 
-Optimise for reversibility and legibility. Use proportional autonomy that grows only after passing gates on small cohorts. Keep one path to production so tests and users exercise the same code. Treat cost as a first-class signal.
+Optimise for reversibility and legibility. Use proportional autonomy that grows only after passing gates on small cohorts. Keep one path to production so tests and users exercise the same code. [Treat cost as a first-class signal](/articles/margin-protection-with-ai).
 
 ### What "good" looks like
 
@@ -146,7 +146,7 @@ budgets:
 
 #### Execution (task graph orchestration)
 
-- Orchestrator assigns tasks, enforces dependencies, retries idempotently, and emits structured events for every step (start/finish/error).
+- Orchestrator assigns tasks, enforces dependencies, retries idempotently, and emits structured events for every step (start/finish/error). [Human gates](/articles/human-gates-ai-agent-throughput) at key milestones keep the system safe.
 
 #### QA/evals (quality before scale)
 

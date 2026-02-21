@@ -9,7 +9,7 @@ Most finance teams still plan in quarters, forecast monthly, and execute spend t
 
 ## What changes if the CFO is a system?
 
-The finance function becomes three planes: **policy (what’s allowed), planning (what should happen), and execution (what does happen)**. "Continuous accounting" pulls reconciliation and checks into the flow of work instead of month-end batches, so plans can adjust in near-real time. The human role narrows to goals, risk appetite, and exception handling; the system handles throughput. ([bl-prod][3])
+The finance function becomes three planes: **policy (what’s allowed), planning (what should happen), and execution (what does happen)**. "Continuous accounting" pulls reconciliation and checks into the flow of work instead of month-end batches, so plans can adjust in near-real time. The human role narrows to goals, risk appetite, and exception handling; the system handles [throughput](/articles/human-gates-ai-agent-throughput). ([bl-prod][3])
 
 ## Reference model (policy → planning → execution)
 
@@ -24,7 +24,7 @@ flowchart LR
 
 - **Policy plane:** budgets-as-code, approval matrices, risk limits, vendor allow-lists.
 - **Planning plane:** rolling forecasts, scenario tests, auto-reallocation within caps.
-- **Execution plane:** programmatic payments, purchase approvals, and accruals tied to events; everything logged with costs and justifications.
+- **Execution plane:** programmatic payments, purchase approvals, and accruals tied to events; everything [logged with costs and justifications](/articles/llm-ops-maintenance-architecture).
 
 ## Budgets as code (capital allocation that compiles)
 
@@ -68,7 +68,7 @@ Once policy and plan agree, the system executes payments automatically - **with 
 
 ## Reliability stack (how it stays controllable)
 
-- **Decision rights:** who may raise caps, approve vendors, or change models.
+- **[Decision rights](/articles/the-trust-stack-ai-agents):** who may raise caps, approve vendors, or change models.
 - **Guardrails:** schema validation for outputs, policy checks, vendor allow-lists, rate limits, anomaly detection on spend vs. KPI.
 - **Cost ceilings:** per-program, per-vendor, and per-day budgets with 80% alerts and hard trips.
 - **Human gates:** milestone approvals (new vendor, +20% budget, contract terms).
@@ -87,7 +87,7 @@ Advisory firms now frame "autonomous finance" around these very building blocks:
 
 ## 30-day pilot (narrow, real, reversible)
 
-1. **Scope a slice.** Pick one controllable program (e.g., paid search in a single market) and one supplier category for programmatic payment.
+1. **Scope a slice.** [Pick one controllable program](/articles/ai-prove-roi-in-10-days) (e.g., paid search in a single market) and one supplier category for programmatic payment.
 2. **Codify policy.** Express caps, approvals, and stop conditions as budgets-as-code; wire review rights.
 3. **Wire forecasting.** Ship a rolling forecast for the slice; compare to baseline method.
 4. **Turn on payments.** Use read-write bank access for low-value, high-frequency payments with full reversals and daily caps.

@@ -165,6 +165,17 @@ jobs:
             echo "No cover image to stage"
           fi
 
+          # Stage cross-linked existing articles
+          if [ -f /tmp/cross-linked-articles.txt ]; then
+            echo "Staging cross-linked articles:"
+            while IFS= read -r filepath; do
+              git add "${filepath}"
+              echo "  Staged: ${filepath}"
+            done < /tmp/cross-linked-articles.txt
+          else
+            echo "No cross-linked articles to stage"
+          fi
+
           git status
 
           # Use file-based commit message to avoid shell escaping issues

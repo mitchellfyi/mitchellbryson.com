@@ -12,8 +12,8 @@ WhatsApp is where customers already are; your agent should meet them there witho
 #### Outcomes to aim for
 
 - First-response time (FRT) under 60s for canary cohort; clear fallbacks when models fail.
-- Seamless **human takeover** with the full chat transcript and customer context.
-- **Audit trail** for every decision (who/what/when/why).
+- Seamless **[human takeover](/articles/human-gates-ai-agent-throughput)** with the full chat transcript and customer context.
+- **[Audit trail](/articles/the-trust-stack-ai-agents)** for every decision (who/what/when/why).
 - **SLA-aware routing**: priority by customer tier, topic, and promised response time.
 - Deflection where appropriate, without blocking escalation.
 
@@ -203,9 +203,9 @@ if (windowExpired(conversation_id)) {
 
 #### Track these daily
 
-- **Deflection rate** and **handoff rate** (and why).
+- **[Deflection rate](/articles/economics-of-delegation)** and **handoff rate** (and why).
 - **FRT** p50/p95; **resolution time**; **SLA misses** count and cause.
-- **CSAT** or quick reaction emojis; **cost per conversation**.
+- **CSAT** or quick reaction emojis; **[cost per conversation](/projects/tools/ai-roi-calculator)**.
 - **Model confidence** distribution and guardrail triggers.
 
 ## Failure modes (and fixes)

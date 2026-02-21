@@ -5,7 +5,7 @@ title: 'LLMOps you can maintain: traces, evals, guardrails, and cost budgets in 
 description: 'A pragmatic, vendor-agnostic LLMOps architecture that ties traces, evaluations, guardrails, and hard cost budgets to releases - so you can ship safely and keep control.'
 ---
 
-LLMs are only useful when you can _operate_ them: observe behaviour, measure quality, control risk, and cap spend. This article lays out a minimal, durable LLMOps architecture you can run with a small team: **Traces → Evals → Guardrails → Budgets**, wired into CI/CD and your app.
+LLMs are only useful when you can _operate_ them: observe behaviour, measure quality, [control risk](/articles/eu-uk-ai-compliance-2025), and cap spend. This article lays out a minimal, durable LLMOps architecture you can run with a small team: **Traces → Evals → Guardrails → Budgets**, wired into CI/CD and your app.
 
 ## Why this architecture
 
@@ -14,7 +14,7 @@ LLMs are only useful when you can _operate_ them: observe behaviour, measure qua
 - Prefer **simple, observable components** over complex orchestration.
 - Keep **one path to prod**: the same code serves human and automated tests.
 - **Prove value with evals** before exposing features to real users.
-- **Fail closed** with guardrails and **cap spend** with hard budgets.
+- **Fail closed** with guardrails and **[cap spend](/articles/margin-protection-with-ai)** with hard budgets.
 
 ---
 
@@ -33,7 +33,7 @@ flowchart LR
 
 #### What this gives you
 
-- End-to-end **visibility** (inputs, outputs, tokens, latency, user, version).
+- End-to-end **[visibility](/articles/the-trust-stack-ai-agents)** (inputs, outputs, tokens, latency, user, version).
 - Reproducible **quality signals** (eval scores) tied to a commit.
 - **Runtime safety** (schema validation, policy filters, PII scrubs).
 - **Spend control** (per-model, per-route, per-user budgets).
@@ -89,7 +89,7 @@ export async function llmMiddleware(req, res) {
 
 ## Evals: gate releases with automated checks
 
-Create a small, high-signal eval set per feature (10–50 cases). Run it in CI (fast subset) and nightly (full). Block deploys when scores regress or cost blows past thresholds.
+Create a small, high-signal eval set per feature (10–50 cases). Run it in CI (fast subset) and nightly (full). Block deploys when scores regress or cost blows past thresholds. These [release gates](/articles/human-gates-ai-agent-throughput) are how you earn autonomy one level at a time.
 
 ```python
 # eval_runner.py

@@ -20,13 +20,13 @@ You don't need a six-month project to prove AI value. Run a **10-day pilot** tha
 
 - Connect the minimum data sources (orders, tickets, POs/price lists).
 - Add **tracing** (inputs, outputs, latency, tokens/costs).
-- Add **guardrails** (schema validation, escalation path, rate limits).
-- Create an **eval set** (10–30 realistic cases) to check quality daily.
+- Add **[guardrails](/articles/the-trust-stack-ai-agents)** (schema validation, escalation path, rate limits).
+- Create an **[eval set](/articles/ai-rag-data-quality-at-scale)** (10–30 realistic cases) to check quality daily.
 
 #### Days 4–5 - Ship a thin slice
 
 - Enable the feature for the canary cohort only.
-- Log all decisions with evidence (citations, diffs, audit trail).
+- Log all decisions with evidence (citations, diffs, [audit trail](/articles/llm-ops-maintenance-architecture)).
 - Start a daily scoreboard (see KPI table template below).
 
 #### Days 6–7 - Tune or stop
@@ -52,7 +52,7 @@ You don't need a six-month project to prove AI value. Run a **10-day pilot** tha
 - **Tickets deflected %** and **median first response time**.
 - **Gross margin % / £** movement after pricing rule changes.
 - **Conversion rate** and **refund rate** where applicable.
-- **Cost per resolved item** (tokens + infra + minutes of human time).
+- **[Cost per resolved item](/projects/tools/ai-roi-calculator)** (tokens + infra + minutes of human time).
 
 ```python
 # Simple ROI helpers used in the daily scoreboard

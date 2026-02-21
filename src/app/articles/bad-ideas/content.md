@@ -29,13 +29,13 @@ Most attempts will fail; that's the math. One working idea pays for a hundred mi
 
 ## Throughput beats perfection
 
-More attempts mean more surface area for luck and learning. Aim for **high output of small bets** with short feedback loops. You're manufacturing opportunities for one of them to hit.
+[More attempts](/articles/the-bottleneck-economy-where-ai-can-save) mean more surface area for luck and learning. Aim for **high output of [small bets](/articles/economics-of-delegation)** with short feedback loops. You're manufacturing opportunities for one of them to hit.
 
 #### A compact playbook
 
 - Define the **why now** in one sentence; if you can't, pause.
-- Ship a **thin V1** in days, not weeks; instrument it.
-- Set **stop/go rules** before you start (cost ceiling, timebox, minimum response).
+- Ship a **[thin V1](/articles/ai-prove-roi-in-10-days)** in days, not weeks; instrument it.
+- Set **[stop/go rules](/articles/human-gates-ai-agent-throughput)** before you start (cost ceiling, timebox, minimum response).
 - Change **one thing at a time**; measure the delta; keep what moves the metric.
 - Archive failures with a note on what to try next; move on quickly.
 
