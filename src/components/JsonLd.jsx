@@ -11,7 +11,7 @@ export function WebSiteJsonLd() {
     author: {
       '@type': 'Person',
       name: 'Mitchell Bryson',
-      url: siteUrl,
+      url: `${siteUrl}/about`,
     },
   }
 
@@ -105,12 +105,12 @@ export function ArticleJsonLd({ article }) {
     author: {
       '@type': 'Person',
       name: article.author || 'Mitchell Bryson',
-      url: siteUrl,
+      url: `${siteUrl}/about`,
     },
     publisher: {
       '@type': 'Person',
       name: 'Mitchell Bryson',
-      url: siteUrl,
+      url: `${siteUrl}/about`,
     },
     speakable: {
       '@type': 'SpeakableSpecification',
@@ -137,13 +137,59 @@ export function SoftwareApplicationJsonLd({ name, description, url }) {
     author: {
       '@type': 'Person',
       name: 'Mitchell Bryson',
-      url: siteUrl,
+      url: `${siteUrl}/about`,
     },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'GBP',
     },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function CollectionPageJsonLd({ name, description, url }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Mitchell Bryson',
+      url: siteUrl,
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function FAQPageJsonLd({ faqs }) {
+  if (!faqs || faqs.length === 0) return null
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   }
 
   return (

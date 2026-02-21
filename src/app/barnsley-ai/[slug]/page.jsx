@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { ContentParagraphs } from '@/components/ContentParagraphs'
 import { IntegrationCard } from '@/components/IntegrationCard'
-import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import { BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/JsonLd'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import {
   aiIntegrations,
@@ -64,6 +64,7 @@ export default async function BarnsleySubPage({ params }) {
           { name: page.title, url: `${siteUrl}/barnsley-ai/${slug}` },
         ]}
       />
+      {page.faqs && <FAQPageJsonLd faqs={page.faqs} />}
       <SimpleLayout
         title={page.title}
         intro={page.description}
@@ -149,6 +150,29 @@ export default async function BarnsleySubPage({ params }) {
                 View all integration types →
               </Link>
             </p>
+          </section>
+        )}
+
+        {page.faqs && page.faqs.length > 0 && (
+          <section className="max-w-2xl pt-6">
+            <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200">
+              Frequently asked questions
+            </h2>
+            <dl className="mt-4 space-y-3">
+              {page.faqs.map((faq, i) => (
+                <details
+                  key={i}
+                  className="group rounded-lg border border-zinc-100 dark:border-zinc-700/40"
+                >
+                  <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-zinc-800 select-none hover:text-teal-700 dark:text-zinc-200 dark:hover:text-teal-400">
+                    {faq.question}
+                  </summary>
+                  <dd className="px-4 pb-4 text-sm text-zinc-600 dark:text-zinc-400">
+                    {faq.answer}
+                  </dd>
+                </details>
+              ))}
+            </dl>
           </section>
         )}
       </div>

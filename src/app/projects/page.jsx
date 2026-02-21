@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getProjectIcon, getProjectColor } from '@/components/ProjectIcons'
-import { BreadcrumbJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
+import { BreadcrumbJsonLd, CollectionPageJsonLd, SoftwareApplicationJsonLd } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 import { pinnedProjects } from '@/lib/pinnedProjects'
 
@@ -28,6 +28,11 @@ export default async function Projects() {
         { name: 'Home', url: siteUrl },
         { name: 'Projects', url: `${siteUrl}/projects` },
       ]}
+    />
+    <CollectionPageJsonLd
+      name="Projects"
+      description="Things I've made trying to put my dent in the universe."
+      url={`${siteUrl}/projects`}
     />
     {projects.map((project) => (
       <SoftwareApplicationJsonLd

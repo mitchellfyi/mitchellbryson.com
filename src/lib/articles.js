@@ -48,6 +48,11 @@ async function importMarkdownArticle(articleDir) {
   }
 }
 
+export async function getRelatedArticles(currentSlug, count = 3) {
+  const articles = await getAllArticles()
+  return articles.filter((a) => a.slug !== currentSlug).slice(0, count)
+}
+
 export async function getAllArticles() {
   // Get all article directories with content.md files (excluding the [slug] dynamic route)
   let articleDirs = await glob('*/content.md', {

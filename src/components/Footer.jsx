@@ -27,7 +27,7 @@ export function Footer() {
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/articles">Articles</NavLink>
                 <NavLink href="/projects">Projects</NavLink>
-                <NavLink href="/tools">Tools</NavLink>
+                <NavLink href="/uses">Uses</NavLink>
                 <NavLink href="/contact">Contact</NavLink>
                 <NavLink href="/barnsley-ai">AI in Barnsley, UK</NavLink>
               </nav>

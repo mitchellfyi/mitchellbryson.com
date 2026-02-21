@@ -3,7 +3,7 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
-import { BreadcrumbJsonLd } from '@/components/JsonLd'
+import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/JsonLd'
 import { buildMetadata, siteUrl } from '@/lib/siteConfig'
 
 function Article({ article }) {
@@ -83,6 +83,11 @@ export default async function ArticlesIndex() {
         { name: 'Home', url: siteUrl },
         { name: 'Articles', url: `${siteUrl}/articles` },
       ]}
+    />
+    <CollectionPageJsonLd
+      name="Articles"
+      description="All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order."
+      url={`${siteUrl}/articles`}
     />
     <SimpleLayout
       title="Writing on product development, company building, and the AI industry."

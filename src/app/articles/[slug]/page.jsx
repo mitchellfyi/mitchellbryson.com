@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/ArticleLayout'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
-import { getAllArticles } from '@/lib/articles'
+import { getAllArticles, getRelatedArticles } from '@/lib/articles'
 import { getOgImage, siteName, siteUrl } from '@/lib/siteConfig'
 
 export async function generateStaticParams() {
@@ -68,6 +68,8 @@ export default async function ArticlePage({ params }) {
     notFound()
   }
 
+  const relatedArticles = await getRelatedArticles(slug)
+
   return (
     <>
       <ArticleJsonLd article={article} />
@@ -78,7 +80,7 @@ export default async function ArticlePage({ params }) {
           { name: article.title, url: `${siteUrl}/articles/${article.slug}` },
         ]}
       />
-      <ArticleLayout article={article} />
+      <ArticleLayout article={article} relatedArticles={relatedArticles} />
     </>
   )
 }

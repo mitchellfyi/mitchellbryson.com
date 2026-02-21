@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   return buildMetadata({
     title: tool.name,
     description: tool.description,
-    url: `${siteUrl}/tools/${slug}`,
+    url: `${siteUrl}/uses/${slug}`,
   })
 }
 
@@ -41,8 +41,8 @@ export default async function ToolPage({ params }) {
     <BreadcrumbJsonLd
       items={[
         { name: 'Home', url: siteUrl },
-        { name: 'Tools', url: `${siteUrl}/tools` },
-        { name: tool.name, url: `${siteUrl}/tools/${slug}` },
+        { name: 'Uses', url: `${siteUrl}/uses` },
+        { name: tool.name, url: `${siteUrl}/uses/${slug}` },
       ]}
     />
     <SimpleLayout title={tool.name} intro={tool.description}>
@@ -73,7 +73,7 @@ export default async function ToolPage({ params }) {
               {relatedTools.map((related) => (
                 <Link
                   key={related.slug}
-                  href={`/tools/${related.slug}`}
+                  href={`/uses/${related.slug}`}
                   className="group rounded-2xl border border-zinc-100 p-5 transition hover:border-zinc-200 hover:bg-zinc-50 dark:border-zinc-700/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/50"
                 >
                   <h3 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
@@ -90,7 +90,7 @@ export default async function ToolPage({ params }) {
 
         <div className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
           <Link
-            href="/tools"
+            href="/uses"
             className="text-sm font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
           >
             ← Back to all tools

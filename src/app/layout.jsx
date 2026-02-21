@@ -18,6 +18,8 @@ export const metadata = {
   },
   description:
     "I'm Mitchell, an AI Software Engineer. I design and ship practical AI systems that cut manual work and improve margins.",
+  authors: [{ name: 'Mitchell Bryson', url: `${siteUrl}/about` }],
+  creator: 'Mitchell Bryson',
   alternates: {
     canonical: siteUrl,
     types: {

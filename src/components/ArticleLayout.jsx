@@ -12,7 +12,45 @@ import { Prose } from '@/components/Prose'
 import { ArticleToggle } from '@/components/ArticleToggle'
 import { formatDate } from '@/lib/formatDate'
 
-export function ArticleLayout({ article, children }) {
+function RelatedArticles({ articles }) {
+  if (!articles || articles.length === 0) return null
+
+  return (
+    <section className="mt-16 border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
+      <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-100">
+        More articles
+      </h2>
+      <div className="mt-6 space-y-8">
+        {articles.map((article) => (
+          <a
+            key={article.slug}
+            href={`/articles/${article.slug}`}
+            className="group block"
+          >
+            <article>
+              <time
+                dateTime={article.date}
+                className="text-sm text-zinc-400 dark:text-zinc-500"
+              >
+                {formatDate(article.date)}
+              </time>
+              <h3 className="mt-1 text-base font-semibold text-zinc-800 group-hover:text-teal-500 dark:text-zinc-100 dark:group-hover:text-teal-400">
+                {article.title}
+              </h3>
+              {article.description && (
+                <p className="mt-1 text-sm text-zinc-600 line-clamp-2 dark:text-zinc-400">
+                  {article.description}
+                </p>
+              )}
+            </article>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export function ArticleLayout({ article, relatedArticles, children }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
   const [isDraft, setIsDraft] = useState(false)
@@ -85,6 +123,7 @@ export function ArticleLayout({ article, children }) {
           <div className="mt-16">
             <Newsletter />
           </div>
+          <RelatedArticles articles={relatedArticles} />
         </div>
       </div>
     </Container>

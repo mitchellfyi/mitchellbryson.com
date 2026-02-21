@@ -25,7 +25,7 @@ export default async function sitemap() {
     { url: `${siteUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/articles`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${siteUrl}/projects`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${siteUrl}/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/uses`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/barnsley-ai`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/barnsley-ai/ai-integrations`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/barnsley-ai/integration-types`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -34,7 +34,7 @@ export default async function sitemap() {
   ]
 
   const toolUrls = tools.map((tool) => ({
-    url: `${siteUrl}/tools/${tool.slug}`,
+    url: `${siteUrl}/uses/${tool.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.6,

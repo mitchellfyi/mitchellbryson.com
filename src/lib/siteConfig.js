@@ -22,6 +22,8 @@ export function buildMetadata({
     title,
     description,
     ...(keywords && { keywords }),
+    authors: [{ name: siteName, url: `${siteUrl}/about` }],
+    creator: siteName,
     alternates: { canonical: url },
     openGraph: {
       title: `${ogTitle || title} - ${siteName}`,

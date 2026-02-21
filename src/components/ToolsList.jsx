@@ -58,7 +58,7 @@ export function ToolsList({ tools }) {
         {filteredTools.map((tool) => (
           <li key={tool.name}>
             <Link
-              href={`/tools/${tool.slug}`}
+              href={`/uses/${tool.slug}`}
               className="group flex flex-col rounded-2xl border border-zinc-100 p-6 transition hover:border-zinc-200 hover:bg-zinc-50 dark:border-zinc-700/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-800/50"
             >
               <div className="flex items-center justify-between">

@@ -7,6 +7,12 @@ export const aiIntegrations = [
     content:
       'I build chatbots and conversational AI that fit your business. Whether it\'s handling customer support queries, qualifying leads before they reach your sales team, or powering internal Q&A so staff can find answers without digging through docs - the goal is systems that understand your context and respond usefully.\n\nFor Barnsley businesses, this might mean a support bot that knows your product range, a triage system for incoming enquiries, or an internal assistant that helps staff navigate policies and procedures. I integrate with your existing tools (Slack, Teams, your CRM, website) so the AI works where your team already works.',
     category: 'ai',
+    faqs: [
+      { question: 'How much does an AI chatbot cost for a small Barnsley business?', answer: 'A basic customer support chatbot typically starts from a few thousand pounds for setup, with modest monthly running costs for the AI model and hosting. Costs depend on conversation volume and complexity. I scope projects so you know the cost before committing.' },
+      { question: 'Can a chatbot integrate with my existing website and CRM?', answer: 'Yes. I build chatbots that plug into your website, Slack, Microsoft Teams, and most CRMs. The goal is AI that works where your team already works, not another separate tool to manage.' },
+      { question: 'Will the chatbot understand questions specific to my business?', answer: 'Absolutely. I train chatbots on your product range, policies, and procedures so they give accurate, context-aware answers rather than generic responses. They can be grounded on your own documents and knowledge base.' },
+      { question: 'How long does it take to build and deploy a chatbot?', answer: 'A focused chatbot for one use case - such as customer support or internal Q&A - can typically be built and deployed within two to four weeks, including testing and refinement.' },
+    ],
     integrations: [
       {
         name: 'Voiceflow',
@@ -56,6 +62,12 @@ export const aiIntegrations = [
     content:
       'Traditional keyword search breaks when users don\'t know the right terms. AI-powered semantic search understands intent - so "how do I return a faulty item" finds your returns policy even if it never mentions "faulty".\n\nI build AI search over documents, product catalogues, knowledge bases, and internal wikis. For Barnsley manufacturing firms, that might mean finding specs or procedures by describing the problem. For retailers, it\'s AI product discovery that understands "something like X but cheaper". For professional services, it\'s surfacing the right precedent or template. The tech (embeddings, vector search) is proven; the work is making AI search useful for your data and your users.',
     category: 'ai',
+    faqs: [
+      { question: 'What is the difference between keyword search and AI semantic search?', answer: 'Keyword search only finds exact word matches. AI semantic search understands meaning and intent, so a query like "how do I return a faulty item" will find your returns policy even if it never uses the word "faulty". It works by converting text into numerical representations (embeddings) and finding the closest matches.' },
+      { question: 'Can AI search work with our existing documents and product data?', answer: 'Yes. I build search over whatever data you have - PDFs, spreadsheets, product catalogues, wikis, or internal docs. The AI indexes your content and makes it searchable by meaning, not just keywords.' },
+      { question: 'How accurate is AI-powered search compared to traditional search?', answer: 'For queries where users don\'t know the exact terminology, AI search is significantly more accurate. It understands synonyms, context, and intent. For exact lookups like order numbers, traditional search still works well - most systems use a hybrid approach combining both.' },
+      { question: 'Is AI search suitable for a small product catalogue?', answer: 'Yes. Even with a few hundred products, semantic search improves discovery by understanding what customers mean rather than requiring exact product names. The technology scales from small catalogues to millions of items.' },
+    ],
     integrations: [
       {
         name: 'Marqo',
@@ -103,6 +115,12 @@ export const aiIntegrations = [
     content:
       'Documents are everywhere - invoices, contracts, forms, reports. Manually extracting data, routing for approval, or summarising for decision-makers is slow and error-prone. AI can read, classify, extract key fields, and summarise at scale.\n\nI build pipelines that ingest your documents (PDFs, scans, emails), extract the data you need, classify by type or urgency, and feed into your existing systems. Approval workflows get faster because the AI pre-fills what it can and flags what needs human review. For Barnsley businesses in manufacturing, professional services, or logistics, this often means starting with one high-volume document type - invoices, delivery notes, or contracts - and expanding from there.',
     category: 'ai',
+    faqs: [
+      { question: 'What types of documents can AI process?', answer: 'AI can process PDFs, scanned documents, photos of paper forms, emails, spreadsheets, invoices, contracts, delivery notes, and more. It handles both typed and handwritten text, and can extract structured data from unstructured layouts.' },
+      { question: 'How accurate is AI document extraction compared to manual data entry?', answer: 'Modern AI extraction typically achieves 90-98% accuracy depending on document quality and consistency. For high-confidence extractions it can match or exceed manual data entry, and it flags low-confidence fields for human review rather than guessing.' },
+      { question: 'Can AI document processing integrate with our accounting or ERP system?', answer: 'Yes. I build pipelines that extract data from your documents and feed it directly into your existing systems - whether that\'s Xero, Sage, SAP, or a custom ERP. The AI handles extraction; your systems receive clean, structured data.' },
+      { question: 'What is the best document type to start automating first?', answer: 'Start with your highest-volume, most repetitive document type - usually invoices, purchase orders, or delivery notes. These have consistent formats and clear ROI. Once that works, expand to more varied documents like contracts or forms.' },
+    ],
     integrations: [
       {
         name: 'Unstructured.io',
@@ -152,6 +170,12 @@ export const aiIntegrations = [
     content:
       'Workflow automation with AI goes beyond rules and triggers - it handles the judgment calls. An AI agent can triage support tickets by urgency and topic, draft replies for human review, route requests to the right person, and nudge when follow-ups are overdue.\n\nI build agents that plug into your existing stack - email, ticketing, CRM, project tools. The AI learns your patterns and handles the repetitive parts; humans stay in the loop for decisions that matter. For Barnsley businesses, this might mean support triage, sales lead routing, or internal request handling. The goal is less context-switching and faster resolution, not replacing people.',
     category: 'ai',
+    faqs: [
+      { question: 'What is the difference between AI workflow automation and traditional automation?', answer: 'Traditional automation follows rigid rules - if X then Y. AI automation handles judgment calls: triaging tickets by urgency, drafting context-aware replies, or routing requests based on content rather than simple keywords. It handles the grey areas that rule-based systems can\'t.' },
+      { question: 'Will AI automation replace my team?', answer: 'No. AI handles the repetitive, time-consuming parts - triage, drafting, routing, follow-up reminders. Your team stays in the loop for decisions that matter. The goal is less context-switching and faster resolution, not fewer people.' },
+      { question: 'What tools can AI workflow automation integrate with?', answer: 'I build agents that plug into your existing stack - email, Slack, Microsoft Teams, CRMs like HubSpot or Salesforce, ticketing systems like Zendesk or Freshdesk, and project tools like Linear or Jira. The AI works where your team already works.' },
+      { question: 'How quickly can I see results from AI workflow automation?', answer: 'Most businesses see measurable time savings within the first month. I typically start with one high-volume workflow - such as support ticket triage or lead routing - and you see the impact immediately as response times drop and manual handling reduces.' },
+    ],
     integrations: [
       {
         name: 'LangChain',
@@ -200,6 +224,12 @@ export const aiIntegrations = [
     content:
       'A lot of valuable data is messy - free text, inconsistent formats, scattered across spreadsheets and emails. LLMs can clean, normalise, enrich, and extract insights from unstructured data in ways that traditional ETL struggles with.\n\nI build pipelines that ingest your messy data, apply AI for cleaning and enrichment, and output structured data for analytics or downstream systems. Use cases include: normalising product or customer data, extracting entities from notes or feedback, generating summaries for reporting, or enriching records with external context. For Barnsley businesses with legacy data or manual data entry, this often unlocks analytics that weren\'t feasible before.',
     category: 'ai',
+    faqs: [
+      { question: 'What kind of messy data can AI clean up?', answer: 'AI handles free-text fields, inconsistent formats, duplicate records, misspellings, and data scattered across spreadsheets and emails. It can normalise addresses, standardise product names, extract entities from notes, and merge records that traditional tools would miss.' },
+      { question: 'Do I need a data warehouse or special infrastructure?', answer: 'Not necessarily. I can build pipelines that work with your existing tools - spreadsheets, databases, or cloud storage. For larger volumes, a simple data warehouse setup can be added, but many businesses start with what they have and scale as needed.' },
+      { question: 'How does AI data enrichment work?', answer: 'AI reads your existing records and adds missing context - for example, categorising customer feedback by topic, extracting key dates from contracts, or adding industry codes to company records. It uses language understanding rather than rigid rules, so it handles variation and ambiguity.' },
+      { question: 'Is AI data processing suitable for sensitive or regulated data?', answer: 'Yes, with the right setup. I build pipelines with data governance in mind - audit trails, access controls, and the option to run models on-premises or in your own cloud account so data never leaves your infrastructure.' },
+    ],
     integrations: [
       {
         name: 'Unstructured.io',
@@ -247,6 +277,12 @@ export const aiIntegrations = [
     content:
       'AI can power product features that feel native - recommendations, personalisation, content generation, or assistive writing. The key is fitting the AI to your product and your users, not the other way around.\n\nI work with product teams to design and build AI features: recommendation engines, personalised dashboards, content generation (drafts, summaries, variations), or writing assistants that understand your domain. For SaaS companies, agencies, or product-led businesses in Barnsley and South Yorkshire, this might mean adding AI to an existing product or prototyping a new AI-powered feature. I focus on shipping something useful, then iterating based on real usage.',
     category: 'ai',
+    faqs: [
+      { question: 'Can AI features be added to an existing app or does it need rebuilding?', answer: 'AI features can be added to existing apps without rebuilding. I integrate via APIs and SDKs so recommendations, search, content generation, or assistive writing slot into your current product. The AI layer sits alongside your existing codebase.' },
+      { question: 'How do AI recommendations work in a product?', answer: 'Recommendation engines analyse user behaviour and content to suggest relevant items - products, articles, features, or actions. They learn from usage patterns and improve over time. The AI considers context like what the user has viewed, purchased, or searched for.' },
+      { question: 'What does it cost to add AI features to a SaaS product?', answer: 'Costs depend on the feature complexity and scale. A simple content generation or assistive writing feature might take two to four weeks to build. Running costs come from the AI model API usage, which scales with your user base. I scope and estimate before starting.' },
+      { question: 'How do you ensure AI features are useful rather than gimmicky?', answer: 'I focus on shipping a minimal useful version first, then iterating based on real usage data. The AI should solve an actual user problem - saving time, improving discovery, or reducing effort. If users don\'t engage with it, we adjust or remove it.' },
+    ],
     integrations: [
       {
         name: 'Vercel AI SDK',
@@ -295,6 +331,12 @@ export const aiIntegrations = [
     content:
       'AI can see and interpret images at scale - from quality inspection on production lines to document classification and visual search. Computer vision handles tasks that used to require human eyes: spotting defects, counting objects, reading labels, or matching products to images.\n\nI build vision systems that fit your workflow. For Barnsley manufacturers, that might mean defect detection on finished goods or visual verification of assembly. For retailers, it\'s visual search or automated product tagging. For logistics, it\'s package inspection or warehouse automation. The models are proven; the work is integrating them into your processes and handling edge cases.',
     category: 'ai',
+    faqs: [
+      { question: 'Can AI visual inspection replace manual quality checks?', answer: 'AI can handle the bulk of routine visual inspections - spotting defects, verifying assembly, and checking labels at speed. It works best as a first pass that flags issues for human review, reducing the volume of manual checks rather than eliminating them entirely.' },
+      { question: 'What equipment do I need for computer vision on a production line?', answer: 'A standard industrial camera and adequate lighting are usually sufficient. I work with your existing setup where possible and recommend upgrades only when image quality would otherwise limit accuracy. The AI runs on standard compute hardware.' },
+      { question: 'How long does it take to train a custom vision model?', answer: 'A custom model for a specific inspection task typically takes two to four weeks, including data collection, labelling, training, and testing. Simpler tasks like counting objects or reading labels can often use pre-trained models with minimal customisation.' },
+      { question: 'Can computer vision work with existing CCTV or camera systems?', answer: 'Often yes. If your existing cameras produce sufficiently clear images, the AI can process their feeds. I assess your current setup and recommend whether existing hardware will work or if specific cameras are needed for the task.' },
+    ],
     integrations: [
       {
         name: 'Roboflow',
@@ -344,6 +386,12 @@ export const aiIntegrations = [
     content:
       'Voice AI lets users interact without typing - ideal for hands-busy environments, accessibility, or when speed matters. Speech-to-text transcribes calls, meetings, or dictation. Text-to-speech reads content aloud or powers IVR. Voice assistants handle commands and queries.\n\nI integrate voice AI into your products and workflows. For Barnsley businesses, that might mean transcribing customer calls for compliance, voice-controlled warehouse systems, or an IVR that understands natural language. The tech (Whisper, ElevenLabs, cloud APIs) is mature; the work is fitting it to your use case and handling accents, noise, and domain vocabulary.',
     category: 'ai',
+    faqs: [
+      { question: 'Can AI speech recognition handle Yorkshire accents?', answer: 'Modern speech-to-text models like Whisper handle regional accents well, including Yorkshire English. For specialist vocabulary or strong dialect, I fine-tune the system on sample audio from your team to improve accuracy further.' },
+      { question: 'Is voice AI suitable for recording customer calls for compliance?', answer: 'Yes. AI transcription can record and transcribe customer calls in real time or from recordings, with speaker separation. Transcripts can be automatically flagged for compliance keywords, stored securely, and made searchable for audits.' },
+      { question: 'Can voice AI work in noisy environments like warehouses or factories?', answer: 'Yes, with the right setup. Noise-cancelling microphones and models trained on noisy audio handle industrial environments well. I test with real audio from your environment to ensure accuracy before deployment.' },
+      { question: 'What is the difference between speech-to-text and a voice assistant?', answer: 'Speech-to-text converts spoken audio into written text - useful for transcription and documentation. A voice assistant goes further: it understands commands, answers questions, and triggers actions. Both use speech recognition, but a voice assistant adds AI reasoning on top.' },
+    ],
     integrations: [
       {
         name: 'OpenAI Whisper',
@@ -392,6 +440,12 @@ export const aiIntegrations = [
     content:
       'Predictive AI turns historical data into forward-looking insights. Demand forecasting, anomaly detection, churn prediction, and risk scoring - the models learn patterns and extrapolate. For businesses with time-series data (sales, usage, sensor readings), this unlocks proactive decisions instead of reactive ones.\n\nI build predictive pipelines that fit your data and your questions. For Barnsley businesses, that might mean demand forecasting for inventory, anomaly detection on production metrics, or churn prediction for subscription services. The work is feature engineering, model selection, and integrating predictions into your workflows - not just building models in isolation.',
     category: 'ai',
+    faqs: [
+      { question: 'How much historical data do I need for AI forecasting?', answer: 'It depends on the pattern. For demand forecasting with seasonal trends, two to three years of data is ideal. For anomaly detection, a few months of normal operation can be enough. I assess your data early and tell you honestly whether there is enough signal to build something useful.' },
+      { question: 'Can AI predict customer churn for my business?', answer: 'Yes, if you have customer activity data - logins, purchases, support tickets, usage patterns. The AI identifies patterns that precede churn and flags at-risk customers so your team can intervene. It works for subscriptions, SaaS, and repeat-purchase businesses.' },
+      { question: 'What is anomaly detection and how can it help my business?', answer: 'Anomaly detection spots unusual patterns in your data - a sudden drop in production quality, an unexpected spike in returns, or unusual transaction patterns. It alerts your team to problems early, before they escalate into costly issues.' },
+      { question: 'Do I need a data science team to use predictive analytics?', answer: 'No. I build the models, integrate predictions into your existing tools, and set up dashboards or alerts. Your team uses the outputs - forecasts, risk scores, anomaly alerts - without needing to understand the underlying models.' },
+    ],
     integrations: [
       {
         name: 'Arize',
@@ -442,6 +496,12 @@ export const businessTypes = [
     content:
       'Manufacturing and engineering firms in Barnsley and South Yorkshire have deep expertise - but it\'s often locked in people\'s heads or scattered across documents. I help capture that knowledge and put it to work.\n\nTypical starting points: process documentation that staff can query, quality check automation, supplier communication and order tracking, or internal knowledge bases for specs and procedures. We usually pick one high-friction workflow - something that eats time or causes errors - and solve that first. The goal is practical improvements that pay back quickly, not big-bang digital transformation.',
     category: 'businesses',
+    faqs: [
+      { question: 'How can AI help a manufacturing business in Barnsley?', answer: 'Common starting points include: an internal knowledge base so staff can find specs and procedures without asking colleagues, automated quality checks using computer vision, supplier communication tracking, and process documentation that new starters can query. I pick one high-friction workflow and solve that first.' },
+      { question: 'Do we need to replace our existing systems to use AI?', answer: 'No. AI integrates with your existing tools - ERP, email, shared drives, production systems. I build connectors so the AI reads from and writes to what you already use. No rip-and-replace required.' },
+      { question: 'What does AI cost for a small manufacturing firm?', answer: 'A focused project - like an internal knowledge base or automated quality check - typically starts from a few thousand pounds. Running costs are modest. I scope and estimate before you commit, so there are no surprises.' },
+      { question: 'Can AI capture knowledge from experienced staff before they retire?', answer: 'Yes. I build systems that capture institutional knowledge - procedures, troubleshooting steps, specifications - and make it searchable for the rest of the team. Staff contribute by answering questions or reviewing AI-generated documentation, preserving expertise that would otherwise be lost.' },
+    ],
     integrations: [
       {
         name: 'Augmentir',
@@ -490,6 +550,12 @@ export const businessTypes = [
     content:
       'Professional services firms - law, accountancy, consulting - handle a lot of documents and repetitive research. AI can speed up document review, extract key terms from contracts, triage client intake, and surface relevant precedents or regulations.\n\nI work with firms in Barnsley and across the UK to automate the repetitive parts of professional work. That might mean contract extraction for due diligence, client intake that pre-fills from submitted documents, or research tools that summarise relevant case law or regulations. The AI augments your team; the professional judgment stays with your people. We start with one use case and expand when it proves its value.',
     category: 'businesses',
+    faqs: [
+      { question: 'Can AI review contracts as accurately as a solicitor?', answer: 'AI excels at extracting key terms, flagging unusual clauses, and comparing against standard templates at speed. It handles the bulk review so your solicitors focus on judgment calls. Think of it as a very fast first pass rather than a replacement for legal expertise.' },
+      { question: 'Is AI suitable for handling confidential client documents?', answer: 'Yes, with the right setup. I build systems with encryption, access controls, and audit trails. Models can run in your own cloud environment so client data never leaves your infrastructure. Data governance is built in from day one.' },
+      { question: 'How can AI help with client intake for a professional services firm?', answer: 'AI can read submitted documents, extract key information, pre-fill intake forms, flag missing data, and route the enquiry to the right person. It reduces manual data entry and speeds up the time from first contact to engagement.' },
+      { question: 'What is the typical ROI for AI in professional services?', answer: 'Most firms see payback within three to six months. The biggest savings come from reducing time on document review, research, and data entry - tasks that consume hours of billable-rate time. One contract review tool can pay for itself in the first month of heavy use.' },
+    ],
     integrations: [
       {
         name: 'Harvey',
@@ -537,6 +603,12 @@ export const businessTypes = [
     content:
       'E-commerce and retail businesses need to help customers find products, answer questions, and feel understood. AI can power better search, smarter support, and personalised recommendations.\n\nI build product search that understands intent (not just keywords), customer support that handles common queries and escalates the rest, and recommendation engines that suggest what customers actually want. For inventory and operations, AI can triage orders, flag anomalies, and prioritise what needs attention. Barnsley and South Yorkshire have a strong retail presence - from independents to larger operations. The goal is tools that help you sell more and support customers better without needing a big tech team.',
     category: 'businesses',
+    faqs: [
+      { question: 'How can AI improve product search on my online shop?', answer: 'AI semantic search understands what customers mean, not just what they type. A search for "warm winter jacket under fifty quid" finds the right products even if your listings don\'t use those exact words. It improves conversion by helping customers find what they want faster.' },
+      { question: 'Can AI handle customer support for an e-commerce business?', answer: 'Yes. An AI support agent can answer common queries - order status, returns process, sizing questions - instantly and around the clock. It escalates complex issues to your team. Most e-commerce businesses can automate 60-80% of support volume.' },
+      { question: 'What is AI-powered product recommendation and does it actually increase sales?', answer: 'Recommendation engines analyse what customers browse, buy, and search for, then suggest relevant products. Done well, they increase average order value and repeat purchases. The AI learns from your customers\' behaviour, not just generic rules.' },
+      { question: 'Do I need a big product catalogue for AI to be worthwhile?', answer: 'No. Even with a few hundred products, AI search and recommendations improve the shopping experience. The technology scales from small independent shops to large catalogues with tens of thousands of items.' },
+    ],
     integrations: [
       {
         name: 'Nosto',
@@ -584,6 +656,12 @@ export const businessTypes = [
     content:
       'Tech companies and B2B SaaS firms need to move fast on AI - either adding it to existing products or building new AI-powered offerings. I help with both.\n\nFor product teams: adding AI features (search, recommendations, assistive writing, automation) to existing products with a clear path to production. For internal tools: building AI-powered systems that make your team more productive. For prototyping: validating new ideas quickly with working software, then hardening for scale. I\'ve worked with startups and established tech companies; the approach is the same - ship something useful, learn from usage, iterate. Barnsley\'s growing digital ecosystem, including The Seam and the Tech Town initiative, makes this a good time to invest in AI product development.',
     category: 'businesses',
+    faqs: [
+      { question: 'How do you add AI features to an existing SaaS product?', answer: 'I integrate via your existing API layer - adding AI endpoints for search, recommendations, or content generation that your frontend calls. The AI layer sits alongside your codebase, not inside it. I work with your engineering team to ensure clean integration and maintainability.' },
+      { question: 'Should we build AI features in-house or hire externally?', answer: 'For your first AI features, external help gets you to production faster and avoids the learning curve. Once the patterns are established, your team can maintain and extend them. I aim to leave codebases your engineers can own, not black boxes they depend on me for.' },
+      { question: 'How do you handle AI model costs at scale?', answer: 'I design for cost-efficiency from the start - caching common responses, choosing the right model size for each task, and using cheaper models for simple operations. I set up monitoring so you can track costs per feature and per user, and optimise as usage grows.' },
+      { question: 'Can AI help with internal tools for our tech team?', answer: 'Absolutely. Common internal AI tools include: code review assistants, documentation generators, customer data enrichment, support ticket triage, and internal search over your knowledge base. These pay back quickly by saving engineering and support time.' },
+    ],
     integrations: [
       {
         name: 'Vercel AI SDK',
@@ -632,6 +710,12 @@ export const businessTypes = [
     content:
       'Startups and scale-ups need to move fast - validate ideas, build MVPs, and get to production without getting stuck in complexity. I work alongside founders and small engineering teams to ship AI-powered products.\n\nThe work ranges from greenfield MVPs to adding AI to existing products. I focus on getting something working that you can put in front of users, then iterating based on feedback. For early-stage teams, that might mean building the first version yourself so you can learn what works. For scale-ups, it might mean accelerating a specific AI initiative or filling a gap until you hire. The goal is momentum - shipped software that creates value, not perfect architecture that never ships.',
     category: 'businesses',
+    faqs: [
+      { question: 'How quickly can you build an AI-powered MVP?', answer: 'A focused MVP with one core AI feature typically takes two to four weeks to build and deploy. I prioritise getting something working in front of users fast, then iterate based on feedback. Speed to learning matters more than perfection at this stage.' },
+      { question: 'Do you work alongside existing engineering teams?', answer: 'Yes. I slot in alongside founders and small engineering teams, filling the AI gap until you hire or upskill. I write clean, documented code that your team can own and extend after the engagement.' },
+      { question: 'What AI stack do you recommend for startups?', answer: 'I recommend a lean stack: Next.js or your existing framework, Vercel AI SDK for streaming, and API-based models (OpenAI, Anthropic, or open-source via Replicate/Together). This keeps infrastructure simple and costs proportional to usage. No GPU clusters needed to start.' },
+      { question: 'Can you help us figure out whether AI is the right approach for our product idea?', answer: 'Yes. I do short validation sprints where we assess whether AI adds genuine value to your product, what the technical feasibility looks like, and what it would cost to build and run. Better to learn this in a week than after months of development.' },
+    ],
     integrations: [
       {
         name: 'Vercel AI SDK',
@@ -680,6 +764,12 @@ export const businessTypes = [
     content:
       'Agencies and service providers bill for time - so efficiency directly impacts margin. AI can help in two ways: delivering more value to clients, and reducing internal overhead.\n\nFor client delivery: white-label AI solutions you can offer as part of your service - chatbots, document processing, search, or custom tools. I build systems you can deploy for clients without each project starting from scratch. For internal efficiency: tools that speed up research, drafting, or repetitive tasks so your team can focus on high-value work. For Barnsley-based agencies serving local or national clients, this might mean adding AI to your service offering or streamlining how you deliver existing services.',
     category: 'businesses',
+    faqs: [
+      { question: 'Can I white-label AI solutions for my agency clients?', answer: 'Yes. I build AI tools that you can deploy under your own brand for clients - chatbots, document processing, search, or custom automation. Each deployment is configured for the client without starting from scratch, so you deliver more while keeping margins healthy.' },
+      { question: 'How can AI improve margins for a service-based business?', answer: 'AI reduces the time spent on repetitive tasks - research, drafting, data entry, reporting. If your team bills by the hour, faster delivery means more capacity. If you charge fixed fees, faster delivery means better margins. Either way, AI lets your team focus on high-value work.' },
+      { question: 'What AI tools are most useful for marketing and creative agencies?', answer: 'Content generation for first drafts and variations, SEO content optimisation, automated reporting, and client-facing chatbots are the most common. I also build research tools that summarise competitor content or industry trends, saving hours of manual work per campaign.' },
+      { question: 'Can AI help with proposal writing and pitching?', answer: 'Yes. AI can draft proposal sections, summarise case studies, generate tailored talking points, and pull relevant data. It speeds up the pitch process so you respond faster to opportunities without sacrificing quality.' },
+    ],
     integrations: [
       {
         name: 'Jasper',
@@ -727,6 +817,12 @@ export const businessTypes = [
     content:
       'Healthcare generates vast amounts of unstructured data - notes, records, imaging reports. AI can assist with documentation, triage, summarisation, and research while keeping clinicians in the loop. The focus is on augmenting workflows, reducing administrative burden, and maintaining compliance.\n\nI work with healthcare providers and life sciences firms in Barnsley and the UK on AI that fits regulated environments. That might mean clinical note summarisation, prior auth assistance, or research literature synthesis. We start with one workflow, prove value, and expand carefully. Data governance and audit trails are built in from day one.',
     category: 'businesses',
+    faqs: [
+      { question: 'Is AI safe to use with patient data in the NHS and UK healthcare?', answer: 'Yes, with proper safeguards. I build systems with encryption, access controls, audit trails, and data processing agreements. Models can run within your own infrastructure so patient data never leaves your environment. Compliance with GDPR, the Data Protection Act, and NHS Digital standards is built in from day one.' },
+      { question: 'Can AI reduce administrative burden for clinicians?', answer: 'Significantly. AI can transcribe consultations, summarise clinical notes, pre-fill forms, and surface relevant patient history. This reduces documentation time so clinicians spend more time with patients and less time on paperwork.' },
+      { question: 'How does AI assist with clinical research and literature review?', answer: 'AI can search and summarise research papers, identify relevant studies for a given question, extract key findings, and flag contradictions. It handles the volume that would take researchers weeks, surfacing the most relevant work for human review.' },
+      { question: 'What healthcare AI use case should we start with?', answer: 'Start with the task that consumes the most clinician or admin time for the least clinical value - usually documentation, note summarisation, or referral triage. These have clear ROI, low clinical risk, and build confidence for more ambitious projects.' },
+    ],
     integrations: [
       {
         name: 'Nuance DAX',
@@ -774,6 +870,12 @@ export const businessTypes = [
     content:
       'Logistics and supply chain involve constant trade-offs - cost vs speed, stock vs waste, capacity vs demand. AI can optimise routes, forecast demand, plan inventory, and flag anomalies. For Barnsley businesses in distribution, manufacturing, or retail, this often means starting with one pain point: late deliveries, excess stock, or manual planning.\n\nI build AI that plugs into your existing systems - TMS, WMS, ERP. The work ranges from demand forecasting for procurement to route optimisation for last-mile delivery. We focus on practical improvements that pay back quickly, with clear metrics and human oversight for exceptions.',
     category: 'businesses',
+    faqs: [
+      { question: 'How can AI improve delivery route planning?', answer: 'AI analyses delivery addresses, traffic patterns, vehicle capacity, and time windows to find the most efficient routes. It adapts in real time to delays or new orders. Most businesses see a 10-20% reduction in fuel costs and delivery times after implementing AI route optimisation.' },
+      { question: 'Can AI help reduce excess stock and waste?', answer: 'Yes. AI demand forecasting analyses sales history, seasonality, and external factors to predict what you will need and when. This reduces over-ordering and stock-outs. For perishable goods or seasonal products, the savings can be substantial.' },
+      { question: 'Does AI logistics require replacing our current TMS or WMS?', answer: 'No. I build AI that integrates with your existing transport management and warehouse management systems. The AI reads your data, generates optimised plans, and feeds decisions back into your current tools.' },
+      { question: 'What logistics problem should we tackle with AI first?', answer: 'Start with your biggest pain point - usually demand forecasting for procurement, route optimisation for deliveries, or anomaly detection for shipment tracking. Pick the one that costs you the most time or money, prove the value, then expand.' },
+    ],
     integrations: [
       {
         name: 'FourKites',
@@ -821,6 +923,12 @@ export const businessTypes = [
     content:
       'Education and training providers can use AI to personalise learning, automate assessment, generate content, and support tutors. For Barnsley schools, colleges, and training providers - including those supported by the Tech Town initiative - AI can help scale quality without scaling headcount.\n\nI work with education providers to integrate AI into their platforms and workflows. That might mean adaptive learning paths, automated marking with feedback, or content generation for course materials. We focus on tools that support educators and improve outcomes, not replace the human relationship at the heart of learning.',
     category: 'businesses',
+    faqs: [
+      { question: 'Can AI mark assignments and give feedback to students?', answer: 'Yes. AI can assess written work, provide structured feedback, highlight areas for improvement, and even suggest next steps. It works best for formative assessment where the goal is learning, not just grading. Tutors review flagged or borderline submissions.' },
+      { question: 'How does AI personalise learning paths?', answer: 'AI tracks what each learner has mastered and where they struggle, then adjusts the content, difficulty, and pace accordingly. Stronger students are challenged while those who need more support get additional practice and explanation - all automatically.' },
+      { question: 'Is AI appropriate for schools and colleges in Barnsley?', answer: 'Yes, when used to support rather than replace educators. AI handles time-consuming tasks like marking, content generation, and progress tracking, freeing teachers to focus on the human side of education - mentoring, motivation, and complex questions.' },
+      { question: 'Can AI generate course materials and lesson plans?', answer: 'AI can draft lesson plans, generate practice questions, create reading summaries, and produce variations of existing materials for different ability levels. Educators review and refine the output, saving significant preparation time while maintaining quality.' },
+    ],
     integrations: [
       {
         name: 'Khan Academy',
