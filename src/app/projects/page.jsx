@@ -32,12 +32,35 @@ function LinkIcon(props) {
 }
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Projects')}&description=${encodeURIComponent("Things I've made trying to put my dent in the universe.")}&type=article`
 
 export const metadata = {
   title: 'Projects',
   description: "Things I've made trying to put my dent in the universe.",
   alternates: {
     canonical: `${siteUrl}/projects`,
+  },
+  openGraph: {
+    title: 'Projects - Mitchell Bryson',
+    description: "Things I've made trying to put my dent in the universe.",
+    url: `${siteUrl}/projects`,
+    siteName: 'Mitchell Bryson',
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: 'Projects - Mitchell Bryson',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Projects - Mitchell Bryson',
+    description: "Things I've made trying to put my dent in the universe.",
+    images: [defaultOgImage],
   },
 }
 

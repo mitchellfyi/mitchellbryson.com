@@ -38,6 +38,7 @@ function MailIcon(props) {
 }
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('About')}&description=${encodeURIComponent("Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.")}&type=article`
 
 export const metadata = {
   title: 'About',
@@ -45,6 +46,30 @@ export const metadata = {
     "I'm Mitchell Bryson, a full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
   alternates: {
     canonical: `${siteUrl}/about`,
+  },
+  openGraph: {
+    title: 'About - Mitchell Bryson',
+    description:
+      "Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.",
+    url: `${siteUrl}/about`,
+    siteName: 'Mitchell Bryson',
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: 'About - Mitchell Bryson',
+      },
+    ],
+    locale: 'en_US',
+    type: 'profile',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About - Mitchell Bryson',
+    description:
+      "Full-stack AI Software Engineer. I build practical systems that ship fast and create measurable value.",
+    images: [defaultOgImage],
   },
 }
 

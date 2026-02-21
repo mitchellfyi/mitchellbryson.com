@@ -18,9 +18,14 @@ export async function generateMetadata({ params }) {
     return {}
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+
   return {
     title: project.title,
     description: project.description,
+    alternates: {
+      canonical: `${siteUrl}/projects/${slug}`,
+    },
     openGraph: {
       title: project.title,
       description: project.description,

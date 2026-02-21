@@ -1,6 +1,6 @@
-export function WebSiteJsonLd() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
+export function WebSiteJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -13,6 +13,49 @@ export function WebSiteJsonLd() {
       name: 'Mitchell Bryson',
       url: siteUrl,
     },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteUrl}/articles?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function ProfilePageJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Mitchell Bryson',
+      url: siteUrl,
+      image: `${siteUrl}/api/og?title=${encodeURIComponent('Mitchell Bryson')}&description=${encodeURIComponent('AI Software Engineer')}&type=home`,
+      jobTitle: 'AI Software Engineer',
+      description:
+        "Full-stack AI Software Engineer. I build engaging products and practical systems that ship fast and create measurable value.",
+      sameAs: [
+        'https://github.com/mitchellfyi',
+        'https://www.linkedin.com/in/mitchellfyi',
+      ],
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Large Language Models',
+        'Next.js',
+        'React',
+        'Ruby on Rails',
+        'Product Development',
+        'AI Agents',
+        'Workflow Automation',
+      ],
+    },
   }
 
   return (
@@ -24,8 +67,6 @@ export function WebSiteJsonLd() {
 }
 
 export function PersonJsonLd() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -51,7 +92,6 @@ export function PersonJsonLd() {
 }
 
 export function ArticleJsonLd({ article }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
   const articleUrl = `${siteUrl}/articles/${article.slug}`
   const imageUrl = article.coverImage
     ? `${siteUrl}${article.coverImage}`
@@ -76,6 +116,30 @@ export function ArticleJsonLd({ article }) {
       name: 'Mitchell Bryson',
       url: siteUrl,
     },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['[data-speakable="headline"]', '[data-speakable="description"]'],
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
+export function BreadcrumbJsonLd({ items }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
   }
 
   return (

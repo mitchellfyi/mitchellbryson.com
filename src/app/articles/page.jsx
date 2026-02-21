@@ -65,6 +65,7 @@ function Article({ article }) {
 }
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
+const defaultOgImage = `${siteUrl}/api/og?title=${encodeURIComponent('Articles')}&description=${encodeURIComponent('Thoughts on AI, programming, product development, and more.')}&type=article`
 
 export const metadata = {
   title: 'Articles',
@@ -72,6 +73,30 @@ export const metadata = {
     'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
   alternates: {
     canonical: `${siteUrl}/articles`,
+  },
+  openGraph: {
+    title: 'Articles - Mitchell Bryson',
+    description:
+      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
+    url: `${siteUrl}/articles`,
+    siteName: 'Mitchell Bryson',
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: 'Articles - Mitchell Bryson',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Articles - Mitchell Bryson',
+    description:
+      'All of my long-form thoughts on AI, programming, product development, and more, collected in chronological order.',
+    images: [defaultOgImage],
   },
 }
 

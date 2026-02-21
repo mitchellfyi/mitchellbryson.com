@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getAllToolSlugs, getTool, tools } from '@/lib/tools'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
@@ -77,6 +78,14 @@ export default async function ToolPage({ params }) {
   )
 
   return (
+    <>
+    <BreadcrumbJsonLd
+      items={[
+        { name: 'Home', url: siteUrl },
+        { name: 'Tools', url: `${siteUrl}/tools` },
+        { name: tool.name, url: `${siteUrl}/tools/${slug}` },
+      ]}
+    />
     <SimpleLayout title={tool.name} intro={tool.description}>
       <div className="space-y-10">
         <div className="flex items-center gap-3">
@@ -149,5 +158,6 @@ export default async function ToolPage({ params }) {
         </div>
       </div>
     </SimpleLayout>
+    </>
   )
 }

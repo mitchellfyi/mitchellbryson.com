@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/ArticleLayout'
-import { ArticleJsonLd } from '@/components/JsonLd'
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 import { getAllArticles } from '@/lib/articles'
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mitchellbryson.com'
 
 export async function generateStaticParams() {
   const articles = await getAllArticles()
@@ -72,6 +74,13 @@ export default async function ArticlePage({ params }) {
   return (
     <>
       <ArticleJsonLd article={article} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', url: siteUrl },
+          { name: 'Articles', url: `${siteUrl}/articles` },
+          { name: article.title, url: `${siteUrl}/articles/${article.slug}` },
+        ]}
+      />
       <ArticleLayout article={article} />
     </>
   )

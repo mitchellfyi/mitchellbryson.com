@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
-import { WebSiteJsonLd } from '@/components/JsonLd'
+import { WebSiteJsonLd, ProfilePageJsonLd } from '@/components/JsonLd'
 
 import '@/styles/tailwind.css'
 import '@/styles/prism.css'
@@ -79,6 +79,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <WebSiteJsonLd />
+        <ProfilePageJsonLd />
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>
