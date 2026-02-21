@@ -39,4 +39,10 @@ You are writing a rough draft for Mitchell Bryson's blog. This draft should read
 - Perspective: first-person where appropriate, opinionated, grounded in practical reality
 - Always AI-related, always find the product engineering and philosophical angle
 
+## Language and quality rules
+
+- Use British English spelling throughout (-ise, -our, -re, -ence, -lled, fulfil)
+- Avoid AI-tell vocabulary and structures listed in the style guide
+- No filler phrases — every sentence earns its place
+
 Write the draft now. Raw thinking only. No polish. No headers. No frontmatter.

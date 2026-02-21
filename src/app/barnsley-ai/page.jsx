@@ -4,7 +4,7 @@ import { ContactCTA } from '@/components/ContactCTA'
 import { Container } from '@/components/Container'
 import { IntegrationCard } from '@/components/IntegrationCard'
 import { NeuralNetworkBg } from '@/components/NeuralNetworkBg'
-import { BreadcrumbJsonLd, PlaceJsonLd } from '@/components/JsonLd'
+import { BreadcrumbJsonLd, LocalBusinessJsonLd } from '@/components/JsonLd'
 import { getToolIcon, getToolColor } from '@/components/ProjectIcons'
 import {
   aiIntegrations,
@@ -28,6 +28,12 @@ export const metadata = buildMetadata({
     'artificial intelligence Barnsley',
     'AI consultant South Yorkshire',
     'AI chatbots Barnsley',
+    'AI developer Sheffield',
+    'AI developer Wakefield',
+    'AI developer Rotherham',
+    'AI developer Doncaster',
+    'AI developer Huddersfield',
+    'AI developer Leeds',
   ],
 })
 
@@ -47,14 +53,7 @@ export default function BarnsleyPage() {
           },
         ]}
       />
-      <PlaceJsonLd
-        name="Mitchell Bryson - AI Software Engineer"
-        description="AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for Barnsley businesses."
-        url={`${siteUrl}/barnsley-ai`}
-        locality="Barnsley"
-        region="South Yorkshire"
-        country="GB"
-      />
+      <LocalBusinessJsonLd />
       <Container className="-mt-16 pt-16 sm:-mt-32 sm:pt-32">
         <div className="relative -mx-4 px-4 py-24 sm:-mx-8 sm:px-8 sm:py-32">
           <NeuralNetworkBg />
@@ -174,6 +173,57 @@ export default function BarnsleyPage() {
                   </Link>
                 </p>
               </section>
+
+              <section>
+                <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                  Areas I serve across South Yorkshire
+                </h2>
+                <p className="mt-3 text-zinc-600 dark:text-zinc-400">
+                  Based in Barnsley, I work with businesses across South
+                  Yorkshire and the wider region. Whether you need on-site
+                  collaboration or remote support, I&apos;m set up for both.
+                </p>
+                <ul className="mt-4 space-y-2 text-zinc-600 dark:text-zinc-400">
+                  <li>
+                    <strong>Sheffield</strong> — advanced manufacturing, health
+                    tech, and university spin-outs adopting AI
+                  </li>
+                  <li>
+                    <strong>Wakefield</strong> — logistics, distribution, and
+                    retail businesses streamlining operations with AI
+                  </li>
+                  <li>
+                    <strong>Rotherham</strong> — engineering, construction, and
+                    supply chain firms using AI to cut costs
+                  </li>
+                  <li>
+                    <strong>Doncaster</strong> — transport, warehousing, and
+                    e-commerce companies automating workflows
+                  </li>
+                  <li>
+                    <strong>Huddersfield</strong> — textiles, precision
+                    engineering, and professional services exploring AI
+                  </li>
+                  <li>
+                    <strong>Leeds</strong> — fintech, legal tech, and digital
+                    agencies integrating AI into products
+                  </li>
+                </ul>
+                <p className="mt-3 text-zinc-600 dark:text-zinc-400">
+                  I also work remotely with businesses across the UK. Get in
+                  touch to discuss your project wherever you&apos;re based.
+                </p>
+              </section>
+
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Have questions about working with an AI consultant?{' '}
+                <Link
+                  href="/barnsley-ai/faq"
+                  className="font-medium text-teal-700 transition hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300"
+                >
+                  Read the FAQ →
+                </Link>
+              </p>
             </div>
 
             <div className="space-y-10 lg:pl-16 xl:pl-24">

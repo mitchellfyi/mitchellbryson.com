@@ -31,16 +31,19 @@ jobs:
           fi
 
           URLS=""
+          FILES=""
           while IFS= read -r file; do
             # Extract slug from path like src/app/articles/my-slug/content.md
             SECTION=$(echo "$file" | cut -d'/' -f3)
             SLUG=$(echo "$file" | cut -d'/' -f4)
             URL="https://mitchellbryson.com/${SECTION}/${SLUG}"
             URLS="${URLS} ${URL}"
+            FILES="${FILES} ${file}"
             echo "Detected: ${URL}"
           done <<< "$CHANGED"
 
           echo "urls=${URLS}" >> "$GITHUB_OUTPUT"
+          echo "files=${FILES}" >> "$GITHUB_OUTPUT"
           echo "has_urls=true" >> "$GITHUB_OUTPUT"
 
       - name: Setup Node
@@ -52,3 +55,7 @@ jobs:
       - name: Send notifications
         if: steps.detect.outputs.has_urls == 'true'
         run: node scripts/notify-publish.mjs ${{ steps.detect.outputs.urls }}
+
+      - name: Send webmentions
+        if: steps.detect.outputs.has_urls == 'true'
+        run: node scripts/send-webmentions.mjs ${{ steps.detect.outputs.files }}

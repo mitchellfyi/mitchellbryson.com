@@ -32,7 +32,7 @@ flowchart LR
   H --> I[Evidence Ledger (traces, costs, decisions)]
 ```
 
-**Flow:** ingest sample payloads and docs → infer entities and events → propose contracts → compile adapters (validation, mapping, auth) → run contract tests → gate release → monitor drift and re-synthesize as needed. **Everything is logged** to an [evidence ledger](/articles/the-trust-stack-ai-agents) for audit and debugging. ([docs.pact.io][6], [stoplight.io][5])
+**Flow:** ingest sample payloads and docs → infer entities and events → propose contracts → compile adapters (validation, mapping, auth) → run contract tests → gate release → monitor drift and re-synthesise as needed. **Everything is logged** to an [evidence ledger](/articles/the-trust-stack-ai-agents) for audit and debugging. ([docs.pact.io][6], [stoplight.io][5])
 
 ## Operating model (end-to-end)
 
@@ -51,7 +51,7 @@ For each side, the agent compiles adapters that:
 - **Transform** internal fields to the shared contract (and back).
 - **Authenticate** using the partner's preferred mechanism.
 - **Validate** bodies against JSON Schema before send/accept.
-- **Normalize** enums, time zones, currencies, and IDs (GLN/GTIN when relevant). ([GS1][10])
+- **Normalise** enums, time zones, currencies, and IDs (GLN/GTIN when relevant). ([GS1][10])
 
 ### 4) Proof via contract tests
 
@@ -83,7 +83,7 @@ Every action - generated spec, lint results, contract test run, approval - lands
 
 ## Interop with existing rails
 
-This approach doesn't reject EDI/Peppol; it **compiles to them** when appropriate. If a trading partner insists on Peppol BIS for e-invoices, the agent maps to those profiles and uses the network's **"connect once"** model. If a retail partner uses GS1 identifiers, mappings preserve **GLN/GTIN/SSCC**. The value is removing handcrafting and keeping contracts synchronized over time. ([The Invoicing Hub][8], [ClearTax][13], [GS1][10])
+This approach doesn't reject EDI/Peppol; it **compiles to them** when appropriate. If a trading partner insists on Peppol BIS for e-invoices, the agent maps to those profiles and uses the network's **"connect once"** model. If a retail partner uses GS1 identifiers, mappings preserve **GLN/GTIN/SSCC**. The value is removing handcrafting and keeping contracts synchronised over time. ([The Invoicing Hub][8], [ClearTax][13], [GS1][10])
 
 ## KPIs that prove it works
 
@@ -101,7 +101,7 @@ This approach doesn't reject EDI/Peppol; it **compiles to them** when appropriat
 
 **Week 3 - Canary & watch.** Exchange a low volume of live messages. Enable drift watcher. Track KPIs: validation rate, change lead time, breakage rate.
 
-**Week 4 - Harden & decide.** Expand traffic, finalize runbooks, and compare onboarding time and defects against your current process. If the deltas are real, template the flow for the next partner.
+**Week 4 - Harden & decide.** Expand traffic, finalise runbooks, and compare onboarding time and defects against your current process. If the deltas are real, template the flow for the next partner.
 
 ## What this replaces - and what it doesn't
 

@@ -13,7 +13,7 @@ Conveyancing in England and Wales routinely stretches from 12–16 weeks and oft
 
 Recruiting cycles keep drifting toward **\~5–7 weeks** to fill many roles in the UK, with surveys citing \~4.9–6+ weeks and \~42–48 days "time to fill" - and HR teams losing double-digit hours per vacancy to admin. Discovery, matching, screening, and scheduling are ripe for structured delegation to agents with clear fairness and audit controls. ([StandOut CV][4], [talentinsightgroup.co.uk][5], [People Management][6])
 
-Finance teams still spend **\~6+ days** on the monthly close in typical organizations (leaders do it in \~3–4.5 days), a drag that comes from reconciliations, intercompany checks, and manual accruals - high-volume, rules-heavy work that lends itself to supervised agents with tight guardrails. ([CFO][7])
+Finance teams still spend **\~6+ days** on the monthly close in typical organisations (leaders do it in \~3–4.5 days), a drag that comes from reconciliations, intercompany checks, and manual accruals - high-volume, rules-heavy work that lends itself to supervised agents with tight guardrails. ([CFO][7])
 
 On the horizon, insurance claims and construction operations show big, well-documented efficiency gaps - claims processes that can be cut dramatically with automation, and a construction sector whose productivity has lagged the broader economy for decades - plus public services and healthcare admin where legacy systems and paperwork burn time. ([McKinsey & Company][8], [National Audit Office (NAO)][9], [The King's Fund][10])
 
@@ -27,7 +27,7 @@ Conveyancing is a **multi-party orchestration** problem - solicitors, lenders, l
 
 - **[Document intake + validation](/articles/ai-rag-data-quality-at-scale):** Agents pre-flight Property Information Forms, ID/AML packs, and mortgage docs; they chase missing fields and validate against known datasets, logging everything to a case ledger.
 - **Search orchestration:** A "search conductor" agent requests local authority, water, and environmental searches early; it tracks SLAs and escalates when turnaround times slip.
-- **Title QA & requisition drafting:** A review agent cross-checks title, lease terms, and exceptions; it drafts standardized Land Registry requisition responses for human sign-off.
+- **Title QA & requisition drafting:** A review agent cross-checks title, lease terms, and exceptions; it drafts standardised Land Registry requisition responses for human sign-off.
 - **Chain tracker & nudger:** A coordinator agent maintains a privacy-safe chain state, nudging counterparties when dependencies unblock, with escalation paths to humans.
 
 **Why it helps:** Typical timelines (12–16 weeks; often 120–160 days) are dominated by waiting and rework. Automating intake and chase-downs compresses elapsed time; standardizing requisitions reduces back-and-forth; proactive nudging shortens dead time. ([Tilly Bailey & Irvine][1], [Today's Conveyancer][2])
@@ -75,7 +75,7 @@ Construction productivity has lagged the broader economy for years; document-hea
 
 ### Healthcare admin: referrals, coding, prior auth
 
-Administrative friction burdens patients and staff alike. Agents can pre-populate referrals, summarize notes for coding, and assemble prior-auth packets with citations - always with strict privacy controls and human gates. ([The King's Fund][10])
+Administrative friction burdens patients and staff alike. Agents can pre-populate referrals, summarise notes for coding, and assemble prior-auth packets with citations - always with strict privacy controls and human gates. ([The King's Fund][10])
 
 ### Public-sector back-office: forms → APIs
 
@@ -96,11 +96,11 @@ Legacy systems and fragmented data are a known drag. Start by turning forms into
 
 #### Conveyancing
 
-- Digitize intake for one firm's purchase files; auto-validate required fields; orchestrate LA searches with SLA monitoring; measure **days saved from instruction to exchange**. ([Tilly Bailey & Irvine][1])
+- Digitise intake for one firm's purchase files; auto-validate required fields; orchestrate LA searches with SLA monitoring; measure **days saved from instruction to exchange**. ([Tilly Bailey & Irvine][1])
 
 #### Hiring
 
-- Autonomize sourcing + scheduling for one role family; enforce fairness checks; track **time-to-screen** and **time-to-offer** deltas vs. baseline. ([StandOut CV][4])
+- Autonomise sourcing + scheduling for one role family; enforce fairness checks; track **time-to-screen** and **time-to-offer** deltas vs. baseline. ([StandOut CV][4])
 
 #### Accounting
 

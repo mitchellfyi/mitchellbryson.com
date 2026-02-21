@@ -26,6 +26,43 @@ Mitchell writes about AI from the intersection of product engineering, economics
 
 "**Articulation** - The ability to specify what you want with enough precision that agents can execute. Prompt engineering is the trivial version. Real articulation is: goals, constraints, success criteria, edge cases, values. The people who can articulate well become the new bottleneck."
 
+## Language — British English (en-GB)
+
+All content must use British English spelling and conventions:
+
+- **-ise** not -ize (organise, optimise, recognise, summarise, analyse, prioritise)
+- **-our** not -or (colour, labour, behaviour, favour, honour)
+- **-re** not -er (centre, metre, fibre)
+- **-ence** not -ense (licence noun, defence, offence)
+- **-lled/-lling** not -led/-ling (modelling, travelling, labelled, fulfil)
+- **Dates:** day month year — "21 Feb 2026", never "Feb 21, 2026"
+- **Headings:** Sentence case, not Title Case — "The economics of delegation", not "The Economics of Delegation"
+- **Exception:** Keep American spelling when quoting named American concepts (e.g. "data as labor" from AEA literature, specific US programme names)
+
+## Anti-AI-tell rules
+
+### Banned vocabulary
+
+Never use these words — they signal AI-generated text:
+
+additionally, crucial, delve, enhance, foster, garner, groundbreaking, landscape, nestled, pivotal, showcase, tapestry, testament, underscore, vibrant, vital role
+
+### Banned structures
+
+- "serves as" / "stands as" — just say what it is
+- "not just X — it's Y" — find a less formulaic construction
+- Rule of three lists ("X, Y, and Z") used repeatedly — vary list lengths
+- Em dash overuse — one per article maximum
+- Sycophantic openers ("Great question!", "Absolutely!")
+- Generic conclusions ("As we look to the future...", "Only time will tell...")
+- Vague attribution ("experts say", "many believe", "it's widely recognised")
+- Superficial -ing verb phrases ("leveraging AI", "harnessing the power of")
+- Synonym cycling (using a different word for the same thing every sentence to sound varied)
+
+### Filler phrases to cut
+
+"It's worth noting that", "In today's world", "At the end of the day", "In this article we will", "Let's dive in", "Without further ado"
+
 ## Draft style
 
 Drafts are raw thinking notes. They read like someone working through an idea in a text editor late at night.

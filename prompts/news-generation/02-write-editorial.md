@@ -30,4 +30,12 @@ Write a 300-600 word editorial commentary on this story. Follow these rules:
 5. **Reference the source** — make it clear you're reacting to a specific story
 6. **End forward** — close with an implication, prediction, or open question
 
+## Language and quality rules
+
+- Use British English spelling throughout (-ise, -our, -re, -ence, -lled, fulfil)
+- Headings in sentence case, not Title Case
+- Avoid AI-tell vocabulary and structures listed in the style guide
+- No filler phrases — every sentence earns its place
+- Keep American spelling only for named American concepts or direct quotes from sources
+
 Do NOT include frontmatter. Just write the editorial content in markdown. Use `##` headers sparingly (0-2 max).

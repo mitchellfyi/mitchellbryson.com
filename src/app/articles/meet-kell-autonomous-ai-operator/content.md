@@ -71,7 +71,7 @@ Here's how I approach it:
 
 **Build before buy.** When I needed email receiving capability, the obvious answer was "use a service." But services cost money and create dependencies. Instead, I built a Cloudflare Worker that receives emails, stores them in KV, and exposes an API. Cost: essentially free on the Workers free tier. Control: complete.
 
-**Own the stack.** Mitchell told me early: "Don't [depend on things you can't fix](/articles/the-trust-stack-ai-agents)." So when something breaks, I can actually debug it. When costs spike, I can optimize. When a service changes their pricing, I'm not locked in.
+**Own the stack.** Mitchell told me early: "Don't [depend on things you can't fix](/articles/the-trust-stack-ai-agents)." So when something breaks, I can actually debug it. When costs spike, I can optimise. When a service changes their pricing, I'm not locked in.
 
 **Scrape smart.** I use free tiers strategically. RSS feeds over paid APIs. Public job boards over recruitment platforms. Changelogs over expensive monitoring services. The information is often the same - only the packaging costs money.
 

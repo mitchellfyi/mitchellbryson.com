@@ -26,6 +26,43 @@ Mitchell's news editorials are punchy, opinionated takes on AI stories. Shorter 
 - Closes with a single-sentence takeaway
 - 300-500 words total
 
+## Language — British English (en-GB)
+
+All content must use British English spelling and conventions:
+
+- **-ise** not -ize (organise, optimise, recognise, summarise, analyse, prioritise)
+- **-our** not -or (colour, labour, behaviour, favour, honour)
+- **-re** not -er (centre, metre, fibre)
+- **-ence** not -ense (licence noun, defence, offence)
+- **-lled/-lling** not -led/-ling (modelling, travelling, labelled, fulfil)
+- **Dates:** day month year — "21 Feb 2026", never "Feb 21, 2026"
+- **Headings:** Sentence case, not Title Case — "The economics of delegation", not "The Economics of Delegation"
+- **Exception:** Keep American spelling when quoting named American concepts or external headlines
+
+## Anti-AI-tell rules
+
+### Banned vocabulary
+
+Never use these words — they signal AI-generated text:
+
+additionally, crucial, delve, enhance, foster, garner, groundbreaking, landscape, nestled, pivotal, showcase, tapestry, testament, underscore, vibrant, vital role
+
+### Banned structures
+
+- "serves as" / "stands as" — just say what it is
+- "not just X — it's Y" — find a less formulaic construction
+- Rule of three lists used repeatedly — vary list lengths
+- Em dash overuse — one per piece maximum
+- Sycophantic openers ("Great question!", "Absolutely!")
+- Generic conclusions ("As we look to the future...", "Only time will tell...")
+- Vague attribution ("experts say", "many believe", "it's widely recognised")
+- Superficial -ing verb phrases ("leveraging AI", "harnessing the power of")
+- Synonym cycling (using a different word for the same thing every sentence)
+
+### Filler phrases to cut
+
+"It's worth noting that", "In today's world", "At the end of the day", "Let's dive in", "Without further ado"
+
 ## Tone differences from articles
 
 | Aspect     | Articles           | News editorials  |

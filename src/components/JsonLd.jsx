@@ -276,6 +276,85 @@ export function PlaceJsonLd({
   )
 }
 
+export function LocalBusinessJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Mitchell Bryson - AI Software Engineer',
+    url: `${siteUrl}/barnsley-ai`,
+    description:
+      'AI Software Engineer based in Barnsley, South Yorkshire. AI chatbots, document processing, AI search, and workflow automation for local businesses.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Barnsley',
+      addressRegion: 'South Yorkshire',
+      addressCountry: 'GB',
+    },
+    areaServed: [
+      'Barnsley',
+      'Sheffield',
+      'Wakefield',
+      'Rotherham',
+      'Doncaster',
+      'Huddersfield',
+      'Leeds',
+      'South Yorkshire',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'AI Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AI Chatbots and Conversational AI',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AI Search and Retrieval',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Document Processing and Data Extraction',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Workflow Automation',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AI Integration and Development',
+          },
+        },
+      ],
+    },
+    sameAs: [
+      'https://github.com/mitchellfyi',
+      'https://www.linkedin.com/in/mitchellfyi',
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
 export function BreadcrumbJsonLd({ items }) {
   const jsonLd = {
     '@context': 'https://schema.org',

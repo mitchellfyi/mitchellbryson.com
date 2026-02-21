@@ -9,11 +9,11 @@ Most companies already tune price and inventory with their own data. The leap is
 
 ## Why this, why now
 
-Three rails have matured at once. First, **data clean rooms** let organizations compute over each other's data with strong access rules and built-in controls like differential privacy; major platforms now ship this natively. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][2]) Second, **privacy-enhancing technologies** (PETs) such as differential privacy, secure multi-party computation, and federated learning have moved from theory to guidance and production deployments. ([NIST Publications][3], [NIST Computer Security Resource Center][4], [Proceedings of Machine Learning Research][5]) Third, **event standards** like **GS1 EPCIS 2.0** make it practical to stream inventory and shipment facts across firms in a common schema. ([GS1][6])
+Three rails have matured at once. First, **data clean rooms** let organisations compute over each other's data with strong access rules and built-in controls like differential privacy; major platforms now ship this natively. ([Snowflake Documentation][1], [Amazon Web Services, Inc.][2]) Second, **privacy-enhancing technologies** (PETs) such as differential privacy, secure multi-party computation, and federated learning have moved from theory to guidance and production deployments. ([NIST Publications][3], [NIST Computer Security Resource Center][4], [Proceedings of Machine Learning Research][5]) Third, **event standards** like **GS1 EPCIS 2.0** make it practical to stream inventory and shipment facts across firms in a common schema. ([GS1][6])
 
 ## What a Synthetic Market Twin is (and isn't)
 
-It is a **shared experiment harness**: a neutral environment where parties publish **aggregated or privacy-protected** demand, price, inventory, and logistics signals; propose interventions (price tests, allocation shifts); and receive **personalized** policy-safe recommendations. It is not a place to swap everyone's prices or to coordinate outcomes. Competition law remains the guardrail; the twin works only if its design prevents illegal information exchange and preserves independent decision-making. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
+It is a **shared experiment harness**: a neutral environment where parties publish **aggregated or privacy-protected** demand, price, inventory, and logistics signals; propose interventions (price tests, allocation shifts); and receive **personalised** policy-safe recommendations. It is not a place to swap everyone's prices or to coordinate outcomes. Competition law remains the guardrail; the twin works only if its design prevents illegal information exchange and preserves independent decision-making. ([competitionandmarkets.blog.gov.uk][7], [European Papers][8])
 
 ## How it might work (end-to-end)
 
@@ -23,7 +23,7 @@ Each participant streams a minimal set of fields - e.g., item, region, stock pos
 
 ### 2) Compile a live "market twin"
 
-The platform synthesizes a dynamic model of supply, demand, and constraints. EPCIS-style logistics events enrich the state (what moved, where, when), giving the twin a factual backbone for availability and lead times. ([GS1][6])
+The platform synthesises a dynamic model of supply, demand, and constraints. EPCIS-style logistics events enrich the state (what moved, where, when), giving the twin a factual backbone for availability and lead times. ([GS1][6])
 
 ### 3) Run policy-safe experiments
 

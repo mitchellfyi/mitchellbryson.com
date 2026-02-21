@@ -9,7 +9,7 @@ Delegation has always been the fundamental economic act of scaling human output.
 
 What happens when [the bottleneck](/articles/the-bottleneck-economy-where-ai-can-save) isn't "can I afford to hire someone" but "can I specify what I want clearly enough"? The cost of delegation drops to near-zero. The constraint shifts entirely to articulation and judgment.
 
-## The Historical Arc of Delegation
+## The historical arc of delegation
 
 - **Pre-industrial:** delegation = slavery, servitude, apprenticeship. High coordination costs, limited by physical presence.
 - **Industrial:** delegation = employment. Org charts. Management hierarchies. Taylor's scientific management. The factory as delegation machine.
@@ -18,15 +18,15 @@ What happens when [the bottleneck](/articles/the-bottleneck-economy-where-ai-can
 
 Each era brings new forms of leverage and new constraints.
 
-## What Changes When Delegation Costs Collapse
+## What changes when delegation costs collapse
 
-### The Coasean Boundary Dissolves
+### The Coasean boundary dissolves
 
 Coase's theory of the firm: companies exist because internal coordination is cheaper than market transactions. When AI agents can execute tasks at near-zero marginal cost, the calculation flips. Why employ a team when you can delegate to agents on demand?
 
 The firm becomes a "mission specification engine" rather than a "labour coordination engine."
 
-### The Middle Layer Compresses
+### The middle layer compresses
 
 Middle management exists to translate strategy into execution and aggregate information upward. If agents can do both translation and aggregation, what remains?
 
@@ -38,13 +38,13 @@ What remains:
 
 The middle doesn't disappear - it gets radically compressed.
 
-### Leverage Becomes Unlimited for Individuals
+### Leverage becomes unlimited for individuals
 
 A single person can now [orchestrate](/articles/synthetic-organisations-ai-agency) research teams, content production, customer service, and operations through agent delegation. The [solo operator with agent leverage](/articles/meet-kell-autonomous-ai-operator) can compete with teams. The "one-person unicorn" becomes structurally possible.
 
 But: the constraint shifts to the person's capacity for specification and judgment.
 
-## The New Scarcities
+## The new scarcities
 
 When delegation is cheap, what becomes valuable?
 
@@ -54,7 +54,7 @@ When delegation is cheap, what becomes valuable?
 
 **Attention** - Even with infinite delegation, human attention is finite. You can only review so many outputs, make so many decisions, maintain so many agent relationships. Attention becomes the ultimate scarce resource. Previously, attention was scarce because content was abundant. Now, attention is scarce because _work_ is abundant.
 
-## The Delegation Paradox
+## The delegation paradox
 
 More delegation capacity → more things get attempted → more review required → attention exhausted → quality drops.
 
@@ -66,9 +66,9 @@ Solutions:
 - **Taste compression** (specifying preferences so tightly that review becomes sampling)
 - **Outcome orientation** (measure results, not process)
 
-## Economic Implications
+## Economic implications
 
-### Labor Markets
+### Labour markets
 
 Tasks that can be specified cleanly: price collapses to agent marginal cost. Tasks that require judgment, relationship, or novelty: price premium grows.
 
@@ -76,13 +76,13 @@ The "premium on human" widens. But most current jobs are mixtures. The job doesn
 
 Wage polarisation accelerates. The people who orchestrate earn more. The people who did the delegatable parts... transition or exit.
 
-### Pricing Models
+### Pricing models
 
 Shift from time-based (hours, salaries) to outcome-based (deliverables, results). When execution is cheap, charging for execution time makes no sense. The value is in the specification and judgment, which is hard to price directly.
 
 Rise of "outcome as a service" - you pay for leads, not hours; for code deployed, not developer time.
 
-### Capital Allocation
+### Capital allocation
 
 Human capital was valuable because training took years and execution capacity was limited. With delegation, the value shifts to the system that enables delegation.
 
@@ -93,13 +93,13 @@ Capital flows to:
 - Trust/reputation systems (delegation requires confidence)
 - Specification tools (helping humans articulate)
 
-### Inequality
+### inequality
 
 Early delegation advantage compounds. Those who can orchestrate agents early capture disproportionate value. This is familiar from every technology wave, but the speed is different.
 
 The question: will AI tools lower the barrier to orchestration fast enough to distribute the gains?
 
-## The Organisational Response
+## The organisational response
 
 **Small becomes viable** - 2-person companies with agent armies can deliver what required 50 before. This changes competitive dynamics: incumbents face more agile competitors.
 
@@ -107,7 +107,7 @@ The question: will AI tools lower the barrier to orchestration fast enough to di
 
 **Culture becomes specification** - Company culture is the unwritten specification of "how we do things." With agents, culture must become explicit enough to encode. "We value quality over speed" → specific rubrics, gates, evaluation criteria. The companies that can articulate their culture win.
 
-## What This Means for Individuals
+## What this means for individuals
 
 **Career advice in the delegation era:**
 
@@ -123,7 +123,7 @@ Previously: team size, budget, title. Now: leverage ratio (output / personal att
 
 The flex is "I did this with three agents and two hours of my time."
 
-## Open Questions
+## Open questions
 
 - Does infinite delegation lead to infinite entrepreneurship, or does it consolidate power among the best orchestrators?
 - How do we price judgment when it's the bottleneck but hard to measure?

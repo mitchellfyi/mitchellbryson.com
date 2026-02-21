@@ -5,15 +5,15 @@ title: 'Tokens, Dividends, or Data Wages? Designing UBI for an AI-First Economy'
 description: 'If AI does most work, what does "income" become? This piece explores plausible UBI designs for an AI-heavy future - cash dividends from AI windfalls, "universal basic compute" credits, and data-as-labor royalties - grounded in what we''ve learned from real basic-income pilots and existing dividend models. It sketches how such systems might emerge, who funds them, and how access to powerful AI could be rationed fairly without stifling innovation.'
 ---
 
-If AI can deliver [most goods and services with minimal human labor](/articles/synthetic-organisations-ai-agency), we'll still need a way to distribute **purchasing power** and **[capability access](/articles/economics-of-delegation)**. Call it income, dividends, or credits - the design matters. We already have real-world hints from basic-income pilots and sovereign dividends; the novel work is stitching those precedents to a future where access to **powerful AI and compute** may be as foundational as cash.
+If AI can deliver [most goods and services with minimal human labour](/articles/synthetic-organisations-ai-agency), we'll still need a way to distribute **purchasing power** and **[capability access](/articles/economics-of-delegation)**. Call it income, dividends, or credits - the design matters. We already have real-world hints from basic-income pilots and sovereign dividends; the novel work is stitching those precedents to a future where access to **powerful AI and compute** may be as foundational as cash.
 
 ## 1) Why UBI re-enters the chat with frontier AI
 
-As [automation expands into cognitive tasks](/articles/the-bottleneck-economy-where-ai-can-save), labor income can decouple from production. Before speculating, it's worth grounding in what high-quality pilots actually found.
+As [automation expands into cognitive tasks](/articles/the-bottleneck-economy-where-ai-can-save), labour income can decouple from production. Before speculating, it's worth grounding in what high-quality pilots actually found.
 
-- **Finland's randomized basic-income experiment (2017–2018)** reported improved wellbeing and modest, mixed employment effects, not the collapse some feared. Researchers found **better mental health and life satisfaction** among recipients, while employment impacts were small and statistically uncertain. ([julkaisut.valtioneuvosto.fi][1], [Finland Toolbox][2])
+- **Finland's randomised basic-income experiment (2017–2018)** reported improved wellbeing and modest, mixed employment effects, not the collapse some feared. Researchers found **better mental health and life satisfaction** among recipients, while employment impacts were small and statistically uncertain. ([julkaisut.valtioneuvosto.fi][1], [Finland Toolbox][2])
 - **Stockton's SEED guaranteed-income pilot** (US\$500/month, 2019–2020) observed reduced income volatility, improved mental health, and - in a widely discussed result - **higher rates of full-time employment** among recipients after one year. ([SEED][3], [PMC][4])
-- **GiveDirectly's long-horizon UBI program in Kenya** (the world's largest/longest to date) is finding that both **monthly UBI and large lump-sum transfers** increase investment, earnings, and psychological wellbeing; "laziness" effects did not materialize in early results. ([GiveDirectly][5])
+- **GiveDirectly's long-horizon UBI program in Kenya** (the world's largest/longest to date) is finding that both **monthly UBI and large lump-sum transfers** increase investment, earnings, and psychological wellbeing; "laziness" effects did not materialise in early results. ([GiveDirectly][5])
 
 **Example implementation:** create a national **UBI Observatory** that ingests administrative data from ongoing trials (employment, health, education), publishes dashboards, and recommends quarterly adjustments to amounts and phase-outs. It's the missing feedback loop between pilots and policy.
 
@@ -73,8 +73,8 @@ Roll out digital IDs and **audit-friendly wallets** that can hold cash, **comput
 To stay legitimate, a UBI/UBC system needs strong design constraints.
 
 - **Fair access to frontier models:** reserve a baseline tier for public/educational use; meter premium capability with per-capita credits so access isn't purely wealth-based.
-- **Privacy & consent for data wages:** pay via privacy-preserving reporting; contributions are **voluntary and revocable**; publish pricing methodologies for transparency. The "data as labor" literature emphasizes the need for countervailing power and clear consent. ([American Economic Association][11])
-- **Inflation & macro stability:** size dividends by rule (e.g., multi-year averaging like Alaska) to avoid pro-cyclical shocks; publish a stabilizer that smooths payouts and compute credits over the business cycle. ([Permanent Fund Dividend][12])
+- **Privacy & consent for data wages:** pay via privacy-preserving reporting; contributions are **voluntary and revocable**; publish pricing methodologies for transparency. The "data as labor" literature emphasises the need for countervailing power and clear consent. ([American Economic Association][11])
+- **Inflation & macro stability:** size dividends by rule (e.g., multi-year averaging like Alaska) to avoid pro-cyclical shocks; publish a stabiliser that smooths payouts and compute credits over the business cycle. ([Permanent Fund Dividend][12])
 
 **Example implementation:** a **two-tier AI access charter** - baseline models free for civic tasks, advanced models accessible via per-person credits plus means-tested top-ups for education, disability, and small-business formation.
 
@@ -94,15 +94,15 @@ In the optimistic scenario, individuals run **agent swarms** that multiply perso
 
 - **City-level "AI dividend."** Capture [measured savings from public-sector automation](/projects/tools/ai-roi-calculator) (document processing, eligibility checks) and share them back to residents as small **cash + compute** stipends; publish quarterly ledgers.
 - **National compute stipend for students/SMEs.** Treat compute like a utility: [metered, audited, and fairly priced](/articles/llm-ops-maintenance-architecture); measure learning and productivity outcomes.
-- **Data-for-cash pilots.** Stand up opt-in **data wage** markets using standardized licenses and privacy tech; publish prices and allow revocation, building on the "data as labor" framework. ([American Economic Association][11])
+- **Data-for-cash pilots.** Stand up opt-in **data wage** markets using standardised licenses and privacy tech; publish prices and allow revocation, building on the "data as labor" framework. ([American Economic Association][11])
 
 ---
 
 ## Frequently raised critiques (and replies)
 
-**"Won't people stop working?"** Randomized trials in Finland and Stockton did not show mass withdrawal from work; some found increased full-time employment and reduced financial volatility - consistent with the idea that a secure base lowers frictions to better jobs. ([julkaisut.valtioneuvosto.fi][1], [SEED][3], [PMC][4])
+**"Won't people stop working?"** Randomised trials in Finland and Stockton did not show mass withdrawal from work; some found increased full-time employment and reduced financial volatility - consistent with the idea that a secure base lowers frictions to better jobs. ([julkaisut.valtioneuvosto.fi][1], [SEED][3], [PMC][4])
 
-**"Dividends get politicized."** True. Alaska's history argues for **boring rules** (multi-year smoothing, clear eligibility) and independent administration to survive fiscal cycles. ([Permanent Fund Dividend][12])
+**"Dividends get politicised."** True. Alaska's history argues for **boring rules** (multi-year smoothing, clear eligibility) and independent administration to survive fiscal cycles. ([Permanent Fund Dividend][12])
 
 **"How do we pay for it?"** Start with **sectoral rents** (training-run licensing, resource levies), add **windfall sharing** for outlier profits, and let **data wages** cover the contribution side. None precludes progressive tax reform; they complement it. ([arXiv][9], [fhi.ox.ac.uk][10], [American Economic Association][11])
 

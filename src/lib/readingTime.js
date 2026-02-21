@@ -17,7 +17,7 @@ export function calculateReadingTime(content) {
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // Keep link text
     .replace(/[#*_~>\-|]/g, '') // Remove markdown symbols
     .replace(/<[^>]*>/g, '') // Remove HTML tags
-    .replace(/\s+/g, ' ') // Normalize whitespace
+    .replace(/\s+/g, ' ') // Normalise whitespace
     .trim()
 
   const words = plainText.split(/\s+/).filter((word) => word.length > 0)

@@ -88,6 +88,12 @@ export default async function sitemap() {
       priority: 0.6,
     },
     {
+      url: `${siteUrl}/barnsley-ai/faq`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: `${siteUrl}/news`,
       lastModified: new Date(),
       changeFrequency: 'daily',

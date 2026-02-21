@@ -9,6 +9,7 @@ import {
   CollectionPageJsonLd,
   FAQPageJsonLd,
   PlaceJsonLd,
+  LocalBusinessJsonLd,
   BreadcrumbJsonLd,
 } from './JsonLd'
 
@@ -219,6 +220,44 @@ describe('PlaceJsonLd', () => {
   it('address has PostalAddress type', () => {
     const { container } = render(<PlaceJsonLd {...props} />)
     expect(getJsonLd(container).address['@type']).toBe('PostalAddress')
+  })
+})
+
+describe('LocalBusinessJsonLd', () => {
+  it('has @type ProfessionalService', () => {
+    const { container } = render(<LocalBusinessJsonLd />)
+    expect(getJsonLd(container)['@type']).toBe('ProfessionalService')
+  })
+
+  it('includes address with Barnsley locality', () => {
+    const { container } = render(<LocalBusinessJsonLd />)
+    const address = getJsonLd(container).address
+    expect(address['@type']).toBe('PostalAddress')
+    expect(address.addressLocality).toBe('Barnsley')
+    expect(address.addressCountry).toBe('GB')
+  })
+
+  it('includes areaServed with multiple towns', () => {
+    const { container } = render(<LocalBusinessJsonLd />)
+    const areas = getJsonLd(container).areaServed
+    expect(Array.isArray(areas)).toBe(true)
+    expect(areas).toContain('Barnsley')
+    expect(areas).toContain('Sheffield')
+    expect(areas.length).toBeGreaterThanOrEqual(7)
+  })
+
+  it('includes hasOfferCatalog with services', () => {
+    const { container } = render(<LocalBusinessJsonLd />)
+    const catalog = getJsonLd(container).hasOfferCatalog
+    expect(catalog['@type']).toBe('OfferCatalog')
+    expect(catalog.itemListElement.length).toBeGreaterThan(0)
+  })
+
+  it('includes sameAs array', () => {
+    const { container } = render(<LocalBusinessJsonLd />)
+    const data = getJsonLd(container)
+    expect(Array.isArray(data.sameAs)).toBe(true)
+    expect(data.sameAs.length).toBe(2)
   })
 })
 

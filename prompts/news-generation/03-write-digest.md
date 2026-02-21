@@ -36,4 +36,8 @@ Rules:
 - Use `##` headers for each group (name them by theme, not by source category)
 - The commentary should add value — don't just restate the headlines
 - Product engineering angle: what does this mean for people building things?
+- Use British English spelling throughout (-ise, -our, -re, -ence, -lled, fulfil)
+- Headings in sentence case, not Title Case
+- Avoid AI-tell vocabulary and structures listed in the style guide
+- No filler phrases — every sentence earns its place
 - Do NOT include frontmatter. Just write the markdown content.

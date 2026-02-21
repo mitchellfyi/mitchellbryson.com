@@ -25,10 +25,21 @@ export async function generateMetadata({ params }) {
   const integration = getIntegrationBySlug(slug)
   if (!integration) return {}
 
+  const pageCategories = integration.pages?.map((p) => p.title).join(', ')
+  const description = pageCategories
+    ? `How to use ${integration.name} for ${pageCategories}. AI integration for Barnsley and South Yorkshire businesses.`
+    : `${integration.name} - ${integration.description} AI integration for Barnsley and South Yorkshire businesses.`
+
   return buildMetadata({
     title: `${integration.name} AI Integration Barnsley`,
-    description: `${integration.name} - ${integration.description} AI integration for Barnsley businesses by Mitchell Bryson.`,
+    description,
     url: `${siteUrl}/barnsley-ai/integrations/${slug}`,
+    keywords: [
+      `${integration.name} AI`,
+      `${integration.name} integration`,
+      `${integration.name} Barnsley`,
+      'AI integration South Yorkshire',
+    ],
   })
 }
 
